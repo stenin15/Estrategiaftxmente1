@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Cores da marca TFX */
+:root {
+  --tfx-teal: #00d4ff;
+  --tfx-orange: #ff6b35;
+  --tfx-dark: #0a0a0a;
+  --tfx-gray: #1a1a1a;
+  --tfx-light-gray: #2a2a2a;
+}
+
 /* Animações para a landing page */
 @keyframes fadeIn {
   from {
@@ -17,11 +26,20 @@
 @keyframes pulseCTA {
   0%, 100% { 
     transform: scale(1); 
-    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+    box-shadow: 0 0 0 0 rgba(0, 212, 255, 0.7);
   }
   50% { 
     transform: scale(1.05); 
-    box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+    box-shadow: 0 0 0 10px rgba(0, 212, 255, 0);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    text-shadow: 0 0 5px var(--tfx-teal), 0 0 10px var(--tfx-teal), 0 0 15px var(--tfx-teal);
+  }
+  50% {
+    text-shadow: 0 0 10px var(--tfx-teal), 0 0 20px var(--tfx-teal), 0 0 30px var(--tfx-teal);
   }
 }
 
@@ -31,6 +49,10 @@
 
 .animate-pulseCTA {
   animation: pulseCTA 1.5s infinite;
+}
+
+.animate-glow {
+  animation: glow 2s ease-in-out infinite;
 }
 
 /* Scroll suave */
@@ -45,7 +67,30 @@ html {
 
 .hover-lift:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 25px rgba(0, 212, 255, 0.3);
+}
+
+/* Gradientes da marca */
+.tfx-gradient {
+  background: linear-gradient(135deg, var(--tfx-teal), var(--tfx-orange));
+}
+
+.tfx-gradient-text {
+  background: linear-gradient(135deg, var(--tfx-teal), var(--tfx-orange));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Efeitos neon */
+.neon-teal {
+  color: var(--tfx-teal);
+  text-shadow: 0 0 5px var(--tfx-teal), 0 0 10px var(--tfx-teal);
+}
+
+.neon-orange {
+  color: var(--tfx-orange);
+  text-shadow: 0 0 5px var(--tfx-orange), 0 0 10px var(--tfx-orange);
 }
 
 @layer base {
