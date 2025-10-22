@@ -118,75 +118,6 @@ const ValueStack = () => (
   </div>
 );
 
-const ROICalculator = () => {
-  const [capital, setCapital] = useState(500);
-  const [rr, setRr] = useState(1.5);
-  const [riskPct, setRiskPct] = useState(1);
-
-  const result = React.useMemo(() => {
-    const risk = (riskPct / 100) * capital;
-    const expected = Math.round(risk * rr);
-    return { risk, expected };
-  }, [capital, rr, riskPct]);
-
-  return (
-    <div className="bg-zinc-900/60 rounded-2xl border border-zinc-700 p-6 md:p-8">
-      <h3 className="text-xl md:text-2xl font-bold text-white mb-4">
-        Calculadora rápida de ROI (simulação)
-      </h3>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-zinc-300">
-        <label className="flex flex-col">
-          Capital (R$)
-          <input
-            type="number"
-            min={100}
-            step={50}
-            value={capital}
-            onChange={(e) => setCapital(Number(e.target.value))}
-            className="mt-2 bg-zinc-800 border border-zinc-700 rounded-xl px-3 py-2 text-white"
-          />
-        </label>
-        <label className="flex flex-col">
-          Risco por trade (%)
-          <input
-            type="number"
-            step={0.5}
-            value={riskPct}
-            onChange={(e) => setRiskPct(Number(e.target.value))}
-            className="mt-2 bg-zinc-800 border border-zinc-700 rounded-xl px-3 py-2 text-white"
-          />
-        </label>
-        <label className="flex flex-col">
-          R:R médio
-          <input
-            type="number"
-            step={0.1}
-            value={rr}
-            onChange={(e) => setRr(Number(e.target.value))}
-            className="mt-2 bg-zinc-800 border border-zinc-700 rounded-xl px-3 py-2 text-white"
-          />
-        </label>
-      </div>
-      <div className="mt-4 text-zinc-300">
-        <p>
-          Risco por operação:{" "}
-          <span className="font-bold text-white">
-            R$ {result.risk.toFixed(2)}
-          </span>
-        </p>
-        <p>
-          Potencial de lucro (1 trade):{" "}
-          <span className="font-bold text-emerald-400">
-            R$ {result.expected.toFixed(2)}
-          </span>
-        </p>
-        <p className="text-xs text-zinc-500 mt-1">
-          *Simulação educativa — resultados variam conforme execução e mercado.
-        </p>
-      </div>
-    </div>
-  );
-};
 
 /** =========================
  * COMPONENTE CARROSSEL
@@ -506,47 +437,53 @@ const LandingPage: React.FC = () => {
           <ValueStack />
         </Section>
 
-        {/* OFERTA / PREÇO */}
-        <Section id="oferta" className="text-center">
-          <h2 className="text-3xl font-extrabold text-white">
-            Oferta especial por tempo limitado ⏰
-          </h2>
-          <p className="text-zinc-300 mt-2">
-            Leve o curso completo + o Guia Prático de Gestão & Mindset dos
-            Insiders por apenas{" "}
-            <span className="text-emerald-400 font-extrabold">R$ 49,90</span>{" "}
-            (de <span className="line-through text-zinc-500">R$ 119,90</span>).
-          </p>
+        {/* OFERTA FINAL */}
+        <section className="py-20 bg-gradient-to-b from-zinc-950 to-zinc-900 text-white text-center relative overflow-hidden">
+          <div className="max-w-3xl mx-auto px-6">
+            <h2 className="text-3xl font-bold mb-6">
+              🔥 Últimas Horas da Oferta
+            </h2>
+            <p className="text-gray-300 text-lg mb-8">
+              Domine o mercado, transforme sua mentalidade e tenha o mesmo nível de clareza que os insiders e market makers.
+              <br />
+              Essa é a sua chance de mudar o jogo antes que a oferta expire.
+            </p>
 
-          <div className="mt-8 max-w-md mx-auto bg-zinc-900/60 border border-zinc-800 rounded-2xl p-6">
-            <p className="text-zinc-300">Oferta expira em:</p>
-            <div className="text-3xl md:text-4xl font-extrabold text-emerald-400 mt-1">
-              {formatTime(remaining)}
+            <div className="bg-zinc-900 border border-cyan-500/30 rounded-2xl p-6 mb-8 shadow-lg">
+              <h3 className="text-2xl font-semibold mb-3 text-cyan-400">📦 Oferta Exclusiva</h3>
+              <p className="text-gray-300 mb-4">
+                Leve o <span className="font-semibold text-white">curso completo + o Guia Prático de Gestão e Mindset dos Insiders</span>  
+                por apenas <span className="text-cyan-400 font-bold text-2xl">R$49,90</span> (de <span className="line-through text-gray-500">R$119,90</span>).
+              </p>
+
+              <div className="flex flex-col sm:flex-row justify-center gap-4 mt-6">
+                <button className="bg-cyan-500 text-black font-semibold px-8 py-3 rounded-full hover:bg-cyan-400 transition-all animate-pulseCTA shadow-lg">
+                  GARANTIR MEU ACESSO COM DESCONTO
+                </button>
+                <button className="border border-cyan-400 text-cyan-400 font-semibold px-8 py-3 rounded-full hover:bg-cyan-400 hover:text-black transition-all">
+                  Ver detalhes da oferta
+                </button>
+              </div>
+
+              <div className="mt-6 text-sm text-gray-400">
+                ⏰ Oferta expira em <span className="text-cyan-400 font-bold">{formatTime(remaining)}</span>  
+                <br />
+                💎 Bônus incluso apenas enquanto o cronômetro estiver ativo!
+              </div>
             </div>
-            <p className="text-xs text-zinc-500 mt-1">
-              Bônus expira quando o timer zerar.
+
+            <div className="mt-8 space-y-3 text-sm text-gray-400">
+              <p>✅ Pagamento 100% seguro</p>
+              <p>⚡ Acesso imediato após a confirmação</p>
+              <p>🧠 Suporte direto e garantia de 7 dias</p>
+            </div>
+
+            <p className="text-gray-400 text-xs mt-10 italic">
+              "O trader que hesita é o trader que continua preso no mesmo ciclo."
             </p>
           </div>
+        </section>
 
-          <div className="mt-8 flex flex-col md:flex-row gap-4 justify-center">
-            <CTA href={CHECKOUT_URL}>QUERO O PACOTE COMPLETO AGORA</CTA>
-            <CTA variant="outline" href="#faq">
-              Ver detalhes da oferta
-            </CTA>
-          </div>
-
-          <div className="flex items-center justify-center gap-3 mt-6 text-xs text-zinc-400">
-            <Badge>🛡️ Garantia 7 dias</Badge>
-            <span>Pagamento 100% seguro</span>
-            <span>•</span>
-            <span>Acesso imediato</span>
-          </div>
-        </Section>
-
-        {/* CALCULADORA ROI */}
-        <Section>
-          <ROICalculator />
-        </Section>
 
         {/* FAQ */}
         <Section id="faq" className="text-center">
@@ -570,21 +507,6 @@ const LandingPage: React.FC = () => {
           </div>
         </Section>
 
-        {/* CTA FINAL */}
-        <div className="bg-gradient-to-r from-amber-900/40 via-zinc-900 to-emerald-900/40">
-          <Section className="text-center">
-            <h3 className="text-2xl md:text-3xl font-extrabold text-white">
-              🔥 Últimas horas da oferta.
-            </h3>
-            <p className="text-zinc-300 mt-2">
-              Domine o mercado e transforme sua mentalidade de trader agora
-              mesmo.
-            </p>
-            <div className="mt-6">
-              <CTA href={CHECKOUT_URL}>GARANTIR MEU ACESSO COM DESCONTO</CTA>
-            </div>
-          </Section>
-        </div>
 
         {/* RODAPÉ */}
         <footer className="text-center text-sm text-zinc-500 py-8">
