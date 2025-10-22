@@ -279,3 +279,4 @@ src/
 - `src/index.css` (estilos e animações)
 
 **Deploy:** Automático via Vercel quando push para GitHub main branch.
+

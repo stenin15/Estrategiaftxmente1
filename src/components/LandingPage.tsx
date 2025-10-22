@@ -184,7 +184,7 @@ const LandingPage: React.FC = () => {
 
       <div className="bg-gradient-to-b from-black via-zinc-950 to-black text-white min-h-screen">
         {/* HERO + BLOCO "O QUE VOCÊ VAI DESCOBRIR" */}
-        <section className="py-20 bg-zinc-950 text-white text-center px-6">
+        <section className="hero py-20 text-white text-center px-6">
           <div className="max-w-4xl mx-auto">
             {/* TAG PROMOCIONAL */}
             <span className="text-xs bg-cyan-500/20 text-cyan-400 px-3 py-1 rounded-full uppercase tracking-widest font-semibold mb-4 inline-block">

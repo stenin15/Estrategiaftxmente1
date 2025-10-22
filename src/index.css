@@ -163,3 +163,16 @@ html {
   }
 }
 
+/* Estilos da seção Hero */
+.hero {
+  background: url("/assets/hero-trader.jpg") no-repeat center center/cover;
+  position: relative;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75); /* camada escura para contraste */
+}
+
