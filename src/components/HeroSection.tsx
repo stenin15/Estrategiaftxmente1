@@ -1,8 +1,7 @@
 import { Button } from "@/components/ui/button";
-import { Check, TrendingUp } from "lucide-react";
+import { Check } from "lucide-react";
 import { AnimatedLogo } from "./AnimatedLogo";
 import heroImage from "@/assets/hero-trader.jpg";
-import logoTfx from "@/assets/logo-tfx.webp";
 
 export const HeroSection = () => {
   const scrollToForm = () => {
