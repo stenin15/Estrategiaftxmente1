@@ -306,24 +306,56 @@ const LandingPage: React.FC = () => {
           </div>
         </Section>
 
-        {/* IDENTIFICAÇÃO */}
-        <Section className="text-center">
-          <h2 className="text-2xl md:text-3xl font-extrabold text-white">
-            Você se identifica com isso?
-          </h2>
-          <ul className="mt-6 space-y-3 text-zinc-300 max-w-2xl mx-auto text-base md:text-lg">
-            <li>😩 Entra em operações e sai no prejuízo?</li>
-            <li>📉 Sente que o mercado está sempre contra você?</li>
-            <li>⏰ Falta disciplina e gestão no dia a dia?</li>
-            <li>💸 Já tentou de tudo e ainda não lucra consistentemente?</li>
-          </ul>
-          <p className="mt-5 text-emerald-300 text-sm md:text-base">
-            Se respondeu "sim" a qualquer uma, a FTX Mente vai mudar seu jogo.
-          </p>
-          <div className="mt-6">
-            <CTA href={CHECKOUT_URL}>COMEÇAR AGORA</CTA>
+        {/* IDENTIFICAÇÃO COM DOR E SOLUÇÃO */}
+        <section className="relative bg-gradient-to-b from-black via-zinc-950 to-black py-20 text-center text-white overflow-hidden">
+          {/* DOR */}
+          <div className="max-w-3xl mx-auto px-6 mb-16">
+            <h2 className="text-3xl font-bold mb-6">
+              Você se identifica com isso? 😩
+            </h2>
+            <ul className="text-gray-300 space-y-3 text-lg">
+              <li>🚫 Entra em operações e sai no prejuízo?</li>
+              <li>📉 Sente que o mercado está sempre contra você?</li>
+              <li>⏰ Falta disciplina e gestão no dia a dia?</li>
+              <li>💸 Já tentou de tudo e ainda não lucra consistentemente?</li>
+            </ul>
+
+            <p className="text-cyan-400 mt-6 font-medium">
+              Se respondeu "sim" a qualquer uma delas... você está prestes a mudar isso.
+            </p>
           </div>
-        </Section>
+
+          {/* ANIMAÇÃO / TRANSIÇÃO */}
+          <div className="absolute left-1/2 top-1/2 w-[150%] h-[300px] -translate-x-1/2 bg-gradient-to-r from-cyan-500/10 via-cyan-400/10 to-transparent blur-3xl opacity-40 animate-pulse" />
+
+          {/* SOLUÇÃO */}
+          <div className="relative max-w-4xl mx-auto px-6">
+            <h3 className="text-3xl font-bold mb-8">
+              O que você vai dominar dentro do método 🚀
+            </h3>
+
+            <div className="grid sm:grid-cols-2 gap-4 text-gray-200">
+              <div className="bg-zinc-900/60 p-4 rounded-xl border border-zinc-800 hover:border-cyan-400 transition">
+                📊 <span className="font-semibold">Leitura de gráfico</span> que revela a intenção dos grandes players.
+              </div>
+              <div className="bg-zinc-900/60 p-4 rounded-xl border border-zinc-800 hover:border-cyan-400 transition">
+                ⚙️ <span className="font-semibold">Gestão de risco</span> e disciplina de elite.
+              </div>
+              <div className="bg-zinc-900/60 p-4 rounded-xl border border-zinc-800 hover:border-cyan-400 transition">
+                🧠 <span className="font-semibold">Mindset dos insiders</span> — opere como quem realmente entende o mercado.
+              </div>
+              <div className="bg-zinc-900/60 p-4 rounded-xl border border-zinc-800 hover:border-cyan-400 transition">
+                💰 <span className="font-semibold">Setup validado</span> e replicável com consistência.
+              </div>
+            </div>
+
+            <div className="mt-10">
+              <button className="bg-cyan-500 text-black font-semibold px-8 py-3 rounded-full hover:bg-cyan-400 transition-all shadow-lg animate-pulseCTA">
+                QUERO DOMINAR O MÉTODO AGORA →
+              </button>
+            </div>
+          </div>
+        </section>
 
         {/* BENEFÍCIOS */}
         <Section id="como-funciona" className="text-center">
@@ -571,6 +603,17 @@ const LandingPage: React.FC = () => {
           WA
         </a>
       </div>
+
+      {/* CSS para animação pulseCTA */}
+      <style>{`
+        @keyframes pulseCTA {
+          0%, 100% { transform: scale(1); }
+          50% { transform: scale(1.08); }
+        }
+        .animate-pulseCTA {
+          animation: pulseCTA 2s infinite;
+        }
+      `}</style>
     </>
   );
 };
