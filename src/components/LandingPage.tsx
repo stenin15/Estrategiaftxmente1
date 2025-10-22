@@ -323,39 +323,6 @@ const LandingPage: React.FC = () => {
             </div>
           </div>
 
-          {/* COPY PODEROSA */}
-          <div className="max-w-4xl mx-auto text-left space-y-6 mb-8">
-            <div className="bg-gradient-to-r from-emerald-900/30 to-cyan-900/30 border border-emerald-500/30 rounded-2xl p-6">
-              <h3 className="text-xl font-bold text-emerald-300 mb-4">🎯 O que você vai descobrir:</h3>
-              <ul className="space-y-3 text-zinc-200">
-                <li className="flex items-start gap-3">
-                  <span className="text-emerald-400 font-bold">✓</span>
-                  <span><strong>O segredo dos 0.1%</strong> — como os insiders realmente leem o mercado (não é o que você pensa)</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-emerald-400 font-bold">✓</span>
-                  <span><strong>A manipulação exposta</strong> — os 3 sinais que os market makers deixam escapar</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-emerald-400 font-bold">✓</span>
-                  <span><strong>Setup de reversão</strong> — como entrar na direção certa antes da maioria</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="text-emerald-400 font-bold">✓</span>
-                  <span><strong>Gestão de elite</strong> — o sistema que os profissionais usam para nunca quebrar</span>
-                </li>
-              </ul>
-            </div>
-
-            <div className="bg-gradient-to-r from-orange-900/30 to-red-900/30 border border-orange-500/30 rounded-2xl p-6">
-              <h3 className="text-xl font-bold text-orange-300 mb-4">⚠️ ATENÇÃO:</h3>
-              <p className="text-zinc-200 leading-relaxed">
-                Este vídeo contém informações que <strong>mudarão completamente</strong> sua perspectiva sobre trading. 
-                Se você está cansado de perder dinheiro e quer finalmente entender como o mercado realmente funciona, 
-                <span className="text-orange-300 font-bold">assista até o final</span>.
-              </p>
-            </div>
-          </div>
 
           {/* CTA SUPER FORTE */}
           <div className="space-y-4">
