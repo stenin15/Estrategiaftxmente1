@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import useEmblaCarousel from "embla-carousel-react";
+import { OfertaFinal } from "./OfertaFinal";
 
 /** =========================
  * CONFIGURÁVEIS
@@ -368,49 +369,8 @@ const LandingPage: React.FC = () => {
         </Section>
 
 
-        {/* BLOCO FINAL COMPACTO E CONVERSIVO */}
-        <section className="py-20 bg-gradient-to-b from-zinc-950 to-zinc-900 text-white text-center relative overflow-hidden">
-          <div className="max-w-3xl mx-auto px-6">
-            <h2 className="text-3xl font-bold mb-4">🔥 Últimas Horas da Oferta</h2>
-            <p className="text-gray-300 mb-6 leading-relaxed">
-              Domine o mercado, transforme sua mentalidade e opere como os insiders.
-            </p>
-
-            <div className="bg-zinc-900 border border-cyan-500/40 rounded-2xl shadow-xl p-6 mb-8 transition hover:scale-[1.02]">
-              <h3 className="text-2xl font-semibold text-cyan-400 mb-4">💎 Pacote Completo FTX Mente</h3>
-
-              <ul className="text-gray-300 text-left mx-auto mb-6 max-w-md space-y-2">
-                <li>✅ Estratégia completa (R$299,90)</li>
-                <li>✅ Guia de Mindset & Gestão (R$99,90)</li>
-                <li>✅ Checklist + atualizações</li>
-                <li>✅ Suporte direto 7 dias</li>
-              </ul>
-
-              <p className="text-xl font-bold mb-4 text-cyan-400">
-                De <span className="line-through text-gray-500">R$119,90</span> → <span className="text-white">Hoje: R$49,90</span> 🔥
-              </p>
-
-              <button className="bg-cyan-500 text-black font-bold text-lg px-8 py-4 rounded-full hover:bg-cyan-400 transition-all animate-pulseCTA shadow-lg">
-                QUERO GARANTIR MEU ACESSO AGORA →
-              </button>
-
-              <p className="text-sm text-gray-400 mt-4">
-                ⏰ Oferta expira em <span className="text-cyan-400 font-semibold">{formatTime(remaining)}</span><br />
-                💎 Bônus incluso apenas enquanto o cronômetro estiver ativo!
-              </p>
-            </div>
-
-            <div className="flex justify-center gap-6 text-sm text-gray-400 mt-6">
-              <span>💳 Pagamento seguro</span>
-              <span>⚡ Acesso imediato</span>
-              <span>🧠 Garantia 7 dias</span>
-            </div>
-
-            <p className="text-gray-500 text-xs mt-10 italic">
-              "Quem hesita, perde o trade — e a oportunidade de virar o jogo."
-            </p>
-          </div>
-        </section>
+        {/* OFERTA FINAL COM ANIMAÇÕES */}
+        <OfertaFinal />
 
 
         {/* FAQ ANIMADO */}
