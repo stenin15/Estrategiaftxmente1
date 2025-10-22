@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
+import useEmblaCarousel from "embla-carousel-react";
 
 /** =========================
  * CONFIGURÁVEIS
@@ -188,6 +189,51 @@ const ROICalculator = () => {
 };
 
 /** =========================
+ * COMPONENTE CARROSSEL
+ * ========================= */
+const ProvasCarousel = () => {
+  const [emblaRef] = useEmblaCarousel({ 
+    loop: true, 
+    autoplay: { delay: 3000 },
+    align: "start"
+  });
+
+  const imagens = [
+    "/WhatsApp Image 2025-10-22 at 00.13.37.jpeg",
+    "/WhatsApp Image 2025-10-21 at 17.07.38 (1).jpeg",
+    "/WhatsApp Image 2025-10-21 at 17.07.37 (1).jpeg",
+    "/WhatsApp Image 2025-10-21 at 17.07.37.jpeg",
+    "/WhatsApp Image 2025-10-21 at 17.10.12 (1).jpeg",
+    "/WhatsApp Image 2025-10-21 at 17.10.24 (1).jpeg",
+    "/WhatsApp Image 2025-10-21 at 17.10.24.jpeg",
+    "/WhatsApp Image 2025-10-21 at 17.10.34.jpeg",
+    "/image (6).png",
+  ];
+
+  return (
+    <div className="mt-8 overflow-hidden" ref={emblaRef}>
+      <div className="flex">
+        {imagens.map((src, i) => (
+          <div
+            key={i}
+            className="flex-[0_0_80%] sm:flex-[0_0_45%] md:flex-[0_0_33%] lg:flex-[0_0_25%] mx-2"
+          >
+            <div className="bg-zinc-900 rounded-xl shadow-lg p-2 hover:scale-105 transition-all duration-300">
+              <img
+                src={src}
+                alt={`Prova real ${i + 1}`}
+                className="rounded-lg w-full h-auto object-cover"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+/** =========================
  * LANDING PAGE
  * ========================= */
 const LandingPage: React.FC = () => {
@@ -343,58 +389,22 @@ const LandingPage: React.FC = () => {
           </div>
         </Section>
 
-        {/* PROVAS */}
+        {/* PROVAS COM CARROSSEL AUTOMÁTICO */}
         <Section id="provas" className="text-center">
           <h2 className="text-2xl md:text-3xl font-extrabold text-white">
-            Resultados reais de quem aplicou
+            Resultados Reais na Tela 📈
           </h2>
           <p className="text-zinc-300 mt-2">
-            Prints e vídeos originais — sem manipulação.
+            Operações reais capturadas diretamente do app — consistência comprovada.
           </p>
 
-          <div className="grid md:grid-cols-3 gap-6 mt-8">
-            <div className="group rounded-2xl overflow-hidden border border-zinc-800 bg-zinc-900/60 hover:border-emerald-500/40 transition-all">
-              <div className="bg-gray-700 h-48 flex items-center justify-center">
-                <span className="text-gray-400">📊 Print 1</span>
-              </div>
-              <div className="p-4 text-left">
-                <p className="text-emerald-400 font-semibold">+R$ 842</p>
-                <p className="text-xs text-zinc-400">EURUSD — 10/10/2025</p>
-                <p className="text-[11px] text-zinc-500 mt-1">Sem edição 🔒</p>
-              </div>
-            </div>
+          <ProvasCarousel />
 
-            <div className="group rounded-2xl overflow-hidden border border-zinc-800 bg-zinc-900/60 hover:border-emerald-500/40 transition-all">
-              <div className="bg-gray-700 h-48 flex items-center justify-center">
-                <span className="text-gray-400">📈 Print 2</span>
-              </div>
-              <div className="p-4 text-left">
-                <p className="text-emerald-400 font-semibold">+R$ 1.240</p>
-                <p className="text-xs text-zinc-400">BTCUSD — 12/10/2025</p>
-                <p className="text-[11px] text-zinc-500 mt-1">Sem edição 🔒</p>
-              </div>
-            </div>
-
-            <div className="group rounded-2xl overflow-hidden border border-zinc-800 bg-zinc-900/60 hover:border-emerald-500/40 transition-all">
-              <div className="bg-gray-700 h-48 flex items-center justify-center">
-                <span className="text-gray-400">🎥 Vídeo</span>
-              </div>
-              <div className="p-4 text-left">
-                <p className="text-zinc-200 font-semibold">
-                  Execução ao vivo (15s)
-                </p>
-                <p className="text-xs text-zinc-400">
-                  Entrada explicada e saída técnica
-                </p>
-                <a
-                  href="#video"
-                  className="text-emerald-400 text-sm font-semibold inline-flex items-center gap-1 mt-2"
-                >
-                  Assistir agora →
-                </a>
-              </div>
-            </div>
-          </div>
+          <p className="text-center text-zinc-300 max-w-2xl mx-auto mt-8">
+            Cada um desses resultados é uma operação real feita por traders que aplicaram o método
+            <span className="text-cyan-400 font-semibold"> FTX Mente </span>.
+            Não é sorte — é estratégia.
+          </p>
 
           <div className="mt-8">
             <CTA href={CHECKOUT_URL}>Quero resultados assim também</CTA>
