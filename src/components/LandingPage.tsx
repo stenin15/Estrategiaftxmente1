@@ -60,9 +60,9 @@ const CTA = ({
 }) => {
   const base = "inline-flex items-center justify-center rounded-2xl px-6 md:px-8 py-3 md:py-4 text-sm md:text-base font-extrabold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-0";
   const variants = {
-    primary: "bg-emerald-500 hover:bg-emerald-400 text-black shadow-lg shadow-emerald-500/20 animate-pulse",
-    secondary: "bg-zinc-800 hover:bg-zinc-700 text-white border border-zinc-600",
-    outline: "border border-emerald-400 text-emerald-300 hover:bg-emerald-400 hover:text-black",
+    primary: "bg-emerald-500 hover:bg-emerald-400 text-black shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/40 hover:scale-105 transform transition-all duration-300 hover:-translate-y-1",
+    secondary: "bg-zinc-800 hover:bg-zinc-700 text-white border border-zinc-600 hover:scale-105 transform transition-all duration-300 hover:-translate-y-1",
+    outline: "border border-emerald-400 text-emerald-300 hover:bg-emerald-400 hover:text-black hover:scale-105 transform transition-all duration-300 hover:-translate-y-1",
   } as const;
   return (
     <a href={href} className={`${base} ${variants[variant]} ${className}`}>
@@ -373,7 +373,7 @@ const LandingPage: React.FC = () => {
             <div className="relative bg-zinc-900 rounded-2xl overflow-hidden border border-zinc-700 shadow-2xl">
               <div className="aspect-video bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center relative">
                 <div className="text-center">
-                  <div className="w-20 h-20 bg-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4 animate-pulse">
+                  <div className="w-20 h-20 bg-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg hover:scale-110 transform transition-all duration-300 hover:shadow-emerald-500/50">
                     <svg className="w-8 h-8 text-black ml-1" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M8 5v14l11-7z"/>
                     </svg>
@@ -384,7 +384,7 @@ const LandingPage: React.FC = () => {
                 
                 {/* OVERLAY DE URGÊNCIA */}
                 <div className="absolute top-4 right-4">
-                  <div className="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold animate-pulse">
+                  <div className="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg hover:scale-105 transform transition-all duration-300">
                     ⏰ AO VIVO
                   </div>
                 </div>
@@ -428,7 +428,7 @@ const LandingPage: React.FC = () => {
 
           {/* CTA SUPER FORTE */}
           <div className="space-y-4">
-            <CTA variant="primary" href="#vsl" className="text-xl px-12 py-6 animate-pulse">
+            <CTA variant="primary" href="#vsl" className="text-xl px-12 py-6">
               🎬 ASSISTIR VÍDEO AGORA — GRÁTIS
             </CTA>
             
