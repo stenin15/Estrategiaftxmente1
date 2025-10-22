@@ -95,28 +95,6 @@ const FAQItem = ({
   );
 };
 
-const ValueStack = () => (
-  <div className="bg-zinc-900/60 rounded-2xl border border-zinc-700 p-6 md:p-8 text-left max-w-xl mx-auto">
-    <h3 className="text-xl md:text-2xl font-bold text-white mb-4">
-      O que você recebe hoje:
-    </h3>
-    <ul className="space-y-3 text-zinc-300">
-      <li>✅ Estratégia FTX completa (R$ 299,90)</li>
-      <li>✅ Guia de Gestão & Mindset dos Insiders (R$ 99,90)</li>
-      <li>✅ Checklist operacional e atualizações (R$ 49,90)</li>
-      <li>✅ Suporte direto por 7 dias (R$ 49,90)</li>
-    </ul>
-    <div className="mt-5">
-      <p className="text-zinc-400 line-through">Total: R$ 499,60</p>
-      <p className="text-white text-2xl md:text-3xl font-extrabold">
-        Hoje: <span className="text-emerald-400">R$ 49,90</span> 🔥
-      </p>
-      <p className="text-xs text-zinc-400 mt-1">
-        Oferta de lançamento por tempo limitado.
-      </p>
-    </div>
-  </div>
-);
 
 
 /** =========================
@@ -403,10 +381,6 @@ const LandingPage: React.FC = () => {
           </div>
         </Section>
 
-        {/* VALOR PERCEBIDO */}
-        <Section>
-          <ValueStack />
-        </Section>
 
         {/* BLOCO FINAL COMPACTO E CONVERSIVO */}
         <section className="py-20 bg-gradient-to-b from-zinc-950 to-zinc-900 text-white text-center relative overflow-hidden">
