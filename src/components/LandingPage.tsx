@@ -1,278 +1,539 @@
-import { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet';
+import React, { useEffect, useMemo, useState } from "react";
+import ReactCompareImage from "react-compare-image";
+import { Helmet } from "react-helmet-async";
 
-const LandingPage = () => {
-  const [timeLeft, setTimeLeft] = useState({
-    hours: 72,
-    minutes: 0,
-    seconds: 0
-  });
+/** =========================
+ * CONFIGURÁVEIS
+ * ========================= */
+const CHECKOUT_URL = "#checkout"; // Coloque aqui seu link do checkout
+const WHATSAPP_LINK =
+  "https://wa.me/5599999999999?text=Tenho%20d%C3%BAvidas%20sobre%20a%20Estrat%C3%A9gia%20FTX%20Mente"; // seu número
+const TIMER_STORAGE_KEY = "ftx_timer_start_ts"; // chave do localStorage
+const TIMER_DURATION_MS = 72 * 60 * 60 * 1000; // 72 horas
+
+// Imagens (troque pelos seus assets)
+import Antes from "@/assets/grafico-antes.jpg";
+import Depois from "@/assets/grafico-depois.jpg";
+import Print1 from "@/assets/print1.jpg";
+import Print2 from "@/assets/print2.jpg";
+import ThumbVideo from "@/assets/thumb-video.jpg";
+
+/** =========================
+ * UTILS
+ * ========================= */
+function formatTime(ms: number) {
+  const totalSec = Math.max(0, Math.floor(ms / 1000));
+  const h = Math.floor(totalSec / 3600)
+    .toString()
+    .padStart(2, "0");
+  const m = Math.floor((totalSec % 3600) / 60)
+    .toString()
+    .padStart(2, "0");
+  const s = Math.floor(totalSec % 60)
+    .toString()
+    .padStart(2, "0");
+  return `${h}:${m}:${s}`;
+}
+
+/** =========================
+ * COMPONENTES AUXILIARES
+ * ========================= */
+const Badge = ({ children }: { children: React.ReactNode }) => (
+  <span className="inline-flex items-center gap-2 rounded-full bg-emerald-500/10 text-emerald-300 border border-emerald-400/30 px-3 py-1 text-xs font-semibold">
+    {children}
+  </span>
+);
+
+const Section = ({
+  id,
+  children,
+  className = "",
+}: {
+  id?: string;
+  children: React.ReactNode;
+  className?: string;
+}) => (
+  <section
+    id={id}
+    className={`px-6 py-16 md:py-24 max-w-6xl mx-auto ${className}`}
+  >
+    {children}
+  </section>
+);
+
+const CTA = ({
+  href = CHECKOUT_URL,
+  children,
+  variant = "primary",
+  className = "",
+}: {
+  href?: string;
+  children: React.ReactNode;
+  variant?: "primary" | "secondary" | "outline";
+  className?: string;
+}) => {
+  const base =
+    "inline-flex items-center justify-center rounded-2xl px-6 md:px-8 py-3 md:py-4 text-sm md:text-base font-extrabold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-0";
+  const variants = {
+    primary:
+      "bg-emerald-500 hover:bg-emerald-400 text-black shadow-lg shadow-emerald-500/20 animate-[pulseCTA_1.6s_ease-in-out_infinite]",
+    secondary:
+      "bg-zinc-800 hover:bg-zinc-700 text-white border border-zinc-600",
+    outline:
+      "border border-emerald-400 text-emerald-300 hover:bg-emerald-400 hover:text-black",
+  } as const;
+  return (
+    <a href={href} className={`${base} ${variants[variant]} ${className}`}>
+      {children}
+    </a>
+  );
+};
+
+const FAQItem = ({
+  q,
+  a,
+  openDefault = false,
+}: {
+  q: string;
+  a: React.ReactNode;
+  openDefault?: boolean;
+}) => {
+  const [open, setOpen] = useState(openDefault);
+  return (
+    <div className="rounded-2xl bg-zinc-800/60 border border-zinc-700 p-4 md:p-5">
+      <button
+        className="w-full flex items-center justify-between text-left"
+        onClick={() => setOpen((v) => !v)}
+      >
+        <span className="font-semibold text-white">{q}</span>
+        <span className="text-zinc-400">{open ? "−" : "+"}</span>
+      </button>
+      {open && <div className="mt-3 text-zinc-300 text-sm">{a}</div>}
+    </div>
+  );
+};
+
+const ValueStack = () => (
+  <div className="bg-zinc-900/60 rounded-2xl border border-zinc-700 p-6 md:p-8 text-left max-w-xl mx-auto">
+    <h3 className="text-xl md:text-2xl font-bold text-white mb-4">
+      O que você recebe hoje:
+    </h3>
+    <ul className="space-y-3 text-zinc-300">
+      <li>✅ Estratégia FTX completa (R$ 299,90)</li>
+      <li>✅ Guia de Gestão & Mindset dos Insiders (R$ 99,90)</li>
+      <li>✅ Checklist operacional e atualizações (R$ 49,90)</li>
+      <li>✅ Suporte direto por 7 dias (R$ 49,90)</li>
+    </ul>
+    <div className="mt-5">
+      <p className="text-zinc-400 line-through">Total: R$ 499,60</p>
+      <p className="text-white text-2xl md:text-3xl font-extrabold">
+        Hoje: <span className="text-emerald-400">R$ 49,90</span> 🔥
+      </p>
+      <p className="text-xs text-zinc-400 mt-1">
+        Oferta de lançamento por tempo limitado.
+      </p>
+    </div>
+  </div>
+);
+
+const ROICalculator = () => {
+  const [capital, setCapital] = useState(500);
+  const [rr, setRr] = useState(1.5); // risco:retorno médio
+  const [riskPct, setRiskPct] = useState(1); // risco por trade
+
+  const result = useMemo(() => {
+    const risk = (riskPct / 100) * capital;
+    const expected = Math.round(risk * rr);
+    return { risk, expected };
+  }, [capital, rr, riskPct]);
+
+  return (
+    <div className="bg-zinc-900/60 rounded-2xl border border-zinc-700 p-6 md:p-8">
+      <h3 className="text-xl md:text-2xl font-bold text-white mb-4">
+        Calculadora rápida de ROI (simulação)
+      </h3>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-zinc-300">
+        <label className="flex flex-col">
+          Capital (R$)
+          <input
+            type="number"
+            min={100}
+            step={50}
+            value={capital}
+            onChange={(e) => setCapital(Number(e.target.value))}
+            className="mt-2 bg-zinc-800 border border-zinc-700 rounded-xl px-3 py-2 text-white"
+          />
+        </label>
+        <label className="flex flex-col">
+          Risco por trade (%)
+          <input
+            type="number"
+            step={0.5}
+            value={riskPct}
+            onChange={(e) => setRiskPct(Number(e.target.value))}
+            className="mt-2 bg-zinc-800 border border-zinc-700 rounded-xl px-3 py-2 text-white"
+          />
+        </label>
+        <label className="flex flex-col">
+          R:R médio
+          <input
+            type="number"
+            step={0.1}
+            value={rr}
+            onChange={(e) => setRr(Number(e.target.value))}
+            className="mt-2 bg-zinc-800 border border-zinc-700 rounded-xl px-3 py-2 text-white"
+          />
+        </label>
+      </div>
+      <div className="mt-4 text-zinc-300">
+        <p>
+          Risco por operação:{" "}
+          <span className="font-bold text-white">
+            R$ {result.risk.toFixed(2)}
+          </span>
+        </p>
+        <p>
+          Potencial de lucro (1 trade):{" "}
+          <span className="font-bold text-emerald-400">
+            R$ {result.expected.toFixed(2)}
+          </span>
+        </p>
+        <p className="text-xs text-zinc-500 mt-1">
+          *Simulação educativa — resultados variam conforme execução e mercado.
+        </p>
+      </div>
+    </div>
+  );
+};
+
+/** =========================
+ * LANDING PAGE
+ * ========================= */
+const LandingPage: React.FC = () => {
+  /** Timer 72h persistente */
+  const [remaining, setRemaining] = useState<number>(TIMER_DURATION_MS);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft(prev => {
-        if (prev.seconds > 0) {
-          return { ...prev, seconds: prev.seconds - 1 };
-        } else if (prev.minutes > 0) {
-          return { ...prev, minutes: prev.minutes - 1, seconds: 59 };
-        } else if (prev.hours > 0) {
-          return { ...prev, hours: prev.hours - 1, minutes: 59, seconds: 59 };
-        }
-        return prev;
-      });
-    }, 1000);
-
-    return () => clearInterval(timer);
+    let start = localStorage.getItem(TIMER_STORAGE_KEY);
+    if (!start) {
+      start = Date.now().toString();
+      localStorage.setItem(TIMER_STORAGE_KEY, start);
+    }
+    const startedAt = Number(start);
+    const tick = () => {
+      const now = Date.now();
+      const delta = TIMER_DURATION_MS - (now - startedAt);
+      setRemaining(Math.max(0, delta));
+    };
+    tick();
+    const id = setInterval(tick, 1000);
+    return () => clearInterval(id);
   }, []);
 
   return (
-    <div className="min-h-screen">
+    <>
+      {/* META */}
       <Helmet>
-        <title>Estratégia FTX Mente - Domine o Mercado com Método Comprovado</title>
-        <meta name="description" content="Aprenda a estratégia que os insiders usam para operar com confiança. Método testado que transforma traders comuns em lucrativos. Acesso imediato por apenas R$49,90." />
-        <meta property="og:title" content="Estratégia FTX Mente - Domine o Mercado" />
-        <meta property="og:description" content="Método testado que transforma traders comuns em lucrativos. Acesso imediato por apenas R$49,90." />
+        <title>Estratégia FTX Mente — Domine o mercado com método</title>
+        <meta
+          name="description"
+          content="Método validado que transforma traders comuns em lucrativos. Curso + Guia de Gestão & Mindset por R$49,90. Oferta de lançamento."
+        />
+        <meta property="og:title" content="Estratégia FTX Mente" />
+        <meta
+          property="og:description"
+          content="Curso completo + Guia de Gestão & Mindset — R$49,90."
+        />
         <meta property="og:type" content="website" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Estratégia FTX Mente - Domine o Mercado" />
-        <meta name="twitter:description" content="Método testado que transforma traders comuns em lucrativos." />
       </Helmet>
 
-      {/* ================================================
-      🔥 HERO SECTION - TEMA TFX
-      ================================================ */}
-      <section className="bg-black text-white px-6 py-20 text-center flex flex-col items-center animate-fade-in relative overflow-hidden">
-        {/* Background com efeito da marca */}
-        <div className="absolute inset-0 bg-gradient-to-br from-teal-900/20 via-transparent to-orange-900/20"></div>
-        <div className="relative z-10">
-          <h1 className="text-4xl md:text-5xl font-bold max-w-4xl leading-tight">
-            🔥 Domine o Mercado com a <span className="tfx-gradient-text animate-glow">Estratégia TFX</span> que Transforma Traders Comuns em Lucrativos!
+      {/* HERO */}
+      <div className="bg-gradient-to-b from-black via-zinc-950 to-black text-white">
+        <Section className="text-center">
+          <div className="mb-3">
+            <Badge>🎯 Oferta exclusiva por tempo limitado</Badge>
+          </div>
+          <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">
+            Domine o mercado com a{" "}
+            <span className="text-cyan-300 drop-shadow-[0_0_18px_rgba(34,211,238,0.35)]">
+              Estratégia FTX
+            </span>{" "}
+            que transforma traders comuns em lucrativos.
           </h1>
-          <p className="mt-6 text-xl max-w-3xl text-gray-300 leading-relaxed">
-            Você vai aprender o método que os <span className="neon-teal font-semibold">insiders e market makers</span> usam para operar com confiança — <span className="text-white font-semibold">sem depender da sorte</span>.
+          <p className="mt-4 text-lg md:text-xl text-zinc-300 max-w-3xl mx-auto">
+            Aprenda o mesmo método que insiders e{" "}
+            <span className="font-semibold text-white">market makers</span> usam
+            para operar com confiança — sem depender da sorte. Em menos de{" "}
+            <span className="font-semibold text-white">15 min/dia</span>.
           </p>
-          <div className="flex flex-col md:flex-row gap-4 mt-10">
-            <a href="#oferta" className="tfx-gradient hover:opacity-90 text-black font-bold py-4 px-10 rounded-2xl shadow-lg transition-all duration-300 animate-pulseCTA text-lg">
+
+          <div className="mt-8 flex flex-col md:flex-row gap-4 justify-center">
+            <CTA variant="primary" href={CHECKOUT_URL}>
               QUERO ACESSO IMEDIATO
-            </a>
-            <a href="#antesdepois" className="border-2 border-teal-400 text-teal-400 font-bold py-4 px-10 rounded-2xl hover:bg-teal-400 hover:text-black transition-all duration-300 hover:scale-105 text-lg">
+            </CTA>
+            <CTA variant="outline" href="#como-funciona">
               VER COMO FUNCIONA →
-            </a>
+            </CTA>
           </div>
-          <div className="mt-8 text-sm text-gray-400">
-            ✅ Método validado por traders profissionais • ✅ Acesso vitalício • ✅ Suporte direto
+
+          <div className="mt-5 text-xs md:text-sm text-zinc-400">
+            ✅ Aulas práticas • ✅ Acesso imediato • ✅ Suporte direto
           </div>
-        </div>
-      </section>
+        </Section>
 
-      {/* ===========================================================
-      🧠 SEÇÃO: IDENTIFICAÇÃO / PROBLEMA - COPY OTIMIZADA
-      =========================================================== */}
-      <section className="bg-zinc-950 py-20 px-6 text-center animate-fade-in">
-        <h2 className="text-3xl font-bold text-white mb-8">Você se identifica com isso?</h2>
-        <ul className="text-gray-300 max-w-3xl mx-auto space-y-4 text-lg">
-          <li className="flex items-center justify-center gap-3">😩 Entra em operações e sai no prejuízo?</li>
-          <li className="flex items-center justify-center gap-3">📉 Sente que o mercado está sempre contra você?</li>
-          <li className="flex items-center justify-center gap-3">⏰ Falta disciplina e gestão no dia a dia?</li>
-          <li className="flex items-center justify-center gap-3">💸 Já tentou de tudo e ainda não lucra consistentemente?</li>
-        </ul>
-        <div className="mt-8 neon-teal font-semibold text-lg">
-          👉 Se respondeu "sim" a qualquer uma dessas, a <span className="tfx-gradient-text">Estratégia TFX</span> vai mudar seu jogo.
-        </div>
-        <a href="#oferta" className="mt-8 inline-block tfx-gradient hover:opacity-90 text-black font-bold py-4 px-10 rounded-2xl shadow-lg transition-all duration-300 hover:scale-105 text-lg">
-          COMEÇAR AGORA
-        </a>
-      </section>
-
-      {/* ===========================================================
-      🚀 SEÇÃO: BENEFÍCIOS E CONTEÚDO - COPY OTIMIZADA
-      =========================================================== */}
-      <section className="bg-black py-20 px-6 text-center animate-fade-in">
-        <h2 className="text-3xl font-bold text-white mb-8">O que você vai dominar dentro do método</h2>
-        <ul className="text-gray-300 text-lg space-y-4 max-w-3xl mx-auto">
-          <li className="flex items-start gap-3">📊 Leitura de gráfico que revela a intenção dos grandes players</li>
-          <li className="flex items-start gap-3">⚙️ Gestão de risco e disciplina de elite</li>
-          <li className="flex items-start gap-3">🧠 Mindset dos insiders</li>
-          <li className="flex items-start gap-3">🚀 Setup validado e replicável</li>
-          <li className="flex items-start gap-3">💰 Estratégia que gera lucros consistentes</li>
-        </ul>
-        <a href="#antesdepois" className="mt-10 inline-block border-2 border-teal-400 text-teal-400 font-bold py-4 px-10 rounded-2xl hover:bg-teal-400 hover:text-black transition-all duration-300 hover:scale-105 text-lg">
-          Ver o Antes e Depois no Gráfico →
-        </a>
-      </section>
-
-      {/* ===========================================================
-      📊 SEÇÃO: ANTES & DEPOIS INTERATIVO - COPY OTIMIZADA
-      =========================================================== */}
-      <section id="antesdepois" className="bg-zinc-900 py-20 px-6 text-center animate-fade-in">
-        <h2 className="text-3xl font-bold text-white mb-6">Veja a diferença entre operar às cegas e com método</h2>
-        <p className="text-gray-300 max-w-3xl mx-auto mb-10 text-lg">
-          Arraste o slider para comparar o gráfico antes e depois da estratégia aplicada.
-          Observe como cada decisão muda o resultado da operação — com entradas, stops e saídas explicadas passo a passo.
-        </p>
-
-        {/* Simulação do gráfico interativo com tema TFX */}
-        <div className="bg-gray-800 w-full max-w-4xl mx-auto h-80 flex items-center justify-center rounded-xl text-gray-500 relative overflow-hidden hover-lift">
-          <div className="absolute inset-0 bg-gradient-to-r from-orange-900/30 to-teal-900/30"></div>
-          <div className="relative z-10 text-center">
-            <div className="text-4xl mb-4">📈</div>
-            <p className="text-xl font-bold mb-2 neon-teal">Gráfico Interativo TFX</p>
-            <p className="text-sm mb-4">Arraste para ver antes/depois</p>
-            <div className="flex items-center justify-center gap-4 text-sm">
-              <span className="bg-orange-500/20 px-3 py-1 rounded neon-orange">ANTES</span>
-              <span className="text-gray-400">→</span>
-              <span className="bg-teal-500/20 px-3 py-1 rounded neon-teal">DEPOIS</span>
-            </div>
-          </div>
-        </div>
-
-        <a href="#provas" className="mt-10 inline-block tfx-gradient hover:opacity-90 text-black font-bold py-4 px-10 rounded-2xl transition-all duration-300 hover:scale-105 text-lg">
-          Ver provas reais de resultados
-        </a>
-      </section>
-
-      {/* ===========================================================
-      🏆 SEÇÃO: PROVAS REAIS - COPY OTIMIZADA
-      =========================================================== */}
-      <section id="provas" className="bg-black py-20 px-6 text-center animate-fade-in">
-        <h2 className="text-3xl font-bold text-white mb-8">Resultados reais de quem aplicou</h2>
-        <p className="text-gray-400 mb-10 max-w-3xl mx-auto text-lg">Prints e vídeos originais, sem edição — resultados obtidos com as mesmas regras ensinadas dentro do treinamento.</p>
-        
-        <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          <div className="bg-zinc-800 p-6 rounded-xl hover-lift transition-all duration-300">
-            <div className="bg-gray-700 h-56 rounded-lg mb-4 flex items-center justify-center relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-teal-900/20 to-orange-900/20"></div>
-              <div className="relative z-10 text-center">
-                <div className="text-3xl mb-2">📊</div>
-                <p className="neon-teal font-bold">+R$842</p>
-                <p className="text-sm text-gray-300">EURUSD</p>
-              </div>
-            </div>
-            <p className="text-sm text-gray-400">Lucro em 1 operação — 10/10/2025</p>
-          </div>
-          <div className="bg-zinc-800 p-6 rounded-xl hover-lift transition-all duration-300">
-            <div className="bg-gray-700 h-56 rounded-lg mb-4 flex items-center justify-center relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-orange-900/20 to-teal-900/20"></div>
-              <div className="relative z-10 text-center">
-                <div className="text-3xl mb-2">📈</div>
-                <p className="neon-orange font-bold">+R$1.240</p>
-                <p className="text-sm text-gray-300">BTCUSD</p>
-              </div>
-            </div>
-            <p className="text-sm text-gray-400">Lucro em 1 operação — 12/10/2025</p>
-          </div>
-          <div className="bg-zinc-800 p-6 rounded-xl hover-lift transition-all duration-300">
-            <div className="bg-gray-700 h-56 rounded-lg mb-4 flex items-center justify-center relative overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-teal-900/20 to-orange-900/20"></div>
-              <div className="relative z-10 text-center">
-                <div className="text-3xl mb-2">🎥</div>
-                <p className="tfx-gradient-text font-bold">AO VIVO</p>
-                <p className="text-sm text-gray-300">Execução real</p>
-              </div>
-            </div>
-            <p className="text-sm text-gray-400">Trade de reversão — Sem edição</p>
-          </div>
-        </div>
-
-        <a href="#oferta" className="mt-10 inline-block border-2 border-teal-400 text-teal-400 font-bold py-4 px-10 rounded-2xl hover:bg-teal-400 hover:text-black transition-all duration-300 hover:scale-105 text-lg">
-          Quero ter resultados assim também
-        </a>
-      </section>
-
-      {/* ===========================================================
-      💰 SEÇÃO: OFERTA - COPY OTIMIZADA COM NOVO PREÇO
-      =========================================================== */}
-      <section id="oferta" className="bg-gradient-to-b from-zinc-950 to-black py-20 px-6 text-center animate-fade-in">
-        <h2 className="text-4xl font-bold text-white mb-6">Oferta Especial por Tempo Limitado ⏰</h2>
-        <p className="text-gray-300 text-xl mb-4">Leve o curso completo + o <strong className="neon-teal">Guia Prático de Gestão e Mindset dos Insiders</strong> por apenas</p>
-        <div className="text-5xl font-bold tfx-gradient-text mb-4 animate-glow">
-          R$49,90
-        </div>
-        <p className="text-gray-400 text-lg mb-8">De <del className="text-red-500 text-xl">R$119,90</del> por apenas <span className="neon-teal font-bold text-xl">R$49,90</span></p>
-
-        {/* Contador melhorado com tema TFX */}
-        <div className="bg-zinc-800 rounded-xl p-6 mb-8 max-w-md mx-auto border border-teal-400/20">
-          <div className="text-lg text-gray-300 mb-2">⏱ Oferta expira em:</div>
-          <div id="countdown" className="text-3xl font-bold neon-teal">
-            {String(timeLeft.hours).padStart(2, '0')}:{String(timeLeft.minutes).padStart(2, '0')}:{String(timeLeft.seconds).padStart(2, '0')}
-          </div>
-          <div className="text-sm text-gray-400 mt-2">💎 Bônus expira quando o timer zerar</div>
-        </div>
-
-        <div className="flex flex-col md:flex-row justify-center gap-4 mb-8">
-          <a href="#checkout" className="tfx-gradient hover:opacity-90 text-black font-bold py-5 px-12 rounded-2xl text-xl transition-all duration-300 animate-pulseCTA">
-            QUERO O PACOTE COMPLETO AGORA
-          </a>
-          <a href="#faq" className="border-2 border-teal-400 text-teal-400 font-bold py-5 px-12 rounded-2xl hover:bg-teal-400 hover:text-black text-xl transition-all duration-300 hover:scale-105">
-            Ver detalhes da oferta
-          </a>
-        </div>
-
-        <div className="flex flex-col md:flex-row items-center justify-center gap-6">
-          <div className="bg-teal-100 p-3 rounded-lg border border-teal-400">
-            <span className="text-teal-800 font-bold text-lg">🛡️ GARANTIA 7 DIAS</span>
-          </div>
-          <p className="text-sm text-gray-400">💸 Pagamento 100% seguro • Acesso imediato • 7 dias de garantia</p>
-        </div>
-      </section>
-
-      {/* ===========================================================
-      ❓ SEÇÃO: FAQ - COPY OTIMIZADA
-      =========================================================== */}
-      <section id="faq" className="bg-zinc-950 py-20 px-6 text-center animate-fade-in">
-        <h2 className="text-3xl font-bold text-white mb-8">Perguntas Frequentes</h2>
-        <div className="max-w-3xl mx-auto text-gray-300 text-left space-y-6">
-          <div className="bg-zinc-800 p-6 rounded-xl">
-            <p className="font-bold text-white mb-2">1️⃣ "E se eu não entender o conteúdo?"</p>
-            <p>👉 Você recebe suporte direto e pode reassistir as aulas quantas vezes quiser.</p>
-          </div>
-          <div className="bg-zinc-800 p-6 rounded-xl">
-            <p className="font-bold text-white mb-2">2️⃣ "O acesso é vitalício?"</p>
-            <p>👉 Sim. Você poderá revisar o conteúdo sempre que quiser.</p>
-          </div>
-          <div className="bg-zinc-800 p-6 rounded-xl">
-            <p className="font-bold text-white mb-2">3️⃣ "Preciso de muito capital?"</p>
-            <p>👉 Não. Você aprenderá a ajustar suas entradas ao tamanho do seu capital.</p>
-          </div>
-          <div className="bg-zinc-800 p-6 rounded-xl">
-            <p className="font-bold text-white mb-2">4️⃣ "As provas são reais?"</p>
-            <p>👉 Sim — prints e vídeos originais, sem manipulação.</p>
-          </div>
-          <div className="bg-zinc-800 p-6 rounded-xl">
-            <p className="font-bold text-white mb-2">5️⃣ "Tem garantia?"</p>
-            <p>👉 Sim — 7 dias de garantia incondicional.</p>
-          </div>
-        </div>
-
-        <a href="#oferta" className="mt-10 inline-block tfx-gradient hover:opacity-90 text-black font-bold py-4 px-10 rounded-2xl transition-all duration-300 hover:scale-105 text-lg">
-          Quero o acesso completo
-        </a>
-      </section>
-
-      {/* ===========================================================
-      🔥 CTA FINAL - TEMA TFX
-      =========================================================== */}
-      <section className="bg-gradient-to-r from-orange-900 to-teal-900 py-16 px-6 text-center animate-fade-in relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-orange-900/50 to-teal-900/50"></div>
-        <div className="relative z-10 max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-white mb-4">🔥 Últimas horas da oferta.</h2>
-          <p className="text-xl text-gray-200 mb-8">
-            Domine o mercado e transforme sua mentalidade de trader agora mesmo.
+        {/* IDENTIFICAÇÃO */}
+        <Section className="text-center">
+          <h2 className="text-2xl md:text-3xl font-extrabold text-white">
+            Você se identifica com isso?
+          </h2>
+          <ul className="mt-6 space-y-3 text-zinc-300 max-w-2xl mx-auto text-base md:text-lg">
+            <li>😩 Entra em operações e sai no prejuízo?</li>
+            <li>📉 Sente que o mercado está sempre contra você?</li>
+            <li>⏰ Falta disciplina e gestão no dia a dia?</li>
+            <li>💸 Já tentou de tudo e ainda não lucra consistentemente?</li>
+          </ul>
+          <p className="mt-5 text-emerald-300 text-sm md:text-base">
+            Se respondeu "sim" a qualquer uma, a FTX Mente vai mudar seu jogo.
           </p>
-          <a href="#oferta" className="inline-block tfx-gradient hover:opacity-90 text-black font-bold py-5 px-12 rounded-2xl text-xl transition-all duration-300 animate-pulseCTA">
-            GARANTIR MEU ACESSO COM DESCONTO
-          </a>
-        </div>
-      </section>
+          <div className="mt-6">
+            <CTA href={CHECKOUT_URL}>COMEÇAR AGORA</CTA>
+          </div>
+        </Section>
 
-      {/* ===========================================================
-      🔒 RODAPÉ / CONFIANÇA
-      =========================================================== */}
-      <footer className="bg-black text-gray-500 text-center py-8 text-sm">
-        <p>© 2025 Estratégia FTX Mente. Todos os direitos reservados.</p>
-        <p>Pagamento seguro via plataforma oficial. Suporte via e-mail 24h.</p>
-      </footer>
-    </div>
+        {/* BENEFÍCIOS */}
+        <Section id="como-funciona" className="text-center">
+          <h2 className="text-2xl md:text-3xl font-extrabold text-white">
+            O que você vai dominar dentro do método
+          </h2>
+          <div className="grid md:grid-cols-2 gap-6 mt-8 text-left">
+            {[
+              "📊 Leitura de gráfico que revela a intenção dos grandes players",
+              "⚙️ Gestão de risco e disciplina de elite",
+              "🧠 Mindset dos insiders",
+              "🚀 Setup validado e replicável",
+              "💰 Estratégia que gera lucros consistentes",
+            ].map((t) => (
+              <div
+                key={t}
+                className="bg-zinc-900/60 border border-zinc-800 rounded-2xl p-5 hover:border-emerald-500/40 transition-all"
+              >
+                <p className="text-zinc-200">{t}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8">
+            <CTA variant="outline" href="#antesdepois">
+              Ver o Antes & Depois no Gráfico →
+            </CTA>
+          </div>
+        </Section>
+
+        {/* ANTES & DEPOIS INTERATIVO */}
+        <Section id="antesdepois" className="text-center">
+          <h2 className="text-2xl md:text-3xl font-extrabold text-white">
+            Veja a diferença entre operar às cegas e com método
+          </h2>
+          <p className="mt-3 text-zinc-300 max-w-2xl mx-auto">
+            Arraste o slider para comparar o gráfico antes e depois da
+            estratégia aplicada. Clique nos pontos para entender entradas,
+            stops e saídas.
+          </p>
+
+          <div className="mt-8 max-w-3xl mx-auto rounded-2xl overflow-hidden border border-zinc-800">
+            <ReactCompareImage
+              leftImage={Antes}
+              rightImage={Depois}
+              sliderLineColor="#22c55e"
+              sliderLineWidth={3}
+            />
+          </div>
+
+          <div className="mt-8">
+            <CTA variant="secondary" href="#provas">
+              Ver provas reais de resultados
+            </CTA>
+          </div>
+        </Section>
+
+        {/* PROVAS */}
+        <Section id="provas" className="text-center">
+          <h2 className="text-2xl md:text-3xl font-extrabold text-white">
+            Resultados reais de quem aplicou
+          </h2>
+          <p className="text-zinc-300 mt-2">
+            Prints e vídeos originais — sem manipulação.
+          </p>
+
+          <div className="grid md:grid-cols-3 gap-6 mt-8">
+            <div className="group rounded-2xl overflow-hidden border border-zinc-800 bg-zinc-900/60 hover:border-emerald-500/40 transition-all">
+              <img
+                src={Print1}
+                alt="Print de lucro 1"
+                loading="lazy"
+                className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              <div className="p-4 text-left">
+                <p className="text-emerald-400 font-semibold">+R$ 842</p>
+                <p className="text-xs text-zinc-400">EURUSD — 10/10/2025</p>
+                <p className="text-[11px] text-zinc-500 mt-1">Sem edição 🔒</p>
+              </div>
+            </div>
+
+            <div className="group rounded-2xl overflow-hidden border border-zinc-800 bg-zinc-900/60 hover:border-emerald-500/40 transition-all">
+              <img
+                src={Print2}
+                alt="Print de lucro 2"
+                loading="lazy"
+                className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              <div className="p-4 text-left">
+                <p className="text-emerald-400 font-semibold">+R$ 1.240</p>
+                <p className="text-xs text-zinc-400">BTCUSD — 12/10/2025</p>
+                <p className="text-[11px] text-zinc-500 mt-1">Sem edição 🔒</p>
+              </div>
+            </div>
+
+            <div className="group rounded-2xl overflow-hidden border border-zinc-800 bg-zinc-900/60 hover:border-emerald-500/40 transition-all">
+              <img
+                src={ThumbVideo}
+                alt="Depoimento/execução"
+                loading="lazy"
+                className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              <div className="p-4 text-left">
+                <p className="text-zinc-200 font-semibold">
+                  Execução ao vivo (15s)
+                </p>
+                <p className="text-xs text-zinc-400">
+                  Entrada explicada e saída técnica
+                </p>
+                <a
+                  href="#video"
+                  className="text-emerald-400 text-sm font-semibold inline-flex items-center gap-1 mt-2"
+                >
+                  Assistir agora →
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-8">
+            <CTA href={CHECKOUT_URL}>Quero resultados assim também</CTA>
+          </div>
+        </Section>
+
+        {/* VALOR PERCEBIDO */}
+        <Section>
+          <ValueStack />
+        </Section>
+
+        {/* OFERTA / PREÇO */}
+        <Section id="oferta" className="text-center">
+          <h2 className="text-3xl font-extrabold text-white">
+            Oferta especial por tempo limitado ⏰
+          </h2>
+          <p className="text-zinc-300 mt-2">
+            Leve o curso completo + o Guia Prático de Gestão & Mindset dos
+            Insiders por apenas{" "}
+            <span className="text-emerald-400 font-extrabold">R$ 49,90</span>{" "}
+            (de <span className="line-through text-zinc-500">R$ 119,90</span>).
+          </p>
+
+          <div className="mt-8 max-w-md mx-auto bg-zinc-900/60 border border-zinc-800 rounded-2xl p-6">
+            <p className="text-zinc-300">Oferta expira em:</p>
+            <div className="text-3xl md:text-4xl font-extrabold text-emerald-400 mt-1">
+              {formatTime(remaining)}
+            </div>
+            <p className="text-xs text-zinc-500 mt-1">
+              Bônus expira quando o timer zerar.
+            </p>
+          </div>
+
+          <div className="mt-8 flex flex-col md:flex-row gap-4 justify-center">
+            <CTA href={CHECKOUT_URL}>QUERO O PACOTE COMPLETO AGORA</CTA>
+            <CTA variant="outline" href="#faq">
+              Ver detalhes da oferta
+            </CTA>
+          </div>
+
+          <div className="flex items-center justify-center gap-3 mt-6 text-xs text-zinc-400">
+            <Badge>🛡️ Garantia 7 dias</Badge>
+            <span>Pagamento 100% seguro</span>
+            <span>•</span>
+            <span>Acesso imediato</span>
+          </div>
+        </Section>
+
+        {/* CALCULADORA ROI (opcional, ajuda lead frio) */}
+        <Section>
+          <ROICalculator />
+        </Section>
+
+        {/* FAQ */}
+        <Section id="faq" className="text-center">
+          <h2 className="text-2xl md:text-3xl font-extrabold text-white mb-6">
+            Perguntas Frequentes
+          </h2>
+          <div className="grid gap-4 max-w-3xl mx-auto text-left">
+            <FAQItem
+              q="E se eu não entender o conteúdo?"
+              a="Você recebe suporte direto e pode reassistir as aulas quantas vezes quiser."
+              openDefault
+            />
+            <FAQItem q="O acesso é vitalício?" a="Sim. Você poderá revisar o conteúdo sempre que quiser." />
+            <FAQItem q="Preciso de muito capital?" a="Não. Você aprende a ajustar suas entradas ao tamanho do seu capital." />
+            <FAQItem q="As provas são reais?" a="Sim — prints e vídeos originais, sem manipulação." />
+            <FAQItem q="Tem garantia?" a="Sim — 7 dias de garantia incondicional." />
+          </div>
+
+          <div className="mt-8">
+            <CTA href={CHECKOUT_URL}>Quero o acesso completo</CTA>
+          </div>
+        </Section>
+
+        {/* CTA FINAL */}
+        <div className="bg-gradient-to-r from-amber-900/40 via-zinc-900 to-emerald-900/40">
+          <Section className="text-center">
+            <h3 className="text-2xl md:text-3xl font-extrabold text-white">
+              🔥 Últimas horas da oferta.
+            </h3>
+            <p className="text-zinc-300 mt-2">
+              Domine o mercado e transforme sua mentalidade de trader agora
+              mesmo.
+            </p>
+            <div className="mt-6">
+              <CTA href={CHECKOUT_URL}>GARANTIR MEU ACESSO COM DESCONTO</CTA>
+            </div>
+          </Section>
+        </div>
+
+        {/* RODAPÉ */}
+        <footer className="text-center text-sm text-zinc-500 py-8">
+          © {new Date().getFullYear()} Estratégia FTX Mente — Pagamento seguro •
+          Suporte por e-mail/WhatsApp.
+        </footer>
+
+        {/* WHATSAPP FLOAT */}
+        <a
+          href={WHATSAPP_LINK}
+          target="_blank"
+          rel="noreferrer"
+          className="fixed bottom-5 right-5 z-50 bg-emerald-500 hover:bg-emerald-400 text-black font-extrabold rounded-full shadow-lg w-14 h-14 grid place-items-center"
+          aria-label="Falar no WhatsApp"
+        >
+          WA
+        </a>
+      </div>
+
+      {/* Tailwind keyframes para o CTA pulsando */}
+      <style>{`
+        @keyframes pulseCTA {
+          0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(16,185,129,0.4); }
+          50% { transform: scale(1.04); box-shadow: 0 0 0 12px rgba(16,185,129,0); }
+        }
+      `}</style>
+    </>
   );
 };
 
