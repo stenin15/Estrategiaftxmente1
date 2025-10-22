@@ -26,11 +26,11 @@ export const HeroSection = () => {
             {/* Título */}
             <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
               <span className="text-primary drop-shadow-[0_0_10px_rgba(0,188,212,0.5)]">
-                Transforme Caos em Lucidez.
+                Domine o Mercado com a Mente.
               </span>
               <br />
-              <span className="text-foreground">De Trader Impulsivo a</span>{" "}
-              <span className="text-urgent">Operador Consciente.</span>
+              <span className="text-foreground">De Trader Amador a</span>{" "}
+              <span className="text-urgent">Profissional Consciente.</span>
             </h1>
 
             {/* Descrição */}
