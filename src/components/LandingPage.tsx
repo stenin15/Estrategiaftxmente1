@@ -237,55 +237,26 @@ const LandingPage: React.FC = () => {
           </div>
         </Section>
 
-        {/* IDENTIFICAÇÃO COM DOR E SOLUÇÃO */}
-        <section className="relative bg-gradient-to-b from-black via-zinc-950 to-black py-20 text-center text-white overflow-hidden">
-          {/* DOR */}
-          <div className="max-w-3xl mx-auto px-6 mb-16">
-            <h2 className="text-3xl font-bold mb-6">
-              Você se identifica com isso? 😩
-            </h2>
-            <ul className="text-gray-300 space-y-3 text-lg">
-              <li>🚫 Entra em operações e sai no prejuízo?</li>
-              <li>📉 Sente que o mercado está sempre contra você?</li>
-              <li>⏰ Falta disciplina e gestão no dia a dia?</li>
-              <li>💸 Já tentou de tudo e ainda não lucra consistentemente?</li>
-            </ul>
+        {/* SEÇÃO DOR + SOLUÇÃO */}
+        <section className="py-20 bg-zinc-950 text-white text-center px-6">
+          <h2 className="text-3xl font-bold mb-6">Você se identifica com isso?</h2>
 
-            <p className="text-cyan-400 mt-6 font-medium">
-              Se respondeu "sim" a qualquer uma delas... você está prestes a mudar isso.
-            </p>
+          <div className="max-w-2xl mx-auto space-y-4 text-gray-300 mb-8">
+            <p>😤 Entra em operações e vê o mercado ir contra você?</p>
+            <p>📉 Sente que sempre sai antes da hora ou entra no pior momento?</p>
+            <p>😔 Falta disciplina, confiança e clareza no gráfico?</p>
+            <p>💭 Já tentou de tudo e ainda não consegue lucrar com consistência?</p>
           </div>
 
-          {/* ANIMAÇÃO / TRANSIÇÃO */}
-          <div className="absolute left-1/2 top-1/2 w-[150%] h-[300px] -translate-x-1/2 bg-gradient-to-r from-cyan-500/10 via-cyan-400/10 to-transparent blur-3xl opacity-40 animate-pulse" />
+          <h3 className="text-2xl font-semibold mt-12 text-cyan-400">Então, respira… a solução está logo abaixo 👇</h3>
+          <p className="text-gray-400 mt-3">
+            A <span className="font-semibold text-white">FTX Mente</span> foi criada para transformar traders comuns em operadores conscientes,
+            com mentalidade e setups replicáveis que funcionam no dia a dia real.
+          </p>
 
-          {/* SOLUÇÃO */}
-          <div className="relative max-w-4xl mx-auto px-6">
-            <h3 className="text-3xl font-bold mb-8">
-              O que você vai dominar dentro do método 🚀
-            </h3>
-
-            <div className="grid sm:grid-cols-2 gap-4 text-gray-200">
-              <div className="bg-zinc-900/60 p-4 rounded-xl border border-zinc-800 hover:border-cyan-400 transition">
-                📊 <span className="font-semibold">Leitura de gráfico</span> que revela a intenção dos grandes players.
-              </div>
-              <div className="bg-zinc-900/60 p-4 rounded-xl border border-zinc-800 hover:border-cyan-400 transition">
-                ⚙️ <span className="font-semibold">Gestão de risco</span> e disciplina de elite.
-              </div>
-              <div className="bg-zinc-900/60 p-4 rounded-xl border border-zinc-800 hover:border-cyan-400 transition">
-                🧠 <span className="font-semibold">Mindset dos insiders</span> — opere como quem realmente entende o mercado.
-              </div>
-              <div className="bg-zinc-900/60 p-4 rounded-xl border border-zinc-800 hover:border-cyan-400 transition">
-                💰 <span className="font-semibold">Setup validado</span> e replicável com consistência.
-              </div>
-            </div>
-
-            <div className="mt-10">
-              <button className="bg-cyan-500 text-black font-semibold px-8 py-3 rounded-full hover:bg-cyan-400 transition-all shadow-lg animate-pulseCTA">
-                QUERO DOMINAR O MÉTODO AGORA →
-              </button>
-            </div>
-          </div>
+          <button className="mt-8 bg-cyan-500 text-black font-bold px-8 py-3 rounded-full hover:bg-cyan-400 transition-all shadow-lg animate-pulseCTA">
+            Quero mudar meu jogo agora →
+          </button>
         </section>
 
         {/* BENEFÍCIOS */}
@@ -437,75 +408,80 @@ const LandingPage: React.FC = () => {
           <ValueStack />
         </Section>
 
-        {/* OFERTA FINAL */}
+        {/* BLOCO FINAL COMPACTO E CONVERSIVO */}
         <section className="py-20 bg-gradient-to-b from-zinc-950 to-zinc-900 text-white text-center relative overflow-hidden">
           <div className="max-w-3xl mx-auto px-6">
-            <h2 className="text-3xl font-bold mb-6">
-              🔥 Últimas Horas da Oferta
-            </h2>
-            <p className="text-gray-300 text-lg mb-8">
-              Domine o mercado, transforme sua mentalidade e tenha o mesmo nível de clareza que os insiders e market makers.
-              <br />
-              Essa é a sua chance de mudar o jogo antes que a oferta expire.
+            <h2 className="text-3xl font-bold mb-4">🔥 Últimas Horas da Oferta</h2>
+            <p className="text-gray-300 mb-6 leading-relaxed">
+              Domine o mercado, transforme sua mentalidade e opere como os insiders.
             </p>
 
-            <div className="bg-zinc-900 border border-cyan-500/30 rounded-2xl p-6 mb-8 shadow-lg">
-              <h3 className="text-2xl font-semibold mb-3 text-cyan-400">📦 Oferta Exclusiva</h3>
-              <p className="text-gray-300 mb-4">
-                Leve o <span className="font-semibold text-white">curso completo + o Guia Prático de Gestão e Mindset dos Insiders</span>  
-                por apenas <span className="text-cyan-400 font-bold text-2xl">R$49,90</span> (de <span className="line-through text-gray-500">R$119,90</span>).
+            <div className="bg-zinc-900 border border-cyan-500/40 rounded-2xl shadow-xl p-6 mb-8 transition hover:scale-[1.02]">
+              <h3 className="text-2xl font-semibold text-cyan-400 mb-4">💎 Pacote Completo FTX Mente</h3>
+
+              <ul className="text-gray-300 text-left mx-auto mb-6 max-w-md space-y-2">
+                <li>✅ Estratégia completa (R$299,90)</li>
+                <li>✅ Guia de Mindset & Gestão (R$99,90)</li>
+                <li>✅ Checklist + atualizações</li>
+                <li>✅ Suporte direto 7 dias</li>
+              </ul>
+
+              <p className="text-xl font-bold mb-4 text-cyan-400">
+                De <span className="line-through text-gray-500">R$119,90</span> → <span className="text-white">Hoje: R$49,90</span> 🔥
               </p>
 
-              <div className="flex flex-col sm:flex-row justify-center gap-4 mt-6">
-                <button className="bg-cyan-500 text-black font-semibold px-8 py-3 rounded-full hover:bg-cyan-400 transition-all animate-pulseCTA shadow-lg">
-                  GARANTIR MEU ACESSO COM DESCONTO
-                </button>
-                <button className="border border-cyan-400 text-cyan-400 font-semibold px-8 py-3 rounded-full hover:bg-cyan-400 hover:text-black transition-all">
-                  Ver detalhes da oferta
-                </button>
-              </div>
+              <button className="bg-cyan-500 text-black font-bold text-lg px-8 py-4 rounded-full hover:bg-cyan-400 transition-all animate-pulseCTA shadow-lg">
+                QUERO GARANTIR MEU ACESSO AGORA →
+              </button>
 
-              <div className="mt-6 text-sm text-gray-400">
-                ⏰ Oferta expira em <span className="text-cyan-400 font-bold">{formatTime(remaining)}</span>  
-                <br />
+              <p className="text-sm text-gray-400 mt-4">
+                ⏰ Oferta expira em <span className="text-cyan-400 font-semibold">{formatTime(remaining)}</span><br />
                 💎 Bônus incluso apenas enquanto o cronômetro estiver ativo!
-              </div>
+              </p>
             </div>
 
-            <div className="mt-8 space-y-3 text-sm text-gray-400">
-              <p>✅ Pagamento 100% seguro</p>
-              <p>⚡ Acesso imediato após a confirmação</p>
-              <p>🧠 Suporte direto e garantia de 7 dias</p>
+            <div className="flex justify-center gap-6 text-sm text-gray-400 mt-6">
+              <span>💳 Pagamento seguro</span>
+              <span>⚡ Acesso imediato</span>
+              <span>🧠 Garantia 7 dias</span>
             </div>
 
-            <p className="text-gray-400 text-xs mt-10 italic">
-              "O trader que hesita é o trader que continua preso no mesmo ciclo."
+            <p className="text-gray-500 text-xs mt-10 italic">
+              "Quem hesita, perde o trade — e a oportunidade de virar o jogo."
             </p>
           </div>
         </section>
 
 
-        {/* FAQ */}
-        <Section id="faq" className="text-center">
-          <h2 className="text-2xl md:text-3xl font-extrabold text-white mb-6">
-            Perguntas Frequentes
-          </h2>
-          <div className="grid gap-4 max-w-3xl mx-auto text-left">
-            <FAQItem
-              q="E se eu não entender o conteúdo?"
-              a="Você recebe suporte direto e pode reassistir as aulas quantas vezes quiser."
-              openDefault
-            />
-            <FAQItem q="O acesso é vitalício?" a="Sim. Você poderá revisar o conteúdo sempre que quiser." />
-            <FAQItem q="Preciso de muito capital?" a="Não. Você aprende a ajustar suas entradas ao tamanho do seu capital." />
-            <FAQItem q="As provas são reais?" a="Sim — prints e vídeos originais, sem manipulação." />
-            <FAQItem q="Tem garantia?" a="Sim — 7 dias de garantia incondicional." />
+        {/* FAQ ANIMADO */}
+        <section className="py-20 bg-zinc-950 text-white text-center">
+          <h2 className="text-3xl font-bold mb-10">Perguntas Frequentes</h2>
+
+          <div className="max-w-3xl mx-auto space-y-4 text-left">
+            {[
+              { q: "Preciso de muito dinheiro para começar?", a: "Não. Você aprende estratégias que funcionam mesmo com baixo capital, começando pequeno e escalando com segurança." },
+              { q: "E se eu perder nas primeiras operações?", a: "O método ensina gestão de risco e mentalidade para transformar erros em aprendizado e consistência." },
+              { q: "O conteúdo é atualizado?", a: "Sim. Você recebe atualizações e acesso vitalício a todo o material e novas estratégias." },
+              { q: "Não tenho experiência, consigo acompanhar?", a: "Sim. O curso é didático, com passo a passo desde o zero até setups avançados." },
+              { q: "As provas e prints são reais?", a: "Sim. Todas as provas são de operações reais, aplicando o mesmo setup ensinado dentro do curso." },
+              { q: "Tem garantia?", a: "Sim. Você tem 7 dias de garantia incondicional para testar tudo sem risco." },
+            ].map((item, i) => (
+              <details key={i} className="group bg-zinc-900 p-4 rounded-lg border border-zinc-800 hover:border-cyan-500 transition overflow-hidden">
+                <summary className="font-semibold cursor-pointer flex justify-between items-center">
+                  <span>{item.q}</span>
+                  <span className="text-cyan-400 transition-transform duration-300 group-open:rotate-45">+</span>
+                </summary>
+                <p className="mt-2 text-gray-400 opacity-0 max-h-0 group-open:opacity-100 group-open:max-h-[200px] transition-all duration-500 ease-in-out">{item.a}</p>
+              </details>
+            ))}
           </div>
 
-          <div className="mt-8">
-            <CTA href={CHECKOUT_URL}>Quero o acesso completo</CTA>
+          <div className="mt-10">
+            <button className="bg-cyan-500 text-black font-semibold px-8 py-3 rounded-full hover:bg-cyan-400 transition-all shadow-lg animate-pulseCTA">
+              Quero o acesso completo →
+            </button>
           </div>
-        </Section>
+        </section>
 
 
         {/* RODAPÉ */}
