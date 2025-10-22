@@ -109,6 +109,31 @@ const ProvasCarousel = () => {
   });
 
   const imagens = [
+    // Resultados de Crypto
+    "/eth'1.webp",
+    "/eth2.webp",
+    "/libra1.webp",
+    "/libra2.webp",
+    "/pepe1.webp",
+    "/pepe2.webp",
+    
+    // Resultados de Forex
+    "/usd1.webp",
+    "/usd2.webp",
+    "/xau1.webp",
+    "/xau2.webp",
+    
+    // Screenshots de resultados
+    "/resultado cripto 1  (1).jpeg",
+    "/resultado cripto 1  (3).jpeg",
+    "/resultado cripto 1  (8).jpeg",
+    "/resultado cripto 2.jpeg",
+    "/resultado forex 1  (6).jpeg",
+    "/resultado forex 2  (2).jpeg",
+    "/resultado forex 3  (5).jpeg",
+    "/resultado forex 4  (7).jpeg",
+    
+    // Imagens originais
     "/WhatsApp Image 2025-10-22 at 00.13.37.jpeg",
     "/WhatsApp Image 2025-10-21 at 17.07.38 (1).jpeg",
     "/WhatsApp Image 2025-10-21 at 17.07.37 (1).jpeg",
