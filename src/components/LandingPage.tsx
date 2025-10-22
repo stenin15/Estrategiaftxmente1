@@ -182,38 +182,57 @@ const LandingPage: React.FC = () => {
       </Helmet>
 
       <div className="bg-gradient-to-b from-black via-zinc-950 to-black text-white min-h-screen">
-        {/* HERO */}
-        <Section className="text-center">
-          <div className="mb-3">
-            <Badge>🎯 Oferta exclusiva por tempo limitado</Badge>
-          </div>
-          <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">
-            Domine o mercado com a{" "}
-            <span className="text-cyan-300 drop-shadow-[0_0_18px_rgba(34,211,238,0.35)]">
-              Estratégia FTX
-            </span>{" "}
-            que transforma traders comuns em lucrativos.
-          </h1>
-          <p className="mt-4 text-lg md:text-xl text-zinc-300 max-w-3xl mx-auto">
-            Aprenda o mesmo método que insiders e{" "}
-            <span className="font-semibold text-white">market makers</span> usam
-            para operar com confiança — sem depender da sorte. Em menos de{" "}
-            <span className="font-semibold text-white">15 min/dia</span>.
-          </p>
+        {/* HERO + BLOCO "O QUE VOCÊ VAI DESCOBRIR" */}
+        <section className="py-20 bg-zinc-950 text-white text-center px-6">
+          <div className="max-w-4xl mx-auto">
+            {/* TAG PROMOCIONAL */}
+            <span className="text-xs bg-cyan-500/20 text-cyan-400 px-3 py-1 rounded-full uppercase tracking-widest font-semibold mb-4 inline-block">
+              Oferta exclusiva por tempo limitado
+            </span>
 
-          <div className="mt-8 flex flex-col md:flex-row gap-4 justify-center">
-            <CTA variant="primary" href="#vsl">
-              🎬 ASSISTIR VÍDEO GRATUITO
-            </CTA>
-            <CTA variant="outline" href="#como-funciona">
-              VER COMO FUNCIONA →
-            </CTA>
-          </div>
+            {/* HEADLINE PRINCIPAL */}
+            <h1 className="text-4xl sm:text-5xl font-extrabold mb-6 leading-tight">
+              Domine o mercado com a <span className="text-cyan-400">Estratégia FTX</span><br />
+              que transforma traders comuns em lucrativos.
+            </h1>
 
-          <div className="mt-5 text-xs md:text-sm text-zinc-400">
-            ✅ Aulas práticas • ✅ Acesso imediato • ✅ Suporte direto
+            {/* SUBHEADLINE */}
+            <p className="text-gray-300 text-lg mb-10 max-w-2xl mx-auto">
+              Aprenda o mesmo método que insiders e market makers usam para operar com confiança —
+              sem depender da sorte. Em menos de <span className="text-white font-semibold">15 min/dia</span>.
+            </p>
+
+            {/* CTAS */}
+            <div className="flex flex-col sm:flex-row justify-center gap-4 mb-10">
+              <button className="bg-cyan-500 text-black font-bold px-8 py-4 rounded-full hover:bg-cyan-400 transition-all shadow-lg">
+                ▶️ Assistir vídeo gratuito
+              </button>
+              <button className="border border-cyan-400 text-cyan-400 font-semibold px-8 py-4 rounded-full hover:bg-cyan-400 hover:text-black transition-all">
+                Ver como funciona →
+              </button>
+            </div>
+
+            {/* BLOCO DE DESCOBERTA */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 bg-zinc-900 border border-zinc-800 p-6 rounded-2xl text-left max-w-3xl mx-auto shadow-lg">
+              <h2 className="text-green-400 font-bold text-xl sm:col-span-2 mb-2 flex items-center gap-2">
+                🎯 O que você vai descobrir:
+              </h2>
+              <ul className="space-y-3 text-gray-300 col-span-2">
+                <li>✅ <span className="font-semibold text-white">O segredo dos 0.1%</span> — como os insiders realmente leem o mercado (e o que ninguém comenta).</li>
+                <li>✅ <span className="font-semibold text-white">A manipulação exposta</span> — os 3 sinais que os market makers deixam escapar.</li>
+                <li>✅ <span className="font-semibold text-white">Setup de reversão</span> — como entrar na direção certa antes da maioria.</li>
+                <li>✅ <span className="font-semibold text-white">Gestão de elite</span> — o sistema que os profissionais usam para nunca quebrar.</li>
+              </ul>
+            </div>
+
+            {/* BADGES DE CONFIANÇA */}
+            <div className="flex justify-center gap-4 text-gray-400 text-sm mt-6">
+              <span>📚 Aulas práticas</span>
+              <span>⚡ Acesso imediato</span>
+              <span>💬 Suporte direto</span>
+            </div>
           </div>
-        </Section>
+        </section>
 
         {/* SEÇÃO DOR + SOLUÇÃO */}
         <section className="py-20 bg-zinc-950 text-white text-center px-6">
