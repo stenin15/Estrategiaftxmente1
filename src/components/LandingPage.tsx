@@ -293,8 +293,8 @@ const LandingPage: React.FC = () => {
           </p>
 
           <div className="mt-8 flex flex-col md:flex-row gap-4 justify-center">
-            <CTA variant="primary" href={CHECKOUT_URL}>
-              QUERO ACESSO IMEDIATO
+            <CTA variant="primary" href="#vsl">
+              🎬 ASSISTIR VÍDEO GRATUITO
             </CTA>
             <CTA variant="outline" href="#como-funciona">
               VER COMO FUNCIONA →
@@ -354,38 +354,96 @@ const LandingPage: React.FC = () => {
           </div>
         </Section>
 
-        {/* ANTES & DEPOIS SIMPLIFICADO */}
-        <Section id="antesdepois" className="text-center">
-          <h2 className="text-2xl md:text-3xl font-extrabold text-white">
-            Veja a diferença entre operar às cegas e com método
+        {/* VSL - VIDEO SALES LETTER */}
+        <Section id="vsl" className="text-center">
+          <div className="mb-6">
+            <Badge>🎥 VÍDEO EXCLUSIVO</Badge>
+          </div>
+          
+          <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-6">
+            🔥 O que os <span className="text-cyan-300">Insiders</span> não querem que você saiba sobre o mercado
           </h2>
-          <p className="mt-3 text-zinc-300 max-w-2xl mx-auto">
-            Compare o gráfico antes e depois da estratégia aplicada.
+          
+          <p className="text-xl text-zinc-300 max-w-4xl mx-auto mb-8">
+            Neste vídeo de <span className="text-emerald-400 font-bold">15 minutos</span>, você vai descobrir o método exato que os market makers usam para manipular o mercado — e como <span className="text-white font-bold">virar o jogo a seu favor</span>.
           </p>
 
-          <div className="mt-8 max-w-3xl mx-auto rounded-2xl overflow-hidden border border-zinc-800 bg-zinc-900 p-8">
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="bg-zinc-800 p-6 rounded-xl">
-                <h3 className="text-red-400 font-bold mb-4">❌ ANTES (Sem método)</h3>
-                <div className="bg-gray-700 h-48 rounded-lg flex items-center justify-center">
-                  <span className="text-gray-400">Gráfico confuso</span>
+          {/* VÍDEO PLACEHOLDER */}
+          <div className="max-w-4xl mx-auto mb-8">
+            <div className="relative bg-zinc-900 rounded-2xl overflow-hidden border border-zinc-700 shadow-2xl">
+              <div className="aspect-video bg-gradient-to-br from-zinc-800 to-zinc-900 flex items-center justify-center relative">
+                <div className="text-center">
+                  <div className="w-20 h-20 bg-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4 animate-pulse">
+                    <svg className="w-8 h-8 text-black ml-1" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z"/>
+                    </svg>
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-2">MÉTODO FTX MENTE</h3>
+                  <p className="text-zinc-300">Como os insiders realmente operam</p>
                 </div>
-                <p className="text-sm text-zinc-400 mt-2">Entradas aleatórias, sem gestão</p>
-              </div>
-              <div className="bg-zinc-800 p-6 rounded-xl">
-                <h3 className="text-emerald-400 font-bold mb-4">✅ DEPOIS (Com método)</h3>
-                <div className="bg-gray-700 h-48 rounded-lg flex items-center justify-center">
-                  <span className="text-gray-400">Gráfico organizado</span>
+                
+                {/* OVERLAY DE URGÊNCIA */}
+                <div className="absolute top-4 right-4">
+                  <div className="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-bold animate-pulse">
+                    ⏰ AO VIVO
+                  </div>
                 </div>
-                <p className="text-sm text-zinc-400 mt-2">Entradas precisas, gestão clara</p>
               </div>
             </div>
           </div>
 
-          <div className="mt-8">
-            <CTA variant="secondary" href="#provas">
-              Ver provas reais de resultados
+          {/* COPY PODEROSA */}
+          <div className="max-w-4xl mx-auto text-left space-y-6 mb-8">
+            <div className="bg-gradient-to-r from-emerald-900/30 to-cyan-900/30 border border-emerald-500/30 rounded-2xl p-6">
+              <h3 className="text-xl font-bold text-emerald-300 mb-4">🎯 O que você vai descobrir:</h3>
+              <ul className="space-y-3 text-zinc-200">
+                <li className="flex items-start gap-3">
+                  <span className="text-emerald-400 font-bold">✓</span>
+                  <span><strong>O segredo dos 0.1%</strong> — como os insiders realmente leem o mercado (não é o que você pensa)</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-emerald-400 font-bold">✓</span>
+                  <span><strong>A manipulação exposta</strong> — os 3 sinais que os market makers deixam escapar</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-emerald-400 font-bold">✓</span>
+                  <span><strong>Setup de reversão</strong> — como entrar na direção certa antes da maioria</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-emerald-400 font-bold">✓</span>
+                  <span><strong>Gestão de elite</strong> — o sistema que os profissionais usam para nunca quebrar</span>
+                </li>
+              </ul>
+            </div>
+
+            <div className="bg-gradient-to-r from-orange-900/30 to-red-900/30 border border-orange-500/30 rounded-2xl p-6">
+              <h3 className="text-xl font-bold text-orange-300 mb-4">⚠️ ATENÇÃO:</h3>
+              <p className="text-zinc-200 leading-relaxed">
+                Este vídeo contém informações que <strong>mudarão completamente</strong> sua perspectiva sobre trading. 
+                Se você está cansado de perder dinheiro e quer finalmente entender como o mercado realmente funciona, 
+                <span className="text-orange-300 font-bold">assista até o final</span>.
+              </p>
+            </div>
+          </div>
+
+          {/* CTA SUPER FORTE */}
+          <div className="space-y-4">
+            <CTA variant="primary" href="#vsl" className="text-xl px-12 py-6 animate-pulse">
+              🎬 ASSISTIR VÍDEO AGORA — GRÁTIS
             </CTA>
+            
+            <div className="flex flex-col md:flex-row gap-4 justify-center">
+              <CTA variant="outline" href="#provas">
+                Ver provas reais primeiro →
+              </CTA>
+              <CTA variant="secondary" href="#oferta">
+                Pular direto para a oferta
+              </CTA>
+            </div>
+          </div>
+
+          <div className="mt-6 text-sm text-zinc-400">
+            ⏱️ Duração: 15 minutos • 📱 Funciona em qualquer dispositivo • 🔒 100% gratuito
           </div>
         </Section>
 
