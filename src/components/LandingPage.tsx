@@ -1,37 +1,22 @@
-import React, { useEffect, useMemo, useState } from "react";
-import ReactCompareImage from "react-compare-image";
+import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 
 /** =========================
  * CONFIGURÁVEIS
  * ========================= */
-const CHECKOUT_URL = "#checkout"; // Coloque aqui seu link do checkout
-const WHATSAPP_LINK =
-  "https://wa.me/5599999999999?text=Tenho%20d%C3%BAvidas%20sobre%20a%20Estrat%C3%A9gia%20FTX%20Mente"; // seu número
-const TIMER_STORAGE_KEY = "ftx_timer_start_ts"; // chave do localStorage
+const CHECKOUT_URL = "#checkout";
+const WHATSAPP_LINK = "https://wa.me/5599999999999?text=Tenho%20d%C3%BAvidas%20sobre%20a%20Estrat%C3%A9gia%20FTX%20Mente";
+const TIMER_STORAGE_KEY = "ftx_timer_start_ts";
 const TIMER_DURATION_MS = 72 * 60 * 60 * 1000; // 72 horas
-
-// Imagens (usando placeholders seguros)
-import Antes from "@/assets/grafico-antes.jpg";
-import Depois from "@/assets/grafico-depois.jpg";
-import Print1 from "@/assets/print1.jpg";
-import Print2 from "@/assets/print2.jpg";
-import ThumbVideo from "@/assets/thumb-video.jpg";
 
 /** =========================
  * UTILS
  * ========================= */
 function formatTime(ms: number) {
   const totalSec = Math.max(0, Math.floor(ms / 1000));
-  const h = Math.floor(totalSec / 3600)
-    .toString()
-    .padStart(2, "0");
-  const m = Math.floor((totalSec % 3600) / 60)
-    .toString()
-    .padStart(2, "0");
-  const s = Math.floor(totalSec % 60)
-    .toString()
-    .padStart(2, "0");
+  const h = Math.floor(totalSec / 3600).toString().padStart(2, "0");
+  const m = Math.floor((totalSec % 3600) / 60).toString().padStart(2, "0");
+  const s = Math.floor(totalSec % 60).toString().padStart(2, "0");
   return `${h}:${m}:${s}`;
 }
 
@@ -72,15 +57,11 @@ const CTA = ({
   variant?: "primary" | "secondary" | "outline";
   className?: string;
 }) => {
-  const base =
-    "inline-flex items-center justify-center rounded-2xl px-6 md:px-8 py-3 md:py-4 text-sm md:text-base font-extrabold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-0";
+  const base = "inline-flex items-center justify-center rounded-2xl px-6 md:px-8 py-3 md:py-4 text-sm md:text-base font-extrabold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-0";
   const variants = {
-    primary:
-      "bg-emerald-500 hover:bg-emerald-400 text-black shadow-lg shadow-emerald-500/20 animate-[pulseCTA_1.6s_ease-in-out_infinite]",
-    secondary:
-      "bg-zinc-800 hover:bg-zinc-700 text-white border border-zinc-600",
-    outline:
-      "border border-emerald-400 text-emerald-300 hover:bg-emerald-400 hover:text-black",
+    primary: "bg-emerald-500 hover:bg-emerald-400 text-black shadow-lg shadow-emerald-500/20 animate-pulse",
+    secondary: "bg-zinc-800 hover:bg-zinc-700 text-white border border-zinc-600",
+    outline: "border border-emerald-400 text-emerald-300 hover:bg-emerald-400 hover:text-black",
   } as const;
   return (
     <a href={href} className={`${base} ${variants[variant]} ${className}`}>
@@ -138,10 +119,10 @@ const ValueStack = () => (
 
 const ROICalculator = () => {
   const [capital, setCapital] = useState(500);
-  const [rr, setRr] = useState(1.5); // risco:retorno médio
-  const [riskPct, setRiskPct] = useState(1); // risco por trade
+  const [rr, setRr] = useState(1.5);
+  const [riskPct, setRiskPct] = useState(1);
 
-  const result = useMemo(() => {
+  const result = React.useMemo(() => {
     const risk = (riskPct / 100) * capital;
     const expected = Math.round(risk * rr);
     return { risk, expected };
@@ -210,7 +191,6 @@ const ROICalculator = () => {
  * LANDING PAGE
  * ========================= */
 const LandingPage: React.FC = () => {
-  /** Timer 72h persistente */
   const [remaining, setRemaining] = useState<number>(TIMER_DURATION_MS);
 
   useEffect(() => {
@@ -232,7 +212,6 @@ const LandingPage: React.FC = () => {
 
   return (
     <>
-      {/* META */}
       <Helmet>
         <title>Estratégia FTX Mente — Domine o mercado com método</title>
         <meta
@@ -247,8 +226,8 @@ const LandingPage: React.FC = () => {
         <meta property="og:type" content="website" />
       </Helmet>
 
-      {/* HERO */}
-      <div className="bg-gradient-to-b from-black via-zinc-950 to-black text-white">
+      <div className="bg-gradient-to-b from-black via-zinc-950 to-black text-white min-h-screen">
+        {/* HERO */}
         <Section className="text-center">
           <div className="mb-3">
             <Badge>🎯 Oferta exclusiva por tempo limitado</Badge>
@@ -329,24 +308,32 @@ const LandingPage: React.FC = () => {
           </div>
         </Section>
 
-        {/* ANTES & DEPOIS INTERATIVO */}
+        {/* ANTES & DEPOIS SIMPLIFICADO */}
         <Section id="antesdepois" className="text-center">
           <h2 className="text-2xl md:text-3xl font-extrabold text-white">
             Veja a diferença entre operar às cegas e com método
           </h2>
           <p className="mt-3 text-zinc-300 max-w-2xl mx-auto">
-            Arraste o slider para comparar o gráfico antes e depois da
-            estratégia aplicada. Clique nos pontos para entender entradas,
-            stops e saídas.
+            Compare o gráfico antes e depois da estratégia aplicada.
           </p>
 
-          <div className="mt-8 max-w-3xl mx-auto rounded-2xl overflow-hidden border border-zinc-800">
-            <ReactCompareImage
-              leftImage={Antes}
-              rightImage={Depois}
-              sliderLineColor="#22c55e"
-              sliderLineWidth={3}
-            />
+          <div className="mt-8 max-w-3xl mx-auto rounded-2xl overflow-hidden border border-zinc-800 bg-zinc-900 p-8">
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="bg-zinc-800 p-6 rounded-xl">
+                <h3 className="text-red-400 font-bold mb-4">❌ ANTES (Sem método)</h3>
+                <div className="bg-gray-700 h-48 rounded-lg flex items-center justify-center">
+                  <span className="text-gray-400">Gráfico confuso</span>
+                </div>
+                <p className="text-sm text-zinc-400 mt-2">Entradas aleatórias, sem gestão</p>
+              </div>
+              <div className="bg-zinc-800 p-6 rounded-xl">
+                <h3 className="text-emerald-400 font-bold mb-4">✅ DEPOIS (Com método)</h3>
+                <div className="bg-gray-700 h-48 rounded-lg flex items-center justify-center">
+                  <span className="text-gray-400">Gráfico organizado</span>
+                </div>
+                <p className="text-sm text-zinc-400 mt-2">Entradas precisas, gestão clara</p>
+              </div>
+            </div>
           </div>
 
           <div className="mt-8">
@@ -367,12 +354,9 @@ const LandingPage: React.FC = () => {
 
           <div className="grid md:grid-cols-3 gap-6 mt-8">
             <div className="group rounded-2xl overflow-hidden border border-zinc-800 bg-zinc-900/60 hover:border-emerald-500/40 transition-all">
-              <img
-                src={Print1}
-                alt="Print de lucro 1"
-                loading="lazy"
-                className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-              />
+              <div className="bg-gray-700 h-48 flex items-center justify-center">
+                <span className="text-gray-400">📊 Print 1</span>
+              </div>
               <div className="p-4 text-left">
                 <p className="text-emerald-400 font-semibold">+R$ 842</p>
                 <p className="text-xs text-zinc-400">EURUSD — 10/10/2025</p>
@@ -381,12 +365,9 @@ const LandingPage: React.FC = () => {
             </div>
 
             <div className="group rounded-2xl overflow-hidden border border-zinc-800 bg-zinc-900/60 hover:border-emerald-500/40 transition-all">
-              <img
-                src={Print2}
-                alt="Print de lucro 2"
-                loading="lazy"
-                className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-              />
+              <div className="bg-gray-700 h-48 flex items-center justify-center">
+                <span className="text-gray-400">📈 Print 2</span>
+              </div>
               <div className="p-4 text-left">
                 <p className="text-emerald-400 font-semibold">+R$ 1.240</p>
                 <p className="text-xs text-zinc-400">BTCUSD — 12/10/2025</p>
@@ -395,12 +376,9 @@ const LandingPage: React.FC = () => {
             </div>
 
             <div className="group rounded-2xl overflow-hidden border border-zinc-800 bg-zinc-900/60 hover:border-emerald-500/40 transition-all">
-              <img
-                src={ThumbVideo}
-                alt="Depoimento/execução"
-                loading="lazy"
-                className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-              />
+              <div className="bg-gray-700 h-48 flex items-center justify-center">
+                <span className="text-gray-400">🎥 Vídeo</span>
+              </div>
               <div className="p-4 text-left">
                 <p className="text-zinc-200 font-semibold">
                   Execução ao vivo (15s)
@@ -465,7 +443,7 @@ const LandingPage: React.FC = () => {
           </div>
         </Section>
 
-        {/* CALCULADORA ROI (opcional, ajuda lead frio) */}
+        {/* CALCULADORA ROI */}
         <Section>
           <ROICalculator />
         </Section>
@@ -525,14 +503,6 @@ const LandingPage: React.FC = () => {
           WA
         </a>
       </div>
-
-      {/* Tailwind keyframes para o CTA pulsando */}
-      <style>{`
-        @keyframes pulseCTA {
-          0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(16,185,129,0.4); }
-          50% { transform: scale(1.04); box-shadow: 0 0 0 12px rgba(16,185,129,0); }
-        }
-      `}</style>
     </>
   );
 };
