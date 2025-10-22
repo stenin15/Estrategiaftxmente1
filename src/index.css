@@ -165,8 +165,9 @@ html {
 
 /* Estilos globais do body */
 body {
-  background: radial-gradient(circle at top center, #0f172a 0%, #000000 100%);
+  background: radial-gradient(circle at 50% 30%, #0b132b 0%, #000 80%);
   background-attachment: fixed;
+  overflow-x: hidden;
 }
 
 /* Estilos da seção Hero */
@@ -175,19 +176,29 @@ body {
   position: relative;
 }
 
+/* Efeito de brilho suave */
 .hero::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at center, rgba(0, 255, 255, 0.15) 0%, transparent 60%);
-  filter: blur(100px);
+  background: radial-gradient(
+    circle at center,
+    rgba(0, 255, 255, 0.18) 0%,
+    rgba(0, 255, 255, 0.05) 40%,
+    transparent 70%
+  );
+  filter: blur(120px);
   z-index: 0;
 }
 
-.hero::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.75); /* camada escura para contraste */
+/* Certifique-se que o conteúdo do hero fique acima do brilho */
+.hero * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Brilho sutil nos títulos */
+.hero h1, .hero h2 {
+  text-shadow: 0 0 12px rgba(0, 255, 255, 0.2);
 }
 
