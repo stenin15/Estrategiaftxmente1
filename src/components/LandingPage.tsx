@@ -169,6 +169,48 @@ const ProvasCarousel = () => {
 };
 
 /** =========================
+ * FUNÇÃO DE ANIMAÇÃO DOS GRÁFICOS
+ * ========================= */
+const animateCharts = () => {
+  const overlay = document.getElementById('chart-overlay');
+  const charts = document.querySelectorAll('.chart-card');
+  const btn = document.getElementById('animate-charts-btn');
+  
+  if (!overlay || !btn) return;
+  
+  // Ativar overlay
+  overlay.style.opacity = '1';
+  
+  // Desabilitar botão
+  btn.disabled = true;
+  btn.textContent = '🎬 Animando Gráficos...';
+  
+  // Animar cada gráfico com delay
+  charts.forEach((chart, index) => {
+    const delay = index * 200;
+    setTimeout(() => {
+      chart.classList.remove('opacity-0', 'translate-y-10');
+      chart.classList.add('opacity-100', 'translate-y-0');
+      
+      // Adicionar efeito de "dados chegando"
+      setTimeout(() => {
+        chart.classList.add('animate-pulse');
+        setTimeout(() => {
+          chart.classList.remove('animate-pulse');
+        }, 1000);
+      }, 500);
+    }, delay);
+  });
+  
+  // Remover overlay após animação
+  setTimeout(() => {
+    overlay.style.opacity = '0';
+    btn.disabled = false;
+    btn.textContent = '🎬 Ver Gráficos em Movimento';
+  }, 2000);
+};
+
+/** =========================
  * LANDING PAGE
  * ========================= */
 const LandingPage: React.FC = () => {
@@ -374,10 +416,126 @@ const LandingPage: React.FC = () => {
             </div>
           </div>
 
-          {/* CARROSSEL DE SCREENSHOTS */}
+          {/* EXPERIÊNCIA DINÂMICA: NÚMEROS → GRÁFICOS */}
           <div className="mb-8">
-            <h3 className="text-xl font-bold text-white mb-6">Screenshots Reais das Operações</h3>
-            <ProvasCarousel />
+            <h3 className="text-xl font-bold text-white mb-6">Veja os Gráficos em Ação</h3>
+            
+            {/* CONTAINER INTERATIVO */}
+            <div className="relative bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-3xl p-8 border border-zinc-700 overflow-hidden">
+              {/* OVERLAY DE LOADING */}
+              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/20 to-emerald-500/20 opacity-0 transition-opacity duration-1000" id="chart-overlay"></div>
+              
+              {/* GRID DE GRÁFICOS ANIMADOS */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="charts-container">
+                
+                {/* GRÁFICO ETH - ANIMAÇÃO 1 */}
+                <div className="chart-card group relative bg-black/50 rounded-2xl p-4 border border-zinc-600 hover:border-cyan-400/50 transition-all duration-500 opacity-0 transform translate-y-10" data-delay="0">
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 bg-yellow-400 rounded-full animate-pulse"></div>
+                      <span className="text-sm font-semibold text-yellow-400">ETH/USDT</span>
+                    </div>
+                    <span className="text-xs text-green-400 font-bold">+$2,340</span>
+                  </div>
+                  
+                  {/* GRÁFICO SIMULADO */}
+                  <div className="relative h-32 bg-zinc-800 rounded-lg overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-500/30 to-transparent animate-pulse"></div>
+                    <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-red-500 via-yellow-500 to-green-500 opacity-80"></div>
+                    <div className="absolute top-2 right-2 text-xs text-green-400 font-bold">+127%</div>
+                  </div>
+                  
+                  {/* DADOS DA OPERAÇÃO */}
+                  <div className="mt-3 space-y-1 text-xs">
+                    <div className="flex justify-between">
+                      <span className="text-zinc-400">Entrada:</span>
+                      <span className="text-white">$1,850</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-zinc-400">Saída:</span>
+                      <span className="text-green-400">$4,190</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* GRÁFICO GBP/USD - ANIMAÇÃO 2 */}
+                <div className="chart-card group relative bg-black/50 rounded-2xl p-4 border border-zinc-600 hover:border-blue-400/50 transition-all duration-500 opacity-0 transform translate-y-10" data-delay="200">
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                      <span className="text-sm font-semibold text-blue-400">GBP/USD</span>
+                    </div>
+                    <span className="text-xs text-green-400 font-bold">+$1,450</span>
+                  </div>
+                  
+                  {/* GRÁFICO SIMULADO */}
+                  <div className="relative h-32 bg-zinc-800 rounded-lg overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-500/30 to-transparent animate-pulse" style={{animationDelay: '0.5s'}}></div>
+                    <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-red-500 via-yellow-500 to-green-500 opacity-80"></div>
+                    <div className="absolute top-2 right-2 text-xs text-green-400 font-bold">+89%</div>
+                  </div>
+                  
+                  {/* DADOS DA OPERAÇÃO */}
+                  <div className="mt-3 space-y-1 text-xs">
+                    <div className="flex justify-between">
+                      <span className="text-zinc-400">Entrada:</span>
+                      <span className="text-white">1.2450</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-zinc-400">Saída:</span>
+                      <span className="text-green-400">1.2580</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* GRÁFICO XAU/USD - ANIMAÇÃO 3 */}
+                <div className="chart-card group relative bg-black/50 rounded-2xl p-4 border border-zinc-600 hover:border-emerald-400/50 transition-all duration-500 opacity-0 transform translate-y-10" data-delay="400">
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+                      <span className="text-sm font-semibold text-emerald-400">XAU/USD</span>
+                    </div>
+                    <span className="text-xs text-green-400 font-bold">+$2,100</span>
+                  </div>
+                  
+                  {/* GRÁFICO SIMULADO */}
+                  <div className="relative h-32 bg-zinc-800 rounded-lg overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-emerald-500/30 to-transparent animate-pulse" style={{animationDelay: '1s'}}></div>
+                    <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-red-500 via-yellow-500 to-green-500 opacity-80"></div>
+                    <div className="absolute top-2 right-2 text-xs text-green-400 font-bold">+156%</div>
+                  </div>
+                  
+                  {/* DADOS DA OPERAÇÃO */}
+                  <div className="mt-3 space-y-1 text-xs">
+                    <div className="flex justify-between">
+                      <span className="text-zinc-400">Entrada:</span>
+                      <span className="text-white">$1,950</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-zinc-400">Saída:</span>
+                      <span className="text-green-400">$2,100</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* BOTÃO DE AÇÃO INTERATIVA */}
+              <div className="mt-8 text-center">
+                <button 
+                  id="animate-charts-btn"
+                  className="bg-gradient-to-r from-cyan-500 to-emerald-500 text-black font-bold px-8 py-4 rounded-2xl hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-cyan-500/25"
+                  onClick={() => animateCharts()}
+                >
+                  🎬 Ver Gráficos em Movimento
+                </button>
+              </div>
+            </div>
+
+            {/* CARROSSEL DE SCREENSHOTS REAIS */}
+            <div className="mt-12">
+              <h4 className="text-lg font-bold text-white mb-6">Screenshots Reais das Operações</h4>
+              <ProvasCarousel />
+            </div>
           </div>
 
           {/* CTA FORTE */}
