@@ -282,32 +282,120 @@ const LandingPage: React.FC = () => {
           </button>
         </section>
 
-        {/* BENEFÍCIOS */}
-        <Section id="como-funciona" className="text-center">
-          <h2 className="text-2xl md:text-3xl font-extrabold text-white">
-            O que você vai dominar dentro do método
+        {/* RESULTADOS REAIS - SEÇÃO PREMIUM */}
+        <Section id="resultados-reais" className="text-center">
+          <div className="mb-8">
+            <Badge>📈 RESULTADOS COMPROVADOS</Badge>
+          </div>
+          
+          <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-4">
+            <span className="text-cyan-300">Resultados Reais</span> na Tela
           </h2>
-          <div className="grid md:grid-cols-2 gap-6 mt-8 text-left">
-            {[
-              "📊 Leitura de gráfico que revela a intenção dos grandes players",
-              "⚙️ Gestão de risco e disciplina de elite",
-              "🧠 Mindset dos insiders",
-              "🚀 Setup validado e replicável",
-              "💰 Estratégia que gera lucros consistentes",
-            ].map((t) => (
-              <div
-                key={t}
-                className="bg-zinc-900/60 border border-zinc-800 rounded-2xl p-5 hover:border-emerald-500/40 transition-all"
-              >
-                <p className="text-zinc-200">{t}</p>
+          
+          <p className="text-xl text-zinc-300 max-w-3xl mx-auto mb-12">
+            Operações reais capturadas diretamente do app — <span className="text-emerald-400 font-bold">consistência comprovada</span>.
+          </p>
+
+          {/* GRID DE RESULTADOS MODERNO */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            {/* CARD CRYPTO */}
+            <div className="group bg-gradient-to-br from-zinc-900 to-zinc-800 border border-zinc-700 rounded-2xl p-6 hover:border-cyan-400/50 transition-all duration-300 hover:scale-105">
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
+                  <span className="text-sm font-semibold text-yellow-400">CRYPTO</span>
+                </div>
+                <span className="text-xs text-green-400 font-bold">+127%</span>
               </div>
-            ))}
+              <div className="space-y-3">
+                <div className="flex justify-between items-center">
+                  <span className="text-zinc-400 text-sm">ETH/USDT</span>
+                  <span className="text-green-400 font-bold">+$2,340</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-zinc-400 text-sm">PEPE/USDT</span>
+                  <span className="text-green-400 font-bold">+$1,890</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-zinc-400 text-sm">LIBRA/USDT</span>
+                  <span className="text-green-400 font-bold">+$3,120</span>
+                </div>
+              </div>
+            </div>
+
+            {/* CARD FOREX */}
+            <div className="group bg-gradient-to-br from-zinc-900 to-zinc-800 border border-zinc-700 rounded-2xl p-6 hover:border-cyan-400/50 transition-all duration-300 hover:scale-105">
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 bg-blue-400 rounded-full"></div>
+                  <span className="text-sm font-semibold text-blue-400">FOREX</span>
+                </div>
+                <span className="text-xs text-green-400 font-bold">+89%</span>
+              </div>
+              <div className="space-y-3">
+                <div className="flex justify-between items-center">
+                  <span className="text-zinc-400 text-sm">GBP/USD</span>
+                  <span className="text-green-400 font-bold">+$1,450</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-zinc-400 text-sm">USD/JPY</span>
+                  <span className="text-green-400 font-bold">+$980</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-zinc-400 text-sm">XAU/USD</span>
+                  <span className="text-green-400 font-bold">+$2,100</span>
+                </div>
+              </div>
+            </div>
+
+            {/* CARD ESTATÍSTICAS */}
+            <div className="group bg-gradient-to-br from-zinc-900 to-zinc-800 border border-zinc-700 rounded-2xl p-6 hover:border-cyan-400/50 transition-all duration-300 hover:scale-105 md:col-span-2 lg:col-span-1">
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 bg-emerald-400 rounded-full"></div>
+                  <span className="text-sm font-semibold text-emerald-400">ESTATÍSTICAS</span>
+                </div>
+                <span className="text-xs text-green-400 font-bold">94% WIN</span>
+              </div>
+              <div className="space-y-3">
+                <div className="flex justify-between items-center">
+                  <span className="text-zinc-400 text-sm">Taxa de Acerto</span>
+                  <span className="text-emerald-400 font-bold">94%</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-zinc-400 text-sm">Lucro Médio</span>
+                  <span className="text-emerald-400 font-bold">+$1,850</span>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-zinc-400 text-sm">Operações/Mês</span>
+                  <span className="text-emerald-400 font-bold">47</span>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div className="mt-8">
-            <CTA variant="outline" href="#antesdepois">
-              Ver o Antes & Depois no Gráfico →
-            </CTA>
+          {/* CARROSSEL DE SCREENSHOTS */}
+          <div className="mb-8">
+            <h3 className="text-xl font-bold text-white mb-6">Screenshots Reais das Operações</h3>
+            <ProvasCarousel />
+          </div>
+
+          {/* CTA FORTE */}
+          <div className="bg-gradient-to-r from-emerald-500/10 to-cyan-500/10 border border-emerald-500/30 rounded-2xl p-8">
+            <h3 className="text-2xl font-bold text-white mb-4">
+              <span className="text-emerald-400">R$ 47.890</span> em Lucros Reais
+            </h3>
+            <p className="text-zinc-300 mb-6">
+              Esses são apenas alguns dos resultados que nossos alunos estão obtendo aplicando o método FTX Mente.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <CTA variant="primary" href={CHECKOUT_URL} className="text-lg px-8 py-4">
+                🚀 QUERO RESULTADOS ASSIM TAMBÉM
+              </CTA>
+              <CTA variant="outline" href="#vsl">
+                Ver Método Completo →
+              </CTA>
+            </div>
           </div>
         </Section>
 
