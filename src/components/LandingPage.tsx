@@ -279,14 +279,14 @@ const LandingPage: React.FC = () => {
               sem depender da sorte. Em menos de <span className="text-white font-semibold">15 min/dia</span>.
             </p>
 
-            {/* CTAS */}
-            <div className="flex flex-col sm:flex-row justify-center gap-4 mb-10">
-              <button className="cta-button">
-                🎯 Quero dominar o mercado agora!
-              </button>
-              <button className="border border-cyan-400 text-cyan-400 font-semibold px-8 py-4 rounded-full hover:bg-cyan-400 hover:text-black transition-all">
-                🎥 Ver explicação completa
-              </button>
+            {/* CRONÔMETRO REGRESSIVO */}
+            <div className="mb-10">
+              <div className="countdown-timer bg-red-600 text-white px-6 py-4 rounded-lg inline-block text-2xl font-bold">
+                <div id="countdown" className="text-center">
+                  <div className="text-sm mb-1">⏰ OFERTA EXPIRA EM:</div>
+                  <div className="text-3xl font-black" id="timer">02:00:00</div>
+                </div>
+              </div>
             </div>
 
             {/* BLOCO DE DESCOBERTA */}
@@ -741,7 +741,53 @@ const LandingPage: React.FC = () => {
         .animate-pulseCTA {
           animation: pulseCTA 2s infinite;
         }
+        .countdown-timer {
+          animation: pulseCTA 2s infinite;
+        }
       `}</style>
+
+      {/* JavaScript para cronômetro regressivo */}
+      <script dangerouslySetInnerHTML={{
+        __html: `
+          function startCountdown() {
+            let timeLeft = 2 * 60 * 60; // 2 horas em segundos
+            
+            function updateTimer() {
+              const hours = Math.floor(timeLeft / 3600);
+              const minutes = Math.floor((timeLeft % 3600) / 60);
+              const seconds = timeLeft % 60;
+              
+              const timerElement = document.getElementById('timer');
+              if (timerElement) {
+                timerElement.textContent = 
+                  String(hours).padStart(2, '0') + ':' +
+                  String(minutes).padStart(2, '0') + ':' +
+                  String(seconds).padStart(2, '0');
+              }
+              
+              if (timeLeft <= 0) {
+                if (timerElement) {
+                  timerElement.textContent = '00:00:00';
+                  timerElement.style.color = '#ff0000';
+                }
+                return;
+              }
+              
+              timeLeft--;
+              setTimeout(updateTimer, 1000);
+            }
+            
+            updateTimer();
+          }
+          
+          // Iniciar cronômetro quando a página carregar
+          if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', startCountdown);
+          } else {
+            startCountdown();
+          }
+        `
+      }} />
     </>
   );
 };
