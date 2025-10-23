@@ -18,48 +18,48 @@ export const OfertaFinal = () => {
   };
 
   return (
-    <section className="py-16 text-center bg-zinc-950 text-white px-6">
-      <h2 className="text-3xl font-bold mb-2">
+    <section className="py-24 text-center bg-zinc-950 text-white px-6">
+      <h2 className="text-4xl md:text-5xl font-bold mb-4">
         🔥 Últimas Horas da Oferta
       </h2>
-      <p className="text-gray-400 mb-10 max-w-xl mx-auto">
+      <p className="text-gray-400 mb-12 max-w-2xl mx-auto text-lg">
         Domine o mercado, transforme sua mentalidade e opere como os insiders.
       </p>
 
-      <div className="bg-zinc-900 border border-cyan-700 rounded-2xl p-6 max-w-lg mx-auto shadow-lg">
-        <h3 className="text-cyan-400 text-xl font-bold mb-4 flex items-center justify-center gap-2">
+      <div className="bg-zinc-900 border border-cyan-700 rounded-2xl p-8 max-w-2xl mx-auto shadow-lg">
+        <h3 className="text-cyan-400 text-2xl font-bold mb-6 flex items-center justify-center gap-2">
           💎 Pacote Completo FTX Mente
         </h3>
 
-        <ul className="text-left text-gray-300 space-y-2 mb-6">
+        <ul className="text-left text-gray-300 space-y-3 mb-8 text-lg">
           <li>✅ Estratégia completa (R$299,90)</li>
           <li>✅ Guia de Mindset & Gestão (R$99,90)</li>
           <li>✅ Checklist + Atualizações (R$49,90)</li>
           <li>✅ Suporte direto 7 dias (R$49,90)</li>
         </ul>
 
-        <p className="text-gray-400 line-through text-sm">De R$499,60</p>
-        <p className="text-2xl font-extrabold text-white mb-6">
+        <p className="text-gray-400 line-through text-lg mb-2">De R$499,60</p>
+        <p className="text-4xl font-extrabold text-white mb-8">
           Hoje: <span className="text-green-400 pulse-text">R$49,90</span> 🔥
         </p>
 
-        <button className="bg-cyan-500 hover:bg-cyan-400 text-black font-bold px-8 py-4 rounded-full transition-all w-full shadow-lg pulse-btn">
+        <button className="bg-cyan-500 hover:bg-cyan-400 text-black font-bold px-12 py-6 rounded-full transition-all w-full shadow-lg pulse-btn text-lg">
           QUERO GARANTIR MEU ACESSO AGORA →
         </button>
 
-        <div className="mt-6 text-sm text-gray-400">
+        <div className="mt-8 text-lg text-gray-400">
           <p>
             ⏰ Oferta expira em:{" "}
-            <span className="text-red-400 font-bold pulse-text">
+            <span className="text-red-400 font-bold pulse-text text-xl">
               {formatTime(timeLeft)}
             </span>
           </p>
-          <p className="text-xs mt-1">
+          <p className="text-sm mt-2">
             🎁 Bônus incluso apenas enquanto o cronômetro estiver ativo!
           </p>
         </div>
 
-        <div className="flex justify-center gap-3 text-xs text-gray-500 mt-4">
+        <div className="flex justify-center gap-6 text-sm text-gray-500 mt-6">
           <span>💳 Pagamento 100% seguro</span>
           <span>⚡ Acesso imediato</span>
           <span>💬 Suporte 7 dias</span>
