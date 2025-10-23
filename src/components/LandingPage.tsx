@@ -281,16 +281,16 @@ const LandingPage: React.FC = () => {
 
             {/* CTAS */}
             <div className="flex flex-col sm:flex-row justify-center gap-4 mb-10">
-              <button className="bg-cyan-500 text-black font-bold px-8 py-4 rounded-full hover:bg-cyan-400 transition-all shadow-lg">
-                ▶️ Assistir vídeo gratuito
+              <button className="cta-button">
+                🎯 Quero dominar o mercado agora!
               </button>
               <button className="border border-cyan-400 text-cyan-400 font-semibold px-8 py-4 rounded-full hover:bg-cyan-400 hover:text-black transition-all">
-                Ver como funciona →
+                🎥 Ver explicação completa
               </button>
             </div>
 
             {/* BLOCO DE DESCOBERTA */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 bg-zinc-900 border border-zinc-800 p-6 rounded-2xl text-left max-w-3xl mx-auto shadow-lg">
+            <div className="discover-box grid grid-cols-1 sm:grid-cols-2 gap-6 p-6 text-left max-w-3xl mx-auto">
               <h2 className="text-green-400 font-bold text-xl sm:col-span-2 mb-2 flex items-center gap-2">
                 🎯 O que você vai descobrir:
               </h2>
@@ -316,13 +316,13 @@ const LandingPage: React.FC = () => {
           <h2 className="text-3xl font-bold mb-6">Você se identifica com isso?</h2>
 
           <div className="max-w-2xl mx-auto space-y-4 text-gray-300 mb-8">
-            <p>😤 Entra em operações e vê o mercado ir contra você?</p>
-            <p>📉 Sente que sempre sai antes da hora ou entra no pior momento?</p>
-            <p>😔 Falta disciplina, confiança e clareza no gráfico?</p>
-            <p>💭 Já tentou de tudo e ainda não consegue lucrar com consistência?</p>
+            <p className="flex items-center gap-3"><span className="text-2xl">😣</span><span>Entra em operações e vê o mercado ir contra você?</span></p>
+            <p className="flex items-center gap-3"><span className="text-2xl">📉</span><span>Sente que sempre sai antes da hora ou entra no pior momento?</span></p>
+            <p className="flex items-center gap-3"><span className="text-2xl">😔</span><span>Falta disciplina, confiança e clareza no gráfico?</span></p>
+            <p className="flex items-center gap-3"><span className="text-2xl">💭</span><span>Já tentou de tudo e ainda não consegue lucrar com consistência?</span></p>
           </div>
 
-          <h3 className="text-2xl font-semibold mt-12 text-cyan-400">Então, respira… a solução está logo abaixo 👇</h3>
+          <h3 className="text-2xl font-semibold mt-12 text-cyan-400 blink">Então, respira… a solução está logo abaixo 👇</h3>
           <p className="text-gray-400 mt-3">
             A <span className="font-semibold text-white">FTX Mente</span> foi criada para transformar traders comuns em operadores conscientes,
             com mentalidade e setups replicáveis que funcionam no dia a dia real.

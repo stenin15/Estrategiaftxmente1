@@ -165,9 +165,18 @@ html {
 
 /* Estilos globais do body */
 body {
-  background: radial-gradient(circle at 50% 25%, #041420 0%, #000 80%);
+  background: radial-gradient(circle at center, #001b24 0%, #000000 70%);
+  background-image: url('/particles-bg.webp');
+  background-blend-mode: overlay;
+  background-size: cover;
+  animation: bgPulse 10s ease-in-out infinite;
   background-attachment: fixed;
   overflow-x: hidden;
+}
+
+@keyframes bgPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.9; }
 }
 
 /* Estilos da seção Hero */
@@ -258,5 +267,63 @@ body {
 
 .image-hover-overlay:hover {
   background: linear-gradient(45deg, rgba(0, 212, 255, 0.1), rgba(0, 255, 136, 0.1));
+}
+
+/* BOTÕES CTA ANIMADOS */
+.cta-button {
+  background: linear-gradient(90deg, #00ffaa, #00ccff);
+  color: #000;
+  font-weight: 700;
+  border-radius: 50px;
+  padding: 14px 28px;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(0, 255, 200, 0.3);
+}
+
+.cta-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(0, 255, 200, 0.6);
+}
+
+/* GLASSMORPHISM PARA CARDS */
+.discover-box {
+  background: rgba(0, 10, 20, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 255, 200, 0.1);
+  box-shadow: 0 0 15px rgba(0, 255, 200, 0.05);
+  border-radius: 14px;
+}
+
+/* EFEITO DE PISCAR PARA ATENÇÃO */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.blink {
+  animation: blink 2s infinite;
+}
+
+/* CARD PREMIUM PARA OFERTA */
+.offer-card {
+  background: rgba(0, 15, 25, 0.8);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(0, 255, 200, 0.2);
+  box-shadow: 0 0 30px rgba(0, 255, 200, 0.1);
+  border-radius: 20px;
+  padding: 40px;
+}
+
+/* EFEITO DE PULSO PARA PREÇO */
+.pulse-price {
+  animation: pulseCTA 2s infinite;
+}
+
+/* CONTADOR REGRESSIVO */
+.countdown-timer {
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  color: #ff6b35;
+  text-shadow: 0 0 10px rgba(255, 107, 53, 0.5);
 }
 

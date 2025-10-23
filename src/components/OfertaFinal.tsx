@@ -26,7 +26,7 @@ export const OfertaFinal = () => {
         Domine o mercado, transforme sua mentalidade e opere como os insiders.
       </p>
 
-      <div className="bg-zinc-900 border border-cyan-700 rounded-2xl p-8 max-w-2xl mx-auto shadow-lg">
+          <div className="offer-card max-w-2xl mx-auto">
         <h3 className="text-cyan-400 text-2xl font-bold mb-6 flex items-center justify-center gap-2">
           💎 Pacote Completo FTX Mente
         </h3>
@@ -39,25 +39,25 @@ export const OfertaFinal = () => {
         </ul>
 
         <p className="text-gray-400 line-through text-lg mb-2">De R$499,60</p>
-        <p className="text-4xl font-extrabold text-white mb-8">
-          Hoje: <span className="text-green-400 pulse-text">R$49,90</span> 🔥
-        </p>
+            <p className="text-4xl font-extrabold text-white mb-8">
+              Hoje: <span className="text-green-400 pulse-price">R$49,90</span> 🔥
+            </p>
 
         <button className="bg-cyan-500 hover:bg-cyan-400 text-black font-bold px-12 py-6 rounded-full transition-all w-full shadow-lg pulse-btn text-lg">
           QUERO GARANTIR MEU ACESSO AGORA →
         </button>
 
-        <div className="mt-8 text-lg text-gray-400">
-          <p>
-            ⏰ Oferta expira em:{" "}
-            <span className="text-red-400 font-bold pulse-text text-xl">
-              {formatTime(timeLeft)}
-            </span>
-          </p>
-          <p className="text-sm mt-2">
-            🎁 Bônus incluso apenas enquanto o cronômetro estiver ativo!
-          </p>
-        </div>
+            <div className="mt-8 text-lg text-gray-400">
+              <p>
+                ⏰ Oferta expira em:{" "}
+                <span className="countdown-timer text-xl">
+                  {formatTime(timeLeft)}
+                </span>
+              </p>
+              <p className="text-sm mt-2">
+                🎁 Bônus incluso apenas enquanto o cronômetro estiver ativo!
+              </p>
+            </div>
 
         <div className="flex justify-center gap-6 text-sm text-gray-500 mt-6">
           <span>💳 Pagamento 100% seguro</span>
