@@ -327,3 +327,71 @@ body {
   text-shadow: 0 0 10px rgba(255, 107, 53, 0.5);
 }
 
+/* HARMONIA VISUAL - SEÇÃO DE RESULTADOS */
+.results-section {
+  background: linear-gradient(to bottom, #050d11 0%, #000000 100%);
+  padding: 80px 0;
+  border-top: 1px solid rgba(0,255,200,0.08);
+  border-bottom: 1px solid rgba(0,255,200,0.08);
+}
+
+/* CARDS DE RESULTADOS COM GLASSMORPHISM */
+.results-card {
+  background: rgba(0, 15, 25, 0.7);
+  border: 1px solid rgba(0, 255, 200, 0.1);
+  backdrop-filter: blur(12px);
+  border-radius: 14px;
+  box-shadow: 0 0 25px rgba(0, 255, 200, 0.05);
+  transition: all 0.3s ease;
+}
+
+.results-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 30px rgba(0, 255, 200, 0.3);
+}
+
+/* TÍTULO COM EFEITO NEON */
+.highlight-title {
+  color: #00ffcc;
+  text-shadow: 0 0 10px rgba(0,255,200,0.6);
+  font-weight: 700;
+  font-size: 1.6rem;
+}
+
+/* BOTÃO CTA PULSANTE */
+.cta-button-pulse {
+  background: linear-gradient(90deg, #00ffaa, #00ccff);
+  color: #000;
+  font-weight: 700;
+  padding: 16px 32px;
+  border-radius: 40px;
+  box-shadow: 0 0 20px rgba(0,255,200,0.5);
+  animation: pulse 2.5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { 
+    transform: scale(1); 
+    opacity: 1; 
+  }
+  50% { 
+    transform: scale(1.05); 
+    opacity: 0.85; 
+  }
+}
+
+/* DIVISOR ANIMADO ENTRE SEÇÕES */
+.section-divider {
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(0,255,200,0.4), transparent);
+  margin: 50px 0;
+  opacity: 0.6;
+  animation: dividerFlow 3s ease-in-out infinite;
+}
+
+@keyframes dividerFlow {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+

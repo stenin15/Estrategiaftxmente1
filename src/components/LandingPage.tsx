@@ -334,7 +334,7 @@ const LandingPage: React.FC = () => {
         </section>
 
         {/* RESULTADOS REAIS - SEÇÃO PREMIUM */}
-        <Section id="resultados-reais" className="text-center">
+        <Section id="resultados-reais" className="results-section text-center">
           <div className="mb-8">
             <Badge>📈 RESULTADOS COMPROVADOS</Badge>
           </div>
@@ -355,7 +355,7 @@ const LandingPage: React.FC = () => {
             {/* GRID ANTES E DEPOIS: GRÁFICO + RESULTADO */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* OPERAÇÃO 1 */}
-              <div className="bg-zinc-900 border border-zinc-700 rounded-2xl p-4 hover:border-cyan-400/50 transition-all duration-300">
+              <div className="results-card p-4">
                 <div className="flex justify-between items-center mb-4">
                   <span className="text-emerald-400 font-bold text-lg">+127%</span>
                   <span className="text-cyan-400 text-sm">Operação Real</span>
@@ -403,7 +403,7 @@ const LandingPage: React.FC = () => {
               </div>
 
               {/* OPERAÇÃO 2 */}
-              <div className="bg-zinc-900 border border-zinc-700 rounded-2xl p-4 hover:border-cyan-400/50 transition-all duration-300">
+              <div className="results-card p-4">
                 <div className="flex justify-between items-center mb-4">
                   <span className="text-emerald-400 font-bold text-lg">+89%</span>
                   <span className="text-cyan-400 text-sm">Operação Real</span>
@@ -451,7 +451,7 @@ const LandingPage: React.FC = () => {
               </div>
 
               {/* OPERAÇÃO 3 */}
-              <div className="bg-zinc-900 border border-zinc-700 rounded-2xl p-4 hover:border-cyan-400/50 transition-all duration-300">
+              <div className="results-card p-4">
                 <div className="flex justify-between items-center mb-4">
                   <span className="text-emerald-400 font-bold text-lg">+156%</span>
                   <span className="text-cyan-400 text-sm">Operação Real</span>
@@ -499,7 +499,7 @@ const LandingPage: React.FC = () => {
               </div>
 
               {/* OPERAÇÃO 4 */}
-              <div className="bg-zinc-900 border border-zinc-700 rounded-2xl p-4 hover:border-cyan-400/50 transition-all duration-300">
+              <div className="results-card p-4">
                 <div className="flex justify-between items-center mb-4">
                   <span className="text-emerald-400 font-bold text-lg">+198%</span>
                   <span className="text-cyan-400 text-sm">Operação Real</span>
@@ -556,11 +556,11 @@ const LandingPage: React.FC = () => {
 
           {/* CTA FORTE */}
           <div className="bg-gradient-to-r from-emerald-500/10 to-cyan-500/10 border border-emerald-500/30 rounded-2xl p-8">
-            <h3 className="text-2xl font-bold text-white mb-4">
+            <h3 className="highlight-title mb-4">
               <span className="text-emerald-400">R$ 47.000</span> em Lucros Reais
             </h3>
-            <p className="text-zinc-300 mb-6">
-              Esses são apenas alguns dos resultados que nossos alunos estão obtendo aplicando o método FTX Mente.
+            <p className="text-zinc-300 mb-6 text-lg">
+              Lucros reais gerados por alunos aplicando o método FTX Mente — <span className="text-emerald-400 font-bold">100% verificáveis</span>.
             </p>
             
             {/* CONCEITOS FTX APLICADOS */}
@@ -599,15 +599,18 @@ const LandingPage: React.FC = () => {
               </div>
             </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <CTA variant="primary" href={CHECKOUT_URL} className="text-lg px-8 py-4">
-                🚀 QUERO RESULTADOS ASSIM TAMBÉM
-              </CTA>
+              <button className="cta-button-pulse text-lg px-8 py-4">
+                🚀 Quero aplicar a Estratégia FTX agora
+              </button>
               <CTA variant="outline" href="#vsl">
                 Ver Método Completo →
-            </CTA>
+              </CTA>
             </div>
           </div>
         </Section>
+
+        {/* DIVISOR ANIMADO */}
+        <div className="section-divider"></div>
 
         {/* VSL - VIDEO SALES LETTER */}
         <Section id="vsl" className="text-center">
