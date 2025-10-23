@@ -172,7 +172,7 @@ body {
 
 /* Estilos da seção Hero */
 .hero {
-  background: url("/assets/hero-trader.jpg") no-repeat center center/cover;
+  background: url("/hero-trader.jpg") no-repeat center center/cover;
   position: relative;
 }
 
