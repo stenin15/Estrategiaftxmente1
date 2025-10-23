@@ -345,54 +345,48 @@ const LandingPage: React.FC = () => {
           </div>
         </section>
 
-        {/* SEÇÃO DOR + SOLUÇÃO - NOVO ESTILO */}
-        <section className="bg-[#0a0a0a] text-white py-20 text-center px-6">
-          <div className="max-w-3xl mx-auto">
+        {/* SEÇÃO DOR + SOLUÇÃO - NOVO ESTILO EM CARDS */}
+        <section className="bg-gradient-to-b from-[#050505] to-[#000814] text-white py-20 px-6 text-center relative overflow-hidden">
+          <div className="max-w-4xl mx-auto">
 
-            <h2 className="text-3xl md:text-4xl font-extrabold mb-10">
-              Você se identifica com isso? 🤔
+            <h2 className="text-4xl md:text-5xl font-extrabold mb-12 leading-tight">
+              😔 <span className="text-cyan-400">Você se identifica com isso?</span>
             </h2>
 
-            <div className="space-y-6 text-lg md:text-xl text-gray-300 leading-relaxed">
-
-              <div className="flex items-center justify-center space-x-3">
-                <span className="text-2xl">😤</span>
-                <p>Entra em operações e o mercado parece ir contra você?</p>
+            <div className="grid md:grid-cols-2 gap-8 text-left text-lg text-gray-300">
+              <div className="bg-[#0a0a0a]/70 hover:bg-[#0f1a1a] border border-cyan-500/20 rounded-2xl p-6 transition-all duration-300 hover:shadow-[0_0_15px_#00ffff40]">
+                <p>😤 <span className="text-cyan-300 font-semibold">Entra em operações</span> e o mercado parece sempre ir contra você?</p>
               </div>
 
-              <div className="flex items-center justify-center space-x-3">
-                <span className="text-2xl">📉</span>
-                <p>Sente que sempre sai cedo demais... ou entra no pior momento?</p>
+              <div className="bg-[#0a0a0a]/70 hover:bg-[#0f1a1a] border border-cyan-500/20 rounded-2xl p-6 transition-all duration-300 hover:shadow-[0_0_15px_#00ffff40]">
+                <p>📉 Sente que <span className="text-cyan-300 font-semibold">sai antes da hora</span> ou entra no pior momento?</p>
               </div>
 
-              <div className="flex items-center justify-center space-x-3">
-                <span className="text-2xl">🧘‍♂️</span>
-                <p>Falta disciplina, confiança e clareza na hora de agir?</p>
+              <div className="bg-[#0a0a0a]/70 hover:bg-[#0f1a1a] border border-cyan-500/20 rounded-2xl p-6 transition-all duration-300 hover:shadow-[0_0_15px_#00ffff40]">
+                <p>🧠 Falta <span className="text-cyan-300 font-semibold">disciplina e confiança</span> pra seguir seu plano sem hesitar?</p>
               </div>
 
-              <div className="flex items-center justify-center space-x-3">
-                <span className="text-2xl">💭</span>
-                <p>Já estudou tudo, mas ainda não consegue lucrar com consistência?</p>
+              <div className="bg-[#0a0a0a]/70 hover:bg-[#0f1a1a] border border-cyan-500/20 rounded-2xl p-6 transition-all duration-300 hover:shadow-[0_0_15px_#00ffff40]">
+                <p>💭 Já estudou tudo... mas <span className="text-cyan-300 font-semibold">a consistência nunca vem?</span></p>
               </div>
-
             </div>
 
-            <div className="mt-14">
-              <h3 className="text-2xl md:text-3xl font-semibold text-cyan-400 mb-4">
-                Respira… a solução está logo abaixo 👇
+            <div className="mt-16">
+              <h3 className="text-3xl md:text-4xl font-bold text-cyan-400 animate-pulse">
+                Então respira... 💨  
+                <span className="text-white block mt-2">a solução está logo abaixo 👇</span>
               </h3>
-              <p className="text-gray-400 text-lg">
-                A <span className="text-cyan-300 font-medium">TFX Mente</span> foi criada pra transformar traders comuns
-                em operadores conscientes — com mentalidade, clareza e setups que funcionam na vida real.
+              <p className="text-gray-400 mt-4 text-lg">
+                A <span className="text-cyan-300 font-semibold">TFX Mente</span> foi criada pra transformar traders comuns  
+                em operadores conscientes — com mentalidade e setups que funcionam na vida real.
               </p>
             </div>
 
             <a 
               href="#cta"
-              className="inline-block mt-10 bg-gradient-to-r from-cyan-400 to-blue-600 text-black font-bold text-lg px-10 py-4 rounded-full hover:scale-105 hover:shadow-lg transition-transform duration-300">
+              className="inline-block mt-12 bg-gradient-to-r from-cyan-400 to-blue-600 text-black font-bold text-lg px-12 py-5 rounded-full hover:scale-105 hover:shadow-[0_0_25px_#00ffff60] transition-transform duration-300">
               ⚡ Quero mudar meu jogo agora
             </a>
-
           </div>
         </section>
 
