@@ -267,6 +267,16 @@ const LandingPage: React.FC = () => {
               Oferta exclusiva por tempo limitado
             </span>
 
+            {/* CRONÔMETRO REGRESSIVO - NO TOPO */}
+            <div className="mb-8">
+              <div className="countdown-timer bg-red-600 text-white px-6 py-4 rounded-lg inline-block text-2xl font-bold">
+                <div id="countdown" className="text-center">
+                  <div className="text-sm mb-1">⏰ OFERTA EXPIRA EM:</div>
+                  <div className="text-3xl font-black" id="timer">02:00:00</div>
+                </div>
+              </div>
+            </div>
+
             {/* HEADLINE PRINCIPAL */}
             <h1 className="text-4xl sm:text-5xl font-extrabold mb-6 leading-tight">
               Domine o mercado com a <span className="text-cyan-400">Estratégia FTX</span><br />
@@ -278,16 +288,6 @@ const LandingPage: React.FC = () => {
               Aprenda o mesmo método que insiders e market makers usam para operar com confiança —
               sem depender da sorte. Em menos de <span className="text-white font-semibold">15 min/dia</span>.
             </p>
-
-            {/* CRONÔMETRO REGRESSIVO */}
-            <div className="mb-10">
-              <div className="countdown-timer bg-red-600 text-white px-6 py-4 rounded-lg inline-block text-2xl font-bold">
-                <div id="countdown" className="text-center">
-                  <div className="text-sm mb-1">⏰ OFERTA EXPIRA EM:</div>
-                  <div className="text-3xl font-black" id="timer">02:00:00</div>
-                </div>
-              </div>
-            </div>
 
             {/* BLOCO DE DESCOBERTA */}
             <div className="discover-box grid grid-cols-1 sm:grid-cols-2 gap-6 p-6 text-left max-w-3xl mx-auto">
