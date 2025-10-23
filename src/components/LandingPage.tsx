@@ -491,27 +491,6 @@ const LandingPage: React.FC = () => {
           </div>
         </Section>
 
-        {/* PROVAS COM CARROSSEL AUTOMÁTICO */}
-        <Section id="provas" className="text-center">
-          <h2 className="text-2xl md:text-3xl font-extrabold text-white">
-            Resultados Reais na Tela 📈
-          </h2>
-          <p className="text-zinc-300 mt-2">
-            Operações reais capturadas diretamente do app — consistência comprovada.
-          </p>
-
-          <ProvasCarousel />
-
-          <p className="text-center text-zinc-300 max-w-2xl mx-auto mt-8">
-            Cada um desses resultados é uma operação real feita por traders que aplicaram o método
-            <span className="text-cyan-400 font-semibold"> FTX Mente </span>.
-            Não é sorte — é estratégia.
-          </p>
-
-          <div className="mt-8">
-            <CTA href={CHECKOUT_URL}>Quero resultados assim também</CTA>
-          </div>
-        </Section>
 
 
         {/* OFERTA FINAL COM ANIMAÇÕES */}
