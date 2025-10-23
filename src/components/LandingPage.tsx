@@ -225,6 +225,38 @@ const openImageModal = (src: string, index: number) => {
 const LandingPage: React.FC = () => {
   const [remaining, setRemaining] = useState<number>(TIMER_DURATION_MS);
 
+  // Cronômetro regressivo de 2 horas
+  useEffect(() => {
+    let timeLeft = 2 * 60 * 60; // 2 horas em segundos
+    
+    function updateTimer() {
+      const hours = Math.floor(timeLeft / 3600);
+      const minutes = Math.floor((timeLeft % 3600) / 60);
+      const seconds = timeLeft % 60;
+      
+      const timerElement = document.getElementById('timer');
+      if (timerElement) {
+        timerElement.textContent = 
+          String(hours).padStart(2, '0') + ':' +
+          String(minutes).padStart(2, '0') + ':' +
+          String(seconds).padStart(2, '0');
+      }
+      
+      if (timeLeft <= 0) {
+        if (timerElement) {
+          timerElement.textContent = '00:00:00';
+          timerElement.style.color = '#ff0000';
+        }
+        return;
+      }
+      
+      timeLeft--;
+      setTimeout(updateTimer, 1000);
+    }
+    
+    updateTimer();
+  }, []);
+
   useEffect(() => {
     let start = localStorage.getItem(TIMER_STORAGE_KEY);
     if (!start) {
@@ -746,48 +778,6 @@ const LandingPage: React.FC = () => {
         }
       `}</style>
 
-      {/* JavaScript para cronômetro regressivo */}
-      <script dangerouslySetInnerHTML={{
-        __html: `
-          function startCountdown() {
-            let timeLeft = 2 * 60 * 60; // 2 horas em segundos
-            
-            function updateTimer() {
-              const hours = Math.floor(timeLeft / 3600);
-              const minutes = Math.floor((timeLeft % 3600) / 60);
-              const seconds = timeLeft % 60;
-              
-              const timerElement = document.getElementById('timer');
-              if (timerElement) {
-                timerElement.textContent = 
-                  String(hours).padStart(2, '0') + ':' +
-                  String(minutes).padStart(2, '0') + ':' +
-                  String(seconds).padStart(2, '0');
-              }
-              
-              if (timeLeft <= 0) {
-                if (timerElement) {
-                  timerElement.textContent = '00:00:00';
-                  timerElement.style.color = '#ff0000';
-                }
-                return;
-              }
-              
-              timeLeft--;
-              setTimeout(updateTimer, 1000);
-            }
-            
-            updateTimer();
-          }
-          
-          // Iniciar cronômetro quando a página carregar
-          if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', startCountdown);
-          } else {
-            startCountdown();
-          }
-        `
-      }} />
     </>
   );
 };
