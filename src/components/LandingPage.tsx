@@ -347,32 +347,6 @@ const LandingPage: React.FC = () => {
             Operações reais capturadas diretamente do app — <span className="text-emerald-400 font-bold">consistência comprovada</span>.
           </p>
 
-          {/* CARD ESTATÍSTICAS */}
-          <div className="flex justify-center mb-12">
-            <div className="group bg-gradient-to-br from-zinc-900 to-zinc-800 border border-zinc-700 rounded-2xl p-6 hover:border-cyan-400/50 transition-all duration-300 hover:scale-105 max-w-md w-full">
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 bg-emerald-400 rounded-full"></div>
-                  <span className="text-sm font-semibold text-emerald-400">ESTATÍSTICAS</span>
-                </div>
-                <span className="text-xs text-green-400 font-bold">94% WIN</span>
-              </div>
-              <div className="space-y-3">
-                <div className="flex justify-between items-center">
-                  <span className="text-zinc-400 text-sm">Taxa de Acerto</span>
-                  <span className="text-emerald-400 font-bold">94%</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-zinc-400 text-sm">Lucro Médio</span>
-                  <span className="text-emerald-400 font-bold">+$1,850</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-zinc-400 text-sm">Operações/Mês</span>
-                  <span className="text-emerald-400 font-bold">47</span>
-                </div>
-              </div>
-            </div>
-          </div>
 
           {/* GALERIA DE IMAGENS CLICÁVEIS */}
           <div className="mb-8">
