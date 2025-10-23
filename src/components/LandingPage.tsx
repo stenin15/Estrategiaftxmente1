@@ -127,16 +127,16 @@ const imagens = [
   "/resultado forex 4  (7).jpeg",
   
   // Imagens originais
-  "/WhatsApp Image 2025-10-22 at 00.13.37.jpeg",
-  "/WhatsApp Image 2025-10-21 at 17.07.38 (1).jpeg",
-  "/WhatsApp Image 2025-10-21 at 17.07.37 (1).jpeg",
-  "/WhatsApp Image 2025-10-21 at 17.07.37.jpeg",
-  "/WhatsApp Image 2025-10-21 at 17.10.12 (1).jpeg",
-  "/WhatsApp Image 2025-10-21 at 17.10.24 (1).jpeg",
-  "/WhatsApp Image 2025-10-21 at 17.10.24.jpeg",
-  "/WhatsApp Image 2025-10-21 at 17.10.34.jpeg",
-  "/image (6).png",
-];
+    "/WhatsApp Image 2025-10-22 at 00.13.37.jpeg",
+    "/WhatsApp Image 2025-10-21 at 17.07.38 (1).jpeg",
+    "/WhatsApp Image 2025-10-21 at 17.07.37 (1).jpeg",
+    "/WhatsApp Image 2025-10-21 at 17.07.37.jpeg",
+    "/WhatsApp Image 2025-10-21 at 17.10.12 (1).jpeg",
+    "/WhatsApp Image 2025-10-21 at 17.10.24 (1).jpeg",
+    "/WhatsApp Image 2025-10-21 at 17.10.24.jpeg",
+    "/WhatsApp Image 2025-10-21 at 17.10.34.jpeg",
+    "/image (6).png",
+  ];
 
 /** =========================
  * COMPONENTE CARROSSEL
@@ -551,7 +551,7 @@ const LandingPage: React.FC = () => {
               <p className="text-zinc-400 text-sm">
                 Clique em qualquer imagem para ver em tamanho completo • Gráficos + Lucros reais da corretora
               </p>
-            </div>
+              </div>
           </div>
 
           {/* CTA FORTE */}
@@ -568,7 +568,7 @@ const LandingPage: React.FC = () => {
               </CTA>
               <CTA variant="outline" href="#vsl">
                 Ver Método Completo →
-              </CTA>
+            </CTA>
             </div>
           </div>
         </Section>
@@ -681,9 +681,6 @@ const LandingPage: React.FC = () => {
       `}</style>
     </>
   );
-};
-
-export default LandingPage;
 };
 
 export default LandingPage;
