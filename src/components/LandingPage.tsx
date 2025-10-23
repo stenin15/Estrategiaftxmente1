@@ -349,7 +349,7 @@ const LandingPage: React.FC = () => {
             {/* GRID ANTES E DEPOIS: GRÁFICO + RESULTADO */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* OPERAÇÃO 1 */}
-              <div className="results-card p-4">
+              <div className="results-card p-4 result">
                 <div className="flex justify-between items-center mb-4">
                   <span className="text-emerald-400 font-bold text-lg">+127%</span>
                   <span className="text-cyan-400 text-sm">Operação Real</span>
@@ -390,14 +390,14 @@ const LandingPage: React.FC = () => {
                     </div>
                   </div>
                 </div>
-                <div className="mt-3 text-center">
-                  <span className="text-green-400 font-bold">+$2,340</span>
-                  <span className="text-gray-400 text-sm ml-2">Lucro Real</span>
+                <div className="profit-line">
+                  <span className="profit-value">+R$2,340</span>
+                  <span className="profit-label">Lucro Real</span>
                 </div>
               </div>
 
               {/* OPERAÇÃO 2 */}
-              <div className="results-card p-4">
+              <div className="results-card p-4 result">
                 <div className="flex justify-between items-center mb-4">
                   <span className="text-emerald-400 font-bold text-lg">+89%</span>
                   <span className="text-cyan-400 text-sm">Operação Real</span>
@@ -438,14 +438,14 @@ const LandingPage: React.FC = () => {
                     </div>
                   </div>
                 </div>
-                <div className="mt-3 text-center">
-                  <span className="text-green-400 font-bold">+$1,450</span>
-                  <span className="text-gray-400 text-sm ml-2">Lucro Real</span>
+                <div className="profit-line">
+                  <span className="profit-value">+R$1,450</span>
+                  <span className="profit-label">Lucro Real</span>
                 </div>
               </div>
 
               {/* OPERAÇÃO 3 */}
-              <div className="results-card p-4">
+              <div className="results-card p-4 result">
                 <div className="flex justify-between items-center mb-4">
                   <span className="text-emerald-400 font-bold text-lg">+156%</span>
                   <span className="text-cyan-400 text-sm">Operação Real</span>
@@ -486,14 +486,14 @@ const LandingPage: React.FC = () => {
                     </div>
                   </div>
                 </div>
-                <div className="mt-3 text-center">
-                  <span className="text-green-400 font-bold">+$2,100</span>
-                  <span className="text-gray-400 text-sm ml-2">Lucro Real</span>
+                <div className="profit-line">
+                  <span className="profit-value">+R$2,100</span>
+                  <span className="profit-label">Lucro Real</span>
                 </div>
               </div>
 
               {/* OPERAÇÃO 4 */}
-              <div className="results-card p-4">
+              <div className="results-card p-4 result">
                 <div className="flex justify-between items-center mb-4">
                   <span className="text-emerald-400 font-bold text-lg">+198%</span>
                   <span className="text-cyan-400 text-sm">Operação Real</span>
@@ -534,18 +534,137 @@ const LandingPage: React.FC = () => {
                     </div>
                   </div>
                 </div>
-                <div className="mt-3 text-center">
-                  <span className="text-green-400 font-bold">+$3,120</span>
-                  <span className="text-gray-400 text-sm ml-2">Lucro Real</span>
+                <div className="profit-line">
+                  <span className="profit-value">+R$3,120</span>
+                  <span className="profit-label">Lucro Real</span>
                 </div>
               </div>
+            </div>
+            
+            {/* OPERAÇÕES ADICIONAIS OCULTAS */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+              {/* OPERAÇÃO 5 - OCULTA */}
+              <div className="results-card p-4 result hidden">
+                <div className="flex justify-between items-center mb-4">
+                  <span className="text-emerald-400 font-bold text-lg">+234%</span>
+                  <span className="text-cyan-400 text-sm">Operação Real</span>
+                </div>
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="group relative cursor-pointer overflow-hidden rounded-lg" onClick={() => openImageModal("/eth2.webp", 1)}>
+                    <img
+                      src="/eth2.webp"
+                      alt="Gráfico Antes"
+                      className="w-full h-24 object-cover transition-transform duration-300 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <div className="text-white text-center">
+                        <div className="text-lg mb-1">📊</div>
+                        <div className="text-xs font-semibold">Ver gráfico</div>
+                      </div>
+                    </div>
+                    <div className="absolute top-1 left-1 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded">
+                      ANTES
+                    </div>
+                  </div>
+                  <div className="group relative cursor-pointer overflow-hidden rounded-lg" onClick={() => openImageModal("/resultado cripto 1  (8).jpeg", 12)}>
+                    <img
+                      src="/resultado cripto 1  (8).jpeg"
+                      alt="Resultado Depois"
+                      className="w-full h-24 object-cover transition-transform duration-300 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <div className="text-white text-center">
+                        <div className="text-lg mb-1">💰</div>
+                        <div className="text-xs font-semibold">Ver resultado</div>
+                      </div>
+                    </div>
+                    <div className="absolute top-1 left-1 bg-emerald-500 text-black text-xs font-bold px-2 py-1 rounded">
+                      DEPOIS
+                    </div>
+                  </div>
+                </div>
+                <div className="profit-line">
+                  <span className="profit-value">+R$4,680</span>
+                  <span className="profit-label">Lucro Real</span>
+                </div>
+              </div>
+
+              {/* OPERAÇÃO 6 - OCULTA */}
+              <div className="results-card p-4 result hidden">
+                <div className="flex justify-between items-center mb-4">
+                  <span className="text-emerald-400 font-bold text-lg">+167%</span>
+                  <span className="text-cyan-400 text-sm">Operação Real</span>
+                </div>
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="group relative cursor-pointer overflow-hidden rounded-lg" onClick={() => openImageModal("/xau2.webp", 9)}>
+                    <img
+                      src="/xau2.webp"
+                      alt="Gráfico Antes"
+                      className="w-full h-24 object-cover transition-transform duration-300 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <div className="text-white text-center">
+                        <div className="text-lg mb-1">📊</div>
+                        <div className="text-xs font-semibold">Ver gráfico</div>
+                      </div>
+                    </div>
+                    <div className="absolute top-1 left-1 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded">
+                      ANTES
+                    </div>
+                  </div>
+                  <div className="group relative cursor-pointer overflow-hidden rounded-lg" onClick={() => openImageModal("/resultado forex 3  (5).jpeg", 16)}>
+                    <img
+                      src="/resultado forex 3  (5).jpeg"
+                      alt="Resultado Depois"
+                      className="w-full h-24 object-cover transition-transform duration-300 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <div className="text-white text-center">
+                        <div className="text-lg mb-1">💰</div>
+                        <div className="text-xs font-semibold">Ver resultado</div>
+                      </div>
+                    </div>
+                    <div className="absolute top-1 left-1 bg-emerald-500 text-black text-xs font-bold px-2 py-1 rounded">
+                      DEPOIS
+                    </div>
+                  </div>
+                </div>
+                <div className="profit-line">
+                  <span className="profit-value">+R$3,340</span>
+                  <span className="profit-label">Lucro Real</span>
+                </div>
+              </div>
+            </div>
+            
+            {/* BOTÃO VER MAIS RESULTADOS */}
+            <div className="text-center mt-8">
+              <button 
+                id="load-more-results" 
+                className="load-more-btn"
+                onClick={() => {
+                  const hiddenResults = document.querySelectorAll('.result.hidden');
+                  hiddenResults.forEach((card, index) => {
+                    setTimeout(() => {
+                      card.classList.remove('hidden');
+                      card.classList.add('fade-in');
+                    }, index * 150);
+                  });
+                  document.getElementById('load-more-results').style.display = 'none';
+                }}
+              >
+                📈 Ver Mais Resultados Reais
+              </button>
             </div>
             
             <div className="text-center mt-6">
               <p className="text-zinc-400 text-sm">
                 Clique em qualquer imagem para ver em tamanho completo • Gráficos + Lucros reais da corretora
               </p>
-              </div>
+            </div>
           </div>
 
           {/* CTA FORTE */}
@@ -562,37 +681,14 @@ const LandingPage: React.FC = () => {
               <h4 className="text-cyan-400 font-bold text-lg mb-4 flex items-center gap-2">
                 🧠 Conceitos FTX Aplicados Nestas Operações
               </h4>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2">
-                    <span className="text-cyan-400">📊</span>
-                    <span className="text-white font-semibold">Leitura de Fluxo:</span>
-                  </div>
-                  <p className="text-gray-300 ml-6">Identificação de zonas de liquidez e pontos de reversão</p>
-                  
-                  <div className="flex items-center gap-2">
-                    <span className="text-cyan-400">⚡</span>
-                    <span className="text-white font-semibold">Timing Perfeito:</span>
-                  </div>
-                  <p className="text-gray-300 ml-6">Entrada nos momentos de maior probabilidade</p>
-                </div>
-                
-                <div className="space-y-2">
-                  <div className="flex items-center gap-2">
-                    <span className="text-cyan-400">🎯</span>
-                    <span className="text-white font-semibold">Gestão de Risco:</span>
-                  </div>
-                  <p className="text-gray-300 ml-6">Stop loss e take profit calculados matematicamente</p>
-                  
-                  <div className="flex items-center gap-2">
-                    <span className="text-cyan-400">🔍</span>
-                    <span className="text-white font-semibold">Análise de Confluência:</span>
-                  </div>
-                  <p className="text-gray-300 ml-6">Múltiplos fatores confirmando a operação</p>
-                </div>
-              </div>
+              <ul className="ftx-concepts">
+                <li><strong>Leitura de Fluxo:</strong> Identificação de zonas de liquidez e pontos de reversão</li>
+                <li><strong>Timing Perfeito:</strong> Entrada nos momentos de maior probabilidade</li>
+                <li><strong>Gestão de Risco:</strong> Stop loss e take profit calculados matematicamente</li>
+                <li><strong>Análise de Confluência:</strong> Múltiplos fatores confirmando a operação</li>
+              </ul>
             </div>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="cta-group">
               <button className="cta-button-pulse text-lg px-8 py-4">
                 🚀 Quero aplicar a Estratégia FTX agora
               </button>
