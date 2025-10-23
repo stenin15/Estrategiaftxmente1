@@ -367,9 +367,6 @@ const LandingPage: React.FC = () => {
                         <div className="text-xs font-semibold">Ver gráfico</div>
                       </div>
                     </div>
-                    <div className="absolute top-1 left-1 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded">
-                      ANTES
-                    </div>
                   </div>
                   <div className="group relative cursor-pointer overflow-hidden rounded-lg" onClick={() => openImageModal("/resultado cripto 1  (1).jpeg", 10)}>
                     <img
@@ -383,9 +380,6 @@ const LandingPage: React.FC = () => {
                         <div className="text-lg mb-1">💰</div>
                         <div className="text-xs font-semibold">Ver resultado</div>
                       </div>
-                    </div>
-                    <div className="absolute top-1 left-1 bg-emerald-500 text-black text-xs font-bold px-2 py-1 rounded">
-                      DEPOIS
                     </div>
                   </div>
                 </div>
@@ -410,9 +404,6 @@ const LandingPage: React.FC = () => {
                         <div className="text-xs font-semibold">Ver gráfico</div>
                       </div>
                     </div>
-                    <div className="absolute top-1 left-1 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded">
-                      ANTES
-                    </div>
                   </div>
                   <div className="group relative cursor-pointer overflow-hidden rounded-lg" onClick={() => openImageModal("/resultado forex 1  (6).jpeg", 14)}>
                     <img
@@ -426,9 +417,6 @@ const LandingPage: React.FC = () => {
                         <div className="text-lg mb-1">💰</div>
                         <div className="text-xs font-semibold">Ver resultado</div>
                       </div>
-                    </div>
-                    <div className="absolute top-1 left-1 bg-emerald-500 text-black text-xs font-bold px-2 py-1 rounded">
-                      DEPOIS
                     </div>
                   </div>
                 </div>
@@ -453,9 +441,6 @@ const LandingPage: React.FC = () => {
                         <div className="text-xs font-semibold">Ver gráfico</div>
                       </div>
                     </div>
-                    <div className="absolute top-1 left-1 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded">
-                      ANTES
-                    </div>
                   </div>
                   <div className="group relative cursor-pointer overflow-hidden rounded-lg" onClick={() => openImageModal("/resultado forex 2  (2).jpeg", 15)}>
                     <img
@@ -469,9 +454,6 @@ const LandingPage: React.FC = () => {
                         <div className="text-lg mb-1">💰</div>
                         <div className="text-xs font-semibold">Ver resultado</div>
                       </div>
-                    </div>
-                    <div className="absolute top-1 left-1 bg-emerald-500 text-black text-xs font-bold px-2 py-1 rounded">
-                      DEPOIS
                     </div>
                   </div>
                 </div>
@@ -496,9 +478,6 @@ const LandingPage: React.FC = () => {
                         <div className="text-xs font-semibold">Ver gráfico</div>
                       </div>
                     </div>
-                    <div className="absolute top-1 left-1 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded">
-                      ANTES
-                    </div>
                   </div>
                   <div className="group relative cursor-pointer overflow-hidden rounded-lg" onClick={() => openImageModal("/resultado cripto 1  (3).jpeg", 11)}>
                     <img
@@ -512,9 +491,6 @@ const LandingPage: React.FC = () => {
                         <div className="text-lg mb-1">💰</div>
                         <div className="text-xs font-semibold">Ver resultado</div>
                       </div>
-                    </div>
-                    <div className="absolute top-1 left-1 bg-emerald-500 text-black text-xs font-bold px-2 py-1 rounded">
-                      DEPOIS
                     </div>
                   </div>
                 </div>
@@ -542,9 +518,6 @@ const LandingPage: React.FC = () => {
                         <div className="text-xs font-semibold">Ver gráfico</div>
                       </div>
                     </div>
-                    <div className="absolute top-1 left-1 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded">
-                      ANTES
-                    </div>
                   </div>
                   <div className="group relative cursor-pointer overflow-hidden rounded-lg" onClick={() => openImageModal("/resultado cripto 1  (8).jpeg", 12)}>
                     <img
@@ -558,9 +531,6 @@ const LandingPage: React.FC = () => {
                         <div className="text-lg mb-1">💰</div>
                         <div className="text-xs font-semibold">Ver resultado</div>
                       </div>
-                    </div>
-                    <div className="absolute top-1 left-1 bg-emerald-500 text-black text-xs font-bold px-2 py-1 rounded">
-                      DEPOIS
                     </div>
                   </div>
                 </div>
@@ -585,9 +555,6 @@ const LandingPage: React.FC = () => {
                         <div className="text-xs font-semibold">Ver gráfico</div>
                       </div>
                     </div>
-                    <div className="absolute top-1 left-1 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded">
-                      ANTES
-                    </div>
                   </div>
                   <div className="group relative cursor-pointer overflow-hidden rounded-lg" onClick={() => openImageModal("/resultado forex 3  (5).jpeg", 16)}>
                     <img
@@ -601,9 +568,6 @@ const LandingPage: React.FC = () => {
                         <div className="text-lg mb-1">💰</div>
                         <div className="text-xs font-semibold">Ver resultado</div>
                       </div>
-                    </div>
-                    <div className="absolute top-1 left-1 bg-emerald-500 text-black text-xs font-bold px-2 py-1 rounded">
-                      DEPOIS
                     </div>
                   </div>
                 </div>
