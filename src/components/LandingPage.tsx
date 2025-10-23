@@ -42,7 +42,7 @@ const Section = ({
 }) => (
   <section
     id={id}
-    className={`px-6 py-16 md:py-24 max-w-6xl mx-auto ${className}`}
+    className={`px-6 py-8 md:py-12 max-w-6xl mx-auto ${className}`}
   >
     {children}
   </section>
@@ -260,7 +260,7 @@ const LandingPage: React.FC = () => {
 
       <div className="bg-gradient-to-b from-black via-zinc-950 to-black text-white min-h-screen">
         {/* HERO + BLOCO "O QUE VOCÊ VAI DESCOBRIR" */}
-        <section className="hero py-20 text-white text-center px-6">
+        <section className="hero py-12 text-white text-center px-6">
           <div className="max-w-4xl mx-auto">
             {/* TAG PROMOCIONAL */}
             <span className="text-xs bg-cyan-500/20 text-cyan-400 px-3 py-1 rounded-full uppercase tracking-widest font-semibold mb-4 inline-block">
@@ -312,7 +312,7 @@ const LandingPage: React.FC = () => {
         </section>
 
         {/* SEÇÃO DOR + SOLUÇÃO */}
-        <section className="py-20 bg-zinc-950 text-white text-center px-6">
+        <section className="py-12 bg-zinc-950 text-white text-center px-6">
           <h2 className="text-3xl font-bold mb-6">Você se identifica com isso?</h2>
 
           <div className="max-w-2xl mx-auto space-y-4 text-gray-300 mb-8">
@@ -453,7 +453,7 @@ const LandingPage: React.FC = () => {
 
 
         {/* FAQ ANIMADO */}
-        <section className="py-20 bg-zinc-950 text-white text-center">
+        <section className="py-12 bg-zinc-950 text-white text-center">
           <h2 className="text-3xl font-bold mb-10">Perguntas Frequentes</h2>
 
           <div className="max-w-3xl mx-auto space-y-4 text-left">
