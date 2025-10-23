@@ -347,60 +347,9 @@ const LandingPage: React.FC = () => {
             Operações reais capturadas diretamente do app — <span className="text-emerald-400 font-bold">consistência comprovada</span>.
           </p>
 
-          {/* GRID DE RESULTADOS MODERNO */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-            {/* CARD CRYPTO */}
-            <div className="group bg-gradient-to-br from-zinc-900 to-zinc-800 border border-zinc-700 rounded-2xl p-6 hover:border-cyan-400/50 transition-all duration-300 hover:scale-105">
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 bg-yellow-400 rounded-full"></div>
-                  <span className="text-sm font-semibold text-yellow-400">CRYPTO</span>
-                </div>
-                <span className="text-xs text-green-400 font-bold">+127%</span>
-              </div>
-              <div className="space-y-3">
-                <div className="flex justify-between items-center">
-                  <span className="text-zinc-400 text-sm">ETH/USDT</span>
-                  <span className="text-green-400 font-bold">+$2,340</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-zinc-400 text-sm">PEPE/USDT</span>
-                  <span className="text-green-400 font-bold">+$1,890</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-zinc-400 text-sm">LIBRA/USDT</span>
-                  <span className="text-green-400 font-bold">+$3,120</span>
-                </div>
-              </div>
-            </div>
-
-            {/* CARD FOREX */}
-            <div className="group bg-gradient-to-br from-zinc-900 to-zinc-800 border border-zinc-700 rounded-2xl p-6 hover:border-cyan-400/50 transition-all duration-300 hover:scale-105">
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 bg-blue-400 rounded-full"></div>
-                  <span className="text-sm font-semibold text-blue-400">FOREX</span>
-                </div>
-                <span className="text-xs text-green-400 font-bold">+89%</span>
-              </div>
-              <div className="space-y-3">
-                <div className="flex justify-between items-center">
-                  <span className="text-zinc-400 text-sm">GBP/USD</span>
-                  <span className="text-green-400 font-bold">+$1,450</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-zinc-400 text-sm">USD/JPY</span>
-                  <span className="text-green-400 font-bold">+$980</span>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-zinc-400 text-sm">XAU/USD</span>
-                  <span className="text-green-400 font-bold">+$2,100</span>
-                </div>
-              </div>
-            </div>
-
-            {/* CARD ESTATÍSTICAS */}
-            <div className="group bg-gradient-to-br from-zinc-900 to-zinc-800 border border-zinc-700 rounded-2xl p-6 hover:border-cyan-400/50 transition-all duration-300 hover:scale-105 md:col-span-2 lg:col-span-1">
+          {/* CARD ESTATÍSTICAS */}
+          <div className="flex justify-center mb-12">
+            <div className="group bg-gradient-to-br from-zinc-900 to-zinc-800 border border-zinc-700 rounded-2xl p-6 hover:border-cyan-400/50 transition-all duration-300 hover:scale-105 max-w-md w-full">
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2">
                   <div className="w-3 h-3 bg-emerald-400 rounded-full"></div>
