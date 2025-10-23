@@ -334,6 +334,16 @@ const LandingPage: React.FC = () => {
               </ul>
             </div>
 
+            {/* BOTÃO CTA */}
+            <div className="mt-10">
+              <a 
+                href="https://app.cakto.com.br/pay/SEU_ID_DO_PRODUTO" 
+                target="_blank" 
+                className="inline-block bg-gradient-to-r from-cyan-400 to-blue-500 text-black font-bold text-lg px-10 py-4 rounded-full hover:scale-105 transition-transform">
+                ⚡ Quero o Guia + Acesso ao Grupo VIP
+              </a>
+            </div>
+
           </div>
         </section>
 
