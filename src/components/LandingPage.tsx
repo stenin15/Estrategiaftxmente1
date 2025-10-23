@@ -268,8 +268,8 @@ const LandingPage: React.FC = () => {
             </span>
 
             {/* CRONÔMETRO REGRESSIVO - NO TOPO */}
-            <div className="mb-8">
-              <div className="countdown-timer bg-red-600 text-white px-6 py-4 rounded-lg inline-block text-2xl font-bold">
+            <div className="mb-8 w-full">
+              <div className="countdown-timer bg-red-600 text-white px-6 py-4 rounded-lg w-full text-2xl font-bold">
                 <div id="countdown" className="text-center">
                   <div className="text-sm mb-1">⏰ OFERTA EXPIRA EM:</div>
                   <div className="text-3xl font-black" id="timer">02:00:00</div>
