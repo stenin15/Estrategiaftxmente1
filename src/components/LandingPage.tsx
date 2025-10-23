@@ -345,26 +345,55 @@ const LandingPage: React.FC = () => {
           </div>
         </section>
 
-        {/* SEÇÃO DOR + SOLUÇÃO */}
-        <section className="py-12 bg-zinc-950 text-white text-center px-6">
-          <h2 className="text-3xl font-bold mb-6">Você se identifica com isso?</h2>
+        {/* SEÇÃO DOR + SOLUÇÃO - NOVO ESTILO */}
+        <section className="bg-[#0a0a0a] text-white py-20 text-center px-6">
+          <div className="max-w-3xl mx-auto">
 
-          <div className="max-w-2xl mx-auto space-y-4 text-gray-300 mb-8">
-            <p className="flex items-center gap-3"><span className="text-2xl">😣</span><span>Entra em operações e vê o mercado ir contra você?</span></p>
-            <p className="flex items-center gap-3"><span className="text-2xl">📉</span><span>Sente que sempre sai antes da hora ou entra no pior momento?</span></p>
-            <p className="flex items-center gap-3"><span className="text-2xl">😔</span><span>Falta disciplina, confiança e clareza no gráfico?</span></p>
-            <p className="flex items-center gap-3"><span className="text-2xl">💭</span><span>Já tentou de tudo e ainda não consegue lucrar com consistência?</span></p>
+            <h2 className="text-3xl md:text-4xl font-extrabold mb-10">
+              Você se identifica com isso? 🤔
+            </h2>
+
+            <div className="space-y-6 text-lg md:text-xl text-gray-300 leading-relaxed">
+
+              <div className="flex items-center justify-center space-x-3">
+                <span className="text-2xl">😤</span>
+                <p>Entra em operações e o mercado parece ir contra você?</p>
+              </div>
+
+              <div className="flex items-center justify-center space-x-3">
+                <span className="text-2xl">📉</span>
+                <p>Sente que sempre sai cedo demais... ou entra no pior momento?</p>
+              </div>
+
+              <div className="flex items-center justify-center space-x-3">
+                <span className="text-2xl">🧘‍♂️</span>
+                <p>Falta disciplina, confiança e clareza na hora de agir?</p>
+              </div>
+
+              <div className="flex items-center justify-center space-x-3">
+                <span className="text-2xl">💭</span>
+                <p>Já estudou tudo, mas ainda não consegue lucrar com consistência?</p>
+              </div>
+
+            </div>
+
+            <div className="mt-14">
+              <h3 className="text-2xl md:text-3xl font-semibold text-cyan-400 mb-4">
+                Respira… a solução está logo abaixo 👇
+              </h3>
+              <p className="text-gray-400 text-lg">
+                A <span className="text-cyan-300 font-medium">FTX Mente</span> foi criada pra transformar traders comuns
+                em operadores conscientes — com mentalidade, clareza e setups que funcionam na vida real.
+              </p>
+            </div>
+
+            <a 
+              href="#cta"
+              className="inline-block mt-10 bg-gradient-to-r from-cyan-400 to-blue-600 text-black font-bold text-lg px-10 py-4 rounded-full hover:scale-105 hover:shadow-lg transition-transform duration-300">
+              ⚡ Quero mudar meu jogo agora
+            </a>
+
           </div>
-
-          <h3 className="text-2xl font-semibold mt-12 text-cyan-400 blink">Então, respira… a solução está logo abaixo 👇</h3>
-          <p className="text-gray-400 mt-3">
-            A <span className="font-semibold text-white">FTX Mente</span> foi criada para transformar traders comuns em operadores conscientes,
-            com mentalidade e setups replicáveis que funcionam no dia a dia real.
-          </p>
-
-          <button className="mt-8 bg-cyan-500 text-black font-bold px-8 py-3 rounded-full hover:bg-cyan-400 transition-all shadow-lg animate-pulseCTA">
-            Quero mudar meu jogo agora →
-          </button>
         </section>
 
         {/* RESULTADOS REAIS - SEÇÃO PREMIUM */}
