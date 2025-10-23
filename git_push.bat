@@ -1,6 +1,6 @@
 @echo off
 setlocal ENABLEDELAYEDEXPANSION
-title 🚀 Auto Push GitHub - Estratégia FTX Mente
+title 🚀 Auto Push GitHub - Estratégia TFX Mente
 
 echo ================================
 echo 🔁 Sincronizando com o repositório remoto...

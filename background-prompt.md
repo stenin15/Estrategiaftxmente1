@@ -1,4 +1,4 @@
-# 🎨 PROMPT PARA BACKGROUND CINEMATOGRÁFICO - FTX MENTE
+# 🎨 PROMPT PARA BACKGROUND CINEMATOGRÁFICO - TFX MENTE
 
 ## 🧠 **Prompt Principal:**
 ```
@@ -7,7 +7,7 @@ A cinematic digital brain with neural networks, blue energy particles floating a
 
 ## 🎯 **Prompt Detalhado (Versão Premium):**
 ```
-Create a stunning cinematic background for "FTX Mente" trading platform:
+Create a stunning cinematic background for "TFX Mente" trading platform:
 
 - A glowing digital brain in the center with electric blue neural pathways
 - Floating energy particles and digital sparks in cyan/blue tones

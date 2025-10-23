@@ -444,7 +444,7 @@ body {
   border-color: rgba(0, 255, 200, 0.3);
 }
 
-/* CONCEITOS FTX REORGANIZADOS */
+/* CONCEITOS TFX REORGANIZADOS */
 .ftx-concepts {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));

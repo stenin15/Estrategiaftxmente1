@@ -1,4 +1,4 @@
-# 🚀 CONTEXTO COMPLETO DO PROJETO - ESTRATÉGIA FTX MENTE
+# 🚀 CONTEXTO COMPLETO DO PROJETO - ESTRATÉGIA TFX MENTE
 
 ## 📋 RESUMO EXECUTIVO
 **Projeto:** Landing Page de Alta Conversão para Curso de Trading
@@ -9,7 +9,7 @@
 ---
 
 ## 🎯 OBJETIVO DO PROJETO
-Criar uma landing page de alta conversão para vender um curso de trading chamado "Estratégia FTX Mente" com foco em:
+Criar uma landing page de alta conversão para vender um curso de trading chamado "Estratégia TFX Mente" com foco em:
 - **Conversão máxima** através de copy persuasivo
 - **Design profissional** e responsivo
 - **Elementos de urgência** (timer, oferta limitada)

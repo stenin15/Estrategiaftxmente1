@@ -7,7 +7,7 @@ import { OfertaFinal } from "./OfertaFinal";
  * CONFIGURÁVEIS
  * ========================= */
 const CHECKOUT_URL = "#checkout";
-const WHATSAPP_LINK = "https://wa.me/5599999999999?text=Tenho%20d%C3%BAvidas%20sobre%20a%20Estrat%C3%A9gia%20FTX%20Mente";
+const WHATSAPP_LINK = "https://wa.me/5599999999999?text=Tenho%20d%C3%BAvidas%20sobre%20a%20Estrat%C3%A9gia%20TFX%20Mente";
 const TIMER_STORAGE_KEY = "ftx_timer_start_ts";
 const TIMER_DURATION_MS = 72 * 60 * 60 * 1000; // 72 horas
 
@@ -193,7 +193,7 @@ const openImageModal = (src: string, index: number) => {
       </button>
       <div class="absolute bottom-4 left-4 bg-black/50 text-white px-4 py-2 rounded-lg">
         <div class="text-sm font-semibold">Resultado ${index + 1}</div>
-        <div class="text-xs text-green-400">Operação Real - FTX Mente</div>
+        <div class="text-xs text-green-400">Operação Real - TFX Mente</div>
       </div>
     </div>
   `;
@@ -277,12 +277,12 @@ const LandingPage: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Estratégia FTX Mente — Domine o mercado com método</title>
+        <title>Estratégia TFX Mente — Domine o mercado com método</title>
         <meta
           name="description"
           content="Método validado que transforma traders comuns em lucrativos. Curso + Guia de Gestão & Mindset por R$49,90. Oferta de lançamento."
         />
-        <meta property="og:title" content="Estratégia FTX Mente" />
+        <meta property="og:title" content="Estratégia TFX Mente" />
         <meta
           property="og:description"
           content="Curso completo + Guia de Gestão & Mindset — R$49,90."
@@ -312,7 +312,7 @@ const LandingPage: React.FC = () => {
             {/* HEADLINE PRINCIPAL */}
             <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">
               Domine o Mercado com a 
-              <span className="text-cyan-400"> Estratégia FTX</span>
+              <span className="text-cyan-400"> Estratégia TFX</span>
             </h1>
             
             <p className="text-xl md:text-2xl font-semibold mt-3 text-cyan-200">
@@ -382,7 +382,7 @@ const LandingPage: React.FC = () => {
                 Respira… a solução está logo abaixo 👇
               </h3>
               <p className="text-gray-400 text-lg">
-                A <span className="text-cyan-300 font-medium">FTX Mente</span> foi criada pra transformar traders comuns
+                A <span className="text-cyan-300 font-medium">TFX Mente</span> foi criada pra transformar traders comuns
                 em operadores conscientes — com mentalidade, clareza e setups que funcionam na vida real.
               </p>
             </div>
@@ -676,13 +676,13 @@ const LandingPage: React.FC = () => {
               <span className="text-emerald-400">R$ 47.000</span> em Lucros Reais
             </h3>
             <p className="text-zinc-300 mb-6 text-lg">
-              Lucros reais gerados por alunos aplicando o método FTX Mente — <span className="text-emerald-400 font-bold">100% verificáveis</span>.
+              Lucros reais gerados por alunos aplicando o método TFX Mente — <span className="text-emerald-400 font-bold">100% verificáveis</span>.
             </p>
             
             {/* CONCEITOS FTX APLICADOS */}
             <div className="bg-zinc-800/50 border border-cyan-400/30 rounded-xl p-6 mb-6">
               <h4 className="text-cyan-400 font-bold text-lg mb-4 flex items-center gap-2">
-                🧠 Conceitos FTX Aplicados Nestas Operações
+                🧠 Conceitos TFX Aplicados Nestas Operações
               </h4>
               <ul className="ftx-concepts">
                 <li><strong>Leitura de Fluxo:</strong> Identificação de zonas de liquidez e pontos de reversão</li>
@@ -693,7 +693,7 @@ const LandingPage: React.FC = () => {
             </div>
             <div className="cta-group">
               <button className="cta-button-pulse text-lg px-8 py-4">
-                🚀 Quero aplicar a Estratégia FTX agora
+                🚀 Quero aplicar a Estratégia TFX agora
               </button>
               <CTA variant="outline" href="#vsl">
                 Ver Método Completo →
@@ -729,7 +729,7 @@ const LandingPage: React.FC = () => {
                       <path d="M8 5v14l11-7z"/>
                     </svg>
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-2">MÉTODO FTX MENTE</h3>
+                  <h3 className="text-2xl font-bold text-white mb-2">MÉTODO TFX MENTE</h3>
                   <p className="text-zinc-300">Como os insiders realmente operam</p>
                 </div>
                 
@@ -785,7 +785,7 @@ const LandingPage: React.FC = () => {
 
         {/* RODAPÉ */}
         <footer className="text-center text-sm text-zinc-500 py-8">
-          © {new Date().getFullYear()} Estratégia FTX Mente — Pagamento seguro •
+          © {new Date().getFullYear()} Estratégia TFX Mente — Pagamento seguro •
           Suporte por e-mail/WhatsApp.
         </footer>
 

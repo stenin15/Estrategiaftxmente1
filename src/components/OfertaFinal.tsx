@@ -28,7 +28,7 @@ export const OfertaFinal = () => {
 
           <div className="offer-card max-w-2xl mx-auto">
         <h3 className="text-cyan-400 text-2xl font-bold mb-6 flex items-center justify-center gap-2">
-          💎 Pacote Completo FTX Mente
+          💎 Pacote Completo TFX Mente
         </h3>
 
         <ul className="text-left text-gray-300 space-y-3 mb-8 text-lg">
