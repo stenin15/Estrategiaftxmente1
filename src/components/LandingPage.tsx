@@ -351,7 +351,6 @@ const LandingPage: React.FC = () => {
               {/* OPERAÇÃO 1 */}
               <div className="results-card p-4 result">
                 <div className="flex justify-between items-center mb-4">
-                  <span className="text-emerald-400 font-bold text-lg">+127%</span>
                   <span className="text-cyan-400 text-sm">Operação Real</span>
                 </div>
                 <div className="grid grid-cols-2 gap-3">
@@ -390,16 +389,11 @@ const LandingPage: React.FC = () => {
                     </div>
                   </div>
                 </div>
-                <div className="profit-line">
-                  <span className="profit-value">+R$2,340</span>
-                  <span className="profit-label">Lucro Real</span>
-                </div>
               </div>
 
               {/* OPERAÇÃO 2 */}
               <div className="results-card p-4 result">
                 <div className="flex justify-between items-center mb-4">
-                  <span className="text-emerald-400 font-bold text-lg">+89%</span>
                   <span className="text-cyan-400 text-sm">Operação Real</span>
                 </div>
                 <div className="grid grid-cols-2 gap-3">
@@ -438,16 +432,11 @@ const LandingPage: React.FC = () => {
                     </div>
                   </div>
                 </div>
-                <div className="profit-line">
-                  <span className="profit-value">+R$1,450</span>
-                  <span className="profit-label">Lucro Real</span>
-                </div>
               </div>
 
               {/* OPERAÇÃO 3 */}
               <div className="results-card p-4 result">
                 <div className="flex justify-between items-center mb-4">
-                  <span className="text-emerald-400 font-bold text-lg">+156%</span>
                   <span className="text-cyan-400 text-sm">Operação Real</span>
                 </div>
                 <div className="grid grid-cols-2 gap-3">
@@ -486,16 +475,11 @@ const LandingPage: React.FC = () => {
                     </div>
                   </div>
                 </div>
-                <div className="profit-line">
-                  <span className="profit-value">+R$2,100</span>
-                  <span className="profit-label">Lucro Real</span>
-                </div>
               </div>
 
               {/* OPERAÇÃO 4 */}
               <div className="results-card p-4 result">
                 <div className="flex justify-between items-center mb-4">
-                  <span className="text-emerald-400 font-bold text-lg">+198%</span>
                   <span className="text-cyan-400 text-sm">Operação Real</span>
                 </div>
                 <div className="grid grid-cols-2 gap-3">
@@ -534,10 +518,6 @@ const LandingPage: React.FC = () => {
                     </div>
                   </div>
                 </div>
-                <div className="profit-line">
-                  <span className="profit-value">+R$3,120</span>
-                  <span className="profit-label">Lucro Real</span>
-                </div>
               </div>
             </div>
             
@@ -546,7 +526,6 @@ const LandingPage: React.FC = () => {
               {/* OPERAÇÃO 5 - OCULTA */}
               <div className="results-card p-4 result hidden">
                 <div className="flex justify-between items-center mb-4">
-                  <span className="text-emerald-400 font-bold text-lg">+234%</span>
                   <span className="text-cyan-400 text-sm">Operação Real</span>
                 </div>
                 <div className="grid grid-cols-2 gap-3">
@@ -585,16 +564,11 @@ const LandingPage: React.FC = () => {
                     </div>
                   </div>
                 </div>
-                <div className="profit-line">
-                  <span className="profit-value">+R$4,680</span>
-                  <span className="profit-label">Lucro Real</span>
-                </div>
               </div>
 
               {/* OPERAÇÃO 6 - OCULTA */}
               <div className="results-card p-4 result hidden">
                 <div className="flex justify-between items-center mb-4">
-                  <span className="text-emerald-400 font-bold text-lg">+167%</span>
                   <span className="text-cyan-400 text-sm">Operação Real</span>
                 </div>
                 <div className="grid grid-cols-2 gap-3">
@@ -632,10 +606,6 @@ const LandingPage: React.FC = () => {
                       DEPOIS
                     </div>
                   </div>
-                </div>
-                <div className="profit-line">
-                  <span className="profit-value">+R$3,340</span>
-                  <span className="profit-label">Lucro Real</span>
                 </div>
               </div>
             </div>

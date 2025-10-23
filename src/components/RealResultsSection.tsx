@@ -6,7 +6,7 @@ export const RealResultsSection = () => {
     // GRANDES LUCROS - "Lucrar o Triplo"
     {
       image: "https://raw.githubusercontent.com/stenin15/Estrategiaftxmente1/main/src/assets/WhatsApp%20Image%202025-10-21%20at%2017.07.37%20(1).jpeg",
-      profit: "+211.58%",
+      profit: "",
       pair: "MOODENGUSDT",
       type: "Long",
       volume: "0.1",
@@ -19,7 +19,7 @@ export const RealResultsSection = () => {
     },
     {
       image: "https://raw.githubusercontent.com/stenin15/Estrategiaftxmente1/main/src/assets/WhatsApp%20Image%202025-10-21%20at%2017.07.37.jpeg",
-      profit: "+66.96%",
+      profit: "",
       pair: "MYXUSDT",
       type: "Short",
       volume: "0.1",
@@ -32,7 +32,7 @@ export const RealResultsSection = () => {
     },
     {
       image: "https://raw.githubusercontent.com/stenin15/Estrategiaftxmente1/main/src/assets/WhatsApp%20Image%202025-10-21%20at%2017.07.38%20(1).jpeg",
-      profit: "+38.44%",
+      profit: "",
       pair: "AEVOUSDT",
       type: "Long",
       volume: "0.05",
@@ -46,7 +46,7 @@ export const RealResultsSection = () => {
     // PERDAS CONTROLADAS - "Perder Pouco"
     {
       image: "https://raw.githubusercontent.com/stenin15/Estrategiaftxmente1/main/src/assets/WhatsApp%20Image%202025-10-21%20at%2017.10.24%20(1).jpeg",
-      profit: "-5.20%",
+      profit: "",
       pair: "EURUSD",
       type: "Long",
       volume: "0.5",
@@ -59,7 +59,7 @@ export const RealResultsSection = () => {
     },
     {
       image: "https://raw.githubusercontent.com/stenin15/Estrategiaftxmente1/main/src/assets/WhatsApp%20Image%202025-10-21%20at%2017.10.24.jpeg",
-      profit: "-3.50%",
+      profit: "",
       pair: "XAUUSD",
       type: "Short",
       volume: "0.1",
@@ -73,7 +73,7 @@ export const RealResultsSection = () => {
     // OUTRO GRANDE LUCRO
     {
       image: "https://raw.githubusercontent.com/stenin15/Estrategiaftxmente1/main/src/assets/WhatsApp%20Image%202025-10-21%20at%2017.10.34.jpeg",
-      profit: "+168.45%",
+      profit: "",
       pair: "XAUUSD",
       type: "Long",
       volume: "0.05",
@@ -102,11 +102,9 @@ export const RealResultsSection = () => {
           {/* Estatísticas de Transparência */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 max-w-2xl mx-auto mb-8">
             <div className="bg-primary/10 border border-primary/30 rounded-xl p-4">
-              <div className="text-2xl sm:text-3xl font-bold text-primary mb-1">+211%</div>
               <div className="text-sm text-muted-foreground">Maior Lucro</div>
             </div>
             <div className="bg-urgent/10 border border-urgent/30 rounded-xl p-4">
-              <div className="text-2xl sm:text-3xl font-bold text-urgent mb-1">-5%</div>
               <div className="text-sm text-muted-foreground">Maior Perda</div>
             </div>
             <div className="bg-green-500/10 border border-green-500/30 rounded-xl p-4">
@@ -243,11 +241,9 @@ export const RealResultsSection = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
               <div className="bg-green-500/10 border border-green-500/30 rounded-lg p-4">
                 <div className="text-lg font-bold text-green-500 mb-1">Lucros Expressivos</div>
-                <div className="text-sm text-muted-foreground">+211%, +168%, +66%</div>
               </div>
               <div className="bg-red-500/10 border border-red-500/30 rounded-lg p-4">
                 <div className="text-lg font-bold text-red-500 mb-1">Perdas Controladas</div>
-                <div className="text-sm text-muted-foreground">-5%, -3% (Stop Loss)</div>
               </div>
             </div>
           </div>
