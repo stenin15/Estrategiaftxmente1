@@ -557,11 +557,47 @@ const LandingPage: React.FC = () => {
           {/* CTA FORTE */}
           <div className="bg-gradient-to-r from-emerald-500/10 to-cyan-500/10 border border-emerald-500/30 rounded-2xl p-8">
             <h3 className="text-2xl font-bold text-white mb-4">
-              <span className="text-emerald-400">R$ 47.890</span> em Lucros Reais
+              <span className="text-emerald-400">R$ 47.000</span> em Lucros Reais
             </h3>
             <p className="text-zinc-300 mb-6">
               Esses são apenas alguns dos resultados que nossos alunos estão obtendo aplicando o método FTX Mente.
             </p>
+            
+            {/* CONCEITOS FTX APLICADOS */}
+            <div className="bg-zinc-800/50 border border-cyan-400/30 rounded-xl p-6 mb-6">
+              <h4 className="text-cyan-400 font-bold text-lg mb-4 flex items-center gap-2">
+                🧠 Conceitos FTX Aplicados Nestas Operações
+              </h4>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2">
+                    <span className="text-cyan-400">📊</span>
+                    <span className="text-white font-semibold">Leitura de Fluxo:</span>
+                  </div>
+                  <p className="text-gray-300 ml-6">Identificação de zonas de liquidez e pontos de reversão</p>
+                  
+                  <div className="flex items-center gap-2">
+                    <span className="text-cyan-400">⚡</span>
+                    <span className="text-white font-semibold">Timing Perfeito:</span>
+                  </div>
+                  <p className="text-gray-300 ml-6">Entrada nos momentos de maior probabilidade</p>
+                </div>
+                
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2">
+                    <span className="text-cyan-400">🎯</span>
+                    <span className="text-white font-semibold">Gestão de Risco:</span>
+                  </div>
+                  <p className="text-gray-300 ml-6">Stop loss e take profit calculados matematicamente</p>
+                  
+                  <div className="flex items-center gap-2">
+                    <span className="text-cyan-400">🔍</span>
+                    <span className="text-white font-semibold">Análise de Confluência:</span>
+                  </div>
+                  <p className="text-gray-300 ml-6">Múltiplos fatores confirmando a operação</p>
+                </div>
+              </div>
+            </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <CTA variant="primary" href={CHECKOUT_URL} className="text-lg px-8 py-4">
                 🚀 QUERO RESULTADOS ASSIM TAMBÉM
