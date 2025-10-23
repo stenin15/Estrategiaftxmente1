@@ -348,40 +348,188 @@ const LandingPage: React.FC = () => {
           </p>
 
 
-          {/* GALERIA DE IMAGENS CLICÁVEIS */}
+          {/* GALERIA MESCLADA: GRÁFICOS + LUCROS DA CORRETORA */}
           <div className="mb-8">
-            <h3 className="text-xl font-bold text-white mb-6">Screenshots Reais das Operações</h3>
+            <h3 className="text-xl font-bold text-white mb-6">Gráficos + Lucros Reais da Corretora</h3>
             
-            {/* GRID DE IMAGENS CLICÁVEIS */}
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-              {imagens.slice(0, 8).map((src, i) => (
-                <div
-                  key={i}
-                  className="group relative cursor-pointer overflow-hidden rounded-xl bg-zinc-900 border border-zinc-700 hover:border-cyan-400/50 transition-all duration-300 hover:scale-105"
-                  onClick={() => openImageModal(src, i)}
-                >
-                  <img
-                    src={src}
-                    alt={`Resultado ${i + 1}`}
-                    className="w-full h-32 object-cover transition-transform duration-300 group-hover:scale-110"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <div className="text-white text-center">
-                      <div className="text-2xl mb-1">🔍</div>
-                      <div className="text-xs font-semibold">Clique para ampliar</div>
+            {/* GRID DE PARES: GRÁFICO + LUCRO */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* PAR 1: ETH */}
+              <div className="bg-zinc-900 border border-zinc-700 rounded-2xl p-4 hover:border-cyan-400/50 transition-all duration-300">
+                <h4 className="text-cyan-400 font-bold mb-4 flex items-center gap-2">
+                  📈 ETH/USDT - Operação Real
+                </h4>
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="group relative cursor-pointer overflow-hidden rounded-lg" onClick={() => openImageModal("/eth'1.webp", 0)}>
+                    <img
+                      src="/eth'1.webp"
+                      alt="Gráfico ETH"
+                      className="w-full h-24 object-cover transition-transform duration-300 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <div className="text-white text-center">
+                        <div className="text-lg mb-1">📊</div>
+                        <div className="text-xs font-semibold">Ver gráfico</div>
+                      </div>
+                    </div>
+                    <div className="absolute top-1 right-1 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded">
+                      GRÁFICO
                     </div>
                   </div>
-                  <div className="absolute top-2 right-2 bg-emerald-500 text-black text-xs font-bold px-2 py-1 rounded-full">
-                    +{Math.floor(Math.random() * 200) + 50}%
+                  <div className="group relative cursor-pointer overflow-hidden rounded-lg" onClick={() => openImageModal("/resultado cripto 1  (1).jpeg", 10)}>
+                    <img
+                      src="/resultado cripto 1  (1).jpeg"
+                      alt="Lucro ETH"
+                      className="w-full h-24 object-cover transition-transform duration-300 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <div className="text-white text-center">
+                        <div className="text-lg mb-1">💰</div>
+                        <div className="text-xs font-semibold">Ver lucro</div>
+                      </div>
+                    </div>
+                    <div className="absolute top-1 right-1 bg-emerald-500 text-black text-xs font-bold px-2 py-1 rounded">
+                      +127%
+                    </div>
                   </div>
                 </div>
-              ))}
+              </div>
+
+              {/* PAR 2: GBP/USD */}
+              <div className="bg-zinc-900 border border-zinc-700 rounded-2xl p-4 hover:border-cyan-400/50 transition-all duration-300">
+                <h4 className="text-cyan-400 font-bold mb-4 flex items-center gap-2">
+                  💱 GBP/USD - Operação Real
+                </h4>
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="group relative cursor-pointer overflow-hidden rounded-lg" onClick={() => openImageModal("/usd1.webp", 6)}>
+                    <img
+                      src="/usd1.webp"
+                      alt="Gráfico GBP"
+                      className="w-full h-24 object-cover transition-transform duration-300 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <div className="text-white text-center">
+                        <div className="text-lg mb-1">📊</div>
+                        <div className="text-xs font-semibold">Ver gráfico</div>
+                      </div>
+                    </div>
+                    <div className="absolute top-1 right-1 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded">
+                      GRÁFICO
+                    </div>
+                  </div>
+                  <div className="group relative cursor-pointer overflow-hidden rounded-lg" onClick={() => openImageModal("/resultado forex 1  (6).jpeg", 14)}>
+                    <img
+                      src="/resultado forex 1  (6).jpeg"
+                      alt="Lucro GBP"
+                      className="w-full h-24 object-cover transition-transform duration-300 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <div className="text-white text-center">
+                        <div className="text-lg mb-1">💰</div>
+                        <div className="text-xs font-semibold">Ver lucro</div>
+                      </div>
+                    </div>
+                    <div className="absolute top-1 right-1 bg-emerald-500 text-black text-xs font-bold px-2 py-1 rounded">
+                      +89%
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* PAR 3: XAU/USD */}
+              <div className="bg-zinc-900 border border-zinc-700 rounded-2xl p-4 hover:border-cyan-400/50 transition-all duration-300">
+                <h4 className="text-cyan-400 font-bold mb-4 flex items-center gap-2">
+                  🥇 XAU/USD - Operação Real
+                </h4>
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="group relative cursor-pointer overflow-hidden rounded-lg" onClick={() => openImageModal("/xau1.webp", 8)}>
+                    <img
+                      src="/xau1.webp"
+                      alt="Gráfico XAU"
+                      className="w-full h-24 object-cover transition-transform duration-300 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <div className="text-white text-center">
+                        <div className="text-lg mb-1">📊</div>
+                        <div className="text-xs font-semibold">Ver gráfico</div>
+                      </div>
+                    </div>
+                    <div className="absolute top-1 right-1 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded">
+                      GRÁFICO
+                    </div>
+                  </div>
+                  <div className="group relative cursor-pointer overflow-hidden rounded-lg" onClick={() => openImageModal("/resultado forex 2  (2).jpeg", 15)}>
+                    <img
+                      src="/resultado forex 2  (2).jpeg"
+                      alt="Lucro XAU"
+                      className="w-full h-24 object-cover transition-transform duration-300 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <div className="text-white text-center">
+                        <div className="text-lg mb-1">💰</div>
+                        <div className="text-xs font-semibold">Ver lucro</div>
+                      </div>
+                    </div>
+                    <div className="absolute top-1 right-1 bg-emerald-500 text-black text-xs font-bold px-2 py-1 rounded">
+                      +156%
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* PAR 4: PEPE */}
+              <div className="bg-zinc-900 border border-zinc-700 rounded-2xl p-4 hover:border-cyan-400/50 transition-all duration-300">
+                <h4 className="text-cyan-400 font-bold mb-4 flex items-center gap-2">
+                  🐸 PEPE/USDT - Operação Real
+                </h4>
+                <div className="grid grid-cols-2 gap-3">
+                  <div className="group relative cursor-pointer overflow-hidden rounded-lg" onClick={() => openImageModal("/pepe1.webp", 4)}>
+                    <img
+                      src="/pepe1.webp"
+                      alt="Gráfico PEPE"
+                      className="w-full h-24 object-cover transition-transform duration-300 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <div className="text-white text-center">
+                        <div className="text-lg mb-1">📊</div>
+                        <div className="text-xs font-semibold">Ver gráfico</div>
+                      </div>
+                    </div>
+                    <div className="absolute top-1 right-1 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded">
+                      GRÁFICO
+                    </div>
+                  </div>
+                  <div className="group relative cursor-pointer overflow-hidden rounded-lg" onClick={() => openImageModal("/resultado cripto 1  (3).jpeg", 11)}>
+                    <img
+                      src="/resultado cripto 1  (3).jpeg"
+                      alt="Lucro PEPE"
+                      className="w-full h-24 object-cover transition-transform duration-300 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                      <div className="text-white text-center">
+                        <div className="text-lg mb-1">💰</div>
+                        <div className="text-xs font-semibold">Ver lucro</div>
+                      </div>
+                    </div>
+                    <div className="absolute top-1 right-1 bg-emerald-500 text-black text-xs font-bold px-2 py-1 rounded">
+                      +198%
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
             
             <div className="text-center mt-6">
               <p className="text-zinc-400 text-sm">
-                Clique em qualquer imagem para ver em tamanho completo
+                Clique em qualquer imagem para ver em tamanho completo • Gráficos + Lucros reais da corretora
               </p>
             </div>
           </div>
