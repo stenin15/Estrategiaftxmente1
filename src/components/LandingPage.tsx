@@ -292,8 +292,8 @@ const LandingPage: React.FC = () => {
 
       <div className="bg-gradient-to-b from-black via-zinc-950 to-black text-white min-h-screen">
         {/* HERO SECTION - NOVO ESTILO */}
-        <section className="text-center py-20 bg-gradient-to-b from-[#001a1a] to-[#000] text-white">
-          <div className="max-w-4xl mx-auto px-6 border border-cyan-500/20 rounded-2xl bg-[#0b0b0b]/60 shadow-[0_0_25px_#00ffff20] p-10">
+        <section className="bg-gradient-to-b from-[#001a1a] to-[#000] text-white py-20">
+          <div className="section-box text-center">
             {/* TAG PROMOCIONAL */}
             <span className="text-xs bg-cyan-500/20 text-cyan-400 px-3 py-1 rounded-full uppercase tracking-widest font-semibold mb-4 inline-block">
               Oferta exclusiva por tempo limitado
@@ -346,8 +346,8 @@ const LandingPage: React.FC = () => {
         </section>
 
         {/* SEÇÃO DOR + SOLUÇÃO - NOVO ESTILO EM CARDS */}
-        <section className="bg-[#050505] text-white py-20 px-6 text-center">
-          <div className="max-w-4xl mx-auto border border-cyan-500/20 rounded-2xl bg-[#0b0b0b]/60 shadow-[0_0_25px_#00ffff20] p-10">
+        <section className="bg-[#050505] text-white py-20">
+          <div className="section-box text-center">
 
             <h2 className="text-3xl md:text-4xl font-extrabold mb-10 text-cyan-400">
               😔 Você se identifica com isso?
@@ -390,7 +390,8 @@ const LandingPage: React.FC = () => {
         </section>
 
         {/* RESULTADOS REAIS - SEÇÃO PREMIUM */}
-        <Section id="resultados-reais" className="results-section text-center section-container">
+        <section className="bg-[#000814] text-white py-20">
+          <div className="section-box">
           <div className="mb-8">
             <Badge>📈 RESULTADOS COMPROVADOS</Badge>
           </div>
@@ -693,7 +694,8 @@ const LandingPage: React.FC = () => {
               </CTA>
             </div>
           </div>
-        </Section>
+          </div>
+        </section>
 
         {/* DIVISOR ANIMADO */}
         <div className="section-divider"></div>
