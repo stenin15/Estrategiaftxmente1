@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import useEmblaCarousel from "embla-carousel-react";
 import { OfertaFinal } from "./OfertaFinal";
+import { Footer } from "./Footer";
 
 /** =========================
  * CONFIGURÁVEIS
@@ -778,11 +779,8 @@ const LandingPage: React.FC = () => {
         </section>
 
 
-        {/* RODAPÉ */}
-        <footer className="text-center text-sm text-zinc-500 py-8">
-          © {new Date().getFullYear()} Estratégia TFX Mente — Pagamento seguro •
-          Suporte por e-mail/WhatsApp.
-        </footer>
+        {/* FOOTER PROFISSIONAL */}
+        <Footer />
 
         {/* WHATSAPP FLOAT */}
         <a
