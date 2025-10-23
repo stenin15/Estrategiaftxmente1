@@ -444,25 +444,6 @@ const LandingPage: React.FC = () => {
           </div>
 
 
-          {/* CTA SUPER FORTE */}
-          <div className="space-y-4">
-            <CTA variant="primary" href="#vsl" className="text-xl px-12 py-6">
-              🎬 ASSISTIR VÍDEO AGORA — GRÁTIS
-            </CTA>
-            
-            <div className="flex flex-col md:flex-row gap-4 justify-center">
-              <CTA variant="outline" href="#provas">
-                Ver provas reais primeiro →
-              </CTA>
-              <CTA variant="secondary" href="#oferta">
-                Pular direto para a oferta
-              </CTA>
-            </div>
-          </div>
-
-          <div className="mt-6 text-sm text-zinc-400">
-            ⏱️ Duração: 15 minutos • 📱 Funciona em qualquer dispositivo • 🔒 100% gratuito
-          </div>
         </Section>
 
 
