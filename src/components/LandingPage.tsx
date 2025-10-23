@@ -302,12 +302,6 @@ const LandingPage: React.FC = () => {
               </ul>
             </div>
 
-            {/* BADGES DE CONFIANÇA */}
-            <div className="flex justify-center gap-4 text-gray-400 text-sm mt-6">
-              <span>📚 Aulas práticas</span>
-              <span>⚡ Acesso imediato</span>
-              <span>💬 Suporte direto</span>
-            </div>
           </div>
         </section>
 
