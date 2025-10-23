@@ -293,7 +293,7 @@ const LandingPage: React.FC = () => {
       <div className="bg-gradient-to-b from-black via-zinc-950 to-black text-white min-h-screen">
         {/* HERO SECTION - NOVO ESTILO */}
         <section className="text-center py-20 bg-gradient-to-b from-[#001a1a] to-[#000] text-white">
-          <div className="max-w-3xl mx-auto px-6">
+          <div className="max-w-4xl mx-auto px-6 border border-cyan-500/20 rounded-2xl bg-[#0b0b0b]/60 shadow-[0_0_25px_#00ffff20] p-10">
             {/* TAG PROMOCIONAL */}
             <span className="text-xs bg-cyan-500/20 text-cyan-400 px-3 py-1 rounded-full uppercase tracking-widest font-semibold mb-4 inline-block">
               Oferta exclusiva por tempo limitado
@@ -325,7 +325,7 @@ const LandingPage: React.FC = () => {
             </p>
 
             {/* BLOCO DE DESCOBERTA */}
-            <div className="mt-10 bg-[#021d1d] border border-cyan-500 rounded-2xl p-6 text-left shadow-xl">
+            <div className="mt-10 bg-[#021d1d] border border-cyan-500/20 rounded-2xl p-6 text-left shadow-[0_0_15px_#00ffff20]">
               <h3 className="text-lg font-bold text-green-400 mb-3">✅ O que você vai descobrir:</h3>
               <ul className="space-y-2 text-gray-200">
                 <li>✔️ <b>O segredo dos 0.1%</b> — como os insiders realmente leem o mercado.</li>
@@ -339,52 +339,51 @@ const LandingPage: React.FC = () => {
             <a 
               href="https://app.cakto.com.br/pay/SEU_ID_DO_PRODUTO" 
               target="_blank" 
-              className="inline-block mt-10 bg-gradient-to-r from-cyan-400 to-blue-500 text-black font-bold text-lg px-10 py-4 rounded-full hover:scale-105 transition-transform">
+              className="inline-block mt-10 bg-gradient-to-r from-cyan-400 to-blue-500 text-black font-bold text-lg px-10 py-4 rounded-full hover:scale-105 transition-transform shadow-[0_0_25px_#00ffff40]">
               ⚡ Quero o Guia + Acesso ao Grupo VIP
             </a>
           </div>
         </section>
 
         {/* SEÇÃO DOR + SOLUÇÃO - NOVO ESTILO EM CARDS */}
-        <section className="bg-gradient-to-b from-[#050505] to-[#000814] text-white py-20 px-6 text-center relative overflow-hidden">
-          <div className="max-w-4xl mx-auto">
+        <section className="bg-[#050505] text-white py-20 px-6 text-center">
+          <div className="max-w-4xl mx-auto border border-cyan-500/20 rounded-2xl bg-[#0b0b0b]/60 shadow-[0_0_25px_#00ffff20] p-10">
 
-            <h2 className="text-4xl md:text-5xl font-extrabold mb-12 leading-tight">
-              😔 <span className="text-cyan-400">Você se identifica com isso?</span>
+            <h2 className="text-3xl md:text-4xl font-extrabold mb-10 text-cyan-400">
+              😔 Você se identifica com isso?
             </h2>
 
-            <div className="grid md:grid-cols-2 gap-8 text-left text-lg text-gray-300">
-              <div className="bg-[#0a0a0a]/70 hover:bg-[#0f1a1a] border border-cyan-500/20 rounded-2xl p-6 transition-all duration-300 hover:shadow-[0_0_15px_#00ffff40]">
-                <p>😤 <span className="text-cyan-300 font-semibold">Entra em operações</span> e o mercado parece sempre ir contra você?</p>
+            <div className="grid md:grid-cols-2 gap-6 text-left text-lg text-gray-300">
+              <div className="bg-[#0a0a0a]/70 border border-cyan-500/20 rounded-xl p-5 hover:bg-[#0f1a1a] transition-all duration-300 hover:shadow-[0_0_15px_#00ffff40]">
+                <p>😤 Entra em operações e o mercado parece sempre ir contra você?</p>
               </div>
 
-              <div className="bg-[#0a0a0a]/70 hover:bg-[#0f1a1a] border border-cyan-500/20 rounded-2xl p-6 transition-all duration-300 hover:shadow-[0_0_15px_#00ffff40]">
-                <p>📉 Sente que <span className="text-cyan-300 font-semibold">sai antes da hora</span> ou entra no pior momento?</p>
+              <div className="bg-[#0a0a0a]/70 border border-cyan-500/20 rounded-xl p-5 hover:bg-[#0f1a1a] transition-all duration-300 hover:shadow-[0_0_15px_#00ffff40]">
+                <p>📉 Sente que sempre sai antes da hora ou entra no pior momento?</p>
               </div>
 
-              <div className="bg-[#0a0a0a]/70 hover:bg-[#0f1a1a] border border-cyan-500/20 rounded-2xl p-6 transition-all duration-300 hover:shadow-[0_0_15px_#00ffff40]">
-                <p>🧠 Falta <span className="text-cyan-300 font-semibold">disciplina e confiança</span> pra seguir seu plano sem hesitar?</p>
+              <div className="bg-[#0a0a0a]/70 border border-cyan-500/20 rounded-xl p-5 hover:bg-[#0f1a1a] transition-all duration-300 hover:shadow-[0_0_15px_#00ffff40]">
+                <p>🧠 Falta disciplina, confiança e clareza pra seguir seu plano?</p>
               </div>
 
-              <div className="bg-[#0a0a0a]/70 hover:bg-[#0f1a1a] border border-cyan-500/20 rounded-2xl p-6 transition-all duration-300 hover:shadow-[0_0_15px_#00ffff40]">
-                <p>💭 Já estudou tudo... mas <span className="text-cyan-300 font-semibold">a consistência nunca vem?</span></p>
+              <div className="bg-[#0a0a0a]/70 border border-cyan-500/20 rounded-xl p-5 hover:bg-[#0f1a1a] transition-all duration-300 hover:shadow-[0_0_15px_#00ffff40]">
+                <p>💭 Já estudou tudo, mas ainda não consegue lucrar com consistência?</p>
               </div>
             </div>
 
-            <div className="mt-16">
-              <h3 className="text-3xl md:text-4xl font-bold text-cyan-400 animate-pulse">
-                Então respira... 💨  
-                <span className="text-white block mt-2">a solução está logo abaixo 👇</span>
+            <div className="mt-14">
+              <h3 className="text-2xl md:text-3xl font-semibold text-cyan-400 mb-2">
+                Então respira... 💨 a solução está logo abaixo 👇
               </h3>
-              <p className="text-gray-400 mt-4 text-lg">
-                A <span className="text-cyan-300 font-semibold">TFX Mente</span> foi criada pra transformar traders comuns  
+              <p className="text-gray-400 text-lg">
+                A <span className="text-cyan-300 font-medium">TFX Mente</span> foi criada pra transformar traders comuns  
                 em operadores conscientes — com mentalidade e setups que funcionam na vida real.
               </p>
             </div>
 
             <a 
               href="#cta"
-              className="inline-block mt-12 bg-gradient-to-r from-cyan-400 to-blue-600 text-black font-bold text-lg px-12 py-5 rounded-full hover:scale-105 hover:shadow-[0_0_25px_#00ffff60] transition-transform duration-300">
+              className="inline-block mt-10 bg-gradient-to-r from-cyan-400 to-blue-600 text-black font-bold text-lg px-10 py-4 rounded-full hover:scale-105 transition-transform shadow-[0_0_25px_#00ffff40]">
               ⚡ Quero mudar meu jogo agora
             </a>
           </div>
