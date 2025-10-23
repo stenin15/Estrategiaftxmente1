@@ -352,18 +352,19 @@ const LandingPage: React.FC = () => {
           <div className="mb-8">
             <h3 className="text-xl font-bold text-white mb-6">Gráficos + Lucros Reais da Corretora</h3>
             
-            {/* GRID DE PARES: GRÁFICO + LUCRO */}
+            {/* GRID ANTES E DEPOIS: GRÁFICO + RESULTADO */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* PAR 1: ETH */}
+              {/* OPERAÇÃO 1 */}
               <div className="bg-zinc-900 border border-zinc-700 rounded-2xl p-4 hover:border-cyan-400/50 transition-all duration-300">
-                <h4 className="text-cyan-400 font-bold mb-4 flex items-center gap-2">
-                  📈 ETH/USDT - Operação Real
-                </h4>
+                <div className="flex justify-between items-center mb-4">
+                  <span className="text-emerald-400 font-bold text-lg">+127%</span>
+                  <span className="text-cyan-400 text-sm">Operação Real</span>
+                </div>
                 <div className="grid grid-cols-2 gap-3">
                   <div className="group relative cursor-pointer overflow-hidden rounded-lg" onClick={() => openImageModal("/eth'1.webp", 0)}>
                     <img
                       src="/eth'1.webp"
-                      alt="Gráfico ETH"
+                      alt="Gráfico Antes"
                       className="w-full h-24 object-cover transition-transform duration-300 group-hover:scale-105"
                       loading="lazy"
                     />
@@ -373,40 +374,45 @@ const LandingPage: React.FC = () => {
                         <div className="text-xs font-semibold">Ver gráfico</div>
                       </div>
                     </div>
-                    <div className="absolute top-1 right-1 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded">
-                      GRÁFICO
+                    <div className="absolute top-1 left-1 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded">
+                      ANTES
                     </div>
                   </div>
                   <div className="group relative cursor-pointer overflow-hidden rounded-lg" onClick={() => openImageModal("/resultado cripto 1  (1).jpeg", 10)}>
                     <img
                       src="/resultado cripto 1  (1).jpeg"
-                      alt="Lucro ETH"
+                      alt="Resultado Depois"
                       className="w-full h-24 object-cover transition-transform duration-300 group-hover:scale-105"
                       loading="lazy"
                     />
                     <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                       <div className="text-white text-center">
                         <div className="text-lg mb-1">💰</div>
-                        <div className="text-xs font-semibold">Ver lucro</div>
+                        <div className="text-xs font-semibold">Ver resultado</div>
                       </div>
                     </div>
-                    <div className="absolute top-1 right-1 bg-emerald-500 text-black text-xs font-bold px-2 py-1 rounded">
-                      +127%
+                    <div className="absolute top-1 left-1 bg-emerald-500 text-black text-xs font-bold px-2 py-1 rounded">
+                      DEPOIS
                     </div>
                   </div>
                 </div>
+                <div className="mt-3 text-center">
+                  <span className="text-green-400 font-bold">+$2,340</span>
+                  <span className="text-gray-400 text-sm ml-2">Lucro Real</span>
+                </div>
               </div>
 
-              {/* PAR 2: GBP/USD */}
+              {/* OPERAÇÃO 2 */}
               <div className="bg-zinc-900 border border-zinc-700 rounded-2xl p-4 hover:border-cyan-400/50 transition-all duration-300">
-                <h4 className="text-cyan-400 font-bold mb-4 flex items-center gap-2">
-                  💱 GBP/USD - Operação Real
-                </h4>
+                <div className="flex justify-between items-center mb-4">
+                  <span className="text-emerald-400 font-bold text-lg">+89%</span>
+                  <span className="text-cyan-400 text-sm">Operação Real</span>
+                </div>
                 <div className="grid grid-cols-2 gap-3">
                   <div className="group relative cursor-pointer overflow-hidden rounded-lg" onClick={() => openImageModal("/usd1.webp", 6)}>
                     <img
                       src="/usd1.webp"
-                      alt="Gráfico GBP"
+                      alt="Gráfico Antes"
                       className="w-full h-24 object-cover transition-transform duration-300 group-hover:scale-105"
                       loading="lazy"
                     />
@@ -416,40 +422,45 @@ const LandingPage: React.FC = () => {
                         <div className="text-xs font-semibold">Ver gráfico</div>
                       </div>
                     </div>
-                    <div className="absolute top-1 right-1 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded">
-                      GRÁFICO
+                    <div className="absolute top-1 left-1 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded">
+                      ANTES
                     </div>
                   </div>
                   <div className="group relative cursor-pointer overflow-hidden rounded-lg" onClick={() => openImageModal("/resultado forex 1  (6).jpeg", 14)}>
                     <img
                       src="/resultado forex 1  (6).jpeg"
-                      alt="Lucro GBP"
+                      alt="Resultado Depois"
                       className="w-full h-24 object-cover transition-transform duration-300 group-hover:scale-105"
                       loading="lazy"
                     />
                     <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                       <div className="text-white text-center">
                         <div className="text-lg mb-1">💰</div>
-                        <div className="text-xs font-semibold">Ver lucro</div>
+                        <div className="text-xs font-semibold">Ver resultado</div>
                       </div>
                     </div>
-                    <div className="absolute top-1 right-1 bg-emerald-500 text-black text-xs font-bold px-2 py-1 rounded">
-                      +89%
+                    <div className="absolute top-1 left-1 bg-emerald-500 text-black text-xs font-bold px-2 py-1 rounded">
+                      DEPOIS
                     </div>
                   </div>
                 </div>
+                <div className="mt-3 text-center">
+                  <span className="text-green-400 font-bold">+$1,450</span>
+                  <span className="text-gray-400 text-sm ml-2">Lucro Real</span>
+                </div>
               </div>
 
-              {/* PAR 3: XAU/USD */}
+              {/* OPERAÇÃO 3 */}
               <div className="bg-zinc-900 border border-zinc-700 rounded-2xl p-4 hover:border-cyan-400/50 transition-all duration-300">
-                <h4 className="text-cyan-400 font-bold mb-4 flex items-center gap-2">
-                  🥇 XAU/USD - Operação Real
-                </h4>
+                <div className="flex justify-between items-center mb-4">
+                  <span className="text-emerald-400 font-bold text-lg">+156%</span>
+                  <span className="text-cyan-400 text-sm">Operação Real</span>
+                </div>
                 <div className="grid grid-cols-2 gap-3">
                   <div className="group relative cursor-pointer overflow-hidden rounded-lg" onClick={() => openImageModal("/xau1.webp", 8)}>
                     <img
                       src="/xau1.webp"
-                      alt="Gráfico XAU"
+                      alt="Gráfico Antes"
                       className="w-full h-24 object-cover transition-transform duration-300 group-hover:scale-105"
                       loading="lazy"
                     />
@@ -459,40 +470,45 @@ const LandingPage: React.FC = () => {
                         <div className="text-xs font-semibold">Ver gráfico</div>
                       </div>
                     </div>
-                    <div className="absolute top-1 right-1 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded">
-                      GRÁFICO
+                    <div className="absolute top-1 left-1 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded">
+                      ANTES
                     </div>
                   </div>
                   <div className="group relative cursor-pointer overflow-hidden rounded-lg" onClick={() => openImageModal("/resultado forex 2  (2).jpeg", 15)}>
                     <img
                       src="/resultado forex 2  (2).jpeg"
-                      alt="Lucro XAU"
+                      alt="Resultado Depois"
                       className="w-full h-24 object-cover transition-transform duration-300 group-hover:scale-105"
                       loading="lazy"
                     />
                     <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                       <div className="text-white text-center">
                         <div className="text-lg mb-1">💰</div>
-                        <div className="text-xs font-semibold">Ver lucro</div>
+                        <div className="text-xs font-semibold">Ver resultado</div>
                       </div>
                     </div>
-                    <div className="absolute top-1 right-1 bg-emerald-500 text-black text-xs font-bold px-2 py-1 rounded">
-                      +156%
+                    <div className="absolute top-1 left-1 bg-emerald-500 text-black text-xs font-bold px-2 py-1 rounded">
+                      DEPOIS
                     </div>
                   </div>
                 </div>
+                <div className="mt-3 text-center">
+                  <span className="text-green-400 font-bold">+$2,100</span>
+                  <span className="text-gray-400 text-sm ml-2">Lucro Real</span>
+                </div>
               </div>
 
-              {/* PAR 4: PEPE */}
+              {/* OPERAÇÃO 4 */}
               <div className="bg-zinc-900 border border-zinc-700 rounded-2xl p-4 hover:border-cyan-400/50 transition-all duration-300">
-                <h4 className="text-cyan-400 font-bold mb-4 flex items-center gap-2">
-                  🐸 PEPE/USDT - Operação Real
-                </h4>
+                <div className="flex justify-between items-center mb-4">
+                  <span className="text-emerald-400 font-bold text-lg">+198%</span>
+                  <span className="text-cyan-400 text-sm">Operação Real</span>
+                </div>
                 <div className="grid grid-cols-2 gap-3">
                   <div className="group relative cursor-pointer overflow-hidden rounded-lg" onClick={() => openImageModal("/pepe1.webp", 4)}>
                     <img
                       src="/pepe1.webp"
-                      alt="Gráfico PEPE"
+                      alt="Gráfico Antes"
                       className="w-full h-24 object-cover transition-transform duration-300 group-hover:scale-105"
                       loading="lazy"
                     />
@@ -502,27 +518,31 @@ const LandingPage: React.FC = () => {
                         <div className="text-xs font-semibold">Ver gráfico</div>
                       </div>
                     </div>
-                    <div className="absolute top-1 right-1 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded">
-                      GRÁFICO
+                    <div className="absolute top-1 left-1 bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded">
+                      ANTES
                     </div>
                   </div>
                   <div className="group relative cursor-pointer overflow-hidden rounded-lg" onClick={() => openImageModal("/resultado cripto 1  (3).jpeg", 11)}>
                     <img
                       src="/resultado cripto 1  (3).jpeg"
-                      alt="Lucro PEPE"
+                      alt="Resultado Depois"
                       className="w-full h-24 object-cover transition-transform duration-300 group-hover:scale-105"
                       loading="lazy"
                     />
                     <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                       <div className="text-white text-center">
                         <div className="text-lg mb-1">💰</div>
-                        <div className="text-xs font-semibold">Ver lucro</div>
+                        <div className="text-xs font-semibold">Ver resultado</div>
                       </div>
                     </div>
-                    <div className="absolute top-1 right-1 bg-emerald-500 text-black text-xs font-bold px-2 py-1 rounded">
-                      +198%
+                    <div className="absolute top-1 left-1 bg-emerald-500 text-black text-xs font-bold px-2 py-1 rounded">
+                      DEPOIS
                     </div>
                   </div>
+                </div>
+                <div className="mt-3 text-center">
+                  <span className="text-green-400 font-bold">+$3,120</span>
+                  <span className="text-gray-400 text-sm ml-2">Lucro Real</span>
                 </div>
               </div>
             </div>
@@ -661,6 +681,9 @@ const LandingPage: React.FC = () => {
       `}</style>
     </>
   );
+};
+
+export default LandingPage;
 };
 
 export default LandingPage;
