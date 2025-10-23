@@ -291,15 +291,15 @@ const LandingPage: React.FC = () => {
       </Helmet>
 
       <div className="bg-gradient-to-b from-black via-zinc-950 to-black text-white min-h-screen">
-        {/* HERO + BLOCO "O QUE VOCÊ VAI DESCOBRIR" */}
-        <section className="hero py-12 text-white text-center px-6 section-container">
-          <div className="max-w-4xl mx-auto">
+        {/* HERO SECTION - NOVO ESTILO */}
+        <section className="text-center py-20 bg-gradient-to-b from-[#001a1a] to-[#000] text-white">
+          <div className="max-w-3xl mx-auto px-6">
             {/* TAG PROMOCIONAL */}
             <span className="text-xs bg-cyan-500/20 text-cyan-400 px-3 py-1 rounded-full uppercase tracking-widest font-semibold mb-4 inline-block">
               Oferta exclusiva por tempo limitado
             </span>
 
-            {/* CRONÔMETRO REGRESSIVO - NO TOPO */}
+            {/* CRONÔMETRO REGRESSIVO */}
             <div className="mb-8 w-full">
               <div className="countdown-timer bg-red-600 text-white px-6 py-4 rounded-lg w-full text-2xl font-bold">
                 <div id="countdown" className="text-center">
@@ -310,40 +310,38 @@ const LandingPage: React.FC = () => {
             </div>
 
             {/* HEADLINE PRINCIPAL */}
-            <h1 className="text-4xl sm:text-5xl font-extrabold mb-6 leading-tight">
-              Domine o mercado com a <span className="text-cyan-400">Estratégia FTX</span><br />
-              que transforma traders comuns em lucrativos.
+            <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">
+              Domine o Mercado com a 
+              <span className="text-cyan-400"> Estratégia FTX</span>
             </h1>
+            
+            <p className="text-xl md:text-2xl font-semibold mt-3 text-cyan-200">
+              Transforme traders comuns em lucrativos — em apenas 15 min/dia.
+            </p>
 
-            {/* SUBHEADLINE */}
-            <p className="text-gray-300 text-lg mb-10 max-w-2xl mx-auto">
-              Aprenda o mesmo método que insiders e market makers usam para operar com confiança —
-              sem depender da sorte. Em menos de <span className="text-white font-semibold">15 min/dia</span>.
+            <p className="mt-6 text-gray-300 text-lg leading-relaxed">
+              Aprenda o mesmo método que <span className="text-white font-medium">insiders e market makers</span> usam 
+              para operar com confiança — sem depender da sorte.
             </p>
 
             {/* BLOCO DE DESCOBERTA */}
-            <div className="discover-box grid grid-cols-1 sm:grid-cols-2 gap-6 p-6 text-left max-w-3xl mx-auto">
-              <h2 className="text-green-400 font-bold text-xl sm:col-span-2 mb-2 flex items-center gap-2">
-                🎯 O que você vai descobrir:
-              </h2>
-              <ul className="space-y-3 text-gray-300 col-span-2">
-                <li>✅ <span className="font-semibold text-white">O segredo dos 0.1%</span> — como os insiders realmente leem o mercado (e o que ninguém comenta).</li>
-                <li>✅ <span className="font-semibold text-white">A manipulação exposta</span> — os 3 sinais que os market makers deixam escapar.</li>
-                <li>✅ <span className="font-semibold text-white">Setup de reversão</span> — como entrar na direção certa antes da maioria.</li>
-                <li>✅ <span className="font-semibold text-white">Gestão de elite</span> — o sistema que os profissionais usam para nunca quebrar.</li>
+            <div className="mt-10 bg-[#021d1d] border border-cyan-500 rounded-2xl p-6 text-left shadow-xl">
+              <h3 className="text-lg font-bold text-green-400 mb-3">✅ O que você vai descobrir:</h3>
+              <ul className="space-y-2 text-gray-200">
+                <li>✔️ <b>O segredo dos 0.1%</b> — como os insiders realmente leem o mercado.</li>
+                <li>✔️ <b>A manipulação exposta</b> — os 3 sinais que os market makers deixam escapar.</li>
+                <li>✔️ <b>Setup de reversão</b> — como entrar na direção certa antes da maioria.</li>
+                <li>✔️ <b>Gestão de elite</b> — o sistema que os profissionais usam para nunca quebrar.</li>
               </ul>
             </div>
 
             {/* BOTÃO CTA */}
-            <div className="mt-10">
-              <a 
-                href="https://app.cakto.com.br/pay/SEU_ID_DO_PRODUTO" 
-                target="_blank" 
-                className="inline-block bg-gradient-to-r from-cyan-400 to-blue-500 text-black font-bold text-lg px-10 py-4 rounded-full hover:scale-105 transition-transform">
-                ⚡ Quero o Guia + Acesso ao Grupo VIP
-              </a>
-            </div>
-
+            <a 
+              href="https://app.cakto.com.br/pay/SEU_ID_DO_PRODUTO" 
+              target="_blank" 
+              className="inline-block mt-10 bg-gradient-to-r from-cyan-400 to-blue-500 text-black font-bold text-lg px-10 py-4 rounded-full hover:scale-105 transition-transform">
+              ⚡ Quero o Guia + Acesso ao Grupo VIP
+            </a>
           </div>
         </section>
 
