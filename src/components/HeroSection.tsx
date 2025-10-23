@@ -9,7 +9,7 @@ export const HeroSection = () => {
   };
 
   return (
-    <section className="pt-24 sm:pt-28 md:pt-32 pb-8 sm:pb-12 md:pb-16 px-4 sm:px-6 md:px-8 lg:px-12 bg-background relative overflow-hidden">
+    <section className="pt-24 sm:pt-28 md:pt-32 pb-8 sm:pb-12 md:pb-16 px-4 sm:px-6 md:px-8 lg:px-12 bg-background relative overflow-hidden section-container">
       {/* Efeito de fundo */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,188,212,0.1),transparent_50%)]" />
 

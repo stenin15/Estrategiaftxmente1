@@ -18,7 +18,7 @@ export const OfertaFinal = () => {
   };
 
   return (
-    <section className="py-12 text-center bg-zinc-950 text-white px-6">
+    <section className="py-12 text-center bg-zinc-950 text-white px-6 section-container">
       <h2 className="text-4xl md:text-5xl font-bold mb-4">
         🔥 Últimas Horas da Oferta
       </h2>

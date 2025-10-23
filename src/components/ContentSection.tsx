@@ -6,7 +6,7 @@ export const ContentSection = () => {
   };
 
   return (
-    <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-8 lg:px-12 bg-background">
+    <section className="py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-8 lg:px-12 bg-background section-container">
       <div className="container mx-auto text-center">
         <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6">
           <span className="text-primary">Método Mente & Mercado™</span>

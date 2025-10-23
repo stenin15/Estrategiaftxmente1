@@ -260,7 +260,7 @@ const LandingPage: React.FC = () => {
 
       <div className="bg-gradient-to-b from-black via-zinc-950 to-black text-white min-h-screen">
         {/* HERO + BLOCO "O QUE VOCÊ VAI DESCOBRIR" */}
-        <section className="hero py-12 text-white text-center px-6">
+        <section className="hero py-12 text-white text-center px-6 section-container">
           <div className="max-w-4xl mx-auto">
             {/* TAG PROMOCIONAL */}
             <span className="text-xs bg-cyan-500/20 text-cyan-400 px-3 py-1 rounded-full uppercase tracking-widest font-semibold mb-4 inline-block">
@@ -328,7 +328,7 @@ const LandingPage: React.FC = () => {
         </section>
 
         {/* RESULTADOS REAIS - SEÇÃO PREMIUM */}
-        <Section id="resultados-reais" className="results-section text-center">
+        <Section id="resultados-reais" className="results-section text-center section-container">
           <div className="mb-8">
             <Badge>📈 RESULTADOS COMPROVADOS</Badge>
           </div>
@@ -637,7 +637,7 @@ const LandingPage: React.FC = () => {
         <div className="section-divider"></div>
 
         {/* VSL - VIDEO SALES LETTER */}
-        <Section id="vsl" className="text-center">
+        <Section id="vsl" className="text-center section-container">
           <div className="mb-6">
             <Badge>🎥 VÍDEO EXCLUSIVO</Badge>
           </div>

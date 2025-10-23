@@ -429,6 +429,21 @@ body {
   font-size: 0.9rem;
 }
 
+/* CONTORNO PADRONIZADO PARA TODAS AS SEÇÕES */
+.section-container {
+  background: rgba(0, 15, 25, 0.7);
+  border: 1px solid rgba(0, 255, 200, 0.2);
+  backdrop-filter: blur(12px);
+  border-radius: 14px;
+  box-shadow: 0 0 25px rgba(0, 255, 200, 0.05);
+  transition: all 0.3s ease;
+}
+
+.section-container:hover {
+  box-shadow: 0 0 30px rgba(0, 255, 200, 0.15);
+  border-color: rgba(0, 255, 200, 0.3);
+}
+
 /* CONCEITOS FTX REORGANIZADOS */
 .ftx-concepts {
   display: grid;
