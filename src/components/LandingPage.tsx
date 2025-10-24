@@ -308,57 +308,103 @@ const LandingPage: React.FC = () => {
       </Helmet>
 
       <div className="bg-gradient-to-b from-black via-zinc-950 to-black text-white min-h-screen">
-        {/* HERO SECTION - NOVO ESTILO */}
-        <section className="bg-gradient-to-b from-[#001a1a] to-[#000] text-white py-20">
-          <div className="section-box text-center">
-            {/* TAG PROMOCIONAL */}
-            <span className="text-xs bg-cyan-500/20 text-cyan-400 px-3 py-1 rounded-full uppercase tracking-widest font-semibold mb-4 inline-block">
-              Oferta exclusiva por tempo limitado
-            </span>
+        {/* HERO SECTION - MELHORADO E MAIS CHAMATIVO */}
+        <section className="relative bg-gradient-to-br from-[#0a0a0a] via-[#001a1a] to-[#000] text-white py-24 overflow-hidden">
+          {/* EFEITOS VISUAIS DE FUNDO */}
+          <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 via-transparent to-blue-500/5"></div>
+          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(0,255,255,0.1),transparent_50%)]"></div>
+          
+          <div className="section-box text-center relative z-10">
+            {/* TAG PROMOCIONAL MELHORADA */}
+            <div className="mb-6">
+              <span className="inline-flex items-center gap-2 bg-gradient-to-r from-red-500 to-orange-500 text-white px-6 py-3 rounded-full text-sm font-bold uppercase tracking-wider shadow-[0_0_20px_rgba(255,0,0,0.3)] animate-pulse">
+                🔥 OFERTA EXCLUSIVA POR TEMPO LIMITADO
+              </span>
+            </div>
 
-            {/* CRONÔMETRO REGRESSIVO */}
-            <div className="mb-8 w-full">
-              <div className="countdown-timer bg-red-600 text-white px-6 py-4 rounded-lg w-full text-2xl font-bold">
+            {/* CRONÔMETRO REGRESSIVO MELHORADO */}
+            <div className="mb-10 w-full max-w-2xl mx-auto">
+              <div className="bg-gradient-to-r from-red-600 via-red-500 to-orange-500 text-white px-8 py-6 rounded-2xl w-full text-2xl font-bold shadow-[0_0_30px_rgba(255,0,0,0.4)] border-2 border-red-400/50">
                 <div id="countdown" className="text-center">
-                  <div className="text-sm mb-1">⏰ OFERTA EXPIRA EM:</div>
-                  <div className="text-3xl font-black" id="timer">02:00:00</div>
+                  <div className="text-sm mb-2 font-semibold">⏰ OFERTA EXPIRA EM:</div>
+                  <div className="text-4xl md:text-5xl font-black text-yellow-300 drop-shadow-lg" id="timer">02:00:00</div>
+                  <div className="text-xs mt-2 opacity-90">Não perca esta oportunidade única!</div>
                 </div>
               </div>
             </div>
 
-            {/* HEADLINE PRINCIPAL */}
-            <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">
-              Domine o Mercado com a 
-              <span className="text-cyan-400"> Estratégia TFX</span>
+            {/* HEADLINE PRINCIPAL MELHORADA */}
+            <h1 className="text-5xl md:text-7xl font-black leading-tight mb-6">
+              <span className="bg-gradient-to-r from-white via-cyan-300 to-white bg-clip-text text-transparent">
+                Domine o Mercado
+              </span>
+              <br />
+              <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
+                com a Estratégia TFX
+              </span>
             </h1>
             
-            <p className="text-xl md:text-2xl font-semibold mt-3 text-cyan-200">
-              Transforme traders comuns em lucrativos — em apenas 15 min/dia.
+            <p className="text-2xl md:text-3xl font-bold mt-6 mb-4 bg-gradient-to-r from-cyan-200 to-blue-200 bg-clip-text text-transparent">
+              Transforme traders comuns em lucrativos — em apenas 1h ou 2h por dia.
             </p>
 
-            <p className="mt-6 text-gray-300 text-lg leading-relaxed">
-              Aprenda o mesmo método que <span className="text-white font-medium">insiders e market makers</span> usam 
-              para operar com confiança — sem depender da sorte.
+            <p className="mt-6 text-gray-200 text-xl leading-relaxed max-w-4xl mx-auto">
+              Aprenda o mesmo método que <span className="text-cyan-300 font-bold">insiders e market makers</span> usam 
+              para operar com confiança — <span className="text-yellow-300 font-bold">sem depender da sorte</span>.
             </p>
 
-            {/* BLOCO DE DESCOBERTA */}
-            <div className="mt-10 bg-[#021d1d] border border-cyan-500/20 rounded-2xl p-6 text-left shadow-[0_0_15px_#00ffff20]">
-              <h3 className="text-lg font-bold text-green-400 mb-3">✅ O que você vai descobrir:</h3>
-              <ul className="space-y-2 text-gray-200">
-                <li>✔️ <b>O segredo dos 0.1%</b> — como os insiders realmente leem o mercado.</li>
-                <li>✔️ <b>A manipulação exposta</b> — os 3 sinais que os market makers deixam escapar.</li>
-                <li>✔️ <b>Setup de reversão</b> — como entrar na direção certa antes da maioria.</li>
-                <li>✔️ <b>Gestão de elite</b> — o sistema que os profissionais usam para nunca quebrar.</li>
-              </ul>
+            {/* BLOCO DE DESCOBERTA MELHORADO */}
+            <div className="mt-12 bg-gradient-to-br from-[#021d1d] via-[#001a1a] to-[#000] border-2 border-cyan-400/30 rounded-3xl p-8 text-left shadow-[0_0_30px_rgba(0,255,255,0.2)] backdrop-blur-sm">
+              <h3 className="text-2xl font-bold text-green-400 mb-6 flex items-center gap-3">
+                <span className="text-3xl">🎯</span>
+                O que você vai descobrir:
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="flex items-start gap-3 p-4 bg-green-500/10 rounded-xl border border-green-500/20">
+                  <span className="text-2xl">💎</span>
+                  <div>
+                    <div className="font-bold text-green-300">O segredo dos 0.1%</div>
+                    <div className="text-gray-300 text-sm">como os insiders realmente leem o mercado</div>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3 p-4 bg-blue-500/10 rounded-xl border border-blue-500/20">
+                  <span className="text-2xl">🔍</span>
+                  <div>
+                    <div className="font-bold text-blue-300">A manipulação exposta</div>
+                    <div className="text-gray-300 text-sm">os 3 sinais que os market makers deixam escapar</div>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3 p-4 bg-purple-500/10 rounded-xl border border-purple-500/20">
+                  <span className="text-2xl">⚡</span>
+                  <div>
+                    <div className="font-bold text-purple-300">Setup de reversão</div>
+                    <div className="text-gray-300 text-sm">como entrar na direção certa antes da maioria</div>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3 p-4 bg-orange-500/10 rounded-xl border border-orange-500/20">
+                  <span className="text-2xl">🛡️</span>
+                  <div>
+                    <div className="font-bold text-orange-300">Gestão de elite</div>
+                    <div className="text-gray-300 text-sm">o sistema que os profissionais usam para nunca quebrar</div>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            {/* BOTÃO CTA */}
-            <a 
-              href="https://app.cakto.com.br/pay/SEU_ID_DO_PRODUTO" 
-              target="_blank" 
-              className="inline-block mt-10 bg-gradient-to-r from-cyan-400 to-blue-500 text-black font-bold text-lg px-10 py-4 rounded-full hover:scale-105 transition-transform shadow-[0_0_25px_#00ffff40]">
-              ⚡ Quero o Guia + Acesso ao Grupo VIP
-            </a>
+            {/* BOTÃO CTA MELHORADO */}
+            <div className="mt-12">
+              <a 
+                href="https://app.cakto.com.br/pay/SEU_ID_DO_PRODUTO" 
+                target="_blank" 
+                className="inline-flex items-center gap-3 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 text-white font-black text-xl px-12 py-6 rounded-2xl hover:scale-105 transition-all duration-300 shadow-[0_0_40px_rgba(0,255,255,0.5)] border-2 border-cyan-300/50 hover:shadow-[0_0_60px_rgba(0,255,255,0.8)]">
+                <span className="text-3xl">🚀</span>
+                <span>QUERO O GUIA + ACESSO AO GRUPO VIP</span>
+                <span className="text-2xl">⚡</span>
+              </a>
+              <p className="text-sm text-gray-400 mt-4">
+                ✅ Garantia de 7 dias • ✅ Acesso imediato • ✅ Suporte VIP
+              </p>
+            </div>
           </div>
         </section>
 
