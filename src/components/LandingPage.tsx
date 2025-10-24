@@ -283,12 +283,28 @@ const LandingPage: React.FC = () => {
           name="description"
           content="Método validado que transforma traders comuns em lucrativos. Curso + Guia de Gestão & Mindset por R$49,90. Oferta de lançamento."
         />
+        
+        {/* Meta tags para tradução automática */}
+        <meta http-equiv="Content-Language" content="pt-BR" />
+        <meta name="language" content="Portuguese" />
+        <meta name="google" content="translate" />
+        <meta name="googlebot" content="translate" />
+        
+        {/* SEO internacional */}
+        <meta name="keywords" content="trading, forex, crypto, estratégia, mercado financeiro, lucro, investimento, trading strategy, forex trading, cryptocurrency" />
+        
+        {/* Open Graph internacional */}
         <meta property="og:title" content="Estratégia TFX Mente" />
         <meta
           property="og:description"
           content="Curso completo + Guia de Gestão & Mindset — R$49,90."
         />
         <meta property="og:type" content="website" />
+        <meta property="og:locale" content="pt_BR" />
+        <meta property="og:locale:alternate" content="en_US" />
+        <meta property="og:locale:alternate" content="es_ES" />
+        <meta property="og:locale:alternate" content="fr_FR" />
+        <meta property="og:locale:alternate" content="de_DE" />
       </Helmet>
 
       <div className="bg-gradient-to-b from-black via-zinc-950 to-black text-white min-h-screen">
