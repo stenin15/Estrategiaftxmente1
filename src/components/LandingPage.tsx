@@ -361,35 +361,46 @@ const LandingPage: React.FC = () => {
             </p>
 
             {/* SEÇÃO DE IDENTIFICAÇÃO DE DORES INTEGRADA */}
-            <div className="mt-8">
-              <h2 className="text-3xl md:text-4xl font-extrabold mb-6 text-cyan-400">
+            <section className="text-center mt-12 bg-gradient-to-b from-[#0b1e23] to-[#081518] p-8 rounded-2xl shadow-lg border border-[#0a2a33] max-w-4xl mx-auto">
+              <h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 mb-8">
                 😔 Você se identifica com isso?
               </h2>
 
-              <div className="grid md:grid-cols-2 gap-4 text-left text-lg text-gray-300 max-w-5xl mx-auto">
-                <div className="bg-[#0a0a0a]/70 border border-cyan-500/20 rounded-xl p-5 hover:bg-[#0f1a1a] transition-all duration-300 hover:shadow-[0_0_15px_#00ffff40]">
-                  <p>😤 Entra em operações e o mercado parece sempre ir contra você?</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-300">
+                <div className="bg-[#0c2024] p-5 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-300 hover:scale-[1.02]">
+                  💭 Você sente que trabalha, se esforça… mas nunca sai do lugar?
                 </div>
 
-                <div className="bg-[#0a0a0a]/70 border border-cyan-500/20 rounded-xl p-5 hover:bg-[#0f1a1a] transition-all duration-300 hover:shadow-[0_0_15px_#00ffff40]">
-                  <p>📉 Sente que sempre sai antes da hora ou entra no pior momento?</p>
+                <div className="bg-[#0c2024] p-5 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-300 hover:scale-[1.02]">
+                  ⏳ Já tentou de tudo pra mudar de vida — mas parece que nada realmente funciona?
                 </div>
 
-                <div className="bg-[#0a0a0a]/70 border border-cyan-500/20 rounded-xl p-5 hover:bg-[#0f1a1a] transition-all duration-300 hover:shadow-[0_0_15px_#00ffff40]">
-                  <p>🧠 Falta disciplina, confiança e clareza pra seguir seu plano?</p>
+                <div className="bg-[#0c2024] p-5 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-300 hover:scale-[1.02]">
+                  💸 Quer liberdade financeira, mas sempre acaba voltando pro mesmo ciclo?
                 </div>
 
-                <div className="bg-[#0a0a0a]/70 border border-cyan-500/20 rounded-xl p-5 hover:bg-[#0f1a1a] transition-all duration-300 hover:shadow-[0_0_15px_#00ffff40]">
-                  <p>💭 Já estudou tudo, mas ainda não consegue lucrar com consistência?</p>
+                <div className="bg-[#0c2024] p-5 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-300 hover:scale-[1.02]">
+                  🧠 Já estudou o mercado, mas sente que o "jogo" parece sempre estar contra você?
+                </div>
+
+                <div className="bg-[#0c2024] p-5 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-300 hover:scale-[1.02]">
+                  ⚖️ Falta disciplina, confiança e clareza pra seguir o plano e não sabotar seus resultados?
+                </div>
+
+                <div className="bg-[#0c2024] p-5 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-300 hover:scale-[1.02]">
+                  🔁 Sente que o tempo passa e sua vida continua igual — sem evolução, sem direção?
                 </div>
               </div>
 
-              <a 
-                href="#beneficios"
-                className="inline-block mt-6 bg-gradient-to-r from-cyan-400 to-blue-600 text-black font-bold text-lg px-10 py-4 rounded-full hover:scale-105 transition-transform shadow-[0_0_25px_#00ffff40]">
+              <p className="text-gray-400 mt-8 text-base max-w-2xl mx-auto">
+                Se você se reconheceu em pelo menos uma dessas situações, <span className="text-cyan-400 font-semibold">a Estratégia TFX</span> não é só o que você procura — 
+                é o que vai mudar completamente sua forma de ver o mercado, o dinheiro e a liberdade.
+              </p>
+
+              <button className="mt-8 px-8 py-3 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 text-white font-bold text-lg shadow-md hover:shadow-cyan-400/30 transition-all duration-300 hover:scale-105">
                 ⚡ Quero mudar meu jogo agora
-              </a>
-            </div>
+              </button>
+            </section>
           </div>
         </section>
 
