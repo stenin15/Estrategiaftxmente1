@@ -146,7 +146,6 @@ const imagens = [
 const ProvasCarousel = () => {
   const [emblaRef] = useEmblaCarousel({ 
     loop: true, 
-    autoplay: { delay: 3000 },
     align: "start"
   });
 
@@ -729,7 +728,8 @@ const LandingPage: React.FC = () => {
                       card.classList.add('fade-in');
                     }, index * 150);
                   });
-                  document.getElementById('load-more-results').style.display = 'none';
+                  const button = document.getElementById('load-more-results');
+                  if (button) button.style.display = 'none';
                 }}
               >
                 📈 Ver Mais Resultados Reais
