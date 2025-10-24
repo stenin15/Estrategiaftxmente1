@@ -308,8 +308,8 @@ const LandingPage: React.FC = () => {
       </Helmet>
 
       <div className="bg-gradient-to-b from-black via-zinc-950 to-black text-white min-h-screen">
-        {/* HERO SECTION - MELHORADO E MAIS CHAMATIVO */}
-        <section className="relative bg-gradient-to-br from-[#0a0a0a] via-[#001a1a] to-[#000] text-white pt-24 pb-8 overflow-hidden">
+        {/* HERO SECTION - NOME DA ESTRATÉGIA + IDENTIFICAÇÃO DE DORES */}
+        <section className="relative bg-gradient-to-br from-[#0a0a0a] via-[#001a1a] to-[#000] text-white py-24 overflow-hidden">
           {/* EFEITOS VISUAIS DE FUNDO */}
           <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 via-transparent to-blue-500/5"></div>
           <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(0,255,255,0.1),transparent_50%)]"></div>
@@ -348,10 +348,41 @@ const LandingPage: React.FC = () => {
               Transforme traders comuns em lucrativos — em apenas 1h ou 2h por dia.
             </p>
 
-            <p className="mt-6 text-gray-200 text-xl leading-relaxed max-w-4xl mx-auto">
+            <p className="mt-6 text-gray-200 text-xl leading-relaxed max-w-4xl mx-auto mb-16">
               Aprenda o mesmo método que <span className="text-cyan-300 font-bold">insiders e market makers</span> usam 
               para operar com confiança — <span className="text-yellow-300 font-bold">sem depender da sorte</span>.
             </p>
+
+            {/* SEÇÃO DE IDENTIFICAÇÃO DE DORES INTEGRADA */}
+            <div className="mt-16">
+              <h2 className="text-3xl md:text-4xl font-extrabold mb-10 text-cyan-400">
+                😔 Você se identifica com isso?
+              </h2>
+
+              <div className="grid md:grid-cols-2 gap-6 text-left text-lg text-gray-300 max-w-5xl mx-auto">
+                <div className="bg-[#0a0a0a]/70 border border-cyan-500/20 rounded-xl p-5 hover:bg-[#0f1a1a] transition-all duration-300 hover:shadow-[0_0_15px_#00ffff40]">
+                  <p>😤 Entra em operações e o mercado parece sempre ir contra você?</p>
+                </div>
+
+                <div className="bg-[#0a0a0a]/70 border border-cyan-500/20 rounded-xl p-5 hover:bg-[#0f1a1a] transition-all duration-300 hover:shadow-[0_0_15px_#00ffff40]">
+                  <p>📉 Sente que sempre sai antes da hora ou entra no pior momento?</p>
+                </div>
+
+                <div className="bg-[#0a0a0a]/70 border border-cyan-500/20 rounded-xl p-5 hover:bg-[#0f1a1a] transition-all duration-300 hover:shadow-[0_0_15px_#00ffff40]">
+                  <p>🧠 Falta disciplina, confiança e clareza pra seguir seu plano?</p>
+                </div>
+
+                <div className="bg-[#0a0a0a]/70 border border-cyan-500/20 rounded-xl p-5 hover:bg-[#0f1a1a] transition-all duration-300 hover:shadow-[0_0_15px_#00ffff40]">
+                  <p>💭 Já estudou tudo, mas ainda não consegue lucrar com consistência?</p>
+                </div>
+              </div>
+
+              <a 
+                href="#beneficios"
+                className="inline-block mt-10 bg-gradient-to-r from-cyan-400 to-blue-600 text-black font-bold text-lg px-10 py-4 rounded-full hover:scale-105 transition-transform shadow-[0_0_25px_#00ffff40]">
+                ⚡ Quero mudar meu jogo agora
+              </a>
+            </div>
           </div>
         </section>
 
@@ -422,38 +453,6 @@ const LandingPage: React.FC = () => {
           </div>
         </section>
 
-        {/* SEÇÃO DE IDENTIFICAÇÃO - DOR */}
-        <section className="bg-gradient-to-b from-[#000] via-[#050505] to-[#0a0a0a] text-white pt-8 pb-20">
-          <div className="section-box text-center">
-            <h2 className="text-3xl md:text-4xl font-extrabold mb-10 text-cyan-400">
-              😔 Você se identifica com isso?
-            </h2>
-
-            <div className="grid md:grid-cols-2 gap-6 text-left text-lg text-gray-300">
-              <div className="bg-[#0a0a0a]/70 border border-cyan-500/20 rounded-xl p-5 hover:bg-[#0f1a1a] transition-all duration-300 hover:shadow-[0_0_15px_#00ffff40]">
-                <p>😤 Entra em operações e o mercado parece sempre ir contra você?</p>
-              </div>
-
-              <div className="bg-[#0a0a0a]/70 border border-cyan-500/20 rounded-xl p-5 hover:bg-[#0f1a1a] transition-all duration-300 hover:shadow-[0_0_15px_#00ffff40]">
-                <p>📉 Sente que sempre sai antes da hora ou entra no pior momento?</p>
-              </div>
-
-              <div className="bg-[#0a0a0a]/70 border border-cyan-500/20 rounded-xl p-5 hover:bg-[#0f1a1a] transition-all duration-300 hover:shadow-[0_0_15px_#00ffff40]">
-                <p>🧠 Falta disciplina, confiança e clareza pra seguir seu plano?</p>
-              </div>
-
-              <div className="bg-[#0a0a0a]/70 border border-cyan-500/20 rounded-xl p-5 hover:bg-[#0f1a1a] transition-all duration-300 hover:shadow-[0_0_15px_#00ffff40]">
-                <p>💭 Já estudou tudo, mas ainda não consegue lucrar com consistência?</p>
-              </div>
-            </div>
-
-            <a 
-              href="#cta"
-              className="inline-block mt-10 bg-gradient-to-r from-cyan-400 to-blue-600 text-black font-bold text-lg px-10 py-4 rounded-full hover:scale-105 transition-transform shadow-[0_0_25px_#00ffff40]">
-              ⚡ Quero mudar meu jogo agora
-            </a>
-          </div>
-        </section>
 
         {/* RESULTADOS REAIS - SEÇÃO PREMIUM */}
         <section className="bg-[#000814] text-white py-20">
