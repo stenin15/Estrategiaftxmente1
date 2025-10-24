@@ -382,18 +382,18 @@ const LandingPage: React.FC = () => {
                   </div>
                 </div>
 
-                {/* COLUNA 2 — dores do trader */}
+                {/* COLUNA 2 — dores do trader aprimoradas */}
                 <div className="space-y-4">
                   <div className="bg-[#0c2024] p-5 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-300 hover:scale-[1.02]">
-                    😩 Entra em operações e o mercado parece sempre ir contra você?
+                    📉 Entra confiante, mas o mercado vira contra você e leva tudo em segundos?
                   </div>
 
                   <div className="bg-[#0c2024] p-5 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-300 hover:scale-[1.02]">
-                    📉 Sente que sempre sai antes da hora ou entra no pior momento?
+                    ⏰ Sente que sempre sai da operação antes da hora — e assiste o preço bater exatamente onde você queria?
                   </div>
 
                   <div className="bg-[#0c2024] p-5 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-300 hover:scale-[1.02]">
-                    🔁 Sente que o tempo passa e sua vida continua igual — sem evolução, sem direção?
+                    🧩 Já lucrou várias vezes, mas nunca consegue manter consistência — sempre volta pro zero?
                   </div>
                 </div>
               </div>
