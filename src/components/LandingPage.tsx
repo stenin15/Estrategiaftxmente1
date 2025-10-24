@@ -309,7 +309,7 @@ const LandingPage: React.FC = () => {
 
       <div className="bg-gradient-to-b from-black via-zinc-950 to-black text-white min-h-screen">
         {/* HERO SECTION - MELHORADO E MAIS CHAMATIVO */}
-        <section className="relative bg-gradient-to-br from-[#0a0a0a] via-[#001a1a] to-[#000] text-white py-24 overflow-hidden">
+        <section className="relative bg-gradient-to-br from-[#0a0a0a] via-[#001a1a] to-[#000] text-white pt-24 pb-8 overflow-hidden">
           {/* EFEITOS VISUAIS DE FUNDO */}
           <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 via-transparent to-blue-500/5"></div>
           <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(0,255,255,0.1),transparent_50%)]"></div>
@@ -423,7 +423,7 @@ const LandingPage: React.FC = () => {
         </section>
 
         {/* SEÇÃO DE IDENTIFICAÇÃO - DOR */}
-        <section className="bg-[#050505] text-white py-20">
+        <section className="bg-gradient-to-b from-[#000] via-[#050505] to-[#0a0a0a] text-white pt-8 pb-20">
           <div className="section-box text-center">
             <h2 className="text-3xl md:text-4xl font-extrabold mb-10 text-cyan-400">
               😔 Você se identifica com isso?
