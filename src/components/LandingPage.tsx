@@ -408,43 +408,38 @@ const LandingPage: React.FC = () => {
               em operadores conscientes — com mentalidade e setups que funcionam na vida real.
             </p>
 
-            {/* BLOCO DE DESCOBERTA MELHORADO */}
-            <div className="mt-12 bg-gradient-to-br from-[#021d1d] via-[#001a1a] to-[#000] border-2 border-cyan-400/30 rounded-3xl p-8 text-left shadow-[0_0_30px_rgba(0,255,255,0.2)] backdrop-blur-sm">
-              <h3 className="text-2xl font-bold text-green-400 mb-6 flex items-center gap-3">
-                <span className="text-3xl">🎯</span>
-                O que você vai descobrir:
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="flex items-start gap-3 p-4 bg-green-500/10 rounded-xl border border-green-500/20">
-                  <span className="text-2xl">💎</span>
-                  <div>
-                    <div className="font-bold text-green-300">O segredo dos 0.1%</div>
-                    <div className="text-gray-300 text-sm">como os insiders realmente leem o mercado</div>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3 p-4 bg-blue-500/10 rounded-xl border border-blue-500/20">
-                  <span className="text-2xl">🔍</span>
-                  <div>
-                    <div className="font-bold text-blue-300">A manipulação exposta</div>
-                    <div className="text-gray-300 text-sm">os 3 sinais que os market makers deixam escapar</div>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3 p-4 bg-purple-500/10 rounded-xl border border-purple-500/20">
-                  <span className="text-2xl">⚡</span>
-                  <div>
-                    <div className="font-bold text-purple-300">Setup de reversão</div>
-                    <div className="text-gray-300 text-sm">como entrar na direção certa antes da maioria</div>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3 p-4 bg-orange-500/10 rounded-xl border border-orange-500/20">
-                  <span className="text-2xl">🛡️</span>
-                  <div>
-                    <div className="font-bold text-orange-300">Gestão de elite</div>
-                    <div className="text-gray-300 text-sm">o sistema que os profissionais usam para nunca quebrar</div>
-                  </div>
-                </div>
+          {/* BLOCO DE TRANSFORMAÇÃO EMOCIONAL */}
+          <section className="text-center mt-12 bg-gradient-to-b from-[#0b1e23] to-[#081518] p-8 rounded-2xl shadow-lg border border-[#0a2a33] max-w-4xl mx-auto">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 mb-3">
+              O que acontece quando você muda a forma de enxergar o mercado — e a si mesmo
+            </h2>
+
+            <p className="text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed">
+              Dentro da <span className="text-cyan-400 font-semibold">Estratégia TFX</span>, você vai entender o que poucos percebem — 
+              e que faz a diferença entre quem sobrevive e quem vence de verdade.
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-300 mb-6">
+              <div className="bg-[#0c2024] p-5 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-300">
+                🚀 O ponto cego que separa traders comuns dos consistentes
+              </div>
+              <div className="bg-[#0c2024] p-5 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-300">
+                🧠 O que está por trás dos movimentos que fazem o mercado "te enganar"
+              </div>
+              <div className="bg-[#0c2024] p-5 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-300">
+                ⚡ Como enxergar oportunidades onde a maioria vê risco
+              </div>
+              <div className="bg-[#0c2024] p-5 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-300">
+                🏆 O código mental que impede você de perder o que conquistou
               </div>
             </div>
+
+            <button className="mt-6 px-10 py-4 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 text-white font-bold text-lg shadow-md hover:shadow-cyan-400/30 transition-all duration-300 hover:scale-105">
+              🔥 Quero descobrir o que muda tudo
+            </button>
+
+            <p className="text-gray-500 text-sm mt-3">Garantia de 7 dias • Acesso imediato • Suporte VIP</p>
+          </section>
 
             {/* BOTÃO CTA MELHORADO */}
             <div className="mt-12">
