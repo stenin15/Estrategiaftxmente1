@@ -459,7 +459,14 @@ const LandingPage: React.FC = () => {
         </section>
 
 
-        {/* RESULTADOS REAIS - SEÇÃO PREMIUM */}
+        {/* FRASE DE TRANSIÇÃO */}
+        <div className="text-center py-8">
+          <p className="text-gray-400 text-lg italic max-w-2xl mx-auto">
+            Depois de entender a mentalidade por trás, veja o que acontece quando ela é aplicada na prática.
+          </p>
+        </div>
+
+        {/* TRANSFORMAÇÕES REAIS - SEÇÃO OTIMIZADA */}
         <section className="bg-[#000814] text-white py-20">
           <div className="section-box">
           <div className="mb-8">
@@ -467,11 +474,12 @@ const LandingPage: React.FC = () => {
           </div>
           
           <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-4">
-            <span className="text-cyan-300">Resultados Reais</span> na Tela
+            <span className="text-green-400">Transformações Reais</span> — direto das telas de quem decidiu mudar o jogo
           </h2>
           
           <p className="text-xl text-zinc-300 max-w-3xl mx-auto mb-12">
-            Operações reais capturadas diretamente do app — <span className="text-emerald-400 font-bold">consistência comprovada</span>.
+            Operações aplicando a <span className="text-green-400 font-semibold">Estratégia TFX</span> capturadas de contas reais. 
+            Mais do que números — <span className="text-white font-semibold">prova de disciplina, método e clareza mental em ação.</span>
           </p>
 
 
@@ -743,17 +751,25 @@ const LandingPage: React.FC = () => {
               Lucros reais gerados por alunos aplicando o método TFX Mente — <span className="text-emerald-400 font-bold">100% verificáveis</span>.
             </p>
             
-            {/* CONCEITOS FTX APLICADOS */}
-            <div className="bg-zinc-800/50 border border-cyan-400/30 rounded-xl p-6 mb-6">
-              <h4 className="text-cyan-400 font-bold text-lg mb-4 flex items-center gap-2">
-                🧠 Conceitos TFX Aplicados Nestas Operações
+            {/* CONCEITOS TFX APLICADOS - VERSÃO EMOCIONAL */}
+            <div className="bg-zinc-800/50 border border-green-400/30 rounded-xl p-6 mb-6">
+              <h4 className="text-green-400 font-bold text-lg mb-4 flex items-center gap-2">
+                🧠 O que realmente faz a diferença nestas operações
               </h4>
-              <ul className="ftx-concepts">
-                <li><strong>Leitura de Fluxo:</strong> Identificação de zonas de liquidez e pontos de reversão</li>
-                <li><strong>Timing Perfeito:</strong> Entrada nos momentos de maior probabilidade</li>
-                <li><strong>Gestão de Risco:</strong> Stop loss e take profit calculados matematicamente</li>
-                <li><strong>Análise de Confluência:</strong> Múltiplos fatores confirmando a operação</li>
-              </ul>
+              <div className="grid md:grid-cols-2 gap-4">
+                <div className="text-zinc-300">
+                  <strong className="text-green-400">📊 Leitura de Fluxo</strong> — ver o que o mercado mostra antes dos outros perceberem.
+                </div>
+                <div className="text-zinc-300">
+                  <strong className="text-green-400">🎯 Timing Perfeito</strong> — entrar com precisão quando a oportunidade realmente existe.
+                </div>
+                <div className="text-zinc-300">
+                  <strong className="text-green-400">🛡️ Gestão Inteligente</strong> — proteger ganhos e multiplicar com cálculo, não emoção.
+                </div>
+                <div className="text-zinc-300">
+                  <strong className="text-green-400">🧩 Análise de Confluência</strong> — quando tudo se alinha, o resultado se torna previsível.
+                </div>
+              </div>
             </div>
             <div className="cta-group">
               <button className="cta-button-pulse text-lg px-8 py-4">
