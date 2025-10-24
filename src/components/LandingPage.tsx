@@ -338,10 +338,6 @@ const LandingPage: React.FC = () => {
               Domine o Mercado com a <span className="text-indigo-400">Estratégia TFX</span>
             </h1>
 
-            <p className="text-xl text-center text-gray-200 mt-4 max-w-3xl mx-auto">
-              Mais que uma técnica — <span className="text-cyan-400 font-semibold">a TFX é um novo modo de enxergar o dinheiro, o tempo e a liberdade</span>.
-              Um método que vem ajudando pessoas comuns e traders travados a mudarem de vida com clareza, estratégia e controle emocional.
-            </p>
 
 
             <p className="text-base text-gray-400 mt-5 text-center max-w-2xl mx-auto">
