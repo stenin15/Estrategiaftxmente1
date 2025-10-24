@@ -406,8 +406,8 @@ const LandingPage: React.FC = () => {
         {/* SEÇÃO DE BENEFÍCIOS - SOLUÇÃO */}
         <section id="beneficios" className="bg-gradient-to-b from-[#071e26] to-[#0a0f14] text-white py-20">
           <div className="section-box text-center">
-            <h2 className="text-3xl md:text-4xl font-extrabold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
-              O que você vai descobrir na Estratégia TFX
+            <h2 className="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 mb-4">
+              Chegou a hora de sair do ciclo da frustração e construir sua virada com a <span className="text-indigo-400">Estratégia TFX</span>
             </h2>
             
             <p className="text-xl text-gray-300 mb-12 max-w-3xl mx-auto">
