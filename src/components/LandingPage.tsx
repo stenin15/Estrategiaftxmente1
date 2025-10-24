@@ -343,10 +343,6 @@ const LandingPage: React.FC = () => {
               Um método que vem ajudando pessoas comuns e traders travados a mudarem de vida com clareza, estratégia e controle emocional.
             </p>
 
-            <p className="text-lg text-gray-400 mt-6 text-center max-w-3xl mx-auto">
-              Mesmo que você <span className="text-cyan-400 font-semibold">nunca tenha operado</span> ou já tenha tentado de tudo pra conquistar liberdade financeira sem sucesso,  
-              a TFX vai te mostrar que consistência não vem de sorte — vem de <span className="text-yellow-300 font-semibold">mentalidade, método e disciplina</span>.
-            </p>
 
             <p className="text-base text-gray-400 mt-5 text-center max-w-2xl mx-auto">
               💭 Está cansado de se sentir preso no mesmo ciclo, sempre tentando mudar de vida e nunca saindo do lugar?  
