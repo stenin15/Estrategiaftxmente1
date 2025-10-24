@@ -354,11 +354,6 @@ const LandingPage: React.FC = () => {
               Aqui você vai entender como pensar e agir como quem realmente vence.
             </p>
 
-            <p className="text-base text-gray-300 mt-6 text-center max-w-3xl mx-auto">
-              Em apenas <span className="text-cyan-400 font-semibold">1h ou 2h por dia</span>, você pode dominar o mesmo método usado por
-              <span className="text-yellow-300 font-semibold"> insiders e market makers</span> para operar com confiança —  
-              sem depender da sorte, promessas milagrosas ou gurus do mercado.
-            </p>
 
             <p className="text-sm text-gray-500 mt-6 text-center max-w-2xl mx-auto italic">
               A <span className="text-cyan-400 font-semibold">Estratégia TFX</span> é mais que um guia — é o primeiro passo pra quem decide parar de sobreviver
