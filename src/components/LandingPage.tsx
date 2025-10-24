@@ -408,39 +408,6 @@ const LandingPage: React.FC = () => {
           </div>
         </section>
 
-        {/* SEÇÃO DE IDENTIFICAÇÃO - DOR */}
-        <section className="bg-[#050505] text-white py-20">
-          <div className="section-box text-center">
-            <h2 className="text-3xl md:text-4xl font-extrabold mb-10 text-cyan-400">
-              😔 Você se identifica com isso?
-            </h2>
-
-            <div className="grid md:grid-cols-2 gap-6 text-left text-lg text-gray-300">
-              <div className="bg-[#0a0a0a]/70 border border-cyan-500/20 rounded-xl p-5 hover:bg-[#0f1a1a] transition-all duration-300 hover:shadow-[0_0_15px_#00ffff40]">
-                <p>😤 Entra em operações e o mercado parece sempre ir contra você?</p>
-              </div>
-
-              <div className="bg-[#0a0a0a]/70 border border-cyan-500/20 rounded-xl p-5 hover:bg-[#0f1a1a] transition-all duration-300 hover:shadow-[0_0_15px_#00ffff40]">
-                <p>📉 Sente que sempre sai antes da hora ou entra no pior momento?</p>
-              </div>
-
-              <div className="bg-[#0a0a0a]/70 border border-cyan-500/20 rounded-xl p-5 hover:bg-[#0f1a1a] transition-all duration-300 hover:shadow-[0_0_15px_#00ffff40]">
-                <p>🧠 Falta disciplina, confiança e clareza pra seguir seu plano?</p>
-              </div>
-
-              <div className="bg-[#0a0a0a]/70 border border-cyan-500/20 rounded-xl p-5 hover:bg-[#0f1a1a] transition-all duration-300 hover:shadow-[0_0_15px_#00ffff40]">
-                <p>💭 Já estudou tudo, mas ainda não consegue lucrar com consistência?</p>
-              </div>
-            </div>
-
-            <a 
-              href="#beneficios"
-              className="inline-block mt-10 bg-gradient-to-r from-cyan-400 to-blue-600 text-black font-bold text-lg px-10 py-4 rounded-full hover:scale-105 transition-transform shadow-[0_0_25px_#00ffff40]">
-              ⚡ Quero mudar meu jogo agora
-            </a>
-          </div>
-        </section>
-
         {/* SEÇÃO DE BENEFÍCIOS - SOLUÇÃO */}
         <section id="beneficios" className="bg-gradient-to-b from-[#071e26] to-[#0a0f14] text-white py-20">
           <div className="section-box text-center">
@@ -500,6 +467,39 @@ const LandingPage: React.FC = () => {
                 <span className="text-xl">→</span>
               </a>
             </div>
+          </div>
+        </section>
+
+        {/* SEÇÃO DE IDENTIFICAÇÃO - DOR */}
+        <section className="bg-[#050505] text-white py-20">
+          <div className="section-box text-center">
+            <h2 className="text-3xl md:text-4xl font-extrabold mb-10 text-cyan-400">
+              😔 Você se identifica com isso?
+            </h2>
+
+            <div className="grid md:grid-cols-2 gap-6 text-left text-lg text-gray-300">
+              <div className="bg-[#0a0a0a]/70 border border-cyan-500/20 rounded-xl p-5 hover:bg-[#0f1a1a] transition-all duration-300 hover:shadow-[0_0_15px_#00ffff40]">
+                <p>😤 Entra em operações e o mercado parece sempre ir contra você?</p>
+              </div>
+
+              <div className="bg-[#0a0a0a]/70 border border-cyan-500/20 rounded-xl p-5 hover:bg-[#0f1a1a] transition-all duration-300 hover:shadow-[0_0_15px_#00ffff40]">
+                <p>📉 Sente que sempre sai antes da hora ou entra no pior momento?</p>
+              </div>
+
+              <div className="bg-[#0a0a0a]/70 border border-cyan-500/20 rounded-xl p-5 hover:bg-[#0f1a1a] transition-all duration-300 hover:shadow-[0_0_15px_#00ffff40]">
+                <p>🧠 Falta disciplina, confiança e clareza pra seguir seu plano?</p>
+              </div>
+
+              <div className="bg-[#0a0a0a]/70 border border-cyan-500/20 rounded-xl p-5 hover:bg-[#0f1a1a] transition-all duration-300 hover:shadow-[0_0_15px_#00ffff40]">
+                <p>💭 Já estudou tudo, mas ainda não consegue lucrar com consistência?</p>
+              </div>
+            </div>
+
+            <a 
+              href="#cta"
+              className="inline-block mt-10 bg-gradient-to-r from-cyan-400 to-blue-600 text-black font-bold text-lg px-10 py-4 rounded-full hover:scale-105 transition-transform shadow-[0_0_25px_#00ffff40]">
+              ⚡ Quero mudar meu jogo agora
+            </a>
           </div>
         </section>
 
