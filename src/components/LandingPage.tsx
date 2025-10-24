@@ -335,21 +335,27 @@ const LandingPage: React.FC = () => {
 
             {/* HEADLINE PRINCIPAL MELHORADA */}
             <h1 className="text-5xl font-extrabold leading-tight text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
-              Domine o Mercado — mesmo que você esteja começando do zero
+              Domine o Mercado e transforme sua forma de pensar sobre dinheiro
             </h1>
 
-            <p className="text-3xl font-bold mt-4 text-center text-blue-100">
-              com a Estratégia <span className="text-cyan-400">TFX</span>
+            <p className="text-3xl font-bold mt-3 text-center text-blue-100">
+              com a <span className="text-cyan-400">Estratégia TFX</span>
             </p>
 
             <p className="text-lg text-gray-300 mt-6 text-center max-w-3xl mx-auto">
-              Descubra o método que transforma iniciantes em operadores confiantes — e ajuda traders experientes a alcançarem consistência e liberdade financeira.  
-              Em apenas <span className="text-cyan-400 font-semibold">1h ou 2h por dia</span>, você pode aprender a operar com clareza, estratégia e controle emocional.
+              Mesmo que você <span className="text-cyan-400 font-semibold">nunca tenha operado</span> antes ou já tenha tentado sem sucesso,  
+              aqui você vai aprender o método que transforma curiosos em traders conscientes — e  
+              operadores experientes em verdadeiros profissionais consistentes.
             </p>
 
-            <p className="text-base text-gray-400 mt-4 text-center max-w-2xl mx-auto">
-              Aprenda os mesmos princípios que <span className="text-yellow-300 font-semibold">insiders e market makers</span> usam para agir com confiança —  
-              sem depender da sorte e sem precisar de fórmulas mágicas.
+            <p className="text-base text-gray-400 mt-5 text-center max-w-2xl mx-auto">
+              Descubra como alcançar <span className="text-yellow-300 font-semibold">liberdade financeira</span> e controle emocional operando com clareza,  
+              estratégia e confiança — dedicando apenas <span className="text-cyan-400 font-semibold">1h ou 2h por dia</span>.  
+            </p>
+
+            <p className="text-sm text-gray-500 mt-4 text-center max-w-2xl mx-auto">
+              O mesmo método que <span className="text-yellow-300 font-semibold">insiders e market makers</span> usam para agir com precisão —  
+              sem depender da sorte ou fórmulas milagrosas.
             </p>
 
             {/* SEÇÃO DE IDENTIFICAÇÃO DE DORES INTEGRADA */}
