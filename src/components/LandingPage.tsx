@@ -748,7 +748,7 @@ const LandingPage: React.FC = () => {
               <span className="text-emerald-400">R$ 47.000</span> em Lucros Reais
             </h3>
             <p className="text-zinc-300 mb-6 text-lg">
-              Lucros reais gerados por alunos aplicando o método TFX Mente — <span className="text-emerald-400 font-bold">100% verificáveis</span>.
+              Lucros gerados por alunos aplicando o método TFX Mente.
             </p>
             
             {/* CONCEITOS TFX APLICADOS - VERSÃO EMOCIONAL */}
