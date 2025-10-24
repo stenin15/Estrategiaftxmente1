@@ -408,37 +408,37 @@ const LandingPage: React.FC = () => {
               em operadores conscientes — com mentalidade e setups que funcionam na vida real.
             </p>
 
-          {/* BLOCO DE TRANSFORMAÇÃO EMOCIONAL */}
-          <section className="text-center mt-12 bg-gradient-to-b from-[#0b1e23] to-[#081518] p-8 rounded-2xl shadow-lg border border-[#0a2a33] max-w-4xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 mb-3">
-              O que acontece quando você muda a forma de enxergar o mercado — e a si mesmo
+          {/* BLOCO DE TRANSFORMAÇÃO MENTAL E PESSOAL */}
+          <section className="text-center mt-8 sm:mt-12 bg-gradient-to-b from-[#0b1e23] to-[#081518] p-6 sm:p-8 rounded-2xl shadow-lg border border-[#0a2a33] max-w-4xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 mb-3 leading-tight">
+              O que acontece quando você muda a forma de pensar — sobre o mercado e sobre você
             </h2>
 
-            <p className="text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed">
-              Dentro da <span className="text-cyan-400 font-semibold">Estratégia TFX</span>, você vai entender o que poucos percebem — 
-              e que faz a diferença entre quem sobrevive e quem vence de verdade.
+            <p className="text-gray-300 mb-6 sm:mb-8 max-w-2xl mx-auto leading-relaxed text-sm sm:text-base px-4 sm:px-0">
+              Dentro da <span className="text-cyan-400 font-semibold">Estratégia TFX</span>, você vai desenvolver os mesmos princípios mentais que moldam traders consistentes — 
+              e pessoas que conquistam resultados em qualquer área da vida.
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-300 mb-6">
-              <div className="bg-[#0c2024] p-5 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-300">
-                🚀 O ponto cego que separa traders comuns dos consistentes
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 text-gray-300 mb-6">
+              <div className="bg-[#0c2024] p-4 sm:p-5 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-300 text-sm sm:text-base">
+                ⚡ O ponto de virada entre agir por impulso e operar com clareza — entenda o que realmente move o mercado (e suas decisões).
               </div>
-              <div className="bg-[#0c2024] p-5 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-300">
-                🧠 O que está por trás dos movimentos que fazem o mercado "te enganar"
+              <div className="bg-[#0c2024] p-4 sm:p-5 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-300 text-sm sm:text-base">
+                🧠 O código mental dos consistentes — como alinhar disciplina, foco e paciência para vencer sem depender da sorte.
               </div>
-              <div className="bg-[#0c2024] p-5 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-300">
-                ⚡ Como enxergar oportunidades onde a maioria vê risco
+              <div className="bg-[#0c2024] p-4 sm:p-5 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-300 text-sm sm:text-base">
+                🔄 O poder dos hábitos certos — estrutura sua rotina como quem vive de resultados, não de expectativas.
               </div>
-              <div className="bg-[#0c2024] p-5 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-300">
-                🏆 O código mental que impede você de perder o que conquistou
+              <div className="bg-[#0c2024] p-4 sm:p-5 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-300 text-sm sm:text-base">
+                💰 A visão que separa liberdade de ilusão — aprenda a usar o dinheiro e o tempo como ferramentas, não prisões.
               </div>
             </div>
 
-            <button className="mt-6 px-10 py-4 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 text-white font-bold text-lg shadow-md hover:shadow-cyan-400/30 transition-all duration-300 hover:scale-105">
-              🔥 Quero descobrir o que muda tudo
+            <button className="mt-4 sm:mt-6 px-8 sm:px-10 py-3 sm:py-4 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 text-white font-bold text-base sm:text-lg shadow-md hover:shadow-cyan-400/30 transition-all duration-300 hover:scale-105 w-full sm:w-auto">
+              🚀 Quero destravar minha mente e meus resultados
             </button>
 
-            <p className="text-gray-500 text-sm mt-3">Garantia de 7 dias • Acesso imediato • Suporte VIP</p>
+            <p className="text-gray-500 text-xs sm:text-sm mt-3">Garantia de 7 dias • Acesso imediato • Suporte VIP</p>
           </section>
 
             {/* BOTÃO CTA MELHORADO */}
