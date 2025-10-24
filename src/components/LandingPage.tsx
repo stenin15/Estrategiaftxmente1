@@ -348,53 +348,52 @@ const LandingPage: React.FC = () => {
 
 
 
-            {/* SEÇÃO DE IDENTIFICAÇÃO DE DORES INTEGRADA */}
+            {/* SEÇÃO OTIMIZADA PARA CONVERSÃO — "Identificação + Transformação + CTA" */}
             <section className="text-center mt-12 bg-gradient-to-b from-[#0b1e23] to-[#081518] p-8 rounded-2xl shadow-lg border border-[#0a2a33] max-w-4xl mx-auto">
-              <h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 mb-8">
-                😔 Você se identifica com isso?
-              </h2>
+              <h1 className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 mb-6">
+                Domine o Mercado com a <span className="text-indigo-400">Estratégia TFX</span>
+              </h1>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-300">
+              <p className="text-gray-300 max-w-2xl mx-auto text-lg leading-relaxed mb-6">
+                Cansado de se esforçar e sentir que nada muda? A <span className="text-cyan-400 font-semibold">Estratégia TFX</span> nasceu pra quem quer sair do ciclo da frustração e finalmente viver com liberdade, propósito e resultado real.  
+                Mesmo que você <span className="text-cyan-400 font-semibold">nunca tenha operado</span> ou já tenha tentado de tudo, aqui você vai descobrir o método que transforma esforço em consistência — e sonhos em conquistas.
+              </p>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-300 mb-6">
                 {/* COLUNA 1 — público geral */}
                 <div className="space-y-4">
-                  <div className="bg-[#0c2024] p-5 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-300 hover:scale-[1.02]">
-                    💭 Você sente que trabalha, se esforça… mas nunca sai do lugar?
+                  <div className="bg-[#0c2024] p-5 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-500 hover:scale-[1.02] opacity-0 animate-fade-in-up" style={{animationDelay: '0.1s'}}>
+                    💭 Sente que trabalha, se esforça… mas continua parado no mesmo lugar?
                   </div>
-
-                  <div className="bg-[#0c2024] p-5 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-300 hover:scale-[1.02]">
-                    💸 Quer liberdade financeira, mas sempre acaba voltando pro mesmo ciclo?
+                  <div className="bg-[#0c2024] p-5 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-500 hover:scale-[1.02] opacity-0 animate-fade-in-up" style={{animationDelay: '0.2s'}}>
+                    💸 Busca liberdade financeira, mas parece que algo sempre te puxa pra trás?
                   </div>
-
-                  <div className="bg-[#0c2024] p-5 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-300 hover:scale-[1.02]">
-                    ⚖️ Falta disciplina, confiança e clareza pra seguir o plano e não sabotar seus resultados?
+                  <div className="bg-[#0c2024] p-5 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-500 hover:scale-[1.02] opacity-0 animate-fade-in-up" style={{animationDelay: '0.3s'}}>
+                    ⚖️ Falta foco, confiança e clareza pra seguir o plano e parar de sabotar seus próprios resultados?
                   </div>
                 </div>
 
-                {/* COLUNA 2 — dores do trader aprimoradas */}
+                {/* COLUNA 2 — público trader */}
                 <div className="space-y-4">
-                  <div className="bg-[#0c2024] p-5 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-300 hover:scale-[1.02]">
-                    📉 Entra confiante, mas o mercado vira contra você e leva tudo em segundos?
+                  <div className="bg-[#0c2024] p-5 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-500 hover:scale-[1.02] opacity-0 animate-fade-in-up" style={{animationDelay: '0.4s'}}>
+                    📉 Entra confiante e o mercado parece virar contra você em questão de segundos?
                   </div>
-
-                  <div className="bg-[#0c2024] p-5 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-300 hover:scale-[1.02]">
-                    ⏰ Sente que sempre sai da operação antes da hora — e assiste o preço bater exatamente onde você queria?
+                  <div className="bg-[#0c2024] p-5 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-500 hover:scale-[1.02] opacity-0 animate-fade-in-up" style={{animationDelay: '0.5s'}}>
+                    ⏰ Sai da operação antes da hora e assiste o preço bater exatamente onde queria entrar?
                   </div>
-
-                  <div className="bg-[#0c2024] p-5 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-300 hover:scale-[1.02]">
-                    🧩 Já lucrou várias vezes, mas nunca consegue manter consistência — sempre volta pro zero?
+                  <div className="bg-[#0c2024] p-5 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-500 hover:scale-[1.02] opacity-0 animate-fade-in-up" style={{animationDelay: '0.6s'}}>
+                    🧩 Já lucrou, mas nunca conseguiu manter consistência — sempre volta pro zero?
                   </div>
                 </div>
               </div>
 
               <p className="text-gray-400 mt-8 text-base max-w-2xl mx-auto leading-relaxed">
-                Mesmo que você <span className="text-cyan-400 font-semibold">nunca tenha operado</span> ou já tenha tentado de tudo pra conquistar liberdade financeira sem sucesso, 
-                a <span className="text-cyan-400 font-semibold">Estratégia TFX</span> vai te mostrar que consistência não vem de sorte — vem de 
-                <span className="text-yellow-300 font-semibold"> mentalidade, método e disciplina.</span>  
-                É mais do que um guia — é o passo que separa quem só sonha daquelas pessoas que realmente mudam sua forma de ver o mercado, o dinheiro e a liberdade.
+                A <span className="text-cyan-400 font-semibold">TFX</span> não é só um método — é o ponto de virada entre quem sobrevive e quem prospera.  
+                Aqui, você aprende o que realmente muda o jogo: <span className="text-yellow-300 font-semibold">mentalidade, método e disciplina.</span>
               </p>
 
-              <button className="mt-8 px-8 py-3 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 text-white font-bold text-lg shadow-md hover:shadow-cyan-400/30 transition-all duration-300 hover:scale-105">
-                ⚡ Quero mudar meu jogo agora
+              <button className="mt-8 px-10 py-4 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 text-white font-bold text-lg shadow-md hover:shadow-cyan-400/30 transition-all duration-300 hover:scale-105 animate-pulse-glow">
+                🔥 Quero mudar meu jogo e começar minha virada agora
               </button>
             </section>
           </div>
