@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet-async";
 import useEmblaCarousel from "embla-carousel-react";
 import { OfertaFinal } from "./OfertaFinal";
 import { Footer } from "./Footer";
+import ResultsCarousel from "./ResultsCarousel";
 
 /** =========================
  * CONFIGURÁVEIS
@@ -782,6 +783,9 @@ const LandingPage: React.FC = () => {
           </div>
           </div>
         </section>
+
+        {/* CARROSSEL 3D COM SCROLL AUTOMÁTICO */}
+        <ResultsCarousel />
 
         {/* DIVISOR ANIMADO */}
         <div className="section-divider"></div>
