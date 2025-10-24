@@ -334,23 +334,22 @@ const LandingPage: React.FC = () => {
             </div>
 
             {/* HEADLINE PRINCIPAL MELHORADA */}
-            <h1 className="text-5xl md:text-7xl font-black leading-tight mb-4">
-              <span className="bg-gradient-to-r from-white via-cyan-300 to-white bg-clip-text text-transparent">
-                Domine o Mercado
-              </span>
-              <br />
-              <span className="bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
-                com a Estratégia TFX
-              </span>
+            <h1 className="text-5xl font-extrabold leading-tight text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
+              Domine o Mercado — mesmo que você esteja começando do zero
             </h1>
-            
-            <p className="text-2xl md:text-3xl font-bold mt-4 mb-3 bg-gradient-to-r from-cyan-200 to-blue-200 bg-clip-text text-transparent">
-              Transforme traders comuns em lucrativos — em apenas 1h ou 2h por dia.
+
+            <p className="text-3xl font-bold mt-4 text-center text-blue-100">
+              com a Estratégia <span className="text-cyan-400">TFX</span>
             </p>
 
-            <p className="mt-4 text-gray-200 text-xl leading-relaxed max-w-4xl mx-auto mb-8">
-              Aprenda o mesmo método que <span className="text-cyan-300 font-bold">insiders e market makers</span> usam 
-              para operar com confiança — <span className="text-yellow-300 font-bold">sem depender da sorte</span>.
+            <p className="text-lg text-gray-300 mt-6 text-center max-w-3xl mx-auto">
+              Descubra o método que transforma iniciantes em operadores confiantes — e ajuda traders experientes a alcançarem consistência e liberdade financeira.  
+              Em apenas <span className="text-cyan-400 font-semibold">1h ou 2h por dia</span>, você pode aprender a operar com clareza, estratégia e controle emocional.
+            </p>
+
+            <p className="text-base text-gray-400 mt-4 text-center max-w-2xl mx-auto">
+              Aprenda os mesmos princípios que <span className="text-yellow-300 font-semibold">insiders e market makers</span> usam para agir com confiança —  
+              sem depender da sorte e sem precisar de fórmulas mágicas.
             </p>
 
             {/* SEÇÃO DE IDENTIFICAÇÃO DE DORES INTEGRADA */}
