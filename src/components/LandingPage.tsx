@@ -408,90 +408,47 @@ const LandingPage: React.FC = () => {
           </div>
         </section>
 
-        {/* SEÇÃO IDENTIFICAÇÃO E BENEFÍCIOS - MELHORADA */}
-        <section className="bg-gradient-to-b from-[#071e26] to-[#0a0f14] text-white py-20 px-6">
-          {/* Seção 1 - Dores / Identificação */}
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-4xl font-extrabold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
-              Você se identifica com isso?
+        {/* SEÇÃO DOR + SOLUÇÃO - NOVO ESTILO EM CARDS */}
+        <section className="bg-[#050505] text-white py-20">
+          <div className="section-box text-center">
+
+            <h2 className="text-3xl md:text-4xl font-extrabold mb-10 text-cyan-400">
+              😔 Você se identifica com isso?
             </h2>
-            <div className="space-y-4 text-lg text-gray-300">
-              <p>
-                Já sonhou em <span className="text-cyan-400 font-semibold">viver de renda</span>,
-                ter liberdade financeira e não depender de chefe, horário ou rotina?
-              </p>
-              <p>
-                Está cansado de ver o mercado financeiro como algo distante ou apenas para especialistas?
-              </p>
-              <p>
-                Talvez você já opere e queira finalmente alcançar consistência — ou esteja começando e quer aprender do jeito certo.
-              </p>
-              <p>
-                A verdade é: <span className="text-blue-400 font-semibold">o que te separa do lucro é o método e a mentalidade</span> — e nós vamos te entregar os dois.
+
+            <div className="grid md:grid-cols-2 gap-6 text-left text-lg text-gray-300">
+              <div className="bg-[#0a0a0a]/70 border border-cyan-500/20 rounded-xl p-5 hover:bg-[#0f1a1a] transition-all duration-300 hover:shadow-[0_0_15px_#00ffff40]">
+                <p>😤 Entra em operações e o mercado parece sempre ir contra você?</p>
+              </div>
+
+              <div className="bg-[#0a0a0a]/70 border border-cyan-500/20 rounded-xl p-5 hover:bg-[#0f1a1a] transition-all duration-300 hover:shadow-[0_0_15px_#00ffff40]">
+                <p>📉 Sente que sempre sai antes da hora ou entra no pior momento?</p>
+              </div>
+
+              <div className="bg-[#0a0a0a]/70 border border-cyan-500/20 rounded-xl p-5 hover:bg-[#0f1a1a] transition-all duration-300 hover:shadow-[0_0_15px_#00ffff40]">
+                <p>🧠 Falta disciplina, confiança e clareza pra seguir seu plano?</p>
+              </div>
+
+              <div className="bg-[#0a0a0a]/70 border border-cyan-500/20 rounded-xl p-5 hover:bg-[#0f1a1a] transition-all duration-300 hover:shadow-[0_0_15px_#00ffff40]">
+                <p>💭 Já estudou tudo, mas ainda não consegue lucrar com consistência?</p>
+              </div>
+            </div>
+
+            <div className="mt-14">
+              <h3 className="text-2xl md:text-3xl font-semibold text-cyan-400 mb-2">
+                Então respira... 💨 a solução está logo abaixo 👇
+              </h3>
+              <p className="text-gray-400 text-lg">
+                A <span className="text-cyan-300 font-medium">TFX Mente</span> foi criada pra transformar traders comuns  
+                em operadores conscientes — com mentalidade e setups que funcionam na vida real.
               </p>
             </div>
+
             <a 
-              href="https://app.cakto.com.br/pay/SEU_ID_DO_PRODUTO" 
-              target="_blank" 
-              className="inline-flex items-center gap-2 mt-8 bg-cyan-500 hover:bg-cyan-600 text-white px-8 py-6 text-lg rounded-2xl shadow-lg transition-all duration-300 hover:scale-105">
-              Quero mudar meu jogo agora 
-              <span className="text-xl">→</span>
+              href="#cta"
+              className="inline-block mt-10 bg-gradient-to-r from-cyan-400 to-blue-600 text-black font-bold text-lg px-10 py-4 rounded-full hover:scale-105 transition-transform shadow-[0_0_25px_#00ffff40]">
+              ⚡ Quero mudar meu jogo agora
             </a>
-          </div>
-
-          {/* Seção 2 - Benefícios / O que vai aprender */}
-          <div className="max-w-5xl mx-auto mt-24">
-            <h2 className="text-4xl font-extrabold text-center mb-10 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
-              O que você vai descobrir na Estratégia TFX
-            </h2>
-
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="bg-[#0e1a22]/70 border border-[#1e2d38] hover:border-cyan-400 transition-all duration-300 rounded-2xl shadow-md">
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold text-cyan-400 mb-3">
-                    Domínio da mente e controle emocional
-                  </h3>
-                  <p className="text-gray-300">Como pensar como os traders que realmente lucram e manter o foco mesmo nas piores fases.</p>
-                </div>
-              </div>
-
-              <div className="bg-[#0e1a22]/70 border border-[#1e2d38] hover:border-cyan-400 transition-all duration-300 rounded-2xl shadow-md">
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold text-cyan-400 mb-3">
-                    Gestão e comportamento diário
-                  </h3>
-                  <p className="text-gray-300">Aprenda como se comportar no dia a dia para operar com clareza, disciplina e propósito.</p>
-                </div>
-              </div>
-
-              <div className="bg-[#0e1a22]/70 border border-[#1e2d38] hover:border-cyan-400 transition-all duration-300 rounded-2xl shadow-md">
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold text-cyan-400 mb-3">
-                    Acesso ao grupo VIP no Telegram
-                  </h3>
-                  <p className="text-gray-300">Entre em um grupo exclusivo com traders e receba sinais, análises e orientações diretas.</p>
-                </div>
-              </div>
-
-              <div className="bg-[#0e1a22]/70 border border-[#1e2d38] hover:border-cyan-400 transition-all duration-300 rounded-2xl shadow-md">
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold text-cyan-400 mb-3">
-                    O mapa do iniciante ao avançado
-                  </h3>
-                  <p className="text-gray-300">Mesmo que nunca tenha operado, siga o passo a passo que transforma curiosos em traders confiantes.</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="text-center mt-10">
-              <a 
-                href="https://app.cakto.com.br/pay/SEU_ID_DO_PRODUTO" 
-                target="_blank" 
-                className="inline-flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-8 py-6 text-lg rounded-2xl shadow-lg transition-all duration-300 hover:scale-105">
-                Quero acesso completo agora 
-                <span className="text-xl">→</span>
-              </a>
-            </div>
           </div>
         </section>
 
