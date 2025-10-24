@@ -335,27 +335,34 @@ const LandingPage: React.FC = () => {
 
             {/* HEADLINE PRINCIPAL MELHORADA */}
             <h1 className="text-5xl font-extrabold leading-tight text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
-              Domine o Mercado e transforme sua forma de pensar sobre dinheiro
+              Domine o Mercado com a <span className="text-indigo-400">Estratégia TFX</span>
             </h1>
 
-            <p className="text-3xl font-bold mt-3 text-center text-blue-100">
-              com a <span className="text-cyan-400">Estratégia TFX</span>
+            <p className="text-xl text-center text-gray-200 mt-4 max-w-3xl mx-auto">
+              Mais que uma técnica — <span className="text-cyan-400 font-semibold">a TFX é um novo modo de enxergar o dinheiro, o tempo e a liberdade</span>.
+              Um método que vem ajudando pessoas comuns e traders travados a mudarem de vida com clareza, estratégia e controle emocional.
             </p>
 
-            <p className="text-lg text-gray-300 mt-6 text-center max-w-3xl mx-auto">
-              Mesmo que você <span className="text-cyan-400 font-semibold">nunca tenha operado</span> antes ou já tenha tentado sem sucesso,  
-              aqui você vai aprender o método que transforma curiosos em traders conscientes — e  
-              operadores experientes em verdadeiros profissionais consistentes.
+            <p className="text-lg text-gray-400 mt-6 text-center max-w-3xl mx-auto">
+              Mesmo que você <span className="text-cyan-400 font-semibold">nunca tenha operado</span> ou já tenha tentado de tudo pra conquistar liberdade financeira sem sucesso,  
+              a TFX vai te mostrar que consistência não vem de sorte — vem de <span className="text-yellow-300 font-semibold">mentalidade, método e disciplina</span>.
             </p>
 
             <p className="text-base text-gray-400 mt-5 text-center max-w-2xl mx-auto">
-              Descubra como alcançar <span className="text-yellow-300 font-semibold">liberdade financeira</span> e controle emocional operando com clareza,  
-              estratégia e confiança — dedicando apenas <span className="text-cyan-400 font-semibold">1h ou 2h por dia</span>.  
+              💭 Está cansado de se sentir preso no mesmo ciclo, sempre tentando mudar de vida e nunca saindo do lugar?  
+              Ou já opera, mas sente que o mercado sempre "vira contra você" e te deixa frustrado?  
+              Aqui você vai entender como pensar e agir como quem realmente vence.
             </p>
 
-            <p className="text-sm text-gray-500 mt-4 text-center max-w-2xl mx-auto">
-              O mesmo método que <span className="text-yellow-300 font-semibold">insiders e market makers</span> usam para agir com precisão —  
-              sem depender da sorte ou fórmulas milagrosas.
+            <p className="text-base text-gray-300 mt-6 text-center max-w-3xl mx-auto">
+              Em apenas <span className="text-cyan-400 font-semibold">1h ou 2h por dia</span>, você pode dominar o mesmo método usado por
+              <span className="text-yellow-300 font-semibold"> insiders e market makers</span> para operar com confiança —  
+              sem depender da sorte, promessas milagrosas ou gurus do mercado.
+            </p>
+
+            <p className="text-sm text-gray-500 mt-6 text-center max-w-2xl mx-auto italic">
+              A <span className="text-cyan-400 font-semibold">Estratégia TFX</span> é mais que um guia — é o primeiro passo pra quem decide parar de sobreviver
+              e começar a viver com liberdade, propósito e resultado real.
             </p>
 
             {/* SEÇÃO DE IDENTIFICAÇÃO DE DORES INTEGRADA */}
