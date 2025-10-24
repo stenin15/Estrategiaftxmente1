@@ -309,7 +309,7 @@ const LandingPage: React.FC = () => {
 
       <div className="bg-gradient-to-b from-black via-zinc-950 to-black text-white min-h-screen">
         {/* HERO SECTION - NOME DA ESTRATÉGIA + IDENTIFICAÇÃO DE DORES */}
-        <section className="relative bg-gradient-to-br from-[#0a0a0a] via-[#001a1a] to-[#000] text-white py-24 overflow-hidden">
+        <section className="relative bg-gradient-to-br from-[#0a0a0a] via-[#001a1a] to-[#000] text-white py-16 overflow-hidden">
           {/* EFEITOS VISUAIS DE FUNDO */}
           <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 via-transparent to-blue-500/5"></div>
           <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(0,255,255,0.1),transparent_50%)]"></div>
@@ -323,7 +323,7 @@ const LandingPage: React.FC = () => {
             </div>
 
             {/* CRONÔMETRO REGRESSIVO MELHORADO */}
-            <div className="mb-10 w-full max-w-2xl mx-auto">
+            <div className="mb-6 w-full max-w-2xl mx-auto">
               <div className="bg-gradient-to-r from-red-600 via-red-500 to-orange-500 text-white px-8 py-6 rounded-2xl w-full text-2xl font-bold shadow-[0_0_30px_rgba(255,0,0,0.4)] border-2 border-red-400/50">
                 <div id="countdown" className="text-center">
                   <div className="text-sm mb-2 font-semibold">⏰ OFERTA EXPIRA EM:</div>
@@ -334,7 +334,7 @@ const LandingPage: React.FC = () => {
             </div>
 
             {/* HEADLINE PRINCIPAL MELHORADA */}
-            <h1 className="text-5xl md:text-7xl font-black leading-tight mb-6">
+            <h1 className="text-5xl md:text-7xl font-black leading-tight mb-4">
               <span className="bg-gradient-to-r from-white via-cyan-300 to-white bg-clip-text text-transparent">
                 Domine o Mercado
               </span>
@@ -344,22 +344,22 @@ const LandingPage: React.FC = () => {
               </span>
             </h1>
             
-            <p className="text-2xl md:text-3xl font-bold mt-6 mb-4 bg-gradient-to-r from-cyan-200 to-blue-200 bg-clip-text text-transparent">
+            <p className="text-2xl md:text-3xl font-bold mt-4 mb-3 bg-gradient-to-r from-cyan-200 to-blue-200 bg-clip-text text-transparent">
               Transforme traders comuns em lucrativos — em apenas 1h ou 2h por dia.
             </p>
 
-            <p className="mt-6 text-gray-200 text-xl leading-relaxed max-w-4xl mx-auto mb-16">
+            <p className="mt-4 text-gray-200 text-xl leading-relaxed max-w-4xl mx-auto mb-8">
               Aprenda o mesmo método que <span className="text-cyan-300 font-bold">insiders e market makers</span> usam 
               para operar com confiança — <span className="text-yellow-300 font-bold">sem depender da sorte</span>.
             </p>
 
             {/* SEÇÃO DE IDENTIFICAÇÃO DE DORES INTEGRADA */}
-            <div className="mt-16">
-              <h2 className="text-3xl md:text-4xl font-extrabold mb-10 text-cyan-400">
+            <div className="mt-8">
+              <h2 className="text-3xl md:text-4xl font-extrabold mb-6 text-cyan-400">
                 😔 Você se identifica com isso?
               </h2>
 
-              <div className="grid md:grid-cols-2 gap-6 text-left text-lg text-gray-300 max-w-5xl mx-auto">
+              <div className="grid md:grid-cols-2 gap-4 text-left text-lg text-gray-300 max-w-5xl mx-auto">
                 <div className="bg-[#0a0a0a]/70 border border-cyan-500/20 rounded-xl p-5 hover:bg-[#0f1a1a] transition-all duration-300 hover:shadow-[0_0_15px_#00ffff40]">
                   <p>😤 Entra em operações e o mercado parece sempre ir contra você?</p>
                 </div>
@@ -379,7 +379,7 @@ const LandingPage: React.FC = () => {
 
               <a 
                 href="#beneficios"
-                className="inline-block mt-10 bg-gradient-to-r from-cyan-400 to-blue-600 text-black font-bold text-lg px-10 py-4 rounded-full hover:scale-105 transition-transform shadow-[0_0_25px_#00ffff40]">
+                className="inline-block mt-6 bg-gradient-to-r from-cyan-400 to-blue-600 text-black font-bold text-lg px-10 py-4 rounded-full hover:scale-105 transition-transform shadow-[0_0_25px_#00ffff40]">
                 ⚡ Quero mudar meu jogo agora
               </a>
             </div>
