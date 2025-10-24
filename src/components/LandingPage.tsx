@@ -347,10 +347,6 @@ const LandingPage: React.FC = () => {
             </p>
 
 
-            <p className="text-sm text-gray-500 mt-6 text-center max-w-2xl mx-auto italic">
-              A <span className="text-cyan-400 font-semibold">Estratégia TFX</span> é mais que um guia — é o primeiro passo pra quem decide parar de sobreviver
-              e começar a viver com liberdade, propósito e resultado real.
-            </p>
 
             {/* SEÇÃO DE IDENTIFICAÇÃO DE DORES INTEGRADA */}
             <section className="text-center mt-12 bg-gradient-to-b from-[#0b1e23] to-[#081518] p-8 rounded-2xl shadow-lg border border-[#0a2a33] max-w-4xl mx-auto">
