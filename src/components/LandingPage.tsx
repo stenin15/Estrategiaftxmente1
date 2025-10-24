@@ -398,9 +398,11 @@ const LandingPage: React.FC = () => {
                 </div>
               </div>
 
-              <p className="text-gray-400 mt-8 text-base max-w-2xl mx-auto">
-                Se você se reconheceu em pelo menos uma dessas situações, <span className="text-cyan-400 font-semibold">a Estratégia TFX</span> 
-                não é só o que você procura — é o que vai mudar completamente sua forma de ver o mercado, o dinheiro e a liberdade.
+              <p className="text-gray-400 mt-8 text-base max-w-2xl mx-auto leading-relaxed">
+                Mesmo que você <span className="text-cyan-400 font-semibold">nunca tenha operado</span> ou já tenha tentado de tudo pra conquistar liberdade financeira sem sucesso, 
+                a <span className="text-cyan-400 font-semibold">Estratégia TFX</span> vai te mostrar que consistência não vem de sorte — vem de 
+                <span className="text-yellow-300 font-semibold"> mentalidade, método e disciplina.</span>  
+                É mais do que um guia — é o passo que separa quem só sonha daquelas pessoas que realmente mudam sua forma de ver o mercado, o dinheiro e a liberdade.
               </p>
 
               <button className="mt-8 px-8 py-3 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 text-white font-bold text-lg shadow-md hover:shadow-cyan-400/30 transition-all duration-300 hover:scale-105">
