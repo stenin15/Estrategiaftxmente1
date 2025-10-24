@@ -23,7 +23,7 @@ export default function ResultsCarousel() {
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-[#0b1e23] to-[#081518] py-16 rounded-3xl shadow-2xl border border-[#0a2a33] max-w-6xl mx-auto mt-12">
       <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-8 text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-500">
-        Transformações Visuais e Resultados Aplicados
+        🎯 CARROSSEL 3D - TESTE VISUAL
       </h2>
 
       <p className="text-center text-gray-300 max-w-2xl mx-auto mb-10">
