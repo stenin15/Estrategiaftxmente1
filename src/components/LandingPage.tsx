@@ -346,8 +346,53 @@ const LandingPage: React.FC = () => {
               Aqui você vai entender como pensar e agir como quem realmente vence.
             </p>
 
+            {/* SEÇÃO DE IDENTIFICAÇÃO DE DORES INTEGRADA */}
+            <section className="text-center mt-12 bg-gradient-to-b from-[#0b1e23] to-[#081518] p-8 rounded-2xl shadow-lg border border-[#0a2a33] max-w-4xl mx-auto">
+              <h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 mb-8">
+                😔 Você se identifica com isso?
+              </h2>
 
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-300">
+                {/* COLUNA 1 — público geral */}
+                <div className="space-y-4">
+                  <div className="bg-[#0c2024] p-5 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-300 motion-safe:hover:scale-[1.02]">
+                    💭 Sente que trabalha, se esforça… mas continua parado no mesmo lugar?
+                  </div>
+                  <div className="bg-[#0c2024] p-5 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-300 motion-safe:hover:scale-[1.02]">
+                    💸 Busca liberdade financeira, mas parece que algo sempre te puxa pra trás?
+                  </div>
+                  <div className="bg-[#0c2024] p-5 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-300 motion-safe:hover:scale-[1.02]">
+                    ⚖️ Falta foco, confiança e clareza pra seguir o plano e parar de sabotar seus próprios resultados?
+                  </div>
+                </div>
 
+                {/* COLUNA 2 — público trader */}
+                <div className="space-y-4">
+                  <div className="bg-[#0c2024] p-5 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-300 motion-safe:hover:scale-[1.02]">
+                    📉 Entra confiante e o mercado parece virar contra você em questão de segundos?
+                  </div>
+                  <div className="bg-[#0c2024] p-5 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-300 motion-safe:hover:scale-[1.02]">
+                    ⏰ Sai da operação antes da hora e assiste o preço bater exatamente onde queria entrar?
+                  </div>
+                  <div className="bg-[#0c2024] p-5 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-300 motion-safe:hover:scale-[1.02]">
+                    🧩 Já lucrou, mas nunca conseguiu manter consistência — sempre volta pro zero?
+                  </div>
+                </div>
+              </div>
+
+              <p className="text-gray-400 mt-8 text-base max-w-2xl mx-auto leading-relaxed">
+                A <span className="text-cyan-400 font-semibold">TFX</span> não é só um método — é o ponto de virada entre quem sobrevive e quem prospera.
+                Aqui, você aprende o que realmente muda o jogo: <span className="text-yellow-300 font-semibold">mentalidade, método e disciplina.</span>
+              </p>
+
+              <button
+                type="button"
+                aria-label="Quero mudar meu jogo e começar minha virada agora"
+                className="mt-8 px-10 py-4 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 text-white font-bold text-lg shadow-md hover:shadow-cyan-400/30 transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-cyan-400/60"
+              >
+                🔥 Quero mudar meu jogo e começar minha virada agora
+              </button>
+            </section>
           </div>
         </section>
 
