@@ -192,9 +192,6 @@ const LandingPage: React.FC = () => {
               O que acontece quando você muda a forma de pensar — sobre o mercado e sobre você
           </h2>
           
-            <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
-              Agora que você viu o que te impede, veja o que acontece quando você muda a forma de pensar — sobre o mercado e sobre você.
-            </p>
             
             <p className="text-lg text-gray-400 mb-12 max-w-3xl mx-auto">
               A <span className="text-cyan-300 font-medium">Estratégia TFX</span> foi criada pra transformar traders comuns  
