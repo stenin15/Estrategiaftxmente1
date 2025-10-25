@@ -172,13 +172,15 @@ const LandingPage: React.FC = () => {
                 Aqui, você aprende o que realmente muda o jogo: <span className="text-yellow-300 font-semibold">mentalidade, método e disciplina.</span>
               </p>
 
-              <button
-                type="button"
-                aria-label="Quero mudar meu jogo e começar minha virada agora"
-                className="mt-8 px-10 py-4 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 text-white font-bold text-lg shadow-md hover:shadow-cyan-400/30 transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-cyan-400/60"
+              <a
+                href="#beneficios"
+                className="inline-block mt-8 px-10 py-4 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 text-white font-bold text-lg shadow-md hover:shadow-cyan-400/30 transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-cyan-400/60"
               >
-                🔥 Quero mudar meu jogo e começar minha virada agora
-              </button>
+                🚀 Quero entender como a Estratégia TFX funciona
+              </a>
+              <p className="text-sm text-gray-400 mt-4 italic">
+                Abaixo você vai ver o que está travando a maioria — e como a TFX resolve isso passo a passo.
+              </p>
             </section>
           </div>
         </section>
@@ -187,11 +189,15 @@ const LandingPage: React.FC = () => {
         <section id="beneficios" className="bg-gradient-to-b from-[#071e26] to-[#0a0f14] text-white py-20">
           <div className="section-box text-center">
             <h2 className="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 mb-4">
-              Chegou a hora de sair do ciclo da frustração e construir sua virada com a <span className="text-indigo-400">Estratégia TFX</span>
+              O que acontece quando você muda a forma de pensar — sobre o mercado e sobre você
           </h2>
           
-            <p className="text-xl text-gray-300 mb-12 max-w-3xl mx-auto">
-              A <span className="text-cyan-300 font-medium">TFX Mente</span> foi criada pra transformar traders comuns  
+            <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
+              Agora que você viu o que te impede, veja o que acontece quando você muda a forma de pensar — sobre o mercado e sobre você.
+            </p>
+            
+            <p className="text-lg text-gray-400 mb-12 max-w-3xl mx-auto">
+              A <span className="text-cyan-300 font-medium">Estratégia TFX</span> foi criada pra transformar traders comuns  
               em operadores conscientes — com mentalidade e setups que funcionam na vida real.
             </p>
 
@@ -223,7 +229,7 @@ const LandingPage: React.FC = () => {
             
             <button className="mt-4 sm:mt-6 px-8 sm:px-10 py-3 sm:py-4 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 text-white font-bold text-base sm:text-lg shadow-md hover:shadow-cyan-400/30 transition-all duration-300 hover:scale-105 w-full sm:w-auto">
               🚀 Quero destravar minha mente e meus resultados
-            </button>
+              </button>
 
             <p className="text-gray-500 text-xs sm:text-sm mt-3">Garantia de 7 dias • Acesso imediato • Suporte VIP</p>
           </section>
@@ -242,6 +248,19 @@ const LandingPage: React.FC = () => {
                 ✅ Garantia de 7 dias • ✅ Acesso imediato • ✅ Suporte VIP
               </p>
           </div>
+
+          {/* CTA CONECTADO */}
+          <div className="text-center mt-12">
+            <a
+              href="#transformacoes"
+              className="inline-block px-10 py-4 rounded-full bg-gradient-to-r from-green-400 to-emerald-500 text-white font-bold text-lg shadow-md hover:shadow-green-400/30 transition-all duration-300 hover:scale-105"
+            >
+              🎯 Quero saber o que muda quando aplico a Estratégia TFX
+            </a>
+            <p className="text-sm text-gray-400 mt-4 italic">
+              Veja abaixo os resultados e transformações que acontecem quando essa mentalidade é colocada em prática.
+            </p>
+          </div>
           </div>
         </section>
 
@@ -254,10 +273,35 @@ const LandingPage: React.FC = () => {
         </div>
 
         {/* SEÇÃO CINEMATOGRÁFICA IMPACTANTE */}
-        <SeçãoImpactante />
+        <div id="transformacoes">
+          <SeçãoImpactante />
+        </div>
 
         {/* TRANSFORMAÇÕES REAIS - SEÇÃO OTIMIZADA */}
         <TransformacoesReaisSection />
+        
+        {/* CTA FINAL CONECTADO */}
+        <section className="text-center py-16 bg-gradient-to-b from-[#071e26] to-[#0a0f14]">
+          <div className="max-w-4xl mx-auto px-6">
+            <h2 className="text-4xl font-bold text-cyan-400 mb-6">
+              Chegou a sua vez de agir
+            </h2>
+            <p className="text-gray-300 mb-8 max-w-2xl mx-auto text-lg">
+              A Estratégia TFX não é só um método — é o ponto de virada pra quem decide sair do ciclo de frustração e começar a viver com liberdade e consistência.
+            </p>
+            <a
+              href={WHATSAPP_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block px-10 py-5 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 text-white font-bold text-xl hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-cyan-400/30"
+            >
+              🚀 Quero acessar agora e começar minha virada
+            </a>
+            <p className="text-sm text-gray-400 mt-4">
+              ✅ Garantia de 7 dias • ✅ Acesso imediato • ✅ Suporte VIP
+            </p>
+          </div>
+        </section>
 
 
         {/* DIVISOR ANIMADO */}
