@@ -43,6 +43,66 @@ const imagens = [
   "/xau2.webp", // Antes
   "/resultado forex 4  (7).jpeg", // Depois
   "/WhatsApp Image 2025-10-22 at 00.13.37.jpeg", // Resultado
+  
+  // SEQUÊNCIA 9: BTC
+  "/btc1.webp", // Antes
+  "/resultado cripto 1  (2).jpeg", // Depois
+  "/WhatsApp Image 2025-10-21 at 17.07.37 (2).jpeg", // Resultado
+  
+  // SEQUÊNCIA 10: BTC 2
+  "/btc2.webp", // Antes
+  "/resultado cripto 1  (4).jpeg", // Depois
+  "/WhatsApp Image 2025-10-21 at 17.07.37 (3).jpeg", // Resultado
+  
+  // SEQUÊNCIA 11: BTC 3
+  "/btc3.webp", // Antes
+  "/resultado cripto 1  (5).jpeg", // Depois
+  "/WhatsApp Image 2025-10-21 at 17.07.37 (4).jpeg", // Resultado
+  
+  // SEQUÊNCIA 12: BTC 4
+  "/btc4.webp", // Antes
+  "/resultado cripto 1  (6).jpeg", // Depois
+  "/WhatsApp Image 2025-10-21 at 17.07.37 (5).jpeg", // Resultado
+  
+  // SEQUÊNCIA 13: PEPE
+  "/pepe1.webp", // Antes
+  "/resultado cripto 1  (7).jpeg", // Depois
+  "/WhatsApp Image 2025-10-21 at 17.07.37 (6).jpeg", // Resultado
+  
+  // SEQUÊNCIA 14: PEPE 2
+  "/pepe2.webp", // Antes
+  "/resultado cripto 1  (9).jpeg", // Depois
+  "/WhatsApp Image 2025-10-21 at 17.07.37 (7).jpeg", // Resultado
+  
+  // SEQUÊNCIA 15: RLC
+  "/rlc1.webp", // Antes
+  "/resultado cripto 1  (10).jpeg", // Depois
+  "/WhatsApp Image 2025-10-21 at 17.07.37 (8).jpeg", // Resultado
+  
+  // SEQUÊNCIA 16: RLC 2
+  "/rlc2.webp", // Antes
+  "/resultado cripto 1  (11).jpeg", // Depois
+  "/WhatsApp Image 2025-10-21 at 17.07.37 (9).jpeg", // Resultado
+  
+  // SEQUÊNCIA 17: USDCAD
+  "/usdcad1.webp", // Antes
+  "/resultado forex 1  (1).jpeg", // Depois
+  "/WhatsApp Image 2025-10-21 at 17.07.37 (10).jpeg", // Resultado
+  
+  // SEQUÊNCIA 18: USDCAD 2
+  "/usdcad2.webp", // Antes
+  "/resultado forex 1  (2).jpeg", // Depois
+  "/WhatsApp Image 2025-10-21 at 17.07.37 (11).jpeg", // Resultado
+  
+  // SEQUÊNCIA 19: GBPUSD
+  "/gbpusd1.webp", // Antes
+  "/resultado forex 1  (3).jpeg", // Depois
+  "/WhatsApp Image 2025-10-21 at 17.07.37 (12).jpeg", // Resultado
+  
+  // SEQUÊNCIA 20: GBPUSD 2
+  "/gbpusd2.webp", // Antes
+  "/resultado forex 1  (4).jpeg", // Depois
+  "/WhatsApp Image 2025-10-21 at 17.07.37 (13).jpeg", // Resultado
 ];
 
 // ======= LEGENDAS DINÂMICAS =======
