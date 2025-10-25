@@ -37,10 +37,6 @@ export const Footer = () => {
 
       </div>
 
-      <div className="border-t border-gray-800 mt-12 pt-6 text-center text-xs text-gray-500">
-        <p>Desenvolvido com precisão para traders que buscam <span className="text-white font-semibold">liberdade e consistência</span>.</p>
-        <p className="mt-1">Este site não garante resultados financeiros. Operar no mercado envolve riscos. Invista com responsabilidade.</p>
-      </div>
     </footer>
   );
 };
