@@ -1,28 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Helmet } from "react-helmet-async";
-import useEmblaCarousel from "embla-carousel-react";
 import { OfertaFinal } from "./OfertaFinal";
 import { Footer } from "./Footer";
-import ResultsCarousel from "./ResultsCarousel";
+import TransformacoesCarousel3D from "./TransformacoesCarousel3D";
 
 /** =========================
  * CONFIGURÁVEIS
  * ========================= */
 const CHECKOUT_URL = "#checkout";
 const WHATSAPP_LINK = "https://wa.me/5599999999999?text=Tenho%20d%C3%BAvidas%20sobre%20a%20Estrat%C3%A9gia%20TFX%20Mente";
-const TIMER_STORAGE_KEY = "ftx_timer_start_ts";
-const TIMER_DURATION_MS = 72 * 60 * 60 * 1000; // 72 horas
 
 /** =========================
  * UTILS
  * ========================= */
-function formatTime(ms: number) {
-  const totalSec = Math.max(0, Math.floor(ms / 1000));
-  const h = Math.floor(totalSec / 3600).toString().padStart(2, "0");
-  const m = Math.floor((totalSec % 3600) / 60).toString().padStart(2, "0");
-  const s = Math.floor(totalSec % 60).toString().padStart(2, "0");
-  return `${h}:${m}:${s}`;
-}
 
 /** =========================
  * COMPONENTES AUXILIARES
@@ -74,206 +64,26 @@ const CTA = ({
   );
 };
 
-const FAQItem = ({
-  q,
-  a,
-  openDefault = false,
-}: {
-  q: string;
-  a: React.ReactNode;
-  openDefault?: boolean;
-}) => {
-  const [open, setOpen] = useState(openDefault);
-  return (
-    <div className="rounded-2xl bg-zinc-800/60 border border-zinc-700 p-4 md:p-5">
-      <button
-        className="w-full flex items-center justify-between text-left"
-        onClick={() => setOpen((v) => !v)}
-      >
-        <span className="font-semibold text-white">{q}</span>
-        <span className="text-zinc-400">{open ? "−" : "+"}</span>
-      </button>
-      {open && <div className="mt-3 text-zinc-300 text-sm">{a}</div>}
-    </div>
-  );
-};
 
 
 
 /** =========================
  * ARRAY DE IMAGENS GLOBAL
  * ========================= */
-const imagens = [
-  // Resultados de Crypto
-  "/eth'1.webp",
-  "/eth2.webp",
-  "/libra1.webp",
-  "/libra2.webp",
-  "/pepe1.webp",
-  "/pepe2.webp",
-  
-  // Resultados de Forex
-  "/usd1.webp",
-  "/usd2.webp",
-  "/xau1.webp",
-  "/xau2.webp",
-  
-  // Screenshots de resultados
-  "/resultado cripto 1  (1).jpeg",
-  "/resultado cripto 1  (3).jpeg",
-  "/resultado cripto 1  (8).jpeg",
-  "/resultado cripto 2.jpeg",
-  "/resultado forex 1  (6).jpeg",
-  "/resultado forex 2  (2).jpeg",
-  "/resultado forex 3  (5).jpeg",
-  "/resultado forex 4  (7).jpeg",
-  
-  // Imagens originais
-    "/WhatsApp Image 2025-10-22 at 00.13.37.jpeg",
-    "/WhatsApp Image 2025-10-21 at 17.07.38 (1).jpeg",
-    "/WhatsApp Image 2025-10-21 at 17.07.37 (1).jpeg",
-    "/WhatsApp Image 2025-10-21 at 17.07.37.jpeg",
-    "/WhatsApp Image 2025-10-21 at 17.10.12 (1).jpeg",
-    "/WhatsApp Image 2025-10-21 at 17.10.24 (1).jpeg",
-    "/WhatsApp Image 2025-10-21 at 17.10.24.jpeg",
-    "/WhatsApp Image 2025-10-21 at 17.10.34.jpeg",
-    "/image (6).png",
-  ];
 
 /** =========================
  * COMPONENTE CARROSSEL
  * ========================= */
-const ProvasCarousel = () => {
-  const [emblaRef] = useEmblaCarousel({ 
-    loop: true, 
-    align: "start"
-  });
-
-  return (
-    <div className="mt-8 overflow-hidden" ref={emblaRef}>
-      <div className="flex">
-        {imagens.map((src, i) => (
-          <div
-            key={i}
-            className="flex-[0_0_80%] sm:flex-[0_0_45%] md:flex-[0_0_33%] lg:flex-[0_0_25%] mx-2"
-          >
-            <div className="bg-zinc-900 rounded-xl shadow-lg p-2 hover:scale-105 transition-all duration-300">
-              <img
-                src={src}
-                alt={`Prova real ${i + 1}`}
-                className="rounded-lg w-full h-auto object-cover"
-                loading="lazy"
-              />
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-};
 
 /** =========================
  * FUNÇÃO PARA MODAL DE IMAGENS
  * ========================= */
-const openImageModal = (src: string, index: number) => {
-  // Criar modal dinamicamente
-  const modal = document.createElement('div');
-  modal.className = 'fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm';
-  modal.innerHTML = `
-    <div class="relative max-w-4xl max-h-[90vh] mx-4">
-      <img 
-        src="${src}" 
-        alt="Resultado ${index + 1}" 
-        class="w-full h-auto rounded-2xl shadow-2xl"
-      />
-      <button 
-        onclick="this.closest('.fixed').remove()"
-        class="absolute top-4 right-4 bg-black/50 text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-black/70 transition-colors"
-      >
-        ✕
-      </button>
-      <div class="absolute bottom-4 left-4 bg-black/50 text-white px-4 py-2 rounded-lg">
-        <div class="text-sm font-semibold">Resultado ${index + 1}</div>
-        <div class="text-xs text-green-400">Operação Real - TFX Mente</div>
-      </div>
-    </div>
-  `;
-  
-  // Adicionar ao body
-  document.body.appendChild(modal);
-  
-  // Fechar com ESC
-  const handleKeyPress = (e: KeyboardEvent) => {
-    if (e.key === 'Escape') {
-      modal.remove();
-      document.removeEventListener('keydown', handleKeyPress);
-    }
-  };
-  document.addEventListener('keydown', handleKeyPress);
-  
-  // Fechar clicando fora
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) {
-      modal.remove();
-      document.removeEventListener('keydown', handleKeyPress);
-    }
-  });
-};
 
 /** =========================
  * LANDING PAGE
  * ========================= */
 const LandingPage: React.FC = () => {
-  const [remaining, setRemaining] = useState<number>(TIMER_DURATION_MS);
 
-  // Cronômetro regressivo de 2 horas
-  useEffect(() => {
-    let timeLeft = 2 * 60 * 60; // 2 horas em segundos
-    
-    function updateTimer() {
-      const hours = Math.floor(timeLeft / 3600);
-      const minutes = Math.floor((timeLeft % 3600) / 60);
-      const seconds = timeLeft % 60;
-      
-      const timerElement = document.getElementById('timer');
-      if (timerElement) {
-        timerElement.textContent = 
-          String(hours).padStart(2, '0') + ':' +
-          String(minutes).padStart(2, '0') + ':' +
-          String(seconds).padStart(2, '0');
-      }
-      
-      if (timeLeft <= 0) {
-        if (timerElement) {
-          timerElement.textContent = '00:00:00';
-          timerElement.style.color = '#ff0000';
-        }
-        return;
-      }
-      
-      timeLeft--;
-      setTimeout(updateTimer, 1000);
-    }
-    
-    updateTimer();
-  }, []);
-
-  useEffect(() => {
-    let start = localStorage.getItem(TIMER_STORAGE_KEY);
-    if (!start) {
-      start = Date.now().toString();
-      localStorage.setItem(TIMER_STORAGE_KEY, start);
-    }
-    const startedAt = Number(start);
-    const tick = () => {
-      const now = Date.now();
-      const delta = TIMER_DURATION_MS - (now - startedAt);
-      setRemaining(Math.max(0, delta));
-    };
-    tick();
-    const id = setInterval(tick, 1000);
-    return () => clearInterval(id);
-  }, []);
 
   return (
     <>
@@ -319,7 +129,7 @@ const LandingPage: React.FC = () => {
             <div className="mb-6">
               <span className="inline-flex items-center gap-2 bg-gradient-to-r from-red-500 to-orange-500 text-white px-6 py-3 rounded-full text-sm font-bold uppercase tracking-wider shadow-[0_0_20px_rgba(255,0,0,0.3)] animate-pulse">
                 🔥 OFERTA EXCLUSIVA POR TEMPO LIMITADO
-              </span>
+            </span>
             </div>
 
             {/* CRONÔMETRO REGRESSIVO MELHORADO */}
@@ -337,7 +147,7 @@ const LandingPage: React.FC = () => {
             <h1 className="text-5xl font-extrabold leading-tight text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
               Domine o Mercado com a <span className="text-indigo-400">Estratégia TFX</span>
             </h1>
-
+            
 
 
             <p className="text-base text-gray-400 mt-5 text-center max-w-2xl mx-auto">
@@ -378,7 +188,7 @@ const LandingPage: React.FC = () => {
                     🧩 Já lucrou, mas nunca conseguiu manter consistência — sempre volta pro zero?
                   </div>
                 </div>
-              </div>
+            </div>
 
               <p className="text-gray-400 mt-8 text-base max-w-2xl mx-auto leading-relaxed">
                 A <span className="text-cyan-400 font-semibold">TFX</span> não é só um método — é o ponto de virada entre quem sobrevive e quem prospera.
@@ -483,262 +293,55 @@ const LandingPage: React.FC = () => {
           </p>
 
 
-          {/* GALERIA MESCLADA: GRÁFICOS + LUCROS DA CORRETORA */}
+          {/* CARROSSEL 3D COM DRAG HORIZONTAL */}
           <div className="mb-8">
             <h3 className="text-xl font-bold text-white mb-6">Gráficos + Lucros Reais da Corretora</h3>
             
-            {/* GRID ANTES E DEPOIS: GRÁFICO + RESULTADO */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* OPERAÇÃO 1 */}
-              <div className="results-card p-4 result">
-                <div className="flex justify-between items-center mb-4">
-                  <span className="text-cyan-400 text-sm">Operação Real</span>
-                </div>
-                <div className="grid grid-cols-2 gap-3">
-                  <div className="group relative cursor-pointer overflow-hidden rounded-lg" onClick={() => openImageModal("/eth'1.webp", 0)}>
-                    <img
-                      src="/eth'1.webp"
-                      alt="Gráfico Antes"
-                      className="w-full h-24 object-cover transition-transform duration-300 group-hover:scale-105"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                      <div className="text-white text-center">
-                        <div className="text-lg mb-1">📊</div>
-                        <div className="text-xs font-semibold">Ver gráfico</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="group relative cursor-pointer overflow-hidden rounded-lg" onClick={() => openImageModal("/resultado cripto 1  (1).jpeg", 10)}>
-                    <img
-                      src="/resultado cripto 1  (1).jpeg"
-                      alt="Resultado Depois"
-                      className="w-full h-24 object-cover transition-transform duration-300 group-hover:scale-105"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                      <div className="text-white text-center">
-                        <div className="text-lg mb-1">💰</div>
-                        <div className="text-xs font-semibold">Ver resultado</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* OPERAÇÃO 2 */}
-              <div className="results-card p-4 result">
-                <div className="flex justify-between items-center mb-4">
-                  <span className="text-cyan-400 text-sm">Operação Real</span>
-                </div>
-                <div className="grid grid-cols-2 gap-3">
-                  <div className="group relative cursor-pointer overflow-hidden rounded-lg" onClick={() => openImageModal("/usd1.webp", 6)}>
-                    <img
-                      src="/usd1.webp"
-                      alt="Gráfico Antes"
-                      className="w-full h-24 object-cover transition-transform duration-300 group-hover:scale-105"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                      <div className="text-white text-center">
-                        <div className="text-lg mb-1">📊</div>
-                        <div className="text-xs font-semibold">Ver gráfico</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="group relative cursor-pointer overflow-hidden rounded-lg" onClick={() => openImageModal("/resultado forex 1  (6).jpeg", 14)}>
-                    <img
-                      src="/resultado forex 1  (6).jpeg"
-                      alt="Resultado Depois"
-                      className="w-full h-24 object-cover transition-transform duration-300 group-hover:scale-105"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                      <div className="text-white text-center">
-                        <div className="text-lg mb-1">💰</div>
-                        <div className="text-xs font-semibold">Ver resultado</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* OPERAÇÃO 3 */}
-              <div className="results-card p-4 result">
-                <div className="flex justify-between items-center mb-4">
-                  <span className="text-cyan-400 text-sm">Operação Real</span>
-                </div>
-                <div className="grid grid-cols-2 gap-3">
-                  <div className="group relative cursor-pointer overflow-hidden rounded-lg" onClick={() => openImageModal("/xau1.webp", 8)}>
-                    <img
-                      src="/xau1.webp"
-                      alt="Gráfico Antes"
-                      className="w-full h-24 object-cover transition-transform duration-300 group-hover:scale-105"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                      <div className="text-white text-center">
-                        <div className="text-lg mb-1">📊</div>
-                        <div className="text-xs font-semibold">Ver gráfico</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="group relative cursor-pointer overflow-hidden rounded-lg" onClick={() => openImageModal("/resultado forex 2  (2).jpeg", 15)}>
-                    <img
-                      src="/resultado forex 2  (2).jpeg"
-                      alt="Resultado Depois"
-                      className="w-full h-24 object-cover transition-transform duration-300 group-hover:scale-105"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                      <div className="text-white text-center">
-                        <div className="text-lg mb-1">💰</div>
-                        <div className="text-xs font-semibold">Ver resultado</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* OPERAÇÃO 4 */}
-              <div className="results-card p-4 result">
-                <div className="flex justify-between items-center mb-4">
-                  <span className="text-cyan-400 text-sm">Operação Real</span>
-                </div>
-                <div className="grid grid-cols-2 gap-3">
-                  <div className="group relative cursor-pointer overflow-hidden rounded-lg" onClick={() => openImageModal("/pepe1.webp", 4)}>
-                    <img
-                      src="/pepe1.webp"
-                      alt="Gráfico Antes"
-                      className="w-full h-24 object-cover transition-transform duration-300 group-hover:scale-105"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                      <div className="text-white text-center">
-                        <div className="text-lg mb-1">📊</div>
-                        <div className="text-xs font-semibold">Ver gráfico</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="group relative cursor-pointer overflow-hidden rounded-lg" onClick={() => openImageModal("/resultado cripto 1  (3).jpeg", 11)}>
-                    <img
-                      src="/resultado cripto 1  (3).jpeg"
-                      alt="Resultado Depois"
-                      className="w-full h-24 object-cover transition-transform duration-300 group-hover:scale-105"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                      <div className="text-white text-center">
-                        <div className="text-lg mb-1">💰</div>
-                        <div className="text-xs font-semibold">Ver resultado</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            {/* OPERAÇÕES ADICIONAIS OCULTAS */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-              {/* OPERAÇÃO 5 - OCULTA */}
-              <div className="results-card p-4 result hidden">
-                <div className="flex justify-between items-center mb-4">
-                  <span className="text-cyan-400 text-sm">Operação Real</span>
-                </div>
-                <div className="grid grid-cols-2 gap-3">
-                  <div className="group relative cursor-pointer overflow-hidden rounded-lg" onClick={() => openImageModal("/eth2.webp", 1)}>
-                    <img
-                      src="/eth2.webp"
-                      alt="Gráfico Antes"
-                      className="w-full h-24 object-cover transition-transform duration-300 group-hover:scale-105"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                      <div className="text-white text-center">
-                        <div className="text-lg mb-1">📊</div>
-                        <div className="text-xs font-semibold">Ver gráfico</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="group relative cursor-pointer overflow-hidden rounded-lg" onClick={() => openImageModal("/resultado cripto 1  (8).jpeg", 12)}>
-                    <img
-                      src="/resultado cripto 1  (8).jpeg"
-                      alt="Resultado Depois"
-                      className="w-full h-24 object-cover transition-transform duration-300 group-hover:scale-105"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                      <div className="text-white text-center">
-                        <div className="text-lg mb-1">💰</div>
-                        <div className="text-xs font-semibold">Ver resultado</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* OPERAÇÃO 6 - OCULTA */}
-              <div className="results-card p-4 result hidden">
-                <div className="flex justify-between items-center mb-4">
-                  <span className="text-cyan-400 text-sm">Operação Real</span>
-                </div>
-                <div className="grid grid-cols-2 gap-3">
-                  <div className="group relative cursor-pointer overflow-hidden rounded-lg" onClick={() => openImageModal("/xau2.webp", 9)}>
-                    <img
-                      src="/xau2.webp"
-                      alt="Gráfico Antes"
-                      className="w-full h-24 object-cover transition-transform duration-300 group-hover:scale-105"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                      <div className="text-white text-center">
-                        <div className="text-lg mb-1">📊</div>
-                        <div className="text-xs font-semibold">Ver gráfico</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="group relative cursor-pointer overflow-hidden rounded-lg" onClick={() => openImageModal("/resultado forex 3  (5).jpeg", 16)}>
-                    <img
-                      src="/resultado forex 3  (5).jpeg"
-                      alt="Resultado Depois"
-                      className="w-full h-24 object-cover transition-transform duration-300 group-hover:scale-105"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                      <div className="text-white text-center">
-                        <div className="text-lg mb-1">💰</div>
-                        <div className="text-xs font-semibold">Ver resultado</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            {/* BOTÃO VER MAIS RESULTADOS */}
-            <div className="text-center mt-8">
-              <button 
-                id="load-more-results" 
-                className="load-more-btn"
-                onClick={() => {
-                  const hiddenResults = document.querySelectorAll('.result.hidden');
-                  hiddenResults.forEach((card, index) => {
-                    setTimeout(() => {
-                      card.classList.remove('hidden');
-                      card.classList.add('fade-in');
-                    }, index * 150);
-                  });
-                  const button = document.getElementById('load-more-results');
-                  if (button) button.style.display = 'none';
-                }}
-              >
-                📈 Ver Mais Resultados Reais
-              </button>
-            </div>
+            <TransformacoesCarousel3D itens={[
+              // SEQUÊNCIA 1: ETH
+              { tipo: "ANTES", src: "/eth'1.webp", alt: "Antes da Estratégia - ETH" },
+              { tipo: "DEPOIS", src: "/resultado cripto 1  (1).jpeg", alt: "Depois da Estratégia - ETH" },
+              { tipo: "RESULTADO", src: "/WhatsApp Image 2025-10-21 at 17.07.37 (1).jpeg", alt: "Resultado Final - ETH", lucro: "+R$ 2.847" },
+              
+              // SEQUÊNCIA 2: ETH 2
+              { tipo: "ANTES", src: "/eth2.webp", alt: "Antes da Estratégia - ETH 2" },
+              { tipo: "DEPOIS", src: "/resultado cripto 1  (3).jpeg", alt: "Depois da Estratégia - ETH 2" },
+              { tipo: "RESULTADO", src: "/WhatsApp Image 2025-10-21 at 17.07.37.jpeg", alt: "Resultado Final - ETH 2", lucro: "+R$ 1.923" },
+              
+              // SEQUÊNCIA 3: Libra
+              { tipo: "ANTES", src: "/libra1.webp", alt: "Antes da Estratégia - Libra" },
+              { tipo: "DEPOIS", src: "/resultado cripto 1  (8).jpeg", alt: "Depois da Estratégia - Libra" },
+              { tipo: "RESULTADO", src: "/WhatsApp Image 2025-10-21 at 17.07.38 (1).jpeg", alt: "Resultado Final - Libra", lucro: "+R$ 3.156" },
+              
+              // SEQUÊNCIA 4: Libra 2
+              { tipo: "ANTES", src: "/libra2.webp", alt: "Antes da Estratégia - Libra 2" },
+              { tipo: "DEPOIS", src: "/resultado cripto 2.jpeg", alt: "Depois da Estratégia - Libra 2" },
+              { tipo: "RESULTADO", src: "/WhatsApp Image 2025-10-21 at 17.10.12 (1).jpeg", alt: "Resultado Final - Libra 2", lucro: "+R$ 2.634" },
+              
+              // SEQUÊNCIA 5: USD
+              { tipo: "ANTES", src: "/usd1.webp", alt: "Antes da Estratégia - USD" },
+              { tipo: "DEPOIS", src: "/resultado forex 1  (6).jpeg", alt: "Depois da Estratégia - USD" },
+              { tipo: "RESULTADO", src: "/WhatsApp Image 2025-10-21 at 17.10.24 (1).jpeg", alt: "Resultado Final - USD", lucro: "+R$ 4.127" },
+              
+              // SEQUÊNCIA 6: USD 2
+              { tipo: "ANTES", src: "/usd2.webp", alt: "Antes da Estratégia - USD 2" },
+              { tipo: "DEPOIS", src: "/resultado forex 2  (2).jpeg", alt: "Depois da Estratégia - USD 2" },
+              { tipo: "RESULTADO", src: "/WhatsApp Image 2025-10-21 at 17.10.24.jpeg", alt: "Resultado Final - USD 2", lucro: "+R$ 3.892" },
+              
+              // SEQUÊNCIA 7: XAU
+              { tipo: "ANTES", src: "/xau1.webp", alt: "Antes da Estratégia - Ouro" },
+              { tipo: "DEPOIS", src: "/resultado forex 3  (5).jpeg", alt: "Depois da Estratégia - Ouro" },
+              { tipo: "RESULTADO", src: "/WhatsApp Image 2025-10-21 at 17.10.34.jpeg", alt: "Resultado Final - Ouro", lucro: "+R$ 5.234" },
+              
+              // SEQUÊNCIA 8: XAU 2
+              { tipo: "ANTES", src: "/xau2.webp", alt: "Antes da Estratégia - Ouro 2" },
+              { tipo: "DEPOIS", src: "/resultado forex 4  (7).jpeg", alt: "Depois da Estratégia - Ouro 2" },
+              { tipo: "RESULTADO", src: "/WhatsApp Image 2025-10-22 at 00.13.37.jpeg", alt: "Resultado Final - Ouro 2", lucro: "+R$ 4.567" },
+            ]} />
             
             <div className="text-center mt-6">
               <p className="text-zinc-400 text-sm">
-                Clique em qualquer imagem para ver em tamanho completo • Gráficos + Lucros reais da corretora
+                Arraste para navegar • Antes → Depois → Resultado • Lucros reais da corretora
               </p>
             </div>
           </div>
@@ -784,8 +387,6 @@ const LandingPage: React.FC = () => {
           </div>
         </section>
 
-        {/* CARROSSEL 3D COM SCROLL AUTOMÁTICO */}
-        <ResultsCarousel />
 
         {/* DIVISOR ANIMADO */}
         <div className="section-divider"></div>
