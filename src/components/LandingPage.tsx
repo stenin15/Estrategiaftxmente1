@@ -2,7 +2,7 @@ import React from "react";
 import { Helmet } from "react-helmet-async";
 import { OfertaFinal } from "./OfertaFinal";
 import { Footer } from "./Footer";
-import TransformacoesCarousel3D from "./TransformacoesCarousel3D";
+import TransformacoesReaisSection from "./TransformacoesReaisSection";
 
 /** =========================
  * CONFIGURÁVEIS
@@ -40,29 +40,6 @@ const Section = ({
   </section>
 );
 
-const CTA = ({
-  href = CHECKOUT_URL,
-  children,
-  variant = "primary",
-  className = "",
-}: {
-  href?: string;
-  children: React.ReactNode;
-  variant?: "primary" | "secondary" | "outline";
-  className?: string;
-}) => {
-  const base = "inline-flex items-center justify-center rounded-2xl px-6 md:px-8 py-3 md:py-4 text-sm md:text-base font-extrabold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-0";
-  const variants = {
-    primary: "bg-emerald-500 hover:bg-emerald-400 text-black shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/40 hover:scale-105 transform transition-all duration-300 hover:-translate-y-1",
-    secondary: "bg-zinc-800 hover:bg-zinc-700 text-white border border-zinc-600 hover:scale-105 transform transition-all duration-300 hover:-translate-y-1",
-    outline: "border border-emerald-400 text-emerald-300 hover:bg-emerald-400 hover:text-black hover:scale-105 transform transition-all duration-300 hover:-translate-y-1",
-  } as const;
-  return (
-    <a href={href} className={`${base} ${variants[variant]} ${className}`}>
-      {children}
-    </a>
-  );
-};
 
 
 
@@ -159,8 +136,8 @@ const LandingPage: React.FC = () => {
             {/* SEÇÃO DE IDENTIFICAÇÃO DE DORES INTEGRADA */}
             <section className="text-center mt-12 bg-gradient-to-b from-[#0b1e23] to-[#081518] p-8 rounded-2xl shadow-lg border border-[#0a2a33] max-w-4xl mx-auto">
               <h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 mb-8">
-                😔 Você se identifica com isso?
-              </h2>
+              😔 Você se identifica com isso?
+            </h2>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-300">
                 {/* COLUNA 1 — público geral */}
@@ -174,7 +151,7 @@ const LandingPage: React.FC = () => {
                   <div className="bg-[#0c2024] p-5 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-300 motion-safe:hover:scale-[1.02]">
                     ⚖️ Falta foco, confiança e clareza pra seguir o plano e parar de sabotar seus próprios resultados?
                   </div>
-                </div>
+              </div>
 
                 {/* COLUNA 2 — público trader */}
                 <div className="space-y-4">
@@ -183,11 +160,11 @@ const LandingPage: React.FC = () => {
                   </div>
                   <div className="bg-[#0c2024] p-5 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-300 motion-safe:hover:scale-[1.02]">
                     ⏰ Sai da operação antes da hora e assiste o preço bater exatamente onde queria entrar?
-                  </div>
+              </div>
                   <div className="bg-[#0c2024] p-5 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-300 motion-safe:hover:scale-[1.02]">
                     🧩 Já lucrou, mas nunca conseguiu manter consistência — sempre volta pro zero?
-                  </div>
-                </div>
+              </div>
+              </div>
             </div>
 
               <p className="text-gray-400 mt-8 text-base max-w-2xl mx-auto leading-relaxed">
@@ -211,8 +188,8 @@ const LandingPage: React.FC = () => {
           <div className="section-box text-center">
             <h2 className="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 mb-4">
               Chegou a hora de sair do ciclo da frustração e construir sua virada com a <span className="text-indigo-400">Estratégia TFX</span>
-            </h2>
-            
+          </h2>
+          
             <p className="text-xl text-gray-300 mb-12 max-w-3xl mx-auto">
               A <span className="text-cyan-300 font-medium">TFX Mente</span> foi criada pra transformar traders comuns  
               em operadores conscientes — com mentalidade e setups que funcionam na vida real.
@@ -243,7 +220,7 @@ const LandingPage: React.FC = () => {
                 💰 A visão que separa liberdade de ilusão — aprenda a usar o dinheiro e o tempo como ferramentas, não prisões.
               </div>
             </div>
-
+            
             <button className="mt-4 sm:mt-6 px-8 sm:px-10 py-3 sm:py-4 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 text-white font-bold text-base sm:text-lg shadow-md hover:shadow-cyan-400/30 transition-all duration-300 hover:scale-105 w-full sm:w-auto">
               🚀 Quero destravar minha mente e meus resultados
             </button>
@@ -264,7 +241,7 @@ const LandingPage: React.FC = () => {
               <p className="text-sm text-gray-400 mt-4">
                 ✅ Garantia de 7 dias • ✅ Acesso imediato • ✅ Suporte VIP
               </p>
-            </div>
+          </div>
           </div>
         </section>
 
@@ -277,115 +254,7 @@ const LandingPage: React.FC = () => {
         </div>
 
         {/* TRANSFORMAÇÕES REAIS - SEÇÃO OTIMIZADA */}
-        <section className="bg-[#000814] text-white py-20">
-          <div className="section-box">
-          <div className="mb-8">
-            <Badge>📈 RESULTADOS COMPROVADOS</Badge>
-          </div>
-          
-          <h2 className="text-3xl md:text-4xl font-extrabold text-white mb-4">
-            <span className="text-green-400">Transformações Reais</span> — direto das telas de quem decidiu mudar o jogo
-          </h2>
-          
-          <p className="text-xl text-zinc-300 max-w-3xl mx-auto mb-12">
-            Operações aplicando a <span className="text-green-400 font-semibold">Estratégia TFX</span> capturadas de contas reais. 
-            Mais do que números — <span className="text-white font-semibold">prova de disciplina, método e clareza mental em ação.</span>
-          </p>
-
-
-          {/* CARROSSEL 3D COM DRAG HORIZONTAL */}
-          <div className="mb-8">
-            <h3 className="text-xl font-bold text-white mb-6">Gráficos + Lucros Reais da Corretora</h3>
-            
-            <TransformacoesCarousel3D itens={[
-              // SEQUÊNCIA 1: ETH
-              { tipo: "ANTES", src: "/eth'1.webp", alt: "Antes da Estratégia - ETH" },
-              { tipo: "DEPOIS", src: "/resultado cripto 1  (1).jpeg", alt: "Depois da Estratégia - ETH" },
-              { tipo: "RESULTADO", src: "/WhatsApp Image 2025-10-21 at 17.07.37 (1).jpeg", alt: "Resultado Final - ETH", lucro: "+R$ 2.847" },
-              
-              // SEQUÊNCIA 2: ETH 2
-              { tipo: "ANTES", src: "/eth2.webp", alt: "Antes da Estratégia - ETH 2" },
-              { tipo: "DEPOIS", src: "/resultado cripto 1  (3).jpeg", alt: "Depois da Estratégia - ETH 2" },
-              { tipo: "RESULTADO", src: "/WhatsApp Image 2025-10-21 at 17.07.37.jpeg", alt: "Resultado Final - ETH 2", lucro: "+R$ 1.923" },
-              
-              // SEQUÊNCIA 3: Libra
-              { tipo: "ANTES", src: "/libra1.webp", alt: "Antes da Estratégia - Libra" },
-              { tipo: "DEPOIS", src: "/resultado cripto 1  (8).jpeg", alt: "Depois da Estratégia - Libra" },
-              { tipo: "RESULTADO", src: "/WhatsApp Image 2025-10-21 at 17.07.38 (1).jpeg", alt: "Resultado Final - Libra", lucro: "+R$ 3.156" },
-              
-              // SEQUÊNCIA 4: Libra 2
-              { tipo: "ANTES", src: "/libra2.webp", alt: "Antes da Estratégia - Libra 2" },
-              { tipo: "DEPOIS", src: "/resultado cripto 2.jpeg", alt: "Depois da Estratégia - Libra 2" },
-              { tipo: "RESULTADO", src: "/WhatsApp Image 2025-10-21 at 17.10.12 (1).jpeg", alt: "Resultado Final - Libra 2", lucro: "+R$ 2.634" },
-              
-              // SEQUÊNCIA 5: USD
-              { tipo: "ANTES", src: "/usd1.webp", alt: "Antes da Estratégia - USD" },
-              { tipo: "DEPOIS", src: "/resultado forex 1  (6).jpeg", alt: "Depois da Estratégia - USD" },
-              { tipo: "RESULTADO", src: "/WhatsApp Image 2025-10-21 at 17.10.24 (1).jpeg", alt: "Resultado Final - USD", lucro: "+R$ 4.127" },
-              
-              // SEQUÊNCIA 6: USD 2
-              { tipo: "ANTES", src: "/usd2.webp", alt: "Antes da Estratégia - USD 2" },
-              { tipo: "DEPOIS", src: "/resultado forex 2  (2).jpeg", alt: "Depois da Estratégia - USD 2" },
-              { tipo: "RESULTADO", src: "/WhatsApp Image 2025-10-21 at 17.10.24.jpeg", alt: "Resultado Final - USD 2", lucro: "+R$ 3.892" },
-              
-              // SEQUÊNCIA 7: XAU
-              { tipo: "ANTES", src: "/xau1.webp", alt: "Antes da Estratégia - Ouro" },
-              { tipo: "DEPOIS", src: "/resultado forex 3  (5).jpeg", alt: "Depois da Estratégia - Ouro" },
-              { tipo: "RESULTADO", src: "/WhatsApp Image 2025-10-21 at 17.10.34.jpeg", alt: "Resultado Final - Ouro", lucro: "+R$ 5.234" },
-              
-              // SEQUÊNCIA 8: XAU 2
-              { tipo: "ANTES", src: "/xau2.webp", alt: "Antes da Estratégia - Ouro 2" },
-              { tipo: "DEPOIS", src: "/resultado forex 4  (7).jpeg", alt: "Depois da Estratégia - Ouro 2" },
-              { tipo: "RESULTADO", src: "/WhatsApp Image 2025-10-22 at 00.13.37.jpeg", alt: "Resultado Final - Ouro 2", lucro: "+R$ 4.567" },
-            ]} />
-            
-            <div className="text-center mt-6">
-              <p className="text-zinc-400 text-sm">
-                Arraste para navegar • Antes → Depois → Resultado • Lucros reais da corretora
-              </p>
-            </div>
-          </div>
-
-          {/* CTA FORTE */}
-          <div className="bg-gradient-to-r from-emerald-500/10 to-cyan-500/10 border border-emerald-500/30 rounded-2xl p-8">
-            <h3 className="highlight-title mb-4">
-              <span className="text-emerald-400">R$ 47.000</span> em Lucros Reais
-            </h3>
-            <p className="text-zinc-300 mb-6 text-lg">
-              Lucros gerados por alunos aplicando o método TFX Mente.
-            </p>
-            
-            {/* CONCEITOS TFX APLICADOS - VERSÃO EMOCIONAL */}
-            <div className="bg-zinc-800/50 border border-green-400/30 rounded-xl p-6 mb-6">
-              <h4 className="text-green-400 font-bold text-lg mb-4 flex items-center gap-2">
-                🧠 O que realmente faz a diferença nestas operações
-              </h4>
-              <div className="grid md:grid-cols-2 gap-4">
-                <div className="text-zinc-300">
-                  <strong className="text-green-400">📊 Leitura de Fluxo</strong> — ver o que o mercado mostra antes dos outros perceberem.
-                </div>
-                <div className="text-zinc-300">
-                  <strong className="text-green-400">🎯 Timing Perfeito</strong> — entrar com precisão quando a oportunidade realmente existe.
-                </div>
-                <div className="text-zinc-300">
-                  <strong className="text-green-400">🛡️ Gestão Inteligente</strong> — proteger ganhos e multiplicar com cálculo, não emoção.
-                </div>
-                <div className="text-zinc-300">
-                  <strong className="text-green-400">🧩 Análise de Confluência</strong> — quando tudo se alinha, o resultado se torna previsível.
-                </div>
-              </div>
-            </div>
-            <div className="cta-group">
-              <button className="cta-button-pulse text-lg px-8 py-4">
-                🚀 Quero aplicar a Estratégia TFX agora
-              </button>
-              <CTA variant="outline" href="#vsl">
-                Ver Método Completo →
-              </CTA>
-            </div>
-          </div>
-          </div>
-        </section>
+        <TransformacoesReaisSection />
 
 
         {/* DIVISOR ANIMADO */}
