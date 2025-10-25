@@ -2,9 +2,7 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
-// =============================
-//  IMAGENS EM ORDEM: ANTES → DEPOIS → RESULTADO
-// =============================
+// ======= IMAGENS DO CARROSSEL (ordem: antes → depois → resultado) =======
 const imagens = [
   // SEQUÊNCIA 1: ETH
   "/eth'1.webp", // Antes
@@ -47,13 +45,22 @@ const imagens = [
   "/WhatsApp Image 2025-10-22 at 00.13.37.jpeg", // Resultado
 ];
 
-// =============================
-// SEÇÃO CINEMATOGRÁFICA + CARROSSEL
-// =============================
-export default function SeçãoImpactante() {
+// ======= LEGENDAS DINÂMICAS =======
+const getLegenda = (index: number) => {
+  const tipo = index % 3;
+  switch (tipo) {
+    case 0: return { icon: "📉", text: "Antes da Estratégia", color: "text-red-300" };
+    case 1: return { icon: "📈", text: "Depois da Estratégia", color: "text-blue-300" };
+    case 2: return { icon: "💰", text: "Resultado Real", color: "text-emerald-300" };
+    default: return { icon: "📊", text: "Transformação", color: "text-gray-300" };
+  }
+};
+
+// ======= SEÇÃO IMPACTANTE + CARROSSEL =======
+export default function Transformacoes3D() {
   const [index, setIndex] = useState(0);
 
-  // Avanço automático do carrossel
+  // Loop automático
   useEffect(() => {
     const intervalo = setInterval(() => {
       setIndex((prev) => (prev + 1) % imagens.length);
@@ -61,9 +68,11 @@ export default function SeçãoImpactante() {
     return () => clearInterval(intervalo);
   }, []);
 
+  const legenda = getLegenda(index);
+
   return (
-    <section className="relative flex flex-col items-center justify-center py-20 bg-gradient-to-b from-[#030a07] via-[#05100c] to-[#07120c] overflow-hidden">
-      {/* LINHA DOURADA PULSANTE */}
+    <section className="relative flex flex-col items-center justify-center py-24 bg-gradient-to-b from-[#030a07] via-[#04100b] to-[#06140e] overflow-hidden">
+      {/* LINHA DOURADA ANIMADA */}
       <motion.div
         initial={{ scaleY: 0 }}
         animate={{ scaleY: [0, 1, 0] }}
@@ -75,7 +84,7 @@ export default function SeçãoImpactante() {
         className="absolute left-1/2 top-0 -translate-x-1/2 h-full w-[2px] bg-gradient-to-b from-transparent via-amber-400 to-transparent opacity-70"
       />
 
-      {/* FRASE IMPACTANTE */}
+      {/* TEXTO CINEMATOGRÁFICO */}
       <motion.h2
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -98,18 +107,19 @@ export default function SeçãoImpactante() {
         Veja o que acontece quando a mentalidade certa encontra a execução real.
       </motion.p>
 
-      {/* CARROSSEL AUTOMÁTICO */}
-      <div className="relative w-[90vw] max-w-4xl h-[55vw] sm:h-[420px] md:h-[500px] mt-12">
+      {/* CARROSSEL AUTOMÁTICO 3D */}
+      <div className="relative w-[90vw] max-w-4xl h-[55vw] sm:h-[420px] md:h-[480px] mt-12 perspective-[1000px]">
         {imagens.map((img, i) => (
           <motion.div
             key={i}
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 0, rotateY: -30, scale: 0.9 }}
             animate={{
               opacity: i === index ? 1 : 0,
-              scale: i === index ? 1 : 0.95,
+              rotateY: i === index ? 0 : 60,
+              scale: i === index ? 1 : 0.8,
               zIndex: i === index ? 10 : 0,
             }}
-            transition={{ duration: 0.9, ease: "easeInOut" }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
             className="absolute inset-0 flex items-center justify-center"
           >
             <img
@@ -121,11 +131,25 @@ export default function SeçãoImpactante() {
         ))}
       </div>
 
-      {/* BRILHO SUAVE DE FUNDO */}
+      {/* LEGENDA ANIMADA */}
+      <motion.div
+        key={index}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="mt-6 flex items-center gap-3 px-6 py-3 bg-black/30 backdrop-blur-sm rounded-full border border-emerald-500/30"
+      >
+        <span className="text-2xl">{legenda.icon}</span>
+        <span className={`text-lg font-semibold ${legenda.color}`}>
+          {legenda.text}
+        </span>
+      </motion.div>
+
+      {/* EFEITO DE BRILHO DE FUNDO */}
       <motion.div
         animate={{ opacity: [0.2, 0.4, 0.2] }}
         transition={{ repeat: Infinity, duration: 6 }}
-        className="absolute w-[600px] h-[600px] rounded-full bg-emerald-500/10 blur-3xl bottom-10"
+        className="absolute w-[650px] h-[650px] rounded-full bg-emerald-500/10 blur-3xl bottom-10"
       />
     </section>
   );
