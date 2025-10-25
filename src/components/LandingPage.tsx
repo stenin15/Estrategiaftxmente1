@@ -224,11 +224,6 @@ const LandingPage: React.FC = () => {
               </div>
             </div>
             
-            <button className="mt-4 sm:mt-6 px-8 sm:px-10 py-3 sm:py-4 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 text-white font-bold text-base sm:text-lg shadow-md hover:shadow-cyan-400/30 transition-all duration-300 hover:scale-105 w-full sm:w-auto">
-              🚀 Quero destravar minha mente e meus resultados
-              </button>
-
-            <p className="text-gray-500 text-xs sm:text-sm mt-3">Garantia de 7 dias • Acesso imediato • Suporte VIP</p>
           </section>
 
             {/* BOTÃO CTA MELHORADO */}
