@@ -1,46 +1,57 @@
 export const Footer = () => {
   return (
-    <footer className="bg-[#020202] border-t border-cyan-500/20 text-gray-400 py-12">
-      <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-10 text-center md:text-left">
+    <footer className="bg-[#0a0a0a] text-gray-300 py-12 border-t border-gray-800">
+      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-10">
 
-        {/* COLUNA 1 */}
+        {/* Coluna 1 */}
         <div>
-          <h3 className="text-white font-bold text-lg mb-3">🚀 Estratégia TFX Mente</h3>
-          <p className="text-sm leading-relaxed">
-            Método criado para transformar traders comuns em operadores conscientes e lucrativos.
-            Resultados reais, setups replicáveis e mentalidade de elite — sem depender da sorte.
+          <h3 className="text-white text-lg font-semibold mb-3">💠 Estratégia TFX Mente</h3>
+          <p className="text-sm leading-relaxed text-gray-400">
+            Método avançado criado para transformar traders comuns em profissionais consistentes.
+            Operações baseadas em setups validados, backtests reais e mentalidade de longo prazo.
           </p>
+          <p className="text-xs mt-3 text-gray-500">© 2025 Estratégia TFX Mente. Todos os direitos reservados.</p>
         </div>
 
-        {/* COLUNA 2 */}
+        {/* Coluna 2 */}
         <div>
-          <h3 className="text-white font-bold text-lg mb-3">🔗 Links úteis</h3>
-          <ul className="space-y-2 text-sm">
-            <li><a href="#hero" className="hover:text-cyan-400 transition-colors">Início</a></li>
-            <li><a href="#beneficios" className="hover:text-cyan-400 transition-colors">Benefícios</a></li>
-            <li><a href="#resultados" className="hover:text-cyan-400 transition-colors">Resultados Reais</a></li>
-            <li><a href="#faq" className="hover:text-cyan-400 transition-colors">Perguntas Frequentes</a></li>
-            <li><a href="mailto:suporte@tfxmente.com" className="hover:text-cyan-400 transition-colors">Suporte</a></li>
+          <h4 className="text-white font-semibold mb-3">📚 Links Rápidos</h4>
+          <ul className="space-y-2 text-sm text-gray-400">
+            <li><a href="#faq" className="hover:text-white transition">Perguntas Frequentes</a></li>
+            <li><a href="#resultados" className="hover:text-white transition">Resultados e Backtests</a></li>
+            <li><a href="#garantia" className="hover:text-white transition">Garantia e Reembolso</a></li>
+            <li><a href="#contato" className="hover:text-white transition">Fale Conosco</a></li>
           </ul>
         </div>
 
-        {/* COLUNA 3 */}
+        {/* Coluna 3 */}
         <div>
-          <h3 className="text-white font-bold text-lg mb-3">📊 Metodologia Comprovada</h3>
-          <div className="space-y-2 text-sm">
-            <p className="text-cyan-400 font-semibold">✓ Desenvolvido desde 2023</p>
-            <p className="text-gray-300">+500 horas de estudos e análise</p>
-            <p className="text-gray-300">+2.000 backtests realizados</p>
-            <p className="text-gray-300">+50.000 operações analisadas</p>
-            <p className="text-gray-300">Baseado em dados reais do mercado</p>
-          </div>
+          <h4 className="text-white font-semibold mb-3">🛡️ Segurança e Transparência</h4>
+          <ul className="space-y-2 text-sm text-gray-400">
+            <li>🔒 SSL Ativo — conexão criptografada</li>
+            <li>💳 Pagamento 100% Seguro</li>
+            <li>📊 +2.000 backtests realizados</li>
+            <li>✅ 7 dias de garantia total</li>
+          </ul>
         </div>
+
+        {/* Coluna 4 */}
+        <div>
+          <h4 className="text-white font-semibold mb-3">💬 Atendimento & Suporte</h4>
+          <p className="text-sm text-gray-400 leading-relaxed">
+            Suporte humano 24h via WhatsApp e E-mail.<br />
+            Equipe dedicada para ajudar você a alcançar consistência real no mercado.
+          </p>
+          <a href="https://wa.me/5599999999999" target="_blank" className="mt-3 inline-block bg-green-600 text-white text-sm px-4 py-2 rounded-lg hover:bg-green-700 transition">
+            Falar com o Suporte
+          </a>
+        </div>
+
       </div>
 
-      {/* LINHA FINAL */}
-      <div className="border-t border-cyan-500/10 mt-10 pt-6 text-center text-sm text-gray-500">
-        © 2025 <span className="text-cyan-400 font-semibold">Estratégia TFX Mente</span> — Todos os direitos reservados.<br />
-        Desenvolvido com 💙 para traders que buscam liberdade.
+      <div className="border-t border-gray-800 mt-12 pt-6 text-center text-xs text-gray-500">
+        <p>Desenvolvido com precisão para traders que buscam <span className="text-white font-semibold">liberdade e consistência</span>.</p>
+        <p className="mt-1">Este site não garante resultados financeiros. Operar no mercado envolve riscos. Invista com responsabilidade.</p>
       </div>
     </footer>
   );
