@@ -151,19 +151,6 @@ export default function Transformacoes3D() {
         ))}
       </div>
 
-      {/* LEGENDA ANIMADA */}
-      <motion.div
-        key={index}
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="mt-6 flex items-center gap-3 px-6 py-3 bg-black/30 backdrop-blur-sm rounded-full border border-emerald-500/30"
-      >
-        <span className="text-2xl">{legenda.icon}</span>
-        <span className={`text-lg font-semibold ${legenda.color}`}>
-          {legenda.text}
-        </span>
-      </motion.div>
 
       {/* EFEITO DE BRILHO DE FUNDO */}
       <motion.div

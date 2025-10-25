@@ -26,7 +26,7 @@ export default function TransformacoesReaisSection() {
             Mais de R$ 35.000 em 14 dias
           </h4>
           <p className="text-slate-300 mb-4">
-            Resultados obtidos aplicando o método TFX Mente. 
+            Resultados obtidos aplicando o método <b>Estratégia TFX</b>. 
             Disciplina, método e clareza emocional em ação.
           </p>
 
