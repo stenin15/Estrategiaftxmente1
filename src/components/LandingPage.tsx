@@ -3,11 +3,11 @@ import { Helmet } from "react-helmet-async";
 import { OfertaFinal } from "./OfertaFinal";
 import { Footer } from "./Footer";
 import TransformacoesReaisSection from "./TransformacoesReaisSection";
+import SeçãoImpactante from "./SeçãoImpactante";
 
 /** =========================
  * CONFIGURÁVEIS
  * ========================= */
-const CHECKOUT_URL = "#checkout";
 const WHATSAPP_LINK = "https://wa.me/5599999999999?text=Tenho%20d%C3%BAvidas%20sobre%20a%20Estrat%C3%A9gia%20TFX%20Mente";
 
 /** =========================
@@ -252,6 +252,9 @@ const LandingPage: React.FC = () => {
             Depois de entender a mentalidade por trás, veja o que acontece quando ela é aplicada na prática.
           </p>
         </div>
+
+        {/* SEÇÃO CINEMATOGRÁFICA IMPACTANTE */}
+        <SeçãoImpactante />
 
         {/* TRANSFORMAÇÕES REAIS - SEÇÃO OTIMIZADA */}
         <TransformacoesReaisSection />
