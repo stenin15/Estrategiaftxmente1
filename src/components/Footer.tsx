@@ -26,16 +26,14 @@ export const Footer = () => {
 
         {/* COLUNA 3 */}
         <div>
-          <h3 className="text-white font-bold text-lg mb-3">🔒 Pagamento 100% Seguro</h3>
-          <div className="flex justify-center md:justify-start space-x-4 mt-3">
-            <div className="h-6 w-8 bg-gray-600 rounded opacity-80 flex items-center justify-center text-xs">PIX</div>
-            <div className="h-6 w-8 bg-blue-600 rounded opacity-80 flex items-center justify-center text-xs">V</div>
-            <div className="h-6 w-8 bg-red-600 rounded opacity-80 flex items-center justify-center text-xs">MC</div>
-            <div className="h-6 w-6 bg-green-600 rounded opacity-80 flex items-center justify-center text-xs">🔒</div>
+          <h3 className="text-white font-bold text-lg mb-3">📊 Metodologia Comprovada</h3>
+          <div className="space-y-2 text-sm">
+            <p className="text-cyan-400 font-semibold">✓ Desenvolvido desde 2023</p>
+            <p className="text-gray-300">+500 horas de estudos e análise</p>
+            <p className="text-gray-300">+2.000 backtests realizados</p>
+            <p className="text-gray-300">+50.000 operações analisadas</p>
+            <p className="text-gray-300">Baseado em dados reais do mercado</p>
           </div>
-          <p className="text-sm mt-3">
-            Ambiente criptografado com tecnologia SSL. Seus dados estão protegidos.
-          </p>
         </div>
       </div>
 
