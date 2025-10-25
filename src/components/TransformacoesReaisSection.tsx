@@ -16,7 +16,7 @@ export default function TransformacoesReaisSection() {
         </h2>
 
         <p className="text-slate-400 mt-3 max-w-3xl">
-          Operações aplicando a <b>Estratégia TFX</b> capturadas de contas reais.
+          Operações aplicando a <b>Estratégia TFX</b> em diferentes mercados.
           Mais do que números — prova de disciplina, método e clareza mental em ação.
         </p>
 
@@ -26,8 +26,8 @@ export default function TransformacoesReaisSection() {
             Mais de R$ 35.000 em 14 dias
           </h4>
           <p className="text-slate-300 mb-4">
-            Lucros gerados por alunos aplicando o método TFX Mente. Dados reais,
-            obtidos com disciplina e clareza emocional.
+            Resultados obtidos aplicando o método TFX Mente. 
+            Disciplina, método e clareza emocional em ação.
           </p>
 
           <ul className="text-slate-400 text-sm space-y-2">
