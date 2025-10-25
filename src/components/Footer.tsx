@@ -1,7 +1,7 @@
 export const Footer = () => {
   return (
     <footer className="bg-[#0a0a0a] text-gray-300 py-12 border-t border-gray-800">
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-10">
+      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-10">
 
         {/* Coluna 1 */}
         <div>
@@ -34,17 +34,6 @@ export const Footer = () => {
           </ul>
         </div>
 
-        {/* Coluna 4 */}
-        <div>
-          <h4 className="text-white font-semibold mb-3">💬 Atendimento & Suporte</h4>
-          <p className="text-sm text-gray-400 leading-relaxed">
-            Suporte humano 24h via WhatsApp e E-mail.<br />
-            Equipe dedicada para ajudar você a alcançar consistência real no mercado.
-          </p>
-          <a href="https://wa.me/5599999999999" target="_blank" className="mt-3 inline-block bg-green-600 text-white text-sm px-4 py-2 rounded-lg hover:bg-green-700 transition">
-            Falar com o Suporte
-          </a>
-        </div>
 
       </div>
 
