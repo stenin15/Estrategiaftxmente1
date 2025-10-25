@@ -376,6 +376,66 @@ const LandingPage: React.FC = () => {
           </div>
         </section>
 
+        {/* SEÇÃO DE CREDIBILIDADE E SEGURANÇA */}
+        <section className="py-16 bg-gradient-to-b from-zinc-900 to-zinc-950 text-white">
+          <div className="max-w-6xl mx-auto px-6">
+            <h2 className="text-3xl font-bold text-center mb-12 text-cyan-400">
+              🔒 Segurança e Credibilidade
+            </h2>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {/* SEGURANÇA SSL */}
+              <div className="text-center p-6 bg-zinc-800 rounded-xl border border-cyan-500/20 hover:border-cyan-400 transition-all">
+                <div className="text-4xl mb-4">🔐</div>
+                <h3 className="font-bold text-lg mb-2">SSL Seguro</h3>
+                <p className="text-sm text-gray-300">Conexão criptografada e dados protegidos</p>
+              </div>
+
+              {/* GARANTIA */}
+              <div className="text-center p-6 bg-zinc-800 rounded-xl border border-green-500/20 hover:border-green-400 transition-all">
+                <div className="text-4xl mb-4">✅</div>
+                <h3 className="font-bold text-lg mb-2">7 Dias Garantia</h3>
+                <p className="text-sm text-gray-300">Teste sem risco, devolução total</p>
+              </div>
+
+              {/* COMPROVADO */}
+              <div className="text-center p-6 bg-zinc-800 rounded-xl border border-blue-500/20 hover:border-blue-400 transition-all">
+                <div className="text-4xl mb-4">📊</div>
+                <h3 className="font-bold text-lg mb-2">Comprovado</h3>
+                <p className="text-sm text-gray-300">+2.000 backtests realizados</p>
+              </div>
+
+              {/* SUPORTE */}
+              <div className="text-center p-6 bg-zinc-800 rounded-xl border border-purple-500/20 hover:border-purple-400 transition-all">
+                <div className="text-4xl mb-4">🎯</div>
+                <h3 className="font-bold text-lg mb-2">Suporte VIP</h3>
+                <p className="text-sm text-gray-300">Atendimento prioritário 24/7</p>
+              </div>
+            </div>
+
+            {/* BADGES DE CONFIANÇA */}
+            <div className="mt-12 text-center">
+              <div className="flex flex-wrap justify-center items-center gap-8 opacity-80">
+                <div className="flex items-center gap-2 text-sm">
+                  <span className="text-green-400">✓</span>
+                  <span>Pagamento Seguro</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm">
+                  <span className="text-green-400">✓</span>
+                  <span>Dados Protegidos</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm">
+                  <span className="text-green-400">✓</span>
+                  <span>Sem Spam</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm">
+                  <span className="text-green-400">✓</span>
+                  <span>Privacidade Garantida</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
         {/* FOOTER PROFISSIONAL */}
         <Footer />
