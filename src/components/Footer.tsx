@@ -30,7 +30,6 @@ export const Footer = () => {
           <ul className="space-y-2 text-sm text-gray-400">
             <li>🔒 SSL Ativo — conexão criptografada</li>
             <li>💳 Pagamento 100% Seguro</li>
-            <li>📊 +2.000 backtests realizados</li>
             <li>✅ 7 dias de garantia total</li>
           </ul>
         </div>
