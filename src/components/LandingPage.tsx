@@ -10,9 +10,54 @@ import SeçãoImpactante from "./SeçãoImpactante";
  * ========================= */
 const WHATSAPP_LINK = "https://wa.me/5599999999999?text=Tenho%20d%C3%BAvidas%20sobre%20a%20Estrat%C3%A9gia%20TFX%20Mente";
 
+// 🕒 CRONÔMETRO SINCRONIZADO - 30 MINUTOS
+const OFFER_DURATION = 30 * 60; // 30 minutos em segundos
+let timeRemaining = OFFER_DURATION;
+let countdownInterval: number | null = null;
+
 /** =========================
  * UTILS
  * ========================= */
+
+// 🕒 FUNÇÃO DE CRONÔMETRO SINCRONIZADO
+function startCountdown() {
+  if (countdownInterval) {
+    clearInterval(countdownInterval);
+  }
+
+  countdownInterval = setInterval(() => {
+    const minutes = Math.floor((timeRemaining % 3600) / 60);
+    const seconds = timeRemaining % 60;
+    const timeString = `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+
+    // Atualizar todos os cronômetros da página
+    const countdowns = document.querySelectorAll(".countdown-timer");
+    countdowns.forEach(el => {
+      el.textContent = timeString;
+    });
+
+    // Efeito visual nos últimos 5 minutos
+    if (timeRemaining <= 5 * 60) {
+      const buttons = document.querySelectorAll(".button-cta");
+      buttons.forEach(btn => btn.classList.add("active"));
+    } else {
+      const buttons = document.querySelectorAll(".button-cta");
+      buttons.forEach(btn => btn.classList.remove("active"));
+    }
+
+    if (timeRemaining > 0) {
+      timeRemaining--;
+    } else {
+      // Reinicia em loop
+      timeRemaining = OFFER_DURATION;
+    }
+  }, 1000);
+}
+
+// 🎯 INICIAR CRONÔMETRO QUANDO A PÁGINA CARREGAR
+if (typeof window !== 'undefined') {
+  window.addEventListener('load', startCountdown);
+}
 
 /** =========================
  * COMPONENTES AUXILIARES
@@ -114,7 +159,7 @@ const LandingPage: React.FC = () => {
               <div className="bg-gradient-to-r from-red-600 via-red-500 to-orange-500 text-white px-8 py-6 rounded-2xl w-full text-2xl font-bold shadow-[0_0_30px_rgba(255,0,0,0.4)] border-2 border-red-400/50">
                 <div id="countdown" className="text-center">
                   <div className="text-sm mb-2 font-semibold">⏰ OFERTA EXPIRA EM:</div>
-                  <div className="text-4xl md:text-5xl font-black text-yellow-300 drop-shadow-lg" id="timer">02:00:00</div>
+                  <div className="text-4xl md:text-5xl font-black text-yellow-300 drop-shadow-lg countdown-timer">30:00</div>
                   <div className="text-xs mt-2 opacity-90">Não perca esta oportunidade única!</div>
                 </div>
               </div>

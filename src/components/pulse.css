@@ -10,6 +10,22 @@
   }
 }
 
+/* Efeito de pulsação para botões nos últimos 5 minutos */
+@keyframes pulseCTA {
+  0% { 
+    box-shadow: 0 0 10px #00fff2; 
+    transform: scale(1);
+  }
+  50% { 
+    box-shadow: 0 0 30px #00fff2, 0 0 40px #00fff2; 
+    transform: scale(1.05);
+  }
+  100% { 
+    box-shadow: 0 0 10px #00fff2; 
+    transform: scale(1);
+  }
+}
+
 /* Pulsação para botões */
 .pulse-btn {
   animation: pulse 1.5s infinite ease-in-out;
@@ -18,5 +34,11 @@
 /* Pulsação para texto (preço e contador) */
 .pulse-text {
   animation: pulse 1.8s infinite ease-in-out;
+}
+
+/* Efeito ativo para botões CTA nos últimos 5 minutos */
+.button-cta.active {
+  animation: pulseCTA 1.2s infinite;
+  transition: all 0.3s ease-in-out;
 }
 
