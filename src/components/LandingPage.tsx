@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
-import { motion, AnimatePresence } from "framer-motion";
 import { OfertaFinal } from "./OfertaFinal";
 import { Footer } from "./Footer";
 import TransformacoesReaisSection from "./TransformacoesReaisSection";
@@ -15,6 +14,7 @@ const WHATSAPP_LINK = "https://wa.me/5599999999999?text=Tenho%20d%C3%BAvidas%20s
 const OFFER_DURATION = 30 * 60; // 30 minutos em segundos
 let timeRemaining = OFFER_DURATION;
 let countdownInterval: number | null = null;
+let hasUserReadBonus = false;
 
 /** =========================
  * UTILS
@@ -27,6 +27,11 @@ function startCountdown() {
   }
 
   countdownInterval = setInterval(() => {
+    // Só conta se o usuário já leu o bônus
+    if (!hasUserReadBonus) {
+      return;
+    }
+
     const minutes = Math.floor((timeRemaining % 3600) / 60);
     const seconds = timeRemaining % 60;
     const timeString = `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
@@ -55,9 +60,33 @@ function startCountdown() {
   }, 1000);
 }
 
-// 🎯 INICIAR CRONÔMETRO QUANDO A PÁGINA CARREGAR
+// 📖 FUNÇÃO PARA DETECTAR LEITURA DO BÔNUS
+function detectBonusReading() {
+  const bonusText = document.querySelector('.bonus-text');
+  if (!bonusText) return;
+
+  // Calcular tempo estimado de leitura (palavras por minuto)
+  const text = bonusText.textContent || '';
+  const wordsPerMinute = 200; // Velocidade média de leitura
+  const wordCount = text.split(' ').length;
+  const readingTimeMs = (wordCount / wordsPerMinute) * 60 * 1000;
+
+  // Iniciar cronômetro após o tempo de leitura
+  setTimeout(() => {
+    hasUserReadBonus = true;
+    startCountdown();
+    
+    // Adicionar efeito visual quando o cronômetro começar
+    const countdownBox = document.querySelector('.countdown-box');
+    if (countdownBox) {
+      countdownBox.classList.add('countdown-started');
+    }
+  }, readingTimeMs);
+}
+
+// 🎯 INICIAR DETECÇÃO DE LEITURA QUANDO A PÁGINA CARREGAR
 if (typeof window !== 'undefined') {
-  window.addEventListener('load', startCountdown);
+  window.addEventListener('load', detectBonusReading);
 }
 
 /** =========================
@@ -123,108 +152,88 @@ const Section = ({
  * ========================= */
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-800 text-white">
-      <AnimatePresence>
-        {!liberado ? (
-          <motion.div
-            key="tela-bloqueio"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.6 }}
-            className="flex flex-col items-center justify-center min-h-screen text-center px-6"
-          >
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-              className="max-w-2xl"
-            >
-              <h1 className="text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600 mb-5">
-                🎁 Bônus Promocional Liberado
-              </h1>
-
-              <p className="text-lg text-slate-300 mb-8">
-                Você acaba de receber um <span className="font-semibold text-white">bônus especial de desconto</span> 
-                da Estratégia TFX — mas este benefício <span className="font-semibold text-cyan-400">só pode ser resgatado</span> 
-                se você realmente se encaixar em uma das situações abaixo.
-              </p>
-
-              <div className="grid md:grid-cols-2 gap-3 text-left">
-                <div className="bg-slate-800/60 rounded-xl p-4 border border-slate-700">
-                  💭 Sente que trabalha, se esforça... mas continua parado no mesmo lugar?
-                </div>
-                <div className="bg-slate-800/60 rounded-xl p-4 border border-slate-700">
-                  ⚡ Entra confiante e o mercado parece virar contra você em questão de segundos?
-                </div>
-                <div className="bg-slate-800/60 rounded-xl p-4 border border-slate-700">
-                  💸 Busca liberdade financeira, mas sente que algo sempre te puxa pra trás?
-                </div>
-                <div className="bg-slate-800/60 rounded-xl p-4 border border-slate-700">
-                  ⏱ Sai da operação antes da hora e assiste o preço bater exatamente onde queria entrar?
-                </div>
-                <div className="bg-slate-800/60 rounded-xl p-4 border border-slate-700">
-                  🧠 Falta foco, confiança e clareza pra seguir o plano e parar de sabotar seus próprios resultados?
-                </div>
-                <div className="bg-slate-800/60 rounded-xl p-4 border border-slate-700">
-                  📉 Já lucrou, mas nunca conseguiu manter consistência — sempre volta pro zero?
-                </div>
-              </div>
-
-              <motion.button
-                onClick={desbloquear}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="mt-8 bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-8 py-4 rounded-xl font-semibold shadow-lg hover:shadow-cyan-500/30 transition-all duration-300"
-              >
-                Sim, me identifico e quero resgatar meu bônus
-              </motion.button>
-
-              <p className="text-slate-400 text-sm mt-4">
-                (Se nenhuma dessas situações te representa, este bônus não se aplica pra você.)
-              </p>
-            </motion.div>
-          </motion.div>
-        ) : (
-          <motion.div
-            key="conteudo"
-            id="conteudoPrincipal"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
-          >
     <>
-      <Helmet>
-        <title>Estratégia TFX Mente — Domine o mercado com método</title>
-        <meta
-          name="description"
-          content="Método validado que transforma traders comuns em lucrativos. Curso + Guia de Gestão & Mindset por R$49,90. Oferta de lançamento."
-        />
-        
-        {/* Meta tags para tradução automática */}
-        <meta http-equiv="Content-Language" content="pt-BR" />
-        <meta name="language" content="Portuguese" />
-        <meta name="google" content="translate" />
-        <meta name="googlebot" content="translate" />
-        
-        {/* SEO internacional */}
-        <meta name="keywords" content="trading, forex, crypto, estratégia, mercado financeiro, lucro, investimento, trading strategy, forex trading, cryptocurrency" />
-        
-        {/* Open Graph internacional */}
-        <meta property="og:title" content="Estratégia TFX Mente" />
-        <meta
-          property="og:description"
-          content="Curso completo + Guia de Gestão & Mindset — R$49,90."
-        />
-        <meta property="og:type" content="website" />
-        <meta property="og:locale" content="pt_BR" />
-        <meta property="og:locale:alternate" content="en_US" />
-        <meta property="og:locale:alternate" content="es_ES" />
-        <meta property="og:locale:alternate" content="fr_FR" />
-        <meta property="og:locale:alternate" content="de_DE" />
-      </Helmet>
+      {!liberado ? (
+        // 🔒 TELA DE BLOQUEIO
+        <div className="min-h-screen flex flex-col items-center justify-center bg-[#0A141F] text-white text-center px-6">
+          <div className="max-w-3xl">
+            <h1 className="text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600 mb-5">
+              🎁 Bônus Promocional Liberado
+            </h1>
 
-      <div className="bg-gradient-to-b from-black via-zinc-950 to-black text-white min-h-screen">
+            <p className="text-lg text-slate-300 mb-8">
+              Você acaba de receber um <span className="font-semibold text-white">bônus especial de desconto</span> 
+              da Estratégia TFX — mas este benefício <span className="font-semibold text-cyan-400">só pode ser resgatado</span> 
+              se você realmente se encaixar em uma das situações abaixo.
+            </p>
+
+            <div className="grid md:grid-cols-2 gap-3 text-left">
+              <div className="bg-slate-800/60 rounded-xl p-4 border border-slate-700">
+                💭 Sente que trabalha, se esforça... mas continua parado no mesmo lugar?
+              </div>
+              <div className="bg-slate-800/60 rounded-xl p-4 border border-slate-700">
+                ⚡ Entra confiante e o mercado parece virar contra você em questão de segundos?
+              </div>
+              <div className="bg-slate-800/60 rounded-xl p-4 border border-slate-700">
+                💸 Busca liberdade financeira, mas sente que algo sempre te puxa pra trás?
+              </div>
+              <div className="bg-slate-800/60 rounded-xl p-4 border border-slate-700">
+                ⏱ Sai da operação antes da hora e assiste o preço bater exatamente onde queria entrar?
+              </div>
+              <div className="bg-slate-800/60 rounded-xl p-4 border border-slate-700">
+                🧠 Falta foco, confiança e clareza pra seguir o plano e parar de sabotar seus próprios resultados?
+              </div>
+              <div className="bg-slate-800/60 rounded-xl p-4 border border-slate-700">
+                📉 Já lucrou, mas nunca conseguiu manter consistência — sempre volta pro zero?
+              </div>
+            </div>
+
+            <button
+              onClick={desbloquear}
+              className="mt-8 bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-8 py-4 rounded-xl font-semibold shadow-lg hover:shadow-cyan-500/30 transition-all duration-300"
+            >
+              Sim, me identifico e quero resgatar meu bônus
+            </button>
+
+            <p className="text-slate-400 text-sm mt-4">
+              (Se nenhuma dessas situações te representa, este bônus não se aplica pra você.)
+            </p>
+          </div>
+        </div>
+      ) : (
+        // ✅ CONTEÚDO LIBERADO
+        <div id="conteudoPrincipal">
+          <Helmet>
+            <title>Estratégia TFX Mente — Domine o mercado com método</title>
+            <meta
+              name="description"
+              content="Método validado que transforma traders comuns em lucrativos. Curso + Guia de Gestão & Mindset por R$49,90. Oferta de lançamento."
+            />
+            
+            {/* Meta tags para tradução automática */}
+            <meta http-equiv="Content-Language" content="pt-BR" />
+            <meta name="language" content="Portuguese" />
+            <meta name="google" content="translate" />
+            <meta name="googlebot" content="translate" />
+            
+            {/* SEO internacional */}
+            <meta name="keywords" content="trading, forex, crypto, estratégia, mercado financeiro, lucro, investimento, trading strategy, forex trading, cryptocurrency" />
+            
+            {/* Open Graph internacional */}
+            <meta property="og:title" content="Estratégia TFX Mente" />
+            <meta
+              property="og:description"
+              content="Curso completo + Guia de Gestão & Mindset — R$49,90."
+            />
+            <meta property="og:type" content="website" />
+            <meta property="og:locale" content="pt_BR" />
+            <meta property="og:locale:alternate" content="en_US" />
+            <meta property="og:locale:alternate" content="es_ES" />
+            <meta property="og:locale:alternate" content="fr_FR" />
+            <meta property="og:locale:alternate" content="de_DE" />
+          </Helmet>
+
+          <div className="bg-gradient-to-b from-black via-zinc-950 to-black text-white min-h-screen">
         {/* HERO SECTION - NOME DA ESTRATÉGIA + IDENTIFICAÇÃO DE DORES */}
         <section className="relative bg-gradient-to-br from-[#0a0a0a] via-[#001a1a] to-[#000] text-white py-16 overflow-hidden">
           {/* EFEITOS VISUAIS DE FUNDO */}
@@ -234,18 +243,39 @@ const Section = ({
           <div className="section-box text-center relative z-10">
             {/* TAG PROMOCIONAL MELHORADA */}
             <div className="mb-6">
-              <span className="inline-flex items-center gap-2 bg-gradient-to-r from-red-500 to-orange-500 text-white px-6 py-3 rounded-full text-sm font-bold uppercase tracking-wider shadow-[0_0_20px_rgba(255,0,0,0.3)] animate-pulse">
+              <span className="inline-flex items-center gap-2 bg-gradient-to-r from-red-500 to-orange-500 text-white px-6 py-3 rounded-full text-sm font-bold uppercase tracking-wider shadow-[0_0_20px_rgba(255,0,0,0.3)]">
                 🔥 OFERTA EXCLUSIVA POR TEMPO LIMITADO
             </span>
             </div>
 
-            {/* CRONÔMETRO REGRESSIVO MELHORADO */}
+            {/* CRONÔMETRO INTEGRADO COM BÔNUS PROMOCIONAL */}
             <div className="mb-6 w-full max-w-2xl mx-auto">
-              <div className="bg-gradient-to-r from-red-600 via-red-500 to-orange-500 text-white px-8 py-6 rounded-2xl w-full text-2xl font-bold shadow-[0_0_30px_rgba(255,0,0,0.4)] border-2 border-red-400/50">
-                <div id="countdown" className="text-center">
-                  <div className="text-sm mb-2 font-semibold">⏰ OFERTA EXPIRA EM:</div>
-                  <div className="text-4xl md:text-5xl font-black text-yellow-300 drop-shadow-lg countdown-timer">30:00</div>
-                  <div className="text-xs mt-2 opacity-90">Não perca esta oportunidade única!</div>
+              <div className="relative bg-gradient-to-r from-red-500 to-orange-500 p-6 rounded-xl text-center text-white shadow-lg animate-pulse countdown-box">
+                <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-red-600/20 to-orange-400/20 blur-lg animate-pulse"></div>
+
+                {/* SEÇÃO DO BÔNUS PROMOCIONAL */}
+                <div className="mb-6 relative z-10">
+                  <div className="bg-white/10 backdrop-blur-sm rounded-xl py-4 px-6 mx-auto max-w-lg border border-white/20">
+                    <h2 className="text-xl md:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-orange-300 mb-3">
+                      🎁 Bônus Promocional Liberado
+                    </h2>
+                    <p className="text-base md:text-lg font-medium text-white leading-snug bonus-text">
+                      Você acaba de desbloquear um <span className="font-bold text-yellow-300">bônus promocional especial</span>  
+                      da Estratégia TFX — mas este benefício <span className="font-bold text-cyan-300">só pode ser resgatado</span> 
+                      se você realmente se encaixar em uma das situações abaixo. 
+                      <span className="block mt-2 text-sm text-yellow-200">⏰ O cronômetro começará após você terminar de ler esta mensagem.</span>
+                    </p>
+                  </div>
+                </div>
+
+                {/* SEÇÃO DO CRONÔMETRO */}
+                <div className="relative z-10">
+                  <p className="text-sm font-semibold mb-2">🔥 OFERTA EXCLUSIVA POR TEMPO LIMITADO</p>
+                  <h3 className="text-xl font-bold mb-2">⏰ OFERTA EXPIRA EM:</h3>
+                  <p className="text-4xl font-extrabold mb-2 drop-shadow-md countdown-timer">30:00</p>
+                  <p className="text-sm opacity-90">
+                    Não perca esta oportunidade única!
+                  </p>
                 </div>
               </div>
             </div>
@@ -254,26 +284,6 @@ const Section = ({
             <h1 className="text-5xl font-extrabold leading-tight text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
               Domine o Mercado com a <span className="text-indigo-400">Estratégia TFX</span>
             </h1>
-            
-
-
-            <p className="text-base text-gray-400 mt-5 text-center max-w-2xl mx-auto">
-              💭 Está cansado de se sentir preso no mesmo ciclo, sempre tentando mudar de vida e nunca saindo do lugar?  
-              Ou já opera, mas sente que o mercado sempre "vira contra você" e te deixa frustrado?  
-              Aqui você vai entender como pensar e agir como quem realmente vence.
-            </p>
-
-            {/* BÔNUS PROMOCIONAL */}
-            <div className="text-center mb-6">
-              <h1 className="text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600 mb-4">
-                🎁 Bônus Promocional Liberado
-              </h1>
-              <p className="text-lg text-slate-300">
-                Você acaba de receber um <span className="font-semibold text-white">bônus especial de desconto</span> 
-                da Estratégia TFX — mas este benefício <span className="font-semibold text-cyan-400">só pode ser resgatado</span> 
-                se você realmente se encaixar em uma das situações abaixo.
-              </p>
-            </div>
 
             {/* SEÇÃO DE IDENTIFICAÇÃO DE DORES INTEGRADA */}
             <section className="text-center mt-12 bg-gradient-to-b from-[#0b1e23] to-[#081518] p-8 rounded-2xl shadow-lg border border-[#0a2a33] max-w-4xl mx-auto">
@@ -534,7 +544,7 @@ const Section = ({
         </a>
       </div>
 
-      {/* CSS para animação pulseCTA */}
+      {/* CSS para animação pulseCTA e efeitos do cronômetro */}
       <style>{`
         @keyframes pulseCTA {
           0%, 100% { transform: scale(1); }
@@ -546,12 +556,29 @@ const Section = ({
         .countdown-timer {
           animation: pulseCTA 2s infinite;
         }
+        
+        /* Efeito quando o cronômetro começar */
+        .countdown-box.countdown-started {
+          animation: pulseCTA 1.5s infinite;
+        }
+        
+        .countdown-box.countdown-started .countdown-timer {
+          color: #fbbf24;
+          text-shadow: 0 0 20px rgba(251, 191, 36, 0.8);
+        }
+        
+        /* Animação suave para o texto do bônus */
+        .bonus-text {
+          transition: all 0.3s ease-in-out;
+        }
+        
+        .countdown-box.countdown-started .bonus-text {
+          opacity: 0.7;
+        }
       `}</style>
+        </div>
+      )}
     </>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
   );
 };
 
