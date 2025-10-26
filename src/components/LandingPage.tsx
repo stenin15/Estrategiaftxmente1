@@ -140,33 +140,36 @@ const Section = ({
               transition={{ delay: 0.2, duration: 0.6 }}
               className="max-w-2xl"
             >
-              <h1 className="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600 mb-6">
-                ⚠️ Atenção: essa página não é pra qualquer um.
+              <h1 className="text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600 mb-5">
+                🎁 Recompensa Especial Liberada!
               </h1>
 
               <p className="text-lg text-slate-300 mb-8">
-                Apenas continue se <span className="font-semibold text-white">você realmente se identificar</span> com
-                algumas dessas situações abaixo — do contrário, essa metodologia não é pra você.
+                Você foi premiado com um{" "}
+                <span className="font-semibold text-white">bônus exclusivo de desconto</span> —
+                mas só poderá resgatar se{" "}
+                <span className="font-semibold text-cyan-400">realmente se identificar</span> com
+                uma dessas situações abaixo.
               </p>
 
-              <div className="bg-slate-800/50 p-6 rounded-2xl shadow-xl backdrop-blur-sm space-y-3 text-left">
-                <p>💭 Você se dedica, mas sente que o mercado sempre vira contra você?</p>
+              <div className="bg-slate-800/60 p-6 rounded-2xl shadow-lg backdrop-blur-sm text-left space-y-3">
+                <p>💭 Sente que o mercado sempre te "vira contra" mesmo quando faz tudo certo?</p>
                 <p>📉 Já lucrou, mas não consegue manter consistência?</p>
-                <p>⚡ Sente que falta clareza, foco e método?</p>
-                <p>🚀 Quer finalmente entender o que separa quem sobrevive de quem prospera?</p>
+                <p>⚡ Falta clareza, foco e método pra seguir uma linha sólida?</p>
+                <p>🚀 Quer entender o que realmente separa quem prospera de quem sobrevive?</p>
               </div>
 
               <motion.button
                 onClick={desbloquear}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="mt-10 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold px-8 py-4 rounded-xl shadow-lg hover:shadow-cyan-500/30 transition-all duration-300"
+                className="mt-8 bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-8 py-4 rounded-xl font-semibold shadow-lg hover:shadow-cyan-500/30 transition-all duration-300"
               >
-                Sim, me identifico e quero continuar
+                Sim, me identifico e quero liberar meu bônus
               </motion.button>
 
               <p className="text-slate-400 text-sm mt-4">
-                (Se não se identificar, essa página realmente não é pra você.)
+                (Se não se identificar, esse desconto não se aplica pra você.)
               </p>
             </motion.div>
           </motion.div>
