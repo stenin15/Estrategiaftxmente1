@@ -141,22 +141,36 @@ const Section = ({
               className="max-w-2xl"
             >
               <h1 className="text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600 mb-5">
-                🎁 Recompensa Especial Liberada!
+                🎁 Bônus Promocional Liberado
               </h1>
 
               <p className="text-lg text-slate-300 mb-8">
-                Você foi premiado com um{" "}
-                <span className="font-semibold text-white">bônus exclusivo de desconto</span> —
-                mas só poderá resgatar se{" "}
-                <span className="font-semibold text-cyan-400">realmente se identificar</span> com
-                uma dessas situações abaixo.
+                Você acaba de ser selecionado para um{" "}
+                <span className="font-semibold text-white">bônus especial de desconto</span>{" "}
+                na Estratégia TFX — mas este benefício{" "}
+                <span className="font-semibold text-cyan-400">só pode ser resgatado</span>{" "}
+                se você realmente se encaixar em uma das situações abaixo.
               </p>
 
-              <div className="bg-slate-800/60 p-6 rounded-2xl shadow-lg backdrop-blur-sm text-left space-y-3">
-                <p>💭 Sente que o mercado sempre te "vira contra" mesmo quando faz tudo certo?</p>
-                <p>📉 Já lucrou, mas não consegue manter consistência?</p>
-                <p>⚡ Falta clareza, foco e método pra seguir uma linha sólida?</p>
-                <p>🚀 Quer entender o que realmente separa quem prospera de quem sobrevive?</p>
+              <div className="grid md:grid-cols-2 gap-3 text-left">
+                <div className="bg-slate-800/60 rounded-xl p-4 border border-slate-700">
+                  💭 Sente que trabalha, se esforça... mas continua parado no mesmo lugar?
+                </div>
+                <div className="bg-slate-800/60 rounded-xl p-4 border border-slate-700">
+                  ⚡ Entra confiante e o mercado parece virar contra você em questão de segundos?
+                </div>
+                <div className="bg-slate-800/60 rounded-xl p-4 border border-slate-700">
+                  💸 Busca liberdade financeira, mas sente que algo sempre te puxa pra trás?
+                </div>
+                <div className="bg-slate-800/60 rounded-xl p-4 border border-slate-700">
+                  ⏱ Sai da operação antes da hora e assiste o preço bater exatamente onde queria entrar?
+                </div>
+                <div className="bg-slate-800/60 rounded-xl p-4 border border-slate-700">
+                  🧠 Falta foco, confiança e clareza pra seguir o plano e parar de sabotar seus próprios resultados?
+                </div>
+                <div className="bg-slate-800/60 rounded-xl p-4 border border-slate-700">
+                  📉 Já lucrou, mas nunca conseguiu manter consistência — sempre volta pro zero?
+                </div>
               </div>
 
               <motion.button
@@ -165,11 +179,11 @@ const Section = ({
                 whileTap={{ scale: 0.95 }}
                 className="mt-8 bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-8 py-4 rounded-xl font-semibold shadow-lg hover:shadow-cyan-500/30 transition-all duration-300"
               >
-                Sim, me identifico e quero liberar meu bônus
+                Sim, me identifico e quero resgatar meu bônus
               </motion.button>
 
               <p className="text-slate-400 text-sm mt-4">
-                (Se não se identificar, esse desconto não se aplica pra você.)
+                (Se nenhuma dessas situações te representa, esse bônus não se aplica pra você.)
               </p>
             </motion.div>
           </motion.div>
