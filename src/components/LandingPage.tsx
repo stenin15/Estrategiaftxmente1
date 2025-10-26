@@ -263,6 +263,18 @@ const Section = ({
               Aqui você vai entender como pensar e agir como quem realmente vence.
             </p>
 
+            {/* BÔNUS PROMOCIONAL */}
+            <div className="text-center mb-6">
+              <h1 className="text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600 mb-4">
+                🎁 Bônus Promocional Liberado
+              </h1>
+              <p className="text-lg text-slate-300">
+                Você acaba de receber um <span className="font-semibold text-white">bônus especial de desconto</span> 
+                da Estratégia TFX — mas este benefício <span className="font-semibold text-cyan-400">só pode ser resgatado</span> 
+                se você realmente se encaixar em uma das situações abaixo.
+              </p>
+            </div>
+
             {/* SEÇÃO DE IDENTIFICAÇÃO DE DORES INTEGRADA */}
             <section className="text-center mt-12 bg-gradient-to-b from-[#0b1e23] to-[#081518] p-8 rounded-2xl shadow-lg border border-[#0a2a33] max-w-4xl mx-auto">
               <h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 mb-8">
@@ -306,7 +318,7 @@ const Section = ({
                 href="#beneficios"
                 className="inline-block mt-8 px-10 py-4 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 text-white font-bold text-lg shadow-md hover:shadow-cyan-400/30 transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-cyan-400/60"
               >
-                🚀 Quero entender como a Estratégia TFX funciona
+                Sim, me identifico e quero resgatar meu bônus
               </a>
               <p className="text-sm text-gray-400 mt-4 italic">
                 Abaixo você vai ver o que está travando a maioria — e como a TFX resolve isso passo a passo.
