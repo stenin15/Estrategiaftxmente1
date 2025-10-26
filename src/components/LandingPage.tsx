@@ -253,20 +253,6 @@ const Section = ({
               <div className="relative bg-gradient-to-r from-red-500 to-orange-500 p-6 rounded-xl text-center text-white shadow-lg animate-pulse countdown-box">
                 <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-red-600/20 to-orange-400/20 blur-lg animate-pulse"></div>
 
-                {/* SEÇÃO DO BÔNUS PROMOCIONAL */}
-                <div className="mb-6 relative z-10">
-                  <div className="bg-white/10 backdrop-blur-sm rounded-xl py-4 px-6 mx-auto max-w-lg border border-white/20">
-                    <h2 className="text-xl md:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-orange-300 mb-3">
-                      🎁 Bônus Promocional Liberado
-                    </h2>
-                    <p className="text-base md:text-lg font-medium text-white leading-snug bonus-text">
-                      Você acaba de desbloquear um <span className="font-bold text-yellow-300">bônus promocional especial</span>  
-                      da Estratégia TFX — mas este benefício <span className="font-bold text-cyan-300">só pode ser resgatado</span> 
-                      se você realmente se encaixar em uma das situações abaixo. 
-                      <span className="block mt-2 text-sm text-yellow-200">⏰ O cronômetro começará após você terminar de ler esta mensagem.</span>
-                    </p>
-                  </div>
-                </div>
 
                 {/* SEÇÃO DO CRONÔMETRO */}
                 <div className="relative z-10">
