@@ -145,10 +145,8 @@ const Section = ({
               </h1>
 
               <p className="text-lg text-slate-300 mb-8">
-                Você acaba de ser selecionado para um{" "}
-                <span className="font-semibold text-white">bônus especial de desconto</span>{" "}
-                na Estratégia TFX — mas este benefício{" "}
-                <span className="font-semibold text-cyan-400">só pode ser resgatado</span>{" "}
+                Você acaba de receber um <span className="font-semibold text-white">bônus especial de desconto</span> 
+                da Estratégia TFX — mas este benefício <span className="font-semibold text-cyan-400">só pode ser resgatado</span> 
                 se você realmente se encaixar em uma das situações abaixo.
               </p>
 
@@ -183,7 +181,7 @@ const Section = ({
               </motion.button>
 
               <p className="text-slate-400 text-sm mt-4">
-                (Se nenhuma dessas situações te representa, esse bônus não se aplica pra você.)
+                (Se nenhuma dessas situações te representa, este bônus não se aplica pra você.)
               </p>
             </motion.div>
           </motion.div>
