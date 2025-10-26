@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
+import { motion, AnimatePresence } from "framer-motion";
 import { OfertaFinal } from "./OfertaFinal";
 import { Footer } from "./Footer";
 import TransformacoesReaisSection from "./TransformacoesReaisSection";
@@ -60,6 +61,26 @@ if (typeof window !== 'undefined') {
 }
 
 /** =========================
+ * TELA DE BLOQUEIO PSICOLÓGICO
+ * ========================= */
+const LandingPage = () => {
+  const [liberado, setLiberado] = useState(false);
+
+  useEffect(() => {
+    const liberadoAntes = localStorage.getItem("tfxLiberado");
+    if (liberadoAntes) setLiberado(true);
+  }, []);
+
+  const desbloquear = () => {
+    localStorage.setItem("tfxLiberado", "true");
+    setLiberado(true);
+    setTimeout(() => {
+      const target = document.getElementById("conteudoPrincipal");
+      target?.scrollIntoView({ behavior: "smooth" });
+    }, 400);
+  };
+
+/** =========================
  * COMPONENTES AUXILIARES
  * ========================= */
 const Badge = ({ children }: { children: React.ReactNode }) => (
@@ -101,13 +122,62 @@ const Section = ({
  * FUNÇÃO PARA MODAL DE IMAGENS
  * ========================= */
 
-/** =========================
- * LANDING PAGE
- * ========================= */
-const LandingPage: React.FC = () => {
-
-
   return (
+    <div className="min-h-screen bg-gradient-to-b from-slate-950 via-slate-900 to-slate-800 text-white">
+      <AnimatePresence>
+        {!liberado ? (
+          <motion.div
+            key="tela-bloqueio"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.6 }}
+            className="flex flex-col items-center justify-center min-h-screen text-center px-6"
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              className="max-w-2xl"
+            >
+              <h1 className="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600 mb-6">
+                ⚠️ Atenção: essa página não é pra qualquer um.
+              </h1>
+
+              <p className="text-lg text-slate-300 mb-8">
+                Apenas continue se <span className="font-semibold text-white">você realmente se identificar</span> com
+                algumas dessas situações abaixo — do contrário, essa metodologia não é pra você.
+              </p>
+
+              <div className="bg-slate-800/50 p-6 rounded-2xl shadow-xl backdrop-blur-sm space-y-3 text-left">
+                <p>💭 Você se dedica, mas sente que o mercado sempre vira contra você?</p>
+                <p>📉 Já lucrou, mas não consegue manter consistência?</p>
+                <p>⚡ Sente que falta clareza, foco e método?</p>
+                <p>🚀 Quer finalmente entender o que separa quem sobrevive de quem prospera?</p>
+              </div>
+
+              <motion.button
+                onClick={desbloquear}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="mt-10 bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold px-8 py-4 rounded-xl shadow-lg hover:shadow-cyan-500/30 transition-all duration-300"
+              >
+                Sim, me identifico e quero continuar
+              </motion.button>
+
+              <p className="text-slate-400 text-sm mt-4">
+                (Se não se identificar, essa página realmente não é pra você.)
+              </p>
+            </motion.div>
+          </motion.div>
+        ) : (
+          <motion.div
+            key="conteudo"
+            id="conteudoPrincipal"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+          >
     <>
       <Helmet>
         <title>Estratégia TFX Mente — Domine o mercado com método</title>
@@ -450,8 +520,11 @@ const LandingPage: React.FC = () => {
           animation: pulseCTA 2s infinite;
         }
       `}</style>
-
     </>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   );
 };
 
