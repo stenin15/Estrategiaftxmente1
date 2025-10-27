@@ -162,115 +162,115 @@ const Section = ({
   return (
     <>
       {!liberado ? (
-        // 🔒 TELA DE BLOQUEIO INICIAL
-        <div className="min-h-screen flex flex-col items-center justify-center bg-[#0A141F] text-white text-center px-6">
-          <div className="max-w-3xl">
-            <h1 className="text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600 mb-5">
+        // 🔒 TELA DE BLOQUEIO INICIAL - RESPONSIVA
+        <div className="min-h-screen flex flex-col items-center justify-center bg-[#0A141F] text-white text-center px-3 sm:px-6 py-4 sm:py-8">
+          <div className="w-full max-w-xs sm:max-w-md md:max-w-2xl lg:max-w-3xl">
+            <h1 className="text-xl xs:text-2xl sm:text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600 mb-3 sm:mb-5 px-2 sm:px-0">
               🎁 Bônus Promocional Liberado
             </h1>
 
-            <p className="text-lg text-slate-300 mb-8">
+            <p className="text-sm sm:text-base md:text-lg text-slate-300 mb-4 sm:mb-6 md:mb-8 px-2 sm:px-0">
               Você acaba de receber um <span className="font-semibold text-white">bônus especial de desconto</span> 
               da Estratégia TFX — mas este benefício <span className="font-semibold text-cyan-400">só pode ser resgatado</span> 
               se você realmente se encaixar em uma das situações abaixo.
             </p>
 
-            <div className="grid md:grid-cols-2 gap-3 text-left">
-              <div className="bg-slate-800/60 rounded-xl p-4 border border-slate-700">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 text-left mb-4 sm:mb-6 md:mb-8">
+              <div className="bg-slate-800/60 rounded-lg sm:rounded-xl p-3 sm:p-4 border border-slate-700 text-xs sm:text-sm md:text-base">
                 💭 Sente que trabalha, se esforça... mas continua parado no mesmo lugar?
               </div>
-              <div className="bg-slate-800/60 rounded-xl p-4 border border-slate-700">
+              <div className="bg-slate-800/60 rounded-lg sm:rounded-xl p-3 sm:p-4 border border-slate-700 text-xs sm:text-sm md:text-base">
                 ⚡ Entra confiante e o mercado parece virar contra você em questão de segundos?
               </div>
-              <div className="bg-slate-800/60 rounded-xl p-4 border border-slate-700">
+              <div className="bg-slate-800/60 rounded-lg sm:rounded-xl p-3 sm:p-4 border border-slate-700 text-xs sm:text-sm md:text-base">
                 💸 Busca liberdade financeira, mas sente que algo sempre te puxa pra trás?
               </div>
-              <div className="bg-slate-800/60 rounded-xl p-4 border border-slate-700">
+              <div className="bg-slate-800/60 rounded-lg sm:rounded-xl p-3 sm:p-4 border border-slate-700 text-xs sm:text-sm md:text-base">
                 ⏱ Sai da operação antes da hora e assiste o preço bater exatamente onde queria entrar?
               </div>
-              <div className="bg-slate-800/60 rounded-xl p-4 border border-slate-700">
+              <div className="bg-slate-800/60 rounded-lg sm:rounded-xl p-3 sm:p-4 border border-slate-700 text-xs sm:text-sm md:text-base">
                 🧠 Falta foco, confiança e clareza pra seguir o plano e parar de sabotar seus próprios resultados?
               </div>
-              <div className="bg-slate-800/60 rounded-xl p-4 border border-slate-700">
+              <div className="bg-slate-800/60 rounded-lg sm:rounded-xl p-3 sm:p-4 border border-slate-700 text-xs sm:text-sm md:text-base">
                 📉 Já lucrou, mas nunca conseguiu manter consistência — sempre volta pro zero?
               </div>
             </div>
 
             <button
               onClick={desbloquear}
-              className="mt-8 bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-8 py-4 rounded-xl font-semibold shadow-lg hover:shadow-cyan-500/30 transition-all duration-300"
+              className="w-full sm:w-auto bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg sm:rounded-xl font-semibold text-sm sm:text-base shadow-lg hover:shadow-cyan-500/30 transition-all duration-300"
             >
               Sim, me identifico e quero resgatar meu bônus
             </button>
 
-            <p className="text-slate-400 text-sm mt-4">
+            <p className="text-slate-400 text-xs sm:text-sm mt-2 sm:mt-4 px-2 sm:px-0">
               (Se nenhuma dessas situações te representa, este bônus não se aplica pra você.)
             </p>
           </div>
         </div>
       ) : !identificacaoLiberada ? (
-        // 🚫 TELA DE BLOQUEIO DA IDENTIFICAÇÃO (SPAM)
-        <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-green-400 via-emerald-500 to-green-600 text-white text-center px-6 relative overflow-hidden">
+        // 🚫 TELA DE BLOQUEIO DA IDENTIFICAÇÃO (SPAM) - RESPONSIVA
+        <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-green-400 via-emerald-500 to-green-600 text-white text-center px-3 sm:px-6 py-4 sm:py-8 relative overflow-hidden">
           {/* EFEITOS VISUAIS DE SPAM - VERDE NEON DINHEIRO */}
           <div className="absolute inset-0 bg-gradient-to-r from-green-300/20 via-emerald-400/20 to-green-500/20 animate-pulse"></div>
           <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(34,197,94,0.3),transparent_70%)]"></div>
           <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-black/20"></div>
           
-          <div className="max-w-4xl relative z-10">
-            {/* CRONÔMETRO GIGANTE - HARMONIZADO COM VERDE NEON */}
-            <div className="mb-8">
-              <div className="bg-gradient-to-r from-black via-gray-900 to-black p-8 rounded-2xl text-center text-white shadow-2xl animate-pulse border-4 border-green-400/60 backdrop-blur-sm">
-                <div className="text-6xl md:text-8xl font-black countdown-timer mb-4 text-green-400 drop-shadow-[0_0_20px_rgba(34,197,94,0.8)]">30:00</div>
-                <div className="text-xl font-bold text-green-300">⏰ OFERTA EXPIRA EM:</div>
-                <div className="text-lg mt-2 text-green-200">💰 OFERTA EXCLUSIVA POR TEMPO LIMITADO</div>
+          <div className="w-full max-w-xs sm:max-w-md md:max-w-2xl lg:max-w-4xl xl:max-w-5xl relative z-10">
+            {/* CRONÔMETRO GIGANTE - TOTALMENTE RESPONSIVO */}
+            <div className="mb-4 sm:mb-6 md:mb-8">
+              <div className="bg-gradient-to-r from-black via-gray-900 to-black p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl text-center text-white shadow-2xl animate-pulse border-2 sm:border-4 border-green-400/60 backdrop-blur-sm mx-2 sm:mx-0">
+                <div className="text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black countdown-timer mb-2 sm:mb-4 text-green-400 drop-shadow-[0_0_20px_rgba(34,197,94,0.8)]">30:00</div>
+                <div className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-green-300">⏰ OFERTA EXPIRA EM:</div>
+                <div className="text-xs sm:text-sm md:text-base lg:text-lg mt-1 sm:mt-2 text-green-200">💰 OFERTA EXCLUSIVA POR TEMPO LIMITADO</div>
               </div>
             </div>
 
-            {/* HEADLINE PRINCIPAL - HARMONIZADA COM VERDE NEON */}
-            <h1 className="text-4xl md:text-6xl font-extrabold leading-tight text-center text-transparent bg-clip-text bg-gradient-to-r from-white via-green-100 to-green-200 mb-8 drop-shadow-[0_0_15px_rgba(34,197,94,0.5)]">
+            {/* HEADLINE PRINCIPAL - TOTALMENTE RESPONSIVA */}
+            <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-center text-transparent bg-clip-text bg-gradient-to-r from-white via-green-100 to-green-200 mb-4 sm:mb-6 md:mb-8 drop-shadow-[0_0_15px_rgba(34,197,94,0.5)] px-2 sm:px-0">
               Domine o Mercado com a <span className="text-yellow-300 drop-shadow-[0_0_10px_rgba(251,191,36,0.6)]">Estratégia TFX</span>
             </h1>
 
-            {/* SEÇÃO DE IDENTIFICAÇÃO GIGANTE - HARMONIZADA */}
-            <div className="bg-gradient-to-b from-black/80 via-gray-900/90 to-black/80 p-8 rounded-2xl shadow-lg border border-green-400/40 max-w-5xl mx-auto mb-8 backdrop-blur-sm">
-              <h2 className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-300 to-green-100 mb-8 drop-shadow-[0_0_15px_rgba(34,197,94,0.6)]">
+            {/* SEÇÃO DE IDENTIFICAÇÃO GIGANTE - TOTALMENTE RESPONSIVA */}
+            <div className="bg-gradient-to-b from-black/80 via-gray-900/90 to-black/80 p-3 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl shadow-lg border border-green-400/40 mx-2 sm:mx-0 mb-4 sm:mb-6 md:mb-8 backdrop-blur-sm">
+              <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-300 to-green-100 mb-4 sm:mb-6 md:mb-8 drop-shadow-[0_0_15px_rgba(34,197,94,0.6)] px-2 sm:px-0">
                 💰 Você se identifica com isso?
               </h2>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-gray-200 mb-8">
-                <div className="bg-gradient-to-br from-gray-800/90 to-gray-900/90 p-6 rounded-xl border border-green-400/30 hover:border-green-300 hover:bg-gradient-to-br hover:from-gray-700/90 hover:to-gray-800/90 transition-all duration-300 text-lg backdrop-blur-sm">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6 text-gray-200 mb-4 sm:mb-6 md:mb-8">
+                <div className="bg-gradient-to-br from-gray-800/90 to-gray-900/90 p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-xl border border-green-400/30 hover:border-green-300 hover:bg-gradient-to-br hover:from-gray-700/90 hover:to-gray-800/90 transition-all duration-300 text-sm sm:text-base md:text-lg backdrop-blur-sm">
                   💭 Sente que trabalha, se esforça… mas continua parado no mesmo lugar?
                 </div>
-                <div className="bg-gradient-to-br from-gray-800/90 to-gray-900/90 p-6 rounded-xl border border-green-400/30 hover:border-green-300 hover:bg-gradient-to-br hover:from-gray-700/90 hover:to-gray-800/90 transition-all duration-300 text-lg backdrop-blur-sm">
+                <div className="bg-gradient-to-br from-gray-800/90 to-gray-900/90 p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-xl border border-green-400/30 hover:border-green-300 hover:bg-gradient-to-br hover:from-gray-700/90 hover:to-gray-800/90 transition-all duration-300 text-sm sm:text-base md:text-lg backdrop-blur-sm">
                   📉 Entra confiante e o mercado parece virar contra você em questão de segundos?
                 </div>
-                <div className="bg-gradient-to-br from-gray-800/90 to-gray-900/90 p-6 rounded-xl border border-green-400/30 hover:border-green-300 hover:bg-gradient-to-br hover:from-gray-700/90 hover:to-gray-800/90 transition-all duration-300 text-lg backdrop-blur-sm">
+                <div className="bg-gradient-to-br from-gray-800/90 to-gray-900/90 p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-xl border border-green-400/30 hover:border-green-300 hover:bg-gradient-to-br hover:from-gray-700/90 hover:to-gray-800/90 transition-all duration-300 text-sm sm:text-base md:text-lg backdrop-blur-sm">
                   💸 Busca liberdade financeira, mas parece que algo sempre te puxa pra trás?
                 </div>
-                <div className="bg-gradient-to-br from-gray-800/90 to-gray-900/90 p-6 rounded-xl border border-green-400/30 hover:border-green-300 hover:bg-gradient-to-br hover:from-gray-700/90 hover:to-gray-800/90 transition-all duration-300 text-lg backdrop-blur-sm">
+                <div className="bg-gradient-to-br from-gray-800/90 to-gray-900/90 p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-xl border border-green-400/30 hover:border-green-300 hover:bg-gradient-to-br hover:from-gray-700/90 hover:to-gray-800/90 transition-all duration-300 text-sm sm:text-base md:text-lg backdrop-blur-sm">
                   ⏰ Sai da operação antes da hora e assiste o preço bater exatamente onde queria entrar?
                 </div>
-                <div className="bg-gradient-to-br from-gray-800/90 to-gray-900/90 p-6 rounded-xl border border-green-400/30 hover:border-green-300 hover:bg-gradient-to-br hover:from-gray-700/90 hover:to-gray-800/90 transition-all duration-300 text-lg backdrop-blur-sm">
+                <div className="bg-gradient-to-br from-gray-800/90 to-gray-900/90 p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-xl border border-green-400/30 hover:border-green-300 hover:bg-gradient-to-br hover:from-gray-700/90 hover:to-gray-800/90 transition-all duration-300 text-sm sm:text-base md:text-lg backdrop-blur-sm">
                   💡 Falta foco, confiança e clareza pra seguir o plano e parar de sabotar seus próprios resultados?
                 </div>
-                <div className="bg-gradient-to-br from-gray-800/90 to-gray-900/90 p-6 rounded-xl border border-green-400/30 hover:border-green-300 hover:bg-gradient-to-br hover:from-gray-700/90 hover:to-gray-800/90 transition-all duration-300 text-lg backdrop-blur-sm">
+                <div className="bg-gradient-to-br from-gray-800/90 to-gray-900/90 p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-xl border border-green-400/30 hover:border-green-300 hover:bg-gradient-to-br hover:from-gray-700/90 hover:to-gray-800/90 transition-all duration-300 text-sm sm:text-base md:text-lg backdrop-blur-sm">
                   🌿 Já lucrou, mas nunca conseguiu manter consistência — sempre volta pro zero?
                 </div>
               </div>
 
-              <p className="text-gray-200 mb-8 text-xl max-w-3xl mx-auto leading-relaxed">
+              <p className="text-gray-200 mb-4 sm:mb-6 md:mb-8 text-sm sm:text-base md:text-lg lg:text-xl max-w-xs sm:max-w-md md:max-w-2xl lg:max-w-3xl mx-auto leading-relaxed px-2 sm:px-0">
                 A <span className="text-green-300 font-semibold">TFX</span> não é só um método — é o ponto de virada entre quem sobrevive e quem prospera.
                 Aqui, você aprende o que realmente muda o jogo: <span className="text-yellow-300 font-semibold">mentalidade, método e disciplina.</span>
               </p>
 
               <button
                 onClick={liberarIdentificacao}
-                className="bg-gradient-to-r from-green-400 via-emerald-500 to-green-600 text-black font-bold text-2xl px-12 py-6 rounded-2xl hover:scale-105 transition-all duration-300 shadow-[0_0_40px_rgba(34,197,94,0.8)] border-2 border-green-300/50 hover:shadow-[0_0_60px_rgba(34,197,94,1)] hover:from-green-300 hover:via-emerald-400 hover:to-green-500"
+                className="w-full sm:w-auto bg-gradient-to-r from-green-400 via-emerald-500 to-green-600 text-black font-bold text-lg sm:text-xl md:text-2xl px-6 sm:px-8 md:px-12 py-3 sm:py-4 md:py-6 rounded-xl sm:rounded-2xl hover:scale-105 transition-all duration-300 shadow-[0_0_40px_rgba(34,197,94,0.8)] border-2 border-green-300/50 hover:shadow-[0_0_60px_rgba(34,197,94,1)] hover:from-green-300 hover:via-emerald-400 hover:to-green-500 mx-2 sm:mx-0"
               >
                 💰 Sim, me identifico e quero resgatar meu bônus
               </button>
               
-              <p className="text-sm text-gray-300 mt-4 italic">
+              <p className="text-xs sm:text-sm text-gray-300 mt-2 sm:mt-4 italic px-2 sm:px-0">
                 Abaixo você vai ver o que está travando a maioria — e como a TFX resolve isso passo a passo.
               </p>
             </div>
