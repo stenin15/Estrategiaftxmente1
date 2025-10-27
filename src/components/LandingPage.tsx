@@ -94,10 +94,13 @@ if (typeof window !== 'undefined') {
  * ========================= */
 const LandingPage = () => {
   const [liberado, setLiberado] = useState(false);
+  const [identificacaoLiberada, setIdentificacaoLiberada] = useState(false);
 
   useEffect(() => {
     const liberadoAntes = localStorage.getItem("tfxLiberado");
+    const identificacaoAntes = localStorage.getItem("tfxIdentificacao");
     if (liberadoAntes) setLiberado(true);
+    if (identificacaoAntes) setIdentificacaoLiberada(true);
   }, []);
 
   const desbloquear = () => {
@@ -107,6 +110,11 @@ const LandingPage = () => {
       const target = document.getElementById("conteudoPrincipal");
       target?.scrollIntoView({ behavior: "smooth" });
     }, 400);
+  };
+
+  const liberarIdentificacao = () => {
+    localStorage.setItem("tfxIdentificacao", "true");
+    setIdentificacaoLiberada(true);
   };
 
 /** =========================
@@ -154,7 +162,7 @@ const Section = ({
   return (
     <>
       {!liberado ? (
-        // 🔒 TELA DE BLOQUEIO
+        // 🔒 TELA DE BLOQUEIO INICIAL
         <div className="min-h-screen flex flex-col items-center justify-center bg-[#0A141F] text-white text-center px-6">
           <div className="max-w-3xl">
             <h1 className="text-2xl md:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600 mb-5">
@@ -198,6 +206,73 @@ const Section = ({
             <p className="text-slate-400 text-sm mt-4">
               (Se nenhuma dessas situações te representa, este bônus não se aplica pra você.)
             </p>
+          </div>
+        </div>
+      ) : !identificacaoLiberada ? (
+        // 🚫 TELA DE BLOQUEIO DA IDENTIFICAÇÃO (SPAM)
+        <div className="min-h-screen flex flex-col items-center justify-center bg-[#0A141F] text-white text-center px-6 relative overflow-hidden">
+          {/* EFEITOS VISUAIS DE SPAM */}
+          <div className="absolute inset-0 bg-gradient-to-r from-red-500/10 via-orange-500/10 to-red-500/10 animate-pulse"></div>
+          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(255,0,0,0.1),transparent_50%)]"></div>
+          
+          <div className="max-w-4xl relative z-10">
+            {/* CRONÔMETRO GIGANTE */}
+            <div className="mb-8">
+              <div className="bg-gradient-to-r from-red-500 to-orange-500 p-8 rounded-2xl text-center text-white shadow-2xl animate-pulse border-4 border-red-400/50">
+                <div className="text-6xl md:text-8xl font-black countdown-timer mb-4">30:00</div>
+                <div className="text-xl font-bold">⏰ OFERTA EXPIRA EM:</div>
+                <div className="text-lg mt-2">🔥 OFERTA EXCLUSIVA POR TEMPO LIMITADO</div>
+              </div>
+            </div>
+
+            {/* HEADLINE PRINCIPAL */}
+            <h1 className="text-4xl md:text-6xl font-extrabold leading-tight text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 mb-8">
+              Domine o Mercado com a <span className="text-indigo-400">Estratégia TFX</span>
+            </h1>
+
+            {/* SEÇÃO DE IDENTIFICAÇÃO GIGANTE */}
+            <div className="bg-gradient-to-b from-[#0b1e23] to-[#081518] p-8 rounded-2xl shadow-lg border border-[#0a2a33] max-w-5xl mx-auto mb-8">
+              <h2 className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 mb-8">
+                😔 Você se identifica com isso?
+              </h2>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-gray-300 mb-8">
+                <div className="bg-[#0c2024] p-6 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-300 text-lg">
+                  💭 Sente que trabalha, se esforça… mas continua parado no mesmo lugar?
+                </div>
+                <div className="bg-[#0c2024] p-6 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-300 text-lg">
+                  📉 Entra confiante e o mercado parece virar contra você em questão de segundos?
+                </div>
+                <div className="bg-[#0c2024] p-6 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-300 text-lg">
+                  💸 Busca liberdade financeira, mas parece que algo sempre te puxa pra trás?
+                </div>
+                <div className="bg-[#0c2024] p-6 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-300 text-lg">
+                  ⏰ Sai da operação antes da hora e assiste o preço bater exatamente onde queria entrar?
+                </div>
+                <div className="bg-[#0c2024] p-6 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-300 text-lg">
+                  💡 Falta foco, confiança e clareza pra seguir o plano e parar de sabotar seus próprios resultados?
+                </div>
+                <div className="bg-[#0c2024] p-6 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-300 text-lg">
+                  🌿 Já lucrou, mas nunca conseguiu manter consistência — sempre volta pro zero?
+                </div>
+              </div>
+
+              <p className="text-gray-400 mb-8 text-xl max-w-3xl mx-auto leading-relaxed">
+                A <span className="text-cyan-400 font-semibold">TFX</span> não é só um método — é o ponto de virada entre quem sobrevive e quem prospera.
+                Aqui, você aprende o que realmente muda o jogo: <span className="text-yellow-300 font-semibold">mentalidade, método e disciplina.</span>
+              </p>
+
+              <button
+                onClick={liberarIdentificacao}
+                className="bg-gradient-to-r from-cyan-400 to-blue-500 text-white font-bold text-2xl px-12 py-6 rounded-2xl hover:scale-105 transition-all duration-300 shadow-[0_0_40px_rgba(0,255,255,0.5)] border-2 border-cyan-300/50 hover:shadow-[0_0_60px_rgba(0,255,255,0.8)]"
+              >
+                Sim, me identifico e quero resgatar meu bônus
+              </button>
+              
+              <p className="text-sm text-gray-400 mt-4 italic">
+                Abaixo você vai ver o que está travando a maioria — e como a TFX resolve isso passo a passo.
+              </p>
+            </div>
           </div>
         </div>
       ) : (
@@ -262,55 +337,6 @@ const Section = ({
               Domine o Mercado com a <span className="text-indigo-400">Estratégia TFX</span>
             </h1>
 
-            {/* SEÇÃO DE IDENTIFICAÇÃO DE DORES INTEGRADA */}
-            <section className="text-center mt-12 bg-gradient-to-b from-[#0b1e23] to-[#081518] p-8 rounded-2xl shadow-lg border border-[#0a2a33] max-w-4xl mx-auto">
-              <h2 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 mb-8">
-              😔 Você se identifica com isso?
-            </h2>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-300">
-                {/* COLUNA 1 — público geral */}
-                <div className="space-y-4">
-                  <div className="bg-[#0c2024] p-5 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-300 motion-safe:hover:scale-[1.02]">
-                    💭 Sente que trabalha, se esforça… mas continua parado no mesmo lugar?
-                  </div>
-                  <div className="bg-[#0c2024] p-5 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-300 motion-safe:hover:scale-[1.02]">
-                    💸 Busca liberdade financeira, mas parece que algo sempre te puxa pra trás?
-                  </div>
-                  <div className="bg-[#0c2024] p-5 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-300 motion-safe:hover:scale-[1.02]">
-                    ⚖️ Falta foco, confiança e clareza pra seguir o plano e parar de sabotar seus próprios resultados?
-                  </div>
-              </div>
-
-                {/* COLUNA 2 — público trader */}
-                <div className="space-y-4">
-                  <div className="bg-[#0c2024] p-5 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-300 motion-safe:hover:scale-[1.02]">
-                    📉 Entra confiante e o mercado parece virar contra você em questão de segundos?
-                  </div>
-                  <div className="bg-[#0c2024] p-5 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-300 motion-safe:hover:scale-[1.02]">
-                    ⏰ Sai da operação antes da hora e assiste o preço bater exatamente onde queria entrar?
-              </div>
-                  <div className="bg-[#0c2024] p-5 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-300 motion-safe:hover:scale-[1.02]">
-                    🧩 Já lucrou, mas nunca conseguiu manter consistência — sempre volta pro zero?
-              </div>
-              </div>
-            </div>
-
-              <p className="text-gray-400 mt-8 text-base max-w-2xl mx-auto leading-relaxed">
-                A <span className="text-cyan-400 font-semibold">TFX</span> não é só um método — é o ponto de virada entre quem sobrevive e quem prospera.
-                Aqui, você aprende o que realmente muda o jogo: <span className="text-yellow-300 font-semibold">mentalidade, método e disciplina.</span>
-              </p>
-
-              <a
-                href="#beneficios"
-                className="inline-block mt-8 px-10 py-4 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 text-white font-bold text-lg shadow-md hover:shadow-cyan-400/30 transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-cyan-400/60"
-              >
-                Sim, me identifico e quero resgatar meu bônus
-              </a>
-              <p className="text-sm text-gray-400 mt-4 italic">
-                Abaixo você vai ver o que está travando a maioria — e como a TFX resolve isso passo a passo.
-              </p>
-            </section>
           </div>
         </section>
 
@@ -327,33 +353,6 @@ const Section = ({
               em operadores conscientes — com mentalidade e setups que funcionam na vida real.
             </p>
 
-          {/* BLOCO DE TRANSFORMAÇÃO MENTAL E PESSOAL */}
-          <section className="text-center mt-8 sm:mt-12 bg-gradient-to-b from-[#0b1e23] to-[#081518] p-6 sm:p-8 rounded-2xl shadow-lg border border-[#0a2a33] max-w-4xl mx-auto">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 mb-3 leading-tight">
-              O que acontece quando você muda a forma de pensar — sobre o mercado e sobre você
-            </h2>
-
-            <p className="text-gray-300 mb-6 sm:mb-8 max-w-2xl mx-auto leading-relaxed text-sm sm:text-base px-4 sm:px-0">
-              Dentro da <span className="text-cyan-400 font-semibold">Estratégia TFX</span>, você vai desenvolver os mesmos princípios mentais que moldam traders consistentes — 
-              e pessoas que conquistam resultados em qualquer área da vida.
-            </p>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 text-gray-300 mb-6">
-              <div className="bg-[#0c2024] p-4 sm:p-5 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-300 text-sm sm:text-base">
-                ⚡ O ponto de virada entre agir por impulso e operar com clareza — entenda o que realmente move o mercado (e suas decisões).
-              </div>
-              <div className="bg-[#0c2024] p-4 sm:p-5 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-300 text-sm sm:text-base">
-                🧠 O código mental dos consistentes — como alinhar disciplina, foco e paciência para vencer sem depender da sorte.
-              </div>
-              <div className="bg-[#0c2024] p-4 sm:p-5 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-300 text-sm sm:text-base">
-                🔄 O poder dos hábitos certos — estrutura sua rotina como quem vive de resultados, não de expectativas.
-              </div>
-              <div className="bg-[#0c2024] p-4 sm:p-5 rounded-xl border border-[#14343c] hover:border-cyan-400 hover:bg-[#0e2428] transition-all duration-300 text-sm sm:text-base">
-                💰 A visão que separa liberdade de ilusão — aprenda a usar o dinheiro e o tempo como ferramentas, não prisões.
-              </div>
-            </div>
-            
-          </section>
 
             {/* BOTÃO CTA MELHORADO */}
             <div className="mt-12">
