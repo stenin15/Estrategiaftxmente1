@@ -20,7 +20,7 @@ export const ContentSection = () => {
           className="text-sm sm:text-base md:text-lg lg:text-xl py-4 sm:py-5 md:py-6 px-6 sm:px-8 md:px-12 shadow-[0_0_25px_rgba(0,188,212,0.6)] hover:shadow-[0_0_35px_rgba(0,188,212,0.8)] hover:scale-105 transition-all border-2 border-primary/40"
           onClick={scrollToForm}
         >
-          ✨ ACESSAR O MÉTODO COMPLETO POR R$ 59,90
+          💰 QUERO GERAR R$ 2.847/MÊS COM A TFX
         </Button>
       </div>
     </section>

@@ -435,18 +435,24 @@ const Section = ({
 
               <div className="bg-gradient-to-br from-gray-800/80 to-gray-900/80 p-6 rounded-2xl border border-green-400/30 backdrop-blur-sm">
                 <h3 className="text-xl font-bold text-green-300 mb-4">🎯 Casos de Sucesso Reais</h3>
-                <div className="space-y-3 text-left">
-                  <div className="border-l-4 border-green-400 pl-4">
+                <div className="space-y-4 text-left">
+                  <div className="border-l-4 border-green-400 pl-4 bg-green-500/10 p-3 rounded-r-lg">
                     <div className="text-white font-semibold">João M. - São Paulo</div>
-                    <div className="text-gray-300 text-sm">De R$ 500 para R$ 8.400 em 3 meses</div>
+                    <div className="text-gray-300 text-sm">Capital inicial: R$ 500</div>
+                    <div className="text-green-400 font-bold">Resultado: R$ 8.400 em 3 meses</div>
+                    <div className="text-xs text-gray-400 mt-1">ROI: +1.580% | Screenshot disponível no grupo VIP</div>
                   </div>
-                  <div className="border-l-4 border-blue-400 pl-4">
+                  <div className="border-l-4 border-blue-400 pl-4 bg-blue-500/10 p-3 rounded-r-lg">
                     <div className="text-white font-semibold">Maria S. - Rio de Janeiro</div>
-                    <div className="text-gray-300 text-sm">Lucro de R$ 12.300 no primeiro mês</div>
+                    <div className="text-gray-300 text-sm">Capital inicial: R$ 2.000</div>
+                    <div className="text-blue-400 font-bold">Resultado: R$ 12.300 no primeiro mês</div>
+                    <div className="text-xs text-gray-400 mt-1">ROI: +515% | Depoimento em vídeo no grupo</div>
                   </div>
-                  <div className="border-l-4 border-yellow-400 pl-4">
+                  <div className="border-l-4 border-yellow-400 pl-4 bg-yellow-500/10 p-3 rounded-r-lg">
                     <div className="text-white font-semibold">Carlos R. - Belo Horizonte</div>
-                    <div className="text-gray-300 text-sm">ROI de 340% em 6 meses</div>
+                    <div className="text-gray-300 text-sm">Capital inicial: R$ 5.000</div>
+                    <div className="text-yellow-400 font-bold">Resultado: ROI de 340% em 6 meses</div>
+                    <div className="text-xs text-gray-400 mt-1">Lucro total: R$ 17.000 | Histórico completo disponível</div>
                   </div>
                 </div>
               </div>
@@ -469,53 +475,116 @@ const Section = ({
             </p>
 
 
-            {/* BENEFÍCIOS ESPECÍFICOS DA TFX */}
+            {/* BENEFÍCIOS ESPECÍFICOS DA TFX - COM DETALHES TÉCNICOS */}
             <div className="grid md:grid-cols-2 gap-6 mb-12">
               <div className="bg-gradient-to-br from-gray-800/80 to-gray-900/80 p-6 rounded-2xl border border-green-400/30 backdrop-blur-sm">
-                <h3 className="text-xl font-bold text-green-300 mb-4">💰 O Que Você Vai Aprender</h3>
+                <h3 className="text-xl font-bold text-green-300 mb-4">💰 Setups Específicos da TFX</h3>
                 <ul className="space-y-3 text-gray-300">
                   <li className="flex items-start gap-2">
                     <span className="text-green-400 mt-1">✅</span>
-                    <span><strong className="text-white">Smart Money Concepts:</strong> Como os bancos realmente operam</span>
+                    <span><strong className="text-white">Order Blocks EURUSD M15:</strong> Entrada com 73% de acerto, SL 20 pips</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-green-400 mt-1">✅</span>
-                    <span><strong className="text-white">Order Blocks:</strong> Pontos exatos de entrada com 73% de acerto</span>
+                    <span><strong className="text-white">Smart Money Concepts:</strong> Identificação de liquidez institucional</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-green-400 mt-1">✅</span>
-                    <span><strong className="text-white">Gestão de Risco:</strong> Como nunca perder mais de 2% por trade</span>
+                    <span><strong className="text-white">Gestão de Risco:</strong> Máximo 2% por trade, RR 1:3</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-green-400 mt-1">✅</span>
-                    <span><strong className="text-white">Psicologia:</strong> Controle emocional para operar sem medo</span>
+                    <span><strong className="text-white">Timeframes:</strong> M5 para entrada, M15 para confirmação</span>
                   </li>
                 </ul>
               </div>
 
               <div className="bg-gradient-to-br from-gray-800/80 to-gray-900/80 p-6 rounded-2xl border border-green-400/30 backdrop-blur-sm">
-                <h3 className="text-xl font-bold text-green-300 mb-4">🎯 Resultados Esperados</h3>
+                <h3 className="text-xl font-bold text-green-300 mb-4">🎯 Cronograma de Resultados</h3>
                 <ul className="space-y-3 text-gray-300">
                   <li className="flex items-start gap-2">
                     <span className="text-green-400 mt-1">✅</span>
-                    <span><strong className="text-white">Primeira Semana:</strong> Entender como o mercado realmente funciona</span>
+                    <span><strong className="text-white">Semana 1:</strong> Dominar Order Blocks, primeiros trades</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-green-400 mt-1">✅</span>
-                    <span><strong className="text-white">Primeiro Mês:</strong> Primeiros lucros consistentes</span>
+                    <span><strong className="text-white">Mês 1:</strong> ROI de 15-25% com capital de R$ 1.000</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-green-400 mt-1">✅</span>
-                    <span><strong className="text-white">Terceiro Mês:</strong> ROI de 50%+ mensal</span>
+                    <span><strong className="text-white">Mês 3:</strong> ROI de 50%+ mensal, capital de R$ 5.000</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-green-400 mt-1">✅</span>
-                    <span><strong className="text-white">Seis Meses:</strong> Independência financeira através do trading</span>
+                    <span><strong className="text-white">Mês 6:</strong> Independência financeira com R$ 10.000+</span>
                   </li>
                 </ul>
               </div>
             </div>
 
+            {/* GATILHO DE CONSISTÊNCIA - COMPROMISSO PÚBLICO */}
+            <div className="bg-gradient-to-r from-blue-500/20 to-purple-500/20 p-6 rounded-2xl border border-blue-400/30 mb-8 backdrop-blur-sm">
+              <h3 className="text-xl font-bold text-blue-300 mb-4">📝 Compromisso Público</h3>
+              <p className="text-gray-300 mb-4">
+                Ao adquirir a Estratégia TFX, você está assumindo um compromisso público consigo mesmo de:
+              </p>
+              <div className="grid md:grid-cols-2 gap-4 text-sm">
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2">
+                    <span className="text-blue-400">✅</span>
+                    <span className="text-gray-300">Aplicar os setups por pelo menos 30 dias</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-blue-400">✅</span>
+                    <span className="text-gray-300">Seguir a gestão de risco rigorosamente</span>
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <div className="flex items-center gap-2">
+                    <span className="text-blue-400">✅</span>
+                    <span className="text-gray-300">Participar ativamente do grupo VIP</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-blue-400">✅</span>
+                    <span className="text-gray-300">Compartilhar resultados (opcional)</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* GATILHO DE CONTRASTE - COMPARAÇÃO COM CONCORRENTES */}
+            <div className="bg-gradient-to-r from-red-500/20 to-orange-500/20 p-6 rounded-2xl border border-red-400/30 mb-8 backdrop-blur-sm">
+              <h3 className="text-xl font-bold text-red-300 mb-4">⚡ Por Que a TFX é Diferente?</h3>
+              <div className="grid md:grid-cols-3 gap-4 text-sm">
+                <div className="text-center">
+                  <div className="text-red-400 font-bold text-lg mb-2">Outros Cursos</div>
+                  <ul className="text-gray-300 space-y-1">
+                    <li>❌ Teoria sem prática</li>
+                    <li>❌ Sem suporte real</li>
+                    <li>❌ Preços altos (R$ 1.000+)</li>
+                    <li>❌ Sem garantia</li>
+                  </ul>
+                </div>
+                <div className="text-center">
+                  <div className="text-yellow-400 font-bold text-lg mb-2">TFX Mente</div>
+                  <ul className="text-gray-300 space-y-1">
+                    <li>✅ Setups específicos testados</li>
+                    <li>✅ Suporte direto comigo</li>
+                    <li>✅ Apenas R$ 49,90 hoje</li>
+                    <li>✅ Garantia de 7 dias</li>
+                  </ul>
+                </div>
+                <div className="text-center">
+                  <div className="text-green-400 font-bold text-lg mb-2">Resultado</div>
+                  <ul className="text-gray-300 space-y-1">
+                    <li>🎯 73% taxa de acerto</li>
+                    <li>🎯 R$ 2.847/mês médio</li>
+                    <li>🎯 847 traders transformados</li>
+                    <li>🎯 R$ 2.3M+ em lucros</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
             {/* OFERTA COM URGÊNCIA INTENSIFICADA */}
             <div className="bg-gradient-to-r from-red-500 to-orange-500 p-6 rounded-2xl border-4 border-red-400/50 mb-8">
               <h3 className="text-2xl font-bold text-white mb-4">🔥 OFERTA LIMITADA - ÚLTIMAS 24 HORAS</h3>

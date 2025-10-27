@@ -74,13 +74,13 @@ export const OfertaFinal = () => {
           <li>✅ Suporte direto 7 dias (R$49,90)</li>
         </ul>
 
-        <p className="text-gray-400 line-through text-lg mb-2">De R$499,60</p>
+        <p className="text-gray-400 line-through text-lg mb-2">De R$497,00</p>
             <p className="text-4xl font-extrabold text-white mb-8">
-              Hoje: <span className="text-green-400 pulse-price">R$59,90</span> 🔥
+              Hoje: <span className="text-green-400 pulse-price">R$49,90</span> 🔥
             </p>
 
-        <button className="button-cta bg-cyan-500 hover:bg-cyan-400 text-black font-bold px-12 py-6 rounded-full transition-all w-full shadow-lg pulse-btn text-lg">
-          🟦 QUERO GARANTIR MEU ACESSO AGORA →
+        <button className="button-cta bg-gradient-to-r from-green-400 via-emerald-500 to-green-600 hover:from-green-300 hover:via-emerald-400 hover:to-green-500 text-black font-bold px-12 py-6 rounded-full transition-all w-full shadow-lg pulse-btn text-lg">
+          💰 QUERO GERAR R$ 2.847/MÊS COM A TFX →
         </button>
 
             <div className="mt-8 text-lg text-gray-400">
