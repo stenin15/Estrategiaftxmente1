@@ -253,9 +253,6 @@ const Section = ({
                   <p className="text-sm font-semibold mb-2">🔥 OFERTA EXCLUSIVA POR TEMPO LIMITADO</p>
                   <h3 className="text-xl font-bold mb-2">⏰ OFERTA EXPIRA EM:</h3>
                   <p className="text-4xl font-extrabold mb-2 drop-shadow-md countdown-timer">30:00</p>
-                  <p className="text-sm opacity-90">
-                    Não perca esta oportunidade única!
-                  </p>
                 </div>
               </div>
             </div>
