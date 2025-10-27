@@ -241,12 +241,6 @@ const Section = ({
           <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(0,255,255,0.1),transparent_50%)]"></div>
           
           <div className="section-box text-center relative z-10">
-            {/* TAG PROMOCIONAL MELHORADA */}
-            <div className="mb-6">
-              <span className="inline-flex items-center gap-2 bg-gradient-to-r from-red-500 to-orange-500 text-white px-6 py-3 rounded-full text-sm font-bold uppercase tracking-wider shadow-[0_0_20px_rgba(255,0,0,0.3)]">
-                🔥 OFERTA EXCLUSIVA POR TEMPO LIMITADO
-            </span>
-            </div>
 
             {/* CRONÔMETRO INTEGRADO COM BÔNUS PROMOCIONAL */}
             <div className="mb-6 w-full max-w-2xl mx-auto">
