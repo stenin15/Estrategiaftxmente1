@@ -7,10 +7,6 @@ export default function TransformacoesReaisSection() {
       className="relative py-16 bg-gradient-to-b from-[#06140e] via-[#071612] to-[#091a14]"
     >
       <div className="mx-auto max-w-5xl px-4 md:px-8 lg:px-16">
-        <h3 className="text-emerald-300 text-sm mb-2 uppercase tracking-widest">
-          Seleção Comprovada
-        </h3>
-
         <h2 className="text-3xl md:text-4xl font-bold text-emerald-200">
           Transformações Reais — direto das telas de quem decidiu mudar o jogo
         </h2>
