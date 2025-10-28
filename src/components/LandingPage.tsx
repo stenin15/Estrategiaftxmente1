@@ -177,7 +177,7 @@ export default function LandingPage() {
               onClick={handleBonusContinue}
               className="w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold py-4 px-6 rounded-xl hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(34,197,94,0.4)] hover:shadow-[0_0_30px_rgba(34,197,94,0.6)] mb-4"
             >
-              🚀 SIM! QUERO MEU BÔNUS AGORA 🚀
+              🚀 QUERO DOMINAR O MÉTODO TFX AGORA 🚀
             </button>
 
             {/* PROVA SOCIAL */}
@@ -205,13 +205,65 @@ export default function LandingPage() {
               </p>
             </div>
 
+            {/* QUEBRA DE OBJEÇÕES DE ENTREGA */}
+            <div className="bg-gradient-to-r from-purple-500/10 to-blue-500/10 p-6 rounded-xl border border-purple-400/30 mb-4">
+              <h3 className="text-center text-purple-300 font-bold text-lg mb-4">
+                🎯 O QUE ACONTECE APÓS SUA COMPRA:
+              </h3>
+              <div className="space-y-3 text-sm">
+                <div className="flex items-start gap-3">
+                  <span className="text-green-400 text-xl">📧</span>
+                  <div>
+                    <span className="text-white font-bold">1. E-mail Imediato (2 minutos)</span>
+                    <p className="text-gray-300">Material completo + Link do grupo Telegram</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-green-400 text-xl">📚</span>
+                  <div>
+                    <span className="text-white font-bold">2. Acesso ao Guia TFX</span>
+                    <p className="text-gray-300">PDF completo do zero ao avançado</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-green-400 text-xl">📊</span>
+                  <div>
+                    <span className="text-white font-bold">3. Planilha de Gerenciamento</span>
+                    <p className="text-gray-300">Pronta para usar, preenchimento automático</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-green-400 text-xl">💬</span>
+                  <div>
+                    <span className="text-white font-bold">4. Entrada no Grupo VIP</span>
+                    <p className="text-gray-300">Calls diárias, alertas e suporte direto</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* PROVA SOCIAL DE TRANSFORMAÇÕES */}
+            <div className="bg-gradient-to-r from-green-500/10 to-emerald-500/10 p-4 rounded-xl border border-green-400/30 mb-4">
+              <h3 className="text-center text-green-300 font-bold text-lg mb-3">
+                🔥 TRANSFORMAÇÕES REAIS:
+              </h3>
+              <div className="space-y-2 text-sm">
+                <p className="text-gray-300 italic">"Parei de fazer overtrade e defini risco fixo"</p>
+                <p className="text-gray-300 italic">"Agora executo o plano sem emoção"</p>
+                <p className="text-gray-300 italic">"A planilha me organizou completamente"</p>
+              </div>
+            </div>
+
             {/* REDUÇÃO DE ATRITO */}
             <div className="text-center">
               <p className="text-xs text-gray-400 mb-2">
-                🔒 Pagamento 100% seguro • Receba em 2 minutos no e-mail
+                🔒 Pagamento 100% seguro • Acesso imediato após confirmação
               </p>
               <p className="text-xs text-green-400 font-semibold">
                 7 dias para testar. Se não curtir, devolvemos 100%.
+              </p>
+              <p className="text-xs text-yellow-300 mt-1">
+                Vagas no Telegram limitadas por mês
               </p>
             </div>
           </div>
@@ -243,16 +295,44 @@ export default function LandingPage() {
             </p>
           </div>
 
-          {/* HEADLINE PRINCIPAL */}
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-white mb-6 leading-tight">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">ESTRATÉGIA TFX</span><br/>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-500">ESTICADA</span><br/>
-            <span className="text-yellow-300 text-xl">PARA VOCÊ!</span>
-          </h1>
+            {/* HEADLINE PRINCIPAL */}
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-white mb-6 leading-tight">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">DO CAÓTICO AO CONSISTENTE:</span><br/>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-500">MÉTODO TFX EM 7 PASSOS</span><br/>
+              <span className="text-yellow-300 text-xl">PARA VOCÊ!</span>
+            </h1>
 
-          <p className="text-lg text-gray-300 font-medium mb-8">
-            💰 <span className="text-green-400 font-semibold">Transforme sua vida financeira</span> com a estratégia mais poderosa do mercado
-          </p>
+            <p className="text-lg text-gray-300 font-medium mb-4">
+              <span className="text-green-400 font-semibold">Técnica, gestão e mente</span> — em linguagem simples. 
+              <span className="text-cyan-300"> Serve para Forex, Cripto e Índices.</span>
+            </p>
+
+            {/* VALOR EXPLÍCITO NO HERO */}
+            <div className="bg-gradient-to-r from-green-500/10 to-emerald-500/10 p-4 rounded-xl border border-green-400/30 mb-6">
+              <p className="text-green-300 font-bold text-center mb-2">🎁 VOCÊ RECEBE:</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+                <div className="flex items-center gap-2">
+                  <span className="text-green-400">📘</span>
+                  <span className="text-white">Guia TFX (do zero ao avançado)</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-green-400">📊</span>
+                  <span className="text-white">Planilha de gerenciamento automática</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-green-400">🔔</span>
+                  <span className="text-white">1 mês no Telegram com calls diárias</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-green-400">🧠</span>
+                  <span className="text-white">Protocolos de foco e controle emocional</span>
+                </div>
+              </div>
+              <div className="flex justify-center items-center gap-4 mt-3">
+                <span className="text-green-400 font-bold">✅ Garantia de 7 dias</span>
+                <span className="text-yellow-300 font-bold">• Acesso imediato</span>
+              </div>
+            </div>
 
           <div className="space-y-4 mb-8">
             <div className="bg-gradient-to-r from-gray-700/50 to-gray-800/50 p-4 rounded-xl border border-gray-600/30">
@@ -307,7 +387,7 @@ export default function LandingPage() {
             }`}
           >
             {selectedPains.length > 0 
-              ? '🚀 CONTINUAR E VER MEU BÔNUS 🚀' 
+              ? '🚀 QUERO DOMINAR O MÉTODO TFX AGORA 🚀' 
               : '⚠️ SELECIONE PELO MENOS UMA SITUAÇÃO'
             }
           </button>
