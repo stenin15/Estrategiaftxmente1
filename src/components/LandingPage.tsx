@@ -172,19 +172,30 @@ export default function LandingPage() {
     return (
       <div className="min-h-screen bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 flex items-center justify-center p-4">
         <div className="bg-gradient-to-br from-gray-800/60 to-gray-900/60 backdrop-blur-sm p-8 rounded-2xl border border-cyan-400/30 max-w-2xl w-full text-center shadow-2xl">
+          {/* BÔNUS PROMOCIONAL NO TOPO */}
+          <div className="mb-6">
+            <h2 className="text-2xl sm:text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500 mb-2">
+              🎁 BÔNUS PROMOCIONAL LIBERADO
+            </h2>
+            <p className="text-lg text-yellow-300 font-bold">
+              PARA VOCÊ DURANTE:
+            </p>
+          </div>
+
           {/* TIMER EM CONTAGEM REGRESSIVA */}
           <div className="mb-8">
-            <div className="text-4xl sm:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600 mb-4 countdown-timer border-2 border-cyan-400/30 rounded-xl p-4 drop-shadow-[0_0_15px_rgba(6,182,212,0.3)] animate-pulse">
+            <div className="text-4xl sm:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-orange-500 mb-4 countdown-timer border-2 border-red-400/50 rounded-xl p-4 drop-shadow-[0_0_15px_rgba(239,68,68,0.4)] animate-pulse">
               30:00
             </div>
-            <p className="text-lg text-cyan-300 font-bold">
+            <p className="text-lg text-red-300 font-bold">
               ⚡ OFERTA EXPIRA EM ⚡
             </p>
           </div>
 
+          {/* HEADLINE PRINCIPAL */}
           <h1 className="text-2xl sm:text-3xl font-extrabold text-white mb-6 leading-tight">
-            🎯 <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">ESTRATÉGIA TFX</span><br/>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-500">LIBERADA</span><br/>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">ESTRATÉGIA TFX</span><br/>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-500">ESTICADA</span><br/>
             <span className="text-yellow-300 text-xl">PARA VOCÊ!</span>
           </h1>
 
