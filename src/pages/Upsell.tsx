@@ -1,77 +1,73 @@
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { motion } from "framer-motion";
 
-export default function UpsellPage() {
-  const userLang = navigator.language.toLowerCase();
-  const isEnglish = userLang.includes("en");
+export default function Upsell() {
+  const userLang = navigator.language || navigator.userLanguage;
+  const isEnglish = userLang.startsWith("en");
 
   const content = {
     title: isEnglish
       ? "🧠 Upgrade Your Mind — High-Performance Trader Habits Guide"
       : "🧠 Eleve Sua Mente — Guia de Hábitos do Trader de Alta Performance",
-    message: isEnglish
-      ? "You've mastered the technique — now it's time to master the mind behind it."
-      : "Você dominou a técnica — agora é hora de dominar a mente por trás dela.",
-    subtitle: isEnglish
-      ? "Transform your focus, discipline, and consistency with the mental principles that separate elite traders from the rest."
-      : "Transforme seu foco, disciplina e consistência com os princípios mentais que diferenciam traders de elite dos demais.",
+    description: isEnglish
+      ? "Discover the habits and mindset that separate elite traders from amateurs. Focus, discipline, emotional control — everything you need to evolve mentally and financially."
+      : "Descubra os hábitos e a mentalidade que separam os traders de elite dos amadores. Foco, disciplina e controle emocional — tudo o que você precisa para evoluir mental e financeiramente.",
     ctaYes: isEnglish
       ? "🔥 Yes! I want to master my mindset for $29.90"
-      : "🔥 Sim! Quero dominar minha mente por R$ 29,90",
+      : "🔥 Sim! Quero dominar minha mente por R$29,90",
     ctaNo: isEnglish
-      ? "No, I'll continue without the guide"
-      : "Não, vou continuar sem o guia",
-    benefits: isEnglish
-      ? [
-          "Build habits of consistency and focus.",
-          "Eliminate emotional impulses during trading.",
-          "Learn mindset control inspired by psychology and neuroscience.",
-        ]
-      : [
-          "Construa hábitos de consistência e foco.",
-          "Elimine impulsos emocionais durante as operações.",
-          "Aprenda controle mental inspirado em psicologia e neurociência.",
-        ],
+      ? "No, I'll continue without improving my mindset"
+      : "Não, quero continuar sem o guia",
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center p-6 text-center text-white">
-      <Card className="bg-[#141414] border border-gray-800 max-w-2xl shadow-2xl rounded-2xl p-8">
-        <CardContent>
-          <motion.h1
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-2xl md:text-4xl font-bold mb-4 text-yellow-400"
-          >
-            {content.title}
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="text-lg mb-3 text-gray-300"
-          >
-            {content.message}
-          </motion.p>
-          <p className="text-gray-400 mb-6">{content.subtitle}</p>
+    <div className="min-h-screen flex flex-col items-center justify-center bg-[#0a0a0a] text-center px-6">
+      <motion.h1
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        className="text-3xl md:text-5xl font-bold text-white mb-6"
+      >
+        {content.title}
+      </motion.h1>
 
-          <ul className="text-left space-y-2 mb-6 list-disc list-inside text-gray-300">
-            {content.benefits.map((b, i) => (
-              <li key={i}>{b}</li>
-            ))}
-          </ul>
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.3, duration: 0.8 }}
+        className="text-gray-400 text-lg md:text-xl max-w-2xl mb-10"
+      >
+        {content.description}
+      </motion.p>
 
-          <div className="flex flex-col gap-3">
-            <Button className="bg-yellow-500 hover:bg-yellow-400 text-black font-semibold text-lg py-6">
-              {content.ctaYes}
-            </Button>
-            <Button variant="outline" className="border-gray-600 text-gray-300 hover:bg-gray-800">
-              {content.ctaNo}
-            </Button>
-          </div>
-        </CardContent>
-      </Card>
+      {/* BOTÃO DE COMPRA */}
+      <motion.button
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        onClick={() =>
+          window.open("https://pay.cakto.com.br/guia-mental-tfx", "_blank")
+        }
+        className="bg-yellow-500 hover:bg-yellow-400 text-black font-semibold text-lg md:text-xl py-4 px-10 rounded-full mb-6 transition-all duration-300"
+      >
+        {content.ctaYes}
+      </motion.button>
+
+      {/* BOTÃO DE RECUSA */}
+      <motion.button
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        onClick={() =>
+          window.location.assign("https://estrategiaftxmente1.vercel.app/entrega")
+        }
+        className="border border-gray-500 text-gray-400 hover:text-white hover:border-white font-medium text-base py-3 px-8 rounded-full transition-all duration-300"
+      >
+        {content.ctaNo}
+      </motion.button>
+
+      <p className="text-gray-600 text-sm mt-10">
+        {isEnglish
+          ? "1-month access to the VIP group + full digital guide included."
+          : "Acesso de 1 mês ao grupo VIP + guia digital completo incluído."}
+      </p>
     </div>
   );
 }
