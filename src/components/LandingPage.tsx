@@ -376,27 +376,28 @@ const Section = ({
         <section id="credibilidade" className="bg-gradient-to-b from-[#071e26] to-[#0a0f14] text-white py-16">
           <div className="section-box text-center">
             <h2 className="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-500 mb-8">
-              💰 O Método que Já <span className="text-yellow-300">TRANSFORMOU</span> Milhares de Vidas
+              💰 A Estratégia que Foi <span className="text-yellow-300">CRIADA PARA VOCÊ</span>
             </h2>
 
             <div className="max-w-4xl mx-auto">
               <div className="bg-gradient-to-br from-gray-800/80 to-gray-900/80 p-6 md:p-8 rounded-2xl border border-green-400/30 mb-8 backdrop-blur-sm">
                 <div className="grid md:grid-cols-2 gap-6 items-center">
                   <div className="text-left">
-                    <h3 className="text-2xl font-bold text-green-300 mb-4">🎯 Criador da Estratégia TFX</h3>
+                    <h3 className="text-2xl font-bold text-green-300 mb-4">🎯 Estratégia TFX - Feita Para Você</h3>
                     <p className="text-gray-300 mb-4">
-                      <span className="font-semibold text-white">+8 anos</span> transformando <span className="text-green-300 font-semibold">pessoas comuns</span> em 
+                      <span className="font-semibold text-white">+8 anos</span> de desenvolvimento para criar uma estratégia que transforma 
+                      <span className="text-green-300 font-semibold"> pessoas comuns</span> em 
                       <span className="text-green-300 font-semibold"> pessoas de sucesso</span> através de <span className="text-green-300 font-semibold">trading sistemático</span>.
                     </p>
                     <p className="text-gray-300 mb-4">
-                      Não é apenas um trader — é o <span className="text-yellow-300 font-semibold">criador do método</span> que 
+                      Esta não é apenas uma estratégia — é o <span className="text-yellow-300 font-semibold">método completo</span> que 
                       já transformou <span className="text-orange-400 font-semibold">milhares de pessoas</span> e as levou para a 
                       <span className="text-green-400 font-semibold"> liberdade financeira</span>.
                     </p>
                     <div className="flex flex-wrap gap-2">
-                      <span className="bg-green-500/20 text-green-300 px-3 py-1 rounded-full text-sm">💰 Especialista em Riqueza</span>
-                      <span className="bg-blue-500/20 text-blue-300 px-3 py-1 rounded-full text-sm">🚀 Transformador de Vidas</span>
-                      <span className="bg-purple-500/20 text-purple-300 px-3 py-1 rounded-full text-sm">⚡ Mentor de Sucesso</span>
+                      <span className="bg-green-500/20 text-green-300 px-3 py-1 rounded-full text-sm">💰 Estratégia Comprovada</span>
+                      <span className="bg-blue-500/20 text-blue-300 px-3 py-1 rounded-full text-sm">🚀 Transformação Garantida</span>
+                      <span className="bg-purple-500/20 text-purple-300 px-3 py-1 rounded-full text-sm">⚡ Resultados Diários</span>
                     </div>
                   </div>
                   <div className="text-center">
@@ -417,11 +418,11 @@ const Section = ({
                   </div>
                 <div className="bg-gradient-to-br from-blue-500/20 to-cyan-600/20 p-4 rounded-xl border border-blue-400/30">
                   <div className="text-3xl font-black text-blue-400 mb-1">8+</div>
-                  <div className="text-sm text-gray-300">Anos de Sucesso</div>
+                  <div className="text-sm text-gray-300">Anos de Desenvolvimento</div>
               </div>
                 <div className="bg-gradient-to-br from-yellow-500/20 to-orange-600/20 p-4 rounded-xl border border-yellow-400/30">
                   <div className="text-3xl font-black text-yellow-400 mb-1">24/7</div>
-                  <div className="text-sm text-gray-300">Suporte Exclusivo</div>
+                  <div className="text-sm text-gray-300">Suporte Disponível</div>
               </div>
               </div>
             </div>
