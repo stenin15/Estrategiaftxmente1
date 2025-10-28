@@ -75,12 +75,8 @@ export default function LandingPage() {
   const [showBonus, setShowBonus] = useState(false);
 
   useEffect(() => {
-    // Verificar se o usuário já interagiu antes
-    const hasInteracted = localStorage.getItem('userInteracted');
-    if (hasInteracted === 'true') {
-      setShowContent(true);
-      detectBonusReading();
-    }
+    // Não verificar localStorage - usuário DEVE interagir sempre
+    // Apenas inicializar o estado
   }, []);
 
   const handlePainSelection = (pain: string) => {
@@ -99,7 +95,7 @@ export default function LandingPage() {
 
   const handleBonusContinue = () => {
     setShowContent(true);
-    localStorage.setItem('userInteracted', 'true');
+    // Não salvar no localStorage - sempre passar pelas etapas
     detectBonusReading();
   };
 
