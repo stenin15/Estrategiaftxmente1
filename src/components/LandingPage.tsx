@@ -71,6 +71,8 @@ function detectBonusReading() {
 
 export default function LandingPage() {
   const [showContent, setShowContent] = useState(false);
+  const [selectedPains, setSelectedPains] = useState<string[]>([]);
+  const [showBonus, setShowBonus] = useState(false);
 
   useEffect(() => {
     // Verificar se o usuário já interagiu antes
@@ -81,26 +83,105 @@ export default function LandingPage() {
     }
   }, []);
 
-  const handleInteraction = () => {
+  const handlePainSelection = (pain: string) => {
+    const newSelectedPains = selectedPains.includes(pain)
+      ? selectedPains.filter(p => p !== pain)
+      : [...selectedPains, pain];
+    
+    setSelectedPains(newSelectedPains);
+  };
+
+  const handleContinue = () => {
+    if (selectedPains.length > 0) {
+      setShowBonus(true);
+    }
+  };
+
+  const handleBonusContinue = () => {
     setShowContent(true);
     localStorage.setItem('userInteracted', 'true');
     detectBonusReading();
   };
 
   if (!showContent) {
-  return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 flex items-center justify-center p-4">
-        <div className="bg-gradient-to-br from-gray-800/60 to-gray-900/60 backdrop-blur-sm p-8 rounded-2xl border border-cyan-400/30 max-w-lg w-full text-center shadow-2xl">
-          {/* TIMER ELEGANTE */}
-          <div className="mb-8">
-            <div className="text-4xl sm:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600 mb-4 countdown-timer border-2 border-cyan-400/30 rounded-xl p-4 drop-shadow-[0_0_15px_rgba(6,182,212,0.3)]">
-              29:39
+    // TELA DE BÔNUS
+    if (showBonus) {
+      return (
+        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 flex items-center justify-center p-4">
+          <div className="bg-gradient-to-br from-gray-800/60 to-gray-900/60 backdrop-blur-sm p-8 rounded-2xl border border-green-400/30 max-w-2xl w-full text-center shadow-2xl">
+            {/* TIMER ELEGANTE */}
+            <div className="mb-8">
+              <div className="text-4xl sm:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-500 mb-4 countdown-timer border-2 border-green-400/30 rounded-xl p-4 drop-shadow-[0_0_15px_rgba(34,197,94,0.3)]">
+                29:39
+              </div>
+              <p className="text-lg text-green-300 font-bold">
+                ⚡ BÔNUS EXPIRA EM ⚡
+              </p>
             </div>
-            <p className="text-lg text-cyan-300 font-bold">
-              ⚡ OFERTA EXPIRA EM ⚡
+
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-white mb-6 leading-tight">
+              🎁 <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-500">BÔNUS PROMOCIONAL</span><br/>
+              <span className="text-yellow-300 text-xl">LIBERADO!</span>
+            </h1>
+
+            <div className="bg-gradient-to-r from-green-500/10 to-emerald-500/10 p-6 rounded-xl border border-green-400/30 mb-8">
+              <h2 className="text-xl font-bold text-green-300 mb-4">🎯 O QUE VOCÊ VAI RECEBER:</h2>
+              <div className="space-y-3 text-left">
+                <div className="flex items-center gap-3">
+                  <span className="text-green-400 text-xl">✅</span>
+                  <span className="text-white">Estratégia TFX Completa (PDFs)</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="text-green-400 text-xl">✅</span>
+                  <span className="text-white">Imersão VIP no Telegram (30 dias)</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="text-green-400 text-xl">✅</span>
+                  <span className="text-white">Sinais em Tempo Real</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="text-green-400 text-xl">✅</span>
+                  <span className="text-white">Suporte Direto e Exclusivo</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="text-green-400 text-xl">✅</span>
+                  <span className="text-white">Acompanhamento Diário</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-r from-yellow-500/10 to-orange-500/10 p-4 rounded-xl border border-yellow-400/30 mb-8">
+              <p className="text-yellow-300 font-bold text-lg">
+                💰 VALOR TOTAL: <span className="line-through text-gray-400">$ 497,00</span>
+              </p>
+              <p className="text-green-400 font-bold text-2xl">
+                HOJE: <span className="text-3xl">$ 49,90</span>
+              </p>
+              <p className="text-gray-300 text-sm mt-2">
+                Economia de $ 447,10 (90% de desconto)
+              </p>
+            </div>
+
+            <button
+              onClick={handleBonusContinue}
+              className="w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold py-4 px-6 rounded-xl hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(34,197,94,0.4)] hover:shadow-[0_0_30px_rgba(34,197,94,0.6)] mb-4"
+            >
+              🚀 SIM! QUERO MEU BÔNUS AGORA 🚀
+            </button>
+
+            <p className="text-sm text-gray-400">
+              ⚡ Apenas <span className="text-green-400 font-bold">100 pessoas</span> por dia<br/>
+              <span className="text-yellow-300">NÃO PERCA ESTA OPORTUNIDADE!</span>
             </p>
           </div>
+        </div>
+      );
+    }
 
+    // TELA INICIAL DE SELEÇÃO DE DORES
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 flex items-center justify-center p-4">
+        <div className="bg-gradient-to-br from-gray-800/60 to-gray-900/60 backdrop-blur-sm p-8 rounded-2xl border border-cyan-400/30 max-w-2xl w-full text-center shadow-2xl">
           <h1 className="text-2xl sm:text-3xl font-extrabold text-white mb-6 leading-tight">
             🎯 <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">ESTRATÉGIA TFX</span><br/>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-500">LIBERADA</span><br/>
@@ -113,36 +194,53 @@ export default function LandingPage() {
 
           <div className="space-y-4 mb-8">
             <div className="bg-gradient-to-r from-gray-700/50 to-gray-800/50 p-4 rounded-xl border border-gray-600/30">
-              <p className="text-cyan-300 font-semibold">Você se identifica com alguma dessas situações?</p>
+              <p className="text-cyan-300 font-semibold">Selecione as situações que você se identifica:</p>
+              <p className="text-gray-400 text-sm mt-2">(Clique nas que se aplicam a você)</p>
             </div>
             
             <div className="grid grid-cols-2 gap-3 text-sm">
-              <div className="bg-gradient-to-br from-red-500/20 to-red-600/20 p-3 rounded-lg border border-red-400/30">
-                <p className="text-red-200 font-bold">DIFICULDADES</p>
-              </div>
-              <div className="bg-gradient-to-br from-orange-500/20 to-orange-600/20 p-3 rounded-lg border border-orange-400/30">
-                <p className="text-orange-200 font-bold">INVESTIMENTOS</p>
-              </div>
-              <div className="bg-gradient-to-br from-blue-500/20 to-blue-600/20 p-3 rounded-lg border border-blue-400/30">
-                <p className="text-blue-200 font-bold">LIBERDADE</p>
-              </div>
-              <div className="bg-gradient-to-br from-purple-500/20 to-purple-600/20 p-3 rounded-lg border border-purple-400/30">
-                <p className="text-purple-200 font-bold">FRUSTRAÇÃO</p>
-              </div>
-              <div className="bg-gradient-to-br from-yellow-500/20 to-yellow-600/20 p-3 rounded-lg border border-yellow-400/30">
-                <p className="text-yellow-200 font-bold">OPORTUNIDADE</p>
-              </div>
-              <div className="bg-gradient-to-br from-green-500/20 to-green-600/20 p-3 rounded-lg border border-green-400/30">
-                <p className="text-green-200 font-bold">DETERMINAÇÃO</p>
-              </div>
+              {[
+                { id: 'dificuldades', text: 'DIFICULDADES FINANCEIRAS', color: 'red' },
+                { id: 'investimentos', text: 'INVESTIMENTOS PERDIDOS', color: 'orange' },
+                { id: 'liberdade', text: 'BUSCA POR LIBERDADE', color: 'blue' },
+                { id: 'frustracao', text: 'FRUSTRAÇÃO COM TRADING', color: 'purple' },
+                { id: 'oportunidade', text: 'OPORTUNIDADE ÚNICA', color: 'yellow' },
+                { id: 'determinacao', text: 'DETERMINAÇÃO TOTAL', color: 'green' }
+              ].map((pain) => (
+                <button
+                  key={pain.id}
+                  onClick={() => handlePainSelection(pain.id)}
+                  className={`p-3 rounded-lg border transition-all duration-300 ${
+                    selectedPains.includes(pain.id)
+                      ? `bg-gradient-to-br from-${pain.color}-500/40 to-${pain.color}-600/40 border-${pain.color}-400/60 shadow-lg scale-105`
+                      : `bg-gradient-to-br from-${pain.color}-500/20 to-${pain.color}-600/20 border-${pain.color}-400/30 hover:scale-105`
+                  }`}
+                >
+                  <p className={`font-bold ${
+                    selectedPains.includes(pain.id)
+                      ? `text-${pain.color}-100`
+                      : `text-${pain.color}-200`
+                  }`}>
+                    {selectedPains.includes(pain.id) ? '✓ ' : ''}{pain.text}
+                  </p>
+                </button>
+              ))}
             </div>
           </div>
 
           <button
-            onClick={handleInteraction}
-            className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold py-4 px-6 rounded-xl hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(6,182,212,0.4)] hover:shadow-[0_0_30px_rgba(6,182,212,0.6)]"
+            onClick={handleContinue}
+            disabled={selectedPains.length === 0}
+            className={`w-full font-bold py-4 px-6 rounded-xl transition-all duration-300 ${
+              selectedPains.length > 0
+                ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white hover:scale-105 shadow-[0_0_20px_rgba(6,182,212,0.4)] hover:shadow-[0_0_30px_rgba(6,182,212,0.6)]'
+                : 'bg-gray-600 text-gray-400 cursor-not-allowed'
+            }`}
           >
-            🚀 LIBERAR ACESSO GRATUITO 🚀
+            {selectedPains.length > 0 
+              ? '🚀 CONTINUAR E VER MEU BÔNUS 🚀' 
+              : '⚠️ SELECIONE PELO MENOS UMA SITUAÇÃO'
+            }
           </button>
 
           <p className="text-sm text-gray-400 mt-4">
