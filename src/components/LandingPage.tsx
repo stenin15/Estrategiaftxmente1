@@ -89,45 +89,66 @@ export default function LandingPage() {
 
   if (!showContent) {
   return (
-      <div className="min-h-screen bg-gradient-to-br from-green-400 via-green-500 to-green-600 flex items-center justify-center p-4">
-        <div className="bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20 max-w-md w-full text-center">
-          <h1 className="text-3xl font-bold text-white mb-6">
-            💰 Você Está Pronto para TRANSFORMAR Sua SITUAÇÃO FINANCEIRA?
-            </h1>
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 flex items-center justify-center p-4">
+        <div className="bg-gradient-to-br from-gray-800/60 to-gray-900/60 backdrop-blur-sm p-8 rounded-2xl border border-cyan-400/30 max-w-lg w-full text-center shadow-2xl">
+          {/* TIMER ELEGANTE */}
+          <div className="mb-8">
+            <div className="text-4xl sm:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600 mb-4 countdown-timer border-2 border-cyan-400/30 rounded-xl p-4 drop-shadow-[0_0_15px_rgba(6,182,212,0.3)]">
+              29:39
+            </div>
+            <p className="text-lg text-cyan-300 font-bold">
+              ⚡ OFERTA EXPIRA EM ⚡
+            </p>
+          </div>
+
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-white mb-6 leading-tight">
+            🎯 <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">ESTRATÉGIA TFX</span><br/>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-500">LIBERADA</span><br/>
+            <span className="text-yellow-300 text-xl">PARA VOCÊ!</span>
+          </h1>
+
+          <p className="text-lg text-gray-300 font-medium mb-8">
+            💰 <span className="text-green-400 font-semibold">Transforme sua vida financeira</span> com a estratégia mais poderosa do mercado
+          </p>
 
           <div className="space-y-4 mb-8">
-            <div className="bg-white/10 p-4 rounded-xl">
-              <p className="text-white font-semibold">Você se identifica com alguma dessas situações?</p>
+            <div className="bg-gradient-to-r from-gray-700/50 to-gray-800/50 p-4 rounded-xl border border-gray-600/30">
+              <p className="text-cyan-300 font-semibold">Você se identifica com alguma dessas situações?</p>
             </div>
             
             <div className="grid grid-cols-2 gap-3 text-sm">
-              <div className="bg-red-500/20 p-3 rounded-lg border border-red-400/30">
+              <div className="bg-gradient-to-br from-red-500/20 to-red-600/20 p-3 rounded-lg border border-red-400/30">
                 <p className="text-red-200 font-bold">DIFICULDADES</p>
               </div>
-              <div className="bg-orange-500/20 p-3 rounded-lg border border-orange-400/30">
+              <div className="bg-gradient-to-br from-orange-500/20 to-orange-600/20 p-3 rounded-lg border border-orange-400/30">
                 <p className="text-orange-200 font-bold">INVESTIMENTOS</p>
               </div>
-              <div className="bg-blue-500/20 p-3 rounded-lg border border-blue-400/30">
+              <div className="bg-gradient-to-br from-blue-500/20 to-blue-600/20 p-3 rounded-lg border border-blue-400/30">
                 <p className="text-blue-200 font-bold">LIBERDADE</p>
               </div>
-              <div className="bg-purple-500/20 p-3 rounded-lg border border-purple-400/30">
+              <div className="bg-gradient-to-br from-purple-500/20 to-purple-600/20 p-3 rounded-lg border border-purple-400/30">
                 <p className="text-purple-200 font-bold">FRUSTRAÇÃO</p>
               </div>
-              <div className="bg-yellow-500/20 p-3 rounded-lg border border-yellow-400/30">
+              <div className="bg-gradient-to-br from-yellow-500/20 to-yellow-600/20 p-3 rounded-lg border border-yellow-400/30">
                 <p className="text-yellow-200 font-bold">OPORTUNIDADE</p>
               </div>
-              <div className="bg-green-500/20 p-3 rounded-lg border border-green-400/30">
+              <div className="bg-gradient-to-br from-green-500/20 to-green-600/20 p-3 rounded-lg border border-green-400/30">
                 <p className="text-green-200 font-bold">DETERMINAÇÃO</p>
               </div>
-              </div>
             </div>
+          </div>
 
-            <button
+          <button
             onClick={handleInteraction}
-            className="w-full bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-bold py-4 px-6 rounded-xl hover:scale-105 transition-transform shadow-lg"
-            >
-            💰 SIM! QUERO TRANSFORMAR MINHA VIDA
-            </button>
+            className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold py-4 px-6 rounded-xl hover:scale-105 transition-all duration-300 shadow-[0_0_20px_rgba(6,182,212,0.4)] hover:shadow-[0_0_30px_rgba(6,182,212,0.6)]"
+          >
+            🚀 LIBERAR ACESSO GRATUITO 🚀
+          </button>
+
+          <p className="text-sm text-gray-400 mt-4">
+            ⚡ Apenas <span className="text-cyan-400 font-bold">100 pessoas</span> por dia<br/>
+            <span className="text-green-400">NÃO PERCA ESTA OPORTUNIDADE!</span>
+          </p>
         </div>
       </div>
     );
