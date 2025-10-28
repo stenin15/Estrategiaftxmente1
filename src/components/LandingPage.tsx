@@ -497,6 +497,64 @@ const Section = ({
               </p>
             </div>
             
+            {/* EXCLUSIVIDADE DOS 30 DIAS NO GRUPO VIP */}
+            <div className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 p-8 rounded-2xl border border-purple-400/30 mb-12 backdrop-blur-sm">
+              <div className="flex items-center justify-center mb-6">
+                <div className="bg-gradient-to-r from-purple-500 to-pink-500 p-3 rounded-full mr-4">
+                  <span className="text-2xl">👥</span>
+                </div>
+                <h3 className="text-2xl md:text-3xl font-bold">
+                  <span className="text-purple-300">Grupo VIP</span>
+                  <span className="text-gray-300"> (30 Dias)</span>
+                </h3>
+              </div>
+              
+              <p className="text-lg text-white font-semibold mb-6">
+                <span className="text-purple-400">🎯 EXCLUSIVIDADE:</span> 
+                <span className="text-yellow-300"> 30 dias únicos</span> para ver a estratégia 
+                <span className="text-green-400 font-bold"> funcionando na prática</span>
+              </p>
+              
+              <div className="grid md:grid-cols-3 gap-6 mb-6">
+                <div className="bg-gray-800/50 p-4 rounded-xl border border-green-400/20">
+                  <div className="flex items-center mb-3">
+                    <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center mr-3">
+                      <span className="text-white text-xs">✓</span>
+                    </div>
+                    <h4 className="text-green-300 font-bold">Sinais Diários</h4>
+                  </div>
+                  <p className="text-gray-300 text-sm">Oportunidades em tempo real</p>
+                </div>
+                
+                <div className="bg-gray-800/50 p-4 rounded-xl border border-blue-400/20">
+                  <div className="flex items-center mb-3">
+                    <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center mr-3">
+                      <span className="text-white text-xs">✓</span>
+                    </div>
+                    <h4 className="text-blue-300 font-bold">Suporte Direto</h4>
+                  </div>
+                  <p className="text-gray-300 text-sm">Suas dúvidas respondidas</p>
+                </div>
+                
+                <div className="bg-gray-800/50 p-4 rounded-xl border border-yellow-400/20">
+                  <div className="flex items-center mb-3">
+                    <div className="w-6 h-6 bg-yellow-500 rounded-full flex items-center justify-center mr-3">
+                      <span className="text-white text-xs">✓</span>
+                    </div>
+                    <h4 className="text-yellow-300 font-bold">Atualizações</h4>
+                  </div>
+                  <p className="text-gray-300 text-sm">Método sempre atualizado</p>
+                </div>
+              </div>
+              
+              <div className="bg-gradient-to-r from-orange-500/10 to-red-500/10 p-4 rounded-xl border border-orange-400/30">
+                <p className="text-orange-300 font-bold text-center">
+                  ⚡ <span className="text-white">CHANCE ÚNICA:</span> Depois dos 30 dias, 
+                  <span className="text-yellow-300"> você não terá mais acesso</span> a este grupo exclusivo
+                </p>
+              </div>
+            </div>
+            
             <p className="text-lg text-gray-400 mb-12 max-w-3xl mx-auto">
               A <span className="text-cyan-300 font-medium">Estratégia TFX</span> não é só teoria — é o 
               <span className="text-green-300 font-semibold"> método comprovado</span> que já transformou 
