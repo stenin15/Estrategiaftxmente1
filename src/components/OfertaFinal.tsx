@@ -80,7 +80,7 @@ export const OfertaFinal = () => {
             </p>
 
         <button className="button-cta bg-gradient-to-r from-green-400 via-emerald-500 to-green-600 hover:from-green-300 hover:via-emerald-400 hover:to-green-500 text-black font-bold px-12 py-6 rounded-full transition-all w-full shadow-lg pulse-btn text-lg">
-          💰 QUERO GERAR R$ 2.847/MÊS COM A TFX →
+          💰 QUERO TRANSFORMAR MINHA VIDA →
         </button>
 
             <div className="mt-8 text-lg text-gray-400">

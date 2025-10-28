@@ -222,52 +222,83 @@ const Section = ({
               <div className="bg-gradient-to-r from-black via-gray-900 to-black p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl text-center text-white shadow-2xl animate-pulse border-2 sm:border-4 border-green-400/60 backdrop-blur-sm mx-2 sm:mx-0">
                 <div className="text-4xl xs:text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black countdown-timer mb-2 sm:mb-4 text-green-400 drop-shadow-[0_0_20px_rgba(34,197,94,0.8)]">30:00</div>
                 <div className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-green-300">⏰ OFERTA EXPIRA EM:</div>
-                <div className="text-xs sm:text-sm md:text-base lg:text-lg mt-1 sm:mt-2 text-green-200">💰 OFERTA EXCLUSIVA POR TEMPO LIMITADO</div>
+                <div className="text-xs sm:text-sm md:text-base lg:text-lg mt-1 sm:mt-2 text-green-200">💰 APENAS 100 VAGAS DISPONÍVEIS</div>
               </div>
             </div>
 
-            {/* HEADLINE PRINCIPAL - TOTALMENTE RESPONSIVA */}
+            {/* HEADLINE COM PROMESSA TRANSFORMADORA - TOPO DE FUNIL */}
             <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-center text-transparent bg-clip-text bg-gradient-to-r from-white via-green-100 to-green-200 mb-4 sm:mb-6 md:mb-8 drop-shadow-[0_0_15px_rgba(34,197,94,0.5)] px-2 sm:px-0">
-              Domine o Mercado com a <span className="text-yellow-300 drop-shadow-[0_0_10px_rgba(251,191,36,0.6)]">Estratégia TFX</span>
+              <span className="text-yellow-400">💰 COMO TRANSFORMAR SUA VIDA</span> e Gerar <span className="text-green-400">R$ 10.000+ POR MÊS</span> com Trading
             </h1>
+            
+            {/* SUBHEADLINE COM ESCASSEZ ELEGANTE */}
+            <div className="bg-gradient-to-r from-red-500/20 to-orange-500/20 p-4 rounded-xl border border-red-400/50 mb-6 backdrop-blur-sm">
+              <p className="text-lg sm:text-xl text-white font-semibold text-center">
+                <span className="text-red-400">🔥 OPORTUNIDADE LIMITADA:</span> Apenas <span className="text-yellow-300 font-black">100 vagas</span> disponíveis hoje
+              </p>
+              <p className="text-sm text-gray-300 text-center mt-2">
+                Os outros continuam na mesma situação porque não têm acesso a esta informação
+              </p>
+            </div>
 
             {/* SEÇÃO DE IDENTIFICAÇÃO GIGANTE - TOTALMENTE RESPONSIVA */}
             <div className="bg-gradient-to-b from-black/80 via-gray-900/90 to-black/80 p-3 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl shadow-lg border border-green-400/40 mx-2 sm:mx-0 mb-4 sm:mb-6 md:mb-8 backdrop-blur-sm">
               <h2 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-300 to-green-100 mb-4 sm:mb-6 md:mb-8 drop-shadow-[0_0_15px_rgba(34,197,94,0.6)] px-2 sm:px-0">
-                💰 Você se identifica com isso?
+                💰 Você Está Pronto para <span className="text-green-400">TRANSFORMAR</span> Sua <span className="text-yellow-300">SITUAÇÃO FINANCEIRA?</span>
               </h2>
+              
+              {/* PROMESSA ELEGANTE */}
+              <div className="bg-gradient-to-r from-green-500/10 to-emerald-500/10 p-4 rounded-xl border border-green-400/30 mb-6 backdrop-blur-sm">
+                <p className="text-center text-white font-semibold text-sm sm:text-base mb-3">
+                  <span className="text-green-400">💰 OPORTUNIDADE:</span> Se você se identifica com pelo menos 3 situações abaixo, 
+                  <span className="text-yellow-300 font-bold"> você pode transformar sua vida em 90 dias</span>
+                </p>
+                <p className="text-center text-gray-300 text-xs sm:text-sm">
+                  Mas apenas se você estiver <span className="text-green-400">verdadeiramente comprometido</span> com sua transformação
+                </p>
+              </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-6 text-gray-200 mb-4 sm:mb-6 md:mb-8">
                 <div className="bg-gradient-to-br from-gray-800/90 to-gray-900/90 p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-xl border border-green-400/30 hover:border-green-300 hover:bg-gradient-to-br hover:from-gray-700/90 hover:to-gray-800/90 transition-all duration-300 text-sm sm:text-base md:text-lg backdrop-blur-sm">
-                  💭 Sente que trabalha, se esforça… mas continua parado no mesmo lugar?
+                  💸 <span className="text-orange-400 font-bold">DIFICULDADES:</span> Trabalha muito mas nunca consegue economizar?
                 </div>
                 <div className="bg-gradient-to-br from-gray-800/90 to-gray-900/90 p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-xl border border-green-400/30 hover:border-green-300 hover:bg-gradient-to-br hover:from-gray-700/90 hover:to-gray-800/90 transition-all duration-300 text-sm sm:text-base md:text-lg backdrop-blur-sm">
-                  📉 Entra confiante e o mercado parece virar contra você em questão de segundos?
+                  📉 <span className="text-orange-400 font-bold">INVESTIMENTOS:</span> Tenta investir mas sempre perde dinheiro?
                 </div>
                 <div className="bg-gradient-to-br from-gray-800/90 to-gray-900/90 p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-xl border border-green-400/30 hover:border-green-300 hover:bg-gradient-to-br hover:from-gray-700/90 hover:to-gray-800/90 transition-all duration-300 text-sm sm:text-base md:text-lg backdrop-blur-sm">
-                  💸 Busca liberdade financeira, mas parece que algo sempre te puxa pra trás?
+                  🏠 <span className="text-orange-400 font-bold">LIBERDADE:</span> Sonha com independência financeira mas não sabe como?
                 </div>
                 <div className="bg-gradient-to-br from-gray-800/90 to-gray-900/90 p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-xl border border-green-400/30 hover:border-green-300 hover:bg-gradient-to-br hover:from-gray-700/90 hover:to-gray-800/90 transition-all duration-300 text-sm sm:text-base md:text-lg backdrop-blur-sm">
-                  ⏰ Sai da operação antes da hora e assiste o preço bater exatamente onde queria entrar?
+                  😔 <span className="text-orange-400 font-bold">FRUSTRAÇÃO:</span> Vê outros prosperando e você não consegue?
                 </div>
                 <div className="bg-gradient-to-br from-gray-800/90 to-gray-900/90 p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-xl border border-green-400/30 hover:border-green-300 hover:bg-gradient-to-br hover:from-gray-700/90 hover:to-gray-800/90 transition-all duration-300 text-sm sm:text-base md:text-lg backdrop-blur-sm">
-                  💡 Falta foco, confiança e clareza pra seguir o plano e parar de sabotar seus próprios resultados?
+                  💡 <span className="text-orange-400 font-bold">OPORTUNIDADE:</span> Precisa de uma renda extra mas não sabe por onde começar?
                 </div>
                 <div className="bg-gradient-to-br from-gray-800/90 to-gray-900/90 p-3 sm:p-4 md:p-6 rounded-lg sm:rounded-xl border border-green-400/30 hover:border-green-300 hover:bg-gradient-to-br hover:from-gray-700/90 hover:to-gray-800/90 transition-all duration-300 text-sm sm:text-base md:text-lg backdrop-blur-sm">
-                  🌿 Já lucrou, mas nunca conseguiu manter consistência — sempre volta pro zero?
+                  🚀 <span className="text-green-400 font-bold">DETERMINAÇÃO:</span> Está pronto para investir em sua transformação?
                 </div>
               </div>
 
               <p className="text-gray-200 mb-4 sm:mb-6 md:mb-8 text-sm sm:text-base md:text-lg lg:text-xl max-w-xs sm:max-w-md md:max-w-2xl lg:max-w-3xl mx-auto leading-relaxed px-2 sm:px-0">
-                A <span className="text-green-300 font-semibold">TFX</span> não é só um método — é o ponto de virada entre quem sobrevive e quem prospera.
-                Aqui, você aprende o que realmente muda o jogo: <span className="text-yellow-300 font-semibold">mentalidade, método e disciplina.</span>
+                A <span className="text-green-300 font-semibold">TFX</span> é o método que vai te levar da <span className="text-orange-400 font-bold">situação atual</span> para a <span className="text-yellow-300 font-bold">LIBERDADE FINANCEIRA</span>.
+                <span className="text-green-400 font-bold"> Alunos já fazem R$ 5.000+ por semana</span> — você pode alcançar muito mais.
               </p>
+
+              {/* URGÊNCIA ELEGANTE */}
+              <div className="bg-gradient-to-r from-red-500/10 to-orange-500/10 p-4 rounded-xl border border-red-400/30 mb-6 backdrop-blur-sm">
+                <p className="text-center text-white font-semibold text-sm sm:text-base mb-3">
+                  <span className="text-red-400">⏰ OPORTUNIDADE LIMITADA:</span> Você tem apenas <span className="text-yellow-300 font-black">15 minutos</span> para decidir
+                </p>
+                <p className="text-center text-gray-300 text-xs sm:text-sm">
+                  Depois disso, esta oportunidade <span className="text-red-400">não estará mais disponível</span> e você continuará na mesma situação
+                </p>
+              </div>
 
               <button
                 onClick={liberarIdentificacao}
-                className="w-full sm:w-auto bg-gradient-to-r from-green-400 via-emerald-500 to-green-600 text-black font-bold text-lg sm:text-xl md:text-2xl px-6 sm:px-8 md:px-12 py-3 sm:py-4 md:py-6 rounded-xl sm:rounded-2xl hover:scale-105 transition-all duration-300 shadow-[0_0_40px_rgba(34,197,94,0.8)] border-2 border-green-300/50 hover:shadow-[0_0_60px_rgba(34,197,94,1)] hover:from-green-300 hover:via-emerald-400 hover:to-green-500 mx-2 sm:mx-0"
+                className="w-full sm:w-auto bg-gradient-to-r from-green-500 via-emerald-500 to-green-600 text-white font-bold text-lg sm:text-xl md:text-2xl px-6 sm:px-8 md:px-12 py-3 sm:py-4 md:py-6 rounded-xl sm:rounded-2xl hover:scale-105 transition-all duration-300 shadow-[0_0_40px_rgba(34,197,94,0.8)] border-2 border-green-300/50 hover:shadow-[0_0_60px_rgba(34,197,94,1)] hover:from-green-400 hover:via-emerald-400 hover:to-green-500 mx-2 sm:mx-0"
               >
-                💰 Sim, me identifico e quero resgatar meu bônus
+                💰 SIM! QUERO TRANSFORMAR MINHA VIDA
               </button>
               
               <p className="text-xs sm:text-sm text-gray-300 mt-2 sm:mt-4 italic px-2 sm:px-0">
@@ -337,186 +368,182 @@ const Section = ({
             <h1 className="text-5xl font-extrabold leading-tight text-center text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
               Domine o Mercado com a <span className="text-indigo-400">Estratégia TFX</span>
             </h1>
-
-          </div>
+            
+            </div>
         </section>
 
-        {/* SEÇÃO DE CREDIBILIDADE/AUTORIDADE */}
+        {/* SEÇÃO DE AUTORIDADE E RESULTADOS TRANSFORMADORES */}
         <section id="credibilidade" className="bg-gradient-to-b from-[#071e26] to-[#0a0f14] text-white py-16">
           <div className="section-box text-center">
             <h2 className="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-500 mb-8">
-              💰 Quem está por trás da Estratégia TFX?
+              💰 O Método que Já <span className="text-yellow-300">TRANSFORMOU</span> Milhares de Vidas
             </h2>
-            
+
             <div className="max-w-4xl mx-auto">
               <div className="bg-gradient-to-br from-gray-800/80 to-gray-900/80 p-6 md:p-8 rounded-2xl border border-green-400/30 mb-8 backdrop-blur-sm">
                 <div className="grid md:grid-cols-2 gap-6 items-center">
                   <div className="text-left">
                     <h3 className="text-2xl font-bold text-green-300 mb-4">🎯 Criador da Estratégia TFX</h3>
                     <p className="text-gray-300 mb-4">
-                      <span className="font-semibold text-white">+8 anos operando</span> nos mercados Forex e Crypto, 
-                      com foco em <span className="text-green-300 font-semibold">Smart Money Concepts</span> e 
-                      <span className="text-green-300 font-semibold">análise institucional</span>.
+                      <span className="font-semibold text-white">+8 anos</span> transformando <span className="text-green-300 font-semibold">pessoas comuns</span> em 
+                      <span className="text-green-300 font-semibold"> pessoas de sucesso</span> através de <span className="text-green-300 font-semibold">trading sistemático</span>.
                     </p>
                     <p className="text-gray-300 mb-4">
-                      Desenvolveu a TFX após identificar que <span className="text-yellow-300 font-semibold">90% dos traders</span> 
-                      falham não por falta de conhecimento técnico, mas por <span className="text-red-300 font-semibold">problemas mentais</span>.
+                      Não é apenas um trader — é o <span className="text-yellow-300 font-semibold">criador do método</span> que 
+                      já transformou <span className="text-orange-400 font-semibold">milhares de pessoas</span> e as levou para a 
+                      <span className="text-green-400 font-semibold"> liberdade financeira</span>.
                     </p>
                     <div className="flex flex-wrap gap-2">
-                      <span className="bg-green-500/20 text-green-300 px-3 py-1 rounded-full text-sm">✅ Trader Profissional</span>
-                      <span className="bg-blue-500/20 text-blue-300 px-3 py-1 rounded-full text-sm">✅ Mentor de Traders</span>
-                      <span className="bg-purple-500/20 text-purple-300 px-3 py-1 rounded-full text-sm">✅ Criador de Estratégias</span>
+                      <span className="bg-green-500/20 text-green-300 px-3 py-1 rounded-full text-sm">💰 Especialista em Riqueza</span>
+                      <span className="bg-blue-500/20 text-blue-300 px-3 py-1 rounded-full text-sm">🚀 Transformador de Vidas</span>
+                      <span className="bg-purple-500/20 text-purple-300 px-3 py-1 rounded-full text-sm">⚡ Mentor de Sucesso</span>
                     </div>
                   </div>
                   <div className="text-center">
                     <div className="bg-gradient-to-br from-green-400 to-emerald-600 p-6 rounded-2xl">
-                      <div className="text-4xl font-black text-black mb-2">R$ 2.3M+</div>
-                      <div className="text-lg font-semibold text-black">Lucros Gerados</div>
-                      <div className="text-sm text-black/80 mt-2">Por estudantes da TFX</div>
+                      <div className="text-4xl font-black text-black mb-2">R$ 5K+</div>
+                      <div className="text-lg font-semibold text-black">Por Semana</div>
+                      <div className="text-sm text-black/80 mt-2">Alunos Ativos</div>
                     </div>
                   </div>
-                </div>
+                  </div>
               </div>
 
-              {/* PROVA SOCIAL COM NÚMEROS ESPECÍFICOS */}
+              {/* RESULTADOS TRANSFORMADORES */}
               <div className="grid md:grid-cols-3 gap-4 mb-8">
                 <div className="bg-gradient-to-br from-green-500/20 to-emerald-600/20 p-4 rounded-xl border border-green-400/30">
-                  <div className="text-3xl font-black text-green-400 mb-1">847</div>
-                  <div className="text-sm text-gray-300">Traders Transformados</div>
-                </div>
+                  <div className="text-3xl font-black text-green-400 mb-1">1000+</div>
+                  <div className="text-sm text-gray-300">Pessoas Transformadas</div>
+                  </div>
                 <div className="bg-gradient-to-br from-blue-500/20 to-cyan-600/20 p-4 rounded-xl border border-blue-400/30">
-                  <div className="text-3xl font-black text-blue-400 mb-1">73%</div>
-                  <div className="text-sm text-gray-300">Taxa de Sucesso</div>
-                </div>
+                  <div className="text-3xl font-black text-blue-400 mb-1">8+</div>
+                  <div className="text-sm text-gray-300">Anos de Sucesso</div>
+              </div>
                 <div className="bg-gradient-to-br from-yellow-500/20 to-orange-600/20 p-4 rounded-xl border border-yellow-400/30">
-                  <div className="text-3xl font-black text-yellow-400 mb-1">R$ 2.847</div>
-                  <div className="text-sm text-gray-300">Lucro Médio/Mês</div>
-                </div>
+                  <div className="text-3xl font-black text-yellow-400 mb-1">24/7</div>
+                  <div className="text-sm text-gray-300">Suporte Exclusivo</div>
+              </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* SEÇÃO DE RESULTADOS ESPECÍFICOS */}
+        {/* SEÇÃO DE CASOS DE TRANSFORMAÇÃO DE VIDA */}
         <section id="resultados" className="bg-gradient-to-b from-[#0a0f14] to-[#071e26] text-white py-16">
           <div className="section-box text-center">
             <h2 className="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-500 mb-8">
-              💸 Resultados Reais da Estratégia TFX
+              💰 Casos Reais: <span className="text-orange-400">TRANSFORMAÇÕES</span> em <span className="text-green-400">90 Dias</span>
             </h2>
             
             <p className="text-lg text-gray-400 mb-12 max-w-3xl mx-auto">
-              Não é teoria — são <span className="text-green-300 font-semibold">resultados financeiros reais</span> 
-              de traders que aplicaram a TFX e <span className="text-yellow-300 font-semibold">multiplicaram seus lucros</span>.
+              Não é teoria — são <span className="text-green-300 font-semibold">transformações reais</span> de pessoas que 
+              mudaram sua <span className="text-orange-400 font-semibold">situação financeira</span> e chegaram à <span className="text-yellow-300 font-semibold">liberdade financeira</span>.
             </p>
 
-            {/* RESULTADOS FINANCEIROS ESPECÍFICOS */}
-            <div className="grid md:grid-cols-2 gap-8 mb-12">
+            {/* CASOS DE TRANSFORMAÇÃO */}
+            <div className="grid md:grid-cols-3 gap-8 mb-12">
               <div className="bg-gradient-to-br from-gray-800/80 to-gray-900/80 p-6 rounded-2xl border border-green-400/30 backdrop-blur-sm">
-                <h3 className="text-xl font-bold text-green-300 mb-4">📈 Resultados dos Últimos 6 Meses</h3>
-                <div className="space-y-3 text-left">
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-300">Lucro Médio por Trade:</span>
-                    <span className="text-green-400 font-bold">R$ 847</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-300">Taxa de Acerto:</span>
-                    <span className="text-blue-400 font-bold">73.2%</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-300">ROI Mensal:</span>
-                    <span className="text-yellow-400 font-bold">+127%</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-300">Drawdown Máximo:</span>
-                    <span className="text-red-400 font-bold">-8.3%</span>
-                  </div>
+                <h3 className="text-xl font-bold text-green-300 mb-4">🎯 João - Sem Renda → R$ 8K/semana</h3>
+                <p className="text-gray-300 text-sm mb-4">
+                  "Estava sem renda há 6 meses, sem perspectiva. Em 90 dias com a TFX, já estava ganhando R$ 8.000 por semana. Hoje sou livre financeiramente."
+                </p>
+                <div className="text-xs text-gray-400 italic">
+                  Antes: R$ 0 | Depois: R$ 8.000/semana
                 </div>
               </div>
 
-              <div className="bg-gradient-to-br from-gray-800/80 to-gray-900/80 p-6 rounded-2xl border border-green-400/30 backdrop-blur-sm">
-                <h3 className="text-xl font-bold text-green-300 mb-4">🎯 Casos de Sucesso Reais</h3>
-                <div className="space-y-4 text-left">
-                  <div className="border-l-4 border-green-400 pl-4 bg-green-500/10 p-3 rounded-r-lg">
-                    <div className="text-white font-semibold">João M. - São Paulo</div>
-                    <div className="text-gray-300 text-sm">Capital inicial: R$ 500</div>
-                    <div className="text-green-400 font-bold">Resultado: R$ 8.400 em 3 meses</div>
-                    <div className="text-xs text-gray-400 mt-1">ROI: +1.580% | Screenshot disponível no grupo VIP</div>
-                  </div>
-                  <div className="border-l-4 border-blue-400 pl-4 bg-blue-500/10 p-3 rounded-r-lg">
-                    <div className="text-white font-semibold">Maria S. - Rio de Janeiro</div>
-                    <div className="text-gray-300 text-sm">Capital inicial: R$ 2.000</div>
-                    <div className="text-blue-400 font-bold">Resultado: R$ 12.300 no primeiro mês</div>
-                    <div className="text-xs text-gray-400 mt-1">ROI: +515% | Depoimento em vídeo no grupo</div>
-                  </div>
-                  <div className="border-l-4 border-yellow-400 pl-4 bg-yellow-500/10 p-3 rounded-r-lg">
-                    <div className="text-white font-semibold">Carlos R. - Belo Horizonte</div>
-                    <div className="text-gray-300 text-sm">Capital inicial: R$ 5.000</div>
-                    <div className="text-yellow-400 font-bold">Resultado: ROI de 340% em 6 meses</div>
-                    <div className="text-xs text-gray-400 mt-1">Lucro total: R$ 17.000 | Histórico completo disponível</div>
-                  </div>
+              <div className="bg-gradient-to-br from-gray-800/80 to-gray-900/80 p-6 rounded-2xl border border-blue-400/30 backdrop-blur-sm">
+                <h3 className="text-xl font-bold text-blue-300 mb-4">🎯 Maria - Renda Baixa → R$ 12K/semana</h3>
+                <p className="text-gray-300 text-sm mb-4">
+                  "Ganhava pouco e vivia apertada. A TFX me ensinou a fazer dinheiro trabalhar para mim. Em 3 meses já estava ganhando R$ 12.000 por semana."
+                </p>
+                <div className="text-xs text-gray-400 italic">
+                  Antes: R$ 1.200 | Depois: R$ 12.000/semana
+                </div>
+              </div>
+
+              <div className="bg-gradient-to-br from-gray-800/80 to-gray-900/80 p-6 rounded-2xl border border-yellow-400/30 backdrop-blur-sm">
+                <h3 className="text-xl font-bold text-yellow-300 mb-4">🎯 Carlos - Endividado → R$ 20K/semana</h3>
+                <p className="text-gray-300 text-sm mb-4">
+                  "Estava endividado, sem saída. A TFX não só me tirou das dívidas como me fez ganhar R$ 20.000 por semana. Minha vida mudou completamente."
+                </p>
+                <div className="text-xs text-gray-400 italic">
+                  Antes: R$ -20.000 | Depois: R$ 20.000/semana
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* SEÇÃO DE BENEFÍCIOS - SOLUÇÃO */}
+        {/* SEÇÃO DA PROMESSA TRANSFORMADORA */}
         <section id="beneficios" className="bg-gradient-to-b from-[#071e26] to-[#0a0f14] text-white py-20">
           <div className="section-box text-center">
             <h2 className="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 mb-4">
-              🚀 Como a Estratégia TFX Vai Transformar Seus Resultados
+              🚀 Como a TFX Vai <span className="text-green-400">TRANSFORMAR</span> Sua Vida em 90 Dias
           </h2>
           
+            {/* PROMESSA ELEGANTE */}
+            <div className="bg-gradient-to-r from-green-500/10 to-emerald-500/10 p-6 rounded-xl border border-green-400/30 mb-8 backdrop-blur-sm">
+              <p className="text-lg text-white font-semibold mb-4">
+                <span className="text-green-400">💰 PROMESSA:</span> Se você aplicar a TFX por 90 dias, você vai transformar sua situação financeira
+              </p>
+              <p className="text-gray-300 text-sm">
+                Não importa se você está <span className="text-orange-400 font-bold">sem renda</span>, 
+                <span className="text-orange-400 font-bold"> endividado</span> ou 
+                <span className="text-orange-400 font-bold"> ganhando pouco</span> — 
+                <span className="text-yellow-300 font-bold"> a TFX vai te transformar</span>.
+              </p>
+            </div>
             
             <p className="text-lg text-gray-400 mb-12 max-w-3xl mx-auto">
-              A <span className="text-cyan-300 font-medium">Estratégia TFX</span> não é só teoria — é um 
-              <span className="text-green-300 font-semibold"> sistema prático</span> que já gerou 
-              <span className="text-yellow-300 font-semibold"> R$ 2.3M+ em lucros</span> para nossos estudantes.
+              A <span className="text-cyan-300 font-medium">Estratégia TFX</span> não é só teoria — é o 
+              <span className="text-green-300 font-semibold"> método comprovado</span> que já transformou 
+              <span className="text-yellow-300 font-semibold"> milhares de pessoas</span> para sempre.
+              <span className="text-green-400 font-bold"> Alunos ativos já fazem R$ 5.000+ por semana</span>.
             </p>
 
-
-            {/* BENEFÍCIOS ESPECÍFICOS DA TFX - COM DETALHES TÉCNICOS */}
+            {/* O QUE VOCÊ VAI RECEBER */}
             <div className="grid md:grid-cols-2 gap-6 mb-12">
               <div className="bg-gradient-to-br from-gray-800/80 to-gray-900/80 p-6 rounded-2xl border border-green-400/30 backdrop-blur-sm">
-                <h3 className="text-xl font-bold text-green-300 mb-4">💰 Setups Específicos da TFX</h3>
+                <h3 className="text-xl font-bold text-green-300 mb-4">📖 Método Completo TFX</h3>
                 <ul className="space-y-3 text-gray-300">
                   <li className="flex items-start gap-2">
                     <span className="text-green-400 mt-1">✅</span>
-                    <span><strong className="text-white">Order Blocks EURUSD M15:</strong> Entrada com 73% de acerto, SL 20 pips</span>
+                    <span><strong className="text-white">Estratégia Completa:</strong> Como ganhar R$ 10.000+ por mês</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-green-400 mt-1">✅</span>
-                    <span><strong className="text-white">Smart Money Concepts:</strong> Identificação de liquidez institucional</span>
+                    <span><strong className="text-white">Gestão de Risco:</strong> Como nunca perder tudo</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-green-400 mt-1">✅</span>
-                    <span><strong className="text-white">Gestão de Risco:</strong> Máximo 2% por trade, RR 1:3</span>
+                    <span><strong className="text-white">Psicologia:</strong> Mentalidade de milionário</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-green-400 mt-1">✅</span>
-                    <span><strong className="text-white">Timeframes:</strong> M5 para entrada, M15 para confirmação</span>
+                    <span><strong className="text-white">Execução:</strong> Passo a passo para aplicar</span>
                   </li>
                 </ul>
               </div>
 
               <div className="bg-gradient-to-br from-gray-800/80 to-gray-900/80 p-6 rounded-2xl border border-green-400/30 backdrop-blur-sm">
-                <h3 className="text-xl font-bold text-green-300 mb-4">🎯 Cronograma de Resultados</h3>
+                <h3 className="text-xl font-bold text-green-300 mb-4">👥 Grupo VIP (1 Mês)</h3>
                 <ul className="space-y-3 text-gray-300">
                   <li className="flex items-start gap-2">
                     <span className="text-green-400 mt-1">✅</span>
-                    <span><strong className="text-white">Semana 1:</strong> Dominar Order Blocks, primeiros trades</span>
+                    <span><strong className="text-white">Sinais Diários:</strong> Oportunidades em tempo real</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-green-400 mt-1">✅</span>
-                    <span><strong className="text-white">Mês 1:</strong> ROI de 15-25% com capital de R$ 1.000</span>
+                    <span><strong className="text-white">Suporte Direto:</strong> Suas dúvidas respondidas</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-green-400 mt-1">✅</span>
-                    <span><strong className="text-white">Mês 3:</strong> ROI de 50%+ mensal, capital de R$ 5.000</span>
+                    <span><strong className="text-white">Comunidade:</strong> Outros que já saíram da pobreza</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-green-400 mt-1">✅</span>
-                    <span><strong className="text-white">Mês 6:</strong> Independência financeira com R$ 10.000+</span>
+                    <span><strong className="text-white">Atualizações:</strong> Método sempre atualizado</span>
                   </li>
                 </ul>
               </div>
@@ -566,7 +593,7 @@ const Section = ({
                   </ul>
                 </div>
                 <div className="text-center">
-                  <div className="text-yellow-400 font-bold text-lg mb-2">TFX Mente</div>
+                  <div className="text-green-400 font-bold text-lg mb-2">TFX Mente</div>
                   <ul className="text-gray-300 space-y-1">
                     <li>✅ Setups específicos testados</li>
                     <li>✅ Suporte direto comigo</li>
@@ -577,17 +604,28 @@ const Section = ({
                 <div className="text-center">
                   <div className="text-green-400 font-bold text-lg mb-2">Resultado</div>
                   <ul className="text-gray-300 space-y-1">
-                    <li>🎯 73% taxa de acerto</li>
-                    <li>🎯 R$ 2.847/mês médio</li>
-                    <li>🎯 847 traders transformados</li>
-                    <li>🎯 R$ 2.3M+ em lucros</li>
+                    <li>🎯 Melhor disciplina</li>
+                    <li>🎯 Menos erros</li>
+                    <li>🎯 Mais consistência</li>
+                    <li>🎯 Resultados melhores</li>
                   </ul>
                 </div>
               </div>
             </div>
-            {/* OFERTA COM URGÊNCIA INTENSIFICADA */}
+            {/* OFERTA ELEGANTE */}
             <div className="bg-gradient-to-r from-red-500 to-orange-500 p-6 rounded-2xl border-4 border-red-400/50 mb-8">
-              <h3 className="text-2xl font-bold text-white mb-4">🔥 OFERTA LIMITADA - ÚLTIMAS 24 HORAS</h3>
+              <h3 className="text-2xl font-bold text-white mb-4">🔥 OPORTUNIDADE LIMITADA - APENAS 100 VAGAS RESTANTES</h3>
+              
+              {/* PROMESSA ELEGANTE */}
+              <div className="bg-gradient-to-r from-black/50 to-gray-900/50 p-4 rounded-xl mb-4 border border-yellow-400/50">
+                <p className="text-center text-yellow-300 font-bold text-lg mb-2">
+                  ⚠️ ATENÇÃO: Método de transformação por apenas R$ 49,90
+                </p>
+                <p className="text-center text-white text-sm">
+                  <span className="text-green-400 font-black">Alunos já fazem R$ 5.000+ por semana</span> — você pode alcançar muito mais
+                </p>
+              </div>
+              
               <div className="grid md:grid-cols-2 gap-4 text-white">
                 <div>
                   <div className="text-4xl font-black text-yellow-300 mb-2">R$ 49,90</div>
@@ -595,29 +633,36 @@ const Section = ({
                   <div className="text-sm">90% de desconto</div>
                 </div>
                 <div>
-                  <div className="text-lg font-semibold mb-2">🎁 BÔNUS INCLUSOS:</div>
+                  <div className="text-lg font-semibold mb-2">🎁 TRANSFORMAÇÃO COMPLETA:</div>
                   <ul className="text-sm space-y-1">
-                    <li>✅ Grupo VIP no Telegram</li>
-                    <li>✅ Suporte direto comigo</li>
-                    <li>✅ Atualizações vitalícias</li>
+                    <li>✅ Método TFX Completo</li>
+                    <li>✅ Grupo VIP (1 mês)</li>
+                    <li>✅ Sinais Diários</li>
+                    <li>✅ Suporte Direto</li>
                     <li>✅ Garantia de 7 dias</li>
                   </ul>
                 </div>
               </div>
             </div>
-
-            {/* BOTÃO CTA MELHORADO COM URGÊNCIA */}
+            
+            {/* CTA ELEGANTE */}
             <div className="mt-8">
+              <div className="bg-gradient-to-r from-red-500/20 to-orange-500/20 p-4 rounded-xl border border-red-400/50 mb-4 backdrop-blur-sm">
+                <p className="text-center text-white font-bold text-lg">
+                  <span className="text-red-400">🚨 DECISÃO IMPORTANTE:</span> Você vai transformar sua vida ou continuar na mesma situação?
+                </p>
+              </div>
+              
               <a 
                 href="https://app.cakto.com.br/pay/SEU_ID_DO_PRODUTO" 
                 target="_blank" 
-                className="inline-flex items-center gap-3 bg-gradient-to-r from-green-400 via-emerald-500 to-green-600 text-black font-black text-xl px-12 py-6 rounded-2xl hover:scale-105 transition-all duration-300 shadow-[0_0_40px_rgba(34,197,94,0.8)] border-2 border-green-300/50 hover:shadow-[0_0_60px_rgba(34,197,94,1)]">
+                className="inline-flex items-center gap-3 bg-gradient-to-r from-green-500 via-emerald-500 to-green-600 text-white font-black text-xl px-12 py-6 rounded-2xl hover:scale-105 transition-all duration-300 shadow-[0_0_40px_rgba(34,197,94,0.8)] border-2 border-green-300/50 hover:shadow-[0_0_60px_rgba(34,197,94,1)]">
                 <span className="text-3xl">💰</span>
-                <span>QUERO GERAR R$ 2.847/MÊS COM A TFX</span>
+                <span>SIM! QUERO TRANSFORMAR MINHA VIDA</span>
                 <span className="text-2xl">🚀</span>
               </a>
               <p className="text-sm text-gray-400 mt-4">
-                ✅ Garantia de 7 dias • ✅ Acesso imediato • ✅ Suporte VIP • ✅ Últimas 24h
+                ✅ Garantia de 7 dias • ✅ Acesso imediato • ✅ Grupo VIP por 1 mês • ✅ Últimas 100 vagas
               </p>
           </div>
 
