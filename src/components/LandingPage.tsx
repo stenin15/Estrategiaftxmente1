@@ -553,6 +553,27 @@ const Section = ({
                   <span className="text-yellow-300"> você não terá mais acesso</span> a este grupo exclusivo
                 </p>
               </div>
+              
+              {/* ESPAÇO PARA VÍDEO DO GRUPO */}
+              <div className="mt-8 bg-gradient-to-r from-gray-800/50 to-gray-900/50 p-6 rounded-xl border border-gray-600/30">
+                <h4 className="text-xl font-bold text-center text-gray-300 mb-4">
+                  📹 Veja Como Funciona o Grupo VIP
+                </h4>
+                <div className="bg-gray-900/70 p-8 rounded-lg border border-gray-700 min-h-[300px] flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="text-6xl mb-4">🎬</div>
+                    <p className="text-gray-400 text-lg mb-2">
+                      📸 Espaço para vídeo curto do grupo
+                    </p>
+                    <p className="text-gray-500 text-sm">
+                      (Vídeo será carregado aqui)
+                    </p>
+                  </div>
+                </div>
+                <p className="text-xs text-gray-500 text-center mt-3 italic">
+                  Vídeo demonstrativo do grupo VIP no Telegram
+                </p>
+              </div>
             </div>
             
             <p className="text-lg text-gray-400 mb-12 max-w-3xl mx-auto">
