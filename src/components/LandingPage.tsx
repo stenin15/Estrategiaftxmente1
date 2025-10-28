@@ -67,8 +67,8 @@ export default function LandingPage() {
   const [showBonus, setShowBonus] = useState(false);
 
   useEffect(() => {
-    // Não verificar localStorage - usuário DEVE interagir sempre
-    // Apenas inicializar o estado
+    // Iniciar timer imediatamente quando a página carrega
+    startCountdown();
   }, []);
 
   const handlePainSelection = (pain: string) => {
@@ -172,9 +172,9 @@ export default function LandingPage() {
     return (
       <div className="min-h-screen bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 flex items-center justify-center p-4">
         <div className="bg-gradient-to-br from-gray-800/60 to-gray-900/60 backdrop-blur-sm p-8 rounded-2xl border border-cyan-400/30 max-w-2xl w-full text-center shadow-2xl">
-          {/* TIMER ESTÁTICO - SÓ COMEÇA APÓS CLIQUE */}
+          {/* TIMER EM CONTAGEM REGRESSIVA */}
           <div className="mb-8">
-            <div className="text-4xl sm:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600 mb-4 countdown-timer border-2 border-cyan-400/30 rounded-xl p-4 drop-shadow-[0_0_15px_rgba(6,182,212,0.3)]">
+            <div className="text-4xl sm:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600 mb-4 countdown-timer border-2 border-cyan-400/30 rounded-xl p-4 drop-shadow-[0_0_15px_rgba(6,182,212,0.3)] animate-pulse">
               30:00
             </div>
             <p className="text-lg text-cyan-300 font-bold">
@@ -212,13 +212,13 @@ export default function LandingPage() {
                 <button
                   key={pain.id}
                   onClick={() => handlePainSelection(pain.id)}
-                  className={`p-3 rounded-lg border transition-all duration-300 ${
+                  className={`p-3 rounded-lg border transition-all duration-300 transform hover:scale-105 active:scale-95 ${
                     selectedPains.includes(pain.id)
-                      ? `bg-gradient-to-br from-${pain.color}-500/40 to-${pain.color}-600/40 border-${pain.color}-400/60 shadow-lg scale-105`
-                      : `bg-gradient-to-br from-${pain.color}-500/20 to-${pain.color}-600/20 border-${pain.color}-400/30 hover:scale-105`
+                      ? `bg-gradient-to-br from-${pain.color}-500/40 to-${pain.color}-600/40 border-${pain.color}-400/60 shadow-lg scale-105 animate-pulse`
+                      : `bg-gradient-to-br from-${pain.color}-500/20 to-${pain.color}-600/20 border-${pain.color}-400/30 hover:shadow-lg hover:shadow-${pain.color}-400/20`
                   }`}
                 >
-                  <p className={`font-bold ${
+                  <p className={`font-bold transition-all duration-300 ${
                     selectedPains.includes(pain.id)
                       ? `text-${pain.color}-100`
                       : `text-${pain.color}-200`
@@ -233,10 +233,10 @@ export default function LandingPage() {
           <button
             onClick={handleContinue}
             disabled={selectedPains.length === 0}
-            className={`w-full font-bold py-4 px-6 rounded-xl transition-all duration-300 ${
+            className={`w-full font-bold py-4 px-6 rounded-xl transition-all duration-300 transform ${
               selectedPains.length > 0
-                ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white hover:scale-105 shadow-[0_0_20px_rgba(6,182,212,0.4)] hover:shadow-[0_0_30px_rgba(6,182,212,0.6)]'
-                : 'bg-gray-600 text-gray-400 cursor-not-allowed'
+                ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-white hover:scale-105 active:scale-95 shadow-[0_0_20px_rgba(6,182,212,0.4)] hover:shadow-[0_0_30px_rgba(6,182,212,0.6)] animate-pulse'
+                : 'bg-gray-600 text-gray-400 cursor-not-allowed hover:scale-100'
             }`}
           >
             {selectedPains.length > 0 
@@ -244,11 +244,6 @@ export default function LandingPage() {
               : '⚠️ SELECIONE PELO MENOS UMA SITUAÇÃO'
             }
           </button>
-
-          <p className="text-sm text-gray-400 mt-4">
-            ⚡ Apenas <span className="text-cyan-400 font-bold">100 pessoas</span> por dia<br/>
-            <span className="text-green-400">NÃO PERCA ESTA OPORTUNIDADE!</span>
-          </p>
         </div>
       </div>
     );
