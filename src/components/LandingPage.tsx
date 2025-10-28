@@ -497,24 +497,47 @@ export default function LandingPage() {
                 </p>
               </div>
               
-              {/* ESPAÇO PARA VÍDEO DO GRUPO */}
+              {/* ESPAÇO PARA FOTOS DO GRUPO */}
               <div className="mt-8 bg-gradient-to-r from-gray-800/50 to-gray-900/50 p-6 rounded-xl border border-gray-600/30">
                 <h4 className="text-xl font-bold text-center text-gray-300 mb-4">
-                  📹 Veja Como Funciona a Imersão VIP
+                  📸 Veja Como Funciona a Imersão VIP
                 </h4>
-                <div className="bg-gray-900/70 p-8 rounded-lg border border-gray-700 min-h-[300px] flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="text-6xl mb-4">🎬</div>
-                    <p className="text-gray-400 text-lg mb-2">
-                      📸 Espaço para vídeo curto do grupo
-                    </p>
-                    <p className="text-gray-500 text-sm">
-                      (Vídeo será carregado aqui)
-                    </p>
+                
+                {/* GRID DE FOTOS DO GRUPO */}
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-4">
+                  <div className="bg-gray-900/70 p-4 rounded-lg border border-gray-700 min-h-[150px] flex items-center justify-center">
+                    <div className="text-center">
+                      <div className="text-3xl mb-2">📱</div>
+                      <p className="text-gray-400 text-sm">
+                        📸 Foto do grupo<br/>
+                        <span className="text-xs">Sinais em tempo real</span>
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="bg-gray-900/70 p-4 rounded-lg border border-gray-700 min-h-[150px] flex items-center justify-center">
+                    <div className="text-center">
+                      <div className="text-3xl mb-2">💬</div>
+                      <p className="text-gray-400 text-sm">
+                        📸 Foto do grupo<br/>
+                        <span className="text-xs">Suporte direto</span>
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <div className="bg-gray-900/70 p-4 rounded-lg border border-gray-700 min-h-[150px] flex items-center justify-center">
+                    <div className="text-center">
+                      <div className="text-3xl mb-2">🎯</div>
+                      <p className="text-gray-400 text-sm">
+                        📸 Foto do grupo<br/>
+                        <span className="text-xs">Acompanhamento</span>
+                      </p>
+                    </div>
                   </div>
                 </div>
+                
                 <p className="text-xs text-gray-500 text-center mt-3 italic">
-                  Vídeo demonstrativo da Imersão VIP no Telegram
+                  Fotos reais da Imersão VIP no Telegram
                 </p>
               </div>
             </div>
