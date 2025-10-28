@@ -425,19 +425,18 @@ export default function LandingPage() {
         <section id="beneficios" className="bg-gradient-to-b from-[#071e26] to-[#0a0f14] text-white py-20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 className="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 mb-4">
-              🚀 Como a TFX Vai <span className="text-green-400">TRANSFORMAR</span> Sua Vida em 30 Dias
+              🎯 Sua <span className="text-green-400">IMERSÃO COMPLETA</span> em 30 Dias
             </h2>
             
             {/* PROMESSA ELEGANTE */}
             <div className="bg-gradient-to-r from-green-500/10 to-emerald-500/10 p-6 rounded-xl border border-green-400/30 mb-8 backdrop-blur-sm">
               <p className="text-lg text-white font-semibold mb-4">
-                <span className="text-green-400">💰 PROMESSA:</span> Se você aplicar a TFX por 30 dias, você vai transformar sua situação financeira
+                <span className="text-green-400">🎯 IMERSÃO:</span> Uma experiência completa de aprendizado e aplicação da estratégia TFX
               </p>
               <p className="text-gray-300 text-sm">
-                Não importa se você está <span className="text-orange-400 font-bold">sem renda</span>, 
-                <span className="text-orange-400 font-bold"> endividado</span> ou 
-                <span className="text-orange-400 font-bold"> ganhando pouco</span> — 
-                <span className="text-yellow-300 font-bold"> a TFX vai te transformar</span>.
+                Não é só um curso — é uma <span className="text-orange-400 font-bold">imersão total</span> onde você aprende, 
+                <span className="text-orange-400 font-bold"> pratica</span> e <span className="text-orange-400 font-bold">recebe suporte</span> — 
+                <span className="text-yellow-300 font-bold"> tudo em uma experiência única</span>.
               </p>
             </div>
             
@@ -448,15 +447,15 @@ export default function LandingPage() {
                   <span className="text-2xl">📱</span>
                 </div>
                 <h3 className="text-2xl md:text-3xl font-bold">
-                  <span className="text-purple-300">Grupo VIP no Telegram</span>
+                  <span className="text-purple-300">Imersão VIP no Telegram</span>
                   <span className="text-gray-300"> (30 Dias)</span>
                 </h3>
               </div>
               
               <p className="text-lg text-white font-semibold mb-6">
-                <span className="text-purple-400">🎯 EXCLUSIVIDADE:</span> 
-                <span className="text-yellow-300"> 30 dias únicos</span> para ver a estratégia 
-                <span className="text-green-400 font-bold"> funcionando na prática</span>
+                <span className="text-purple-400">🎯 EXPERIÊNCIA:</span> 
+                <span className="text-yellow-300"> 30 dias de imersão total</span> onde você aprende, 
+                <span className="text-green-400 font-bold"> pratica e recebe suporte</span> em tempo real
               </p>
               
               <div className="grid md:grid-cols-3 gap-6 mb-6">
@@ -501,7 +500,7 @@ export default function LandingPage() {
               {/* ESPAÇO PARA VÍDEO DO GRUPO */}
               <div className="mt-8 bg-gradient-to-r from-gray-800/50 to-gray-900/50 p-6 rounded-xl border border-gray-600/30">
                 <h4 className="text-xl font-bold text-center text-gray-300 mb-4">
-                  📹 Veja Como Funciona o Grupo VIP
+                  📹 Veja Como Funciona a Imersão VIP
                 </h4>
                 <div className="bg-gray-900/70 p-8 rounded-lg border border-gray-700 min-h-[300px] flex items-center justify-center">
                   <div className="text-center">
@@ -515,7 +514,7 @@ export default function LandingPage() {
                   </div>
                 </div>
                 <p className="text-xs text-gray-500 text-center mt-3 italic">
-                  Vídeo demonstrativo do grupo VIP no Telegram
+                  Vídeo demonstrativo da Imersão VIP no Telegram
                 </p>
               </div>
             </div>
@@ -530,45 +529,45 @@ export default function LandingPage() {
             {/* O QUE VOCÊ VAI RECEBER */}
             <div className="grid md:grid-cols-2 gap-6 mb-12">
               <div className="bg-gradient-to-br from-gray-800/80 to-gray-900/80 p-6 rounded-2xl border border-green-400/30 backdrop-blur-sm">
-                <h3 className="text-xl font-bold text-green-300 mb-4">📖 Método Completo TFX</h3>
+                <h3 className="text-xl font-bold text-green-300 mb-4">📚 Imersão Completa TFX</h3>
                 <ul className="space-y-3 text-gray-300">
                   <li className="flex items-start gap-2">
                     <span className="text-green-400 mt-1">✅</span>
-                    <span><strong className="text-white">Estratégia Completa:</strong> Como gerar ganhos diários de até $ 500,00</span>
+                    <span><strong className="text-white">PDF Iniciante:</strong> Estratégia do zero ao básico</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-green-400 mt-1">✅</span>
-                    <span><strong className="text-white">Gestão de Risco:</strong> Como nunca perder tudo</span>
+                    <span><strong className="text-white">PDF Intermediário:</strong> Técnicas avançadas</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-green-400 mt-1">✅</span>
-                    <span><strong className="text-white">Psicologia:</strong> Mentalidade de milionário</span>
+                    <span><strong className="text-white">PDF Avançado:</strong> Domínio total da estratégia</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-green-400 mt-1">✅</span>
-                    <span><strong className="text-white">Execução:</strong> Passo a passo para aplicar</span>
+                    <span><strong className="text-white">Guia Prático:</strong> Aplicação passo a passo</span>
                   </li>
                 </ul>
               </div>
 
-              <div className="bg-gradient-to-br from-gray-800/80 to-gray-900/80 p-6 rounded-2xl border border-green-400/30 backdrop-blur-sm">
-                <h3 className="text-xl font-bold text-green-300 mb-4">👥 Grupo VIP (30 Dias)</h3>
+              <div className="bg-gradient-to-br from-gray-800/80 to-gray-900/80 p-6 rounded-2xl border border-purple-400/30 backdrop-blur-sm">
+                <h3 className="text-xl font-bold text-purple-300 mb-4">🎯 Imersão VIP (30 Dias)</h3>
                 <ul className="space-y-3 text-gray-300">
                   <li className="flex items-start gap-2">
-                    <span className="text-green-400 mt-1">✅</span>
-                    <span><strong className="text-white">Sinais Diários:</strong> Oportunidades em tempo real</span>
+                    <span className="text-purple-400 mt-1">✅</span>
+                    <span><strong className="text-white">Grupo Exclusivo:</strong> Acompanhamento diário</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-green-400 mt-1">✅</span>
-                    <span><strong className="text-white">Suporte Direto:</strong> Suas dúvidas respondidas</span>
+                    <span className="text-purple-400 mt-1">✅</span>
+                    <span><strong className="text-white">Sinais em Tempo Real:</strong> Oportunidades ao vivo</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-green-400 mt-1">✅</span>
-                    <span><strong className="text-white">Atualizações:</strong> Método sempre atualizado</span>
+                    <span className="text-purple-400 mt-1">✅</span>
+                    <span><strong className="text-white">Suporte Direto:</strong> Dúvidas respondidas</span>
                   </li>
                   <li className="flex items-start gap-2">
-                    <span className="text-green-400 mt-1">✅</span>
-                    <span><strong className="text-white">Exclusividade:</strong> Acesso limitado a 30 dias</span>
+                    <span className="text-purple-400 mt-1">✅</span>
+                    <span><strong className="text-white">Experiência Completa:</strong> Imersão total</span>
                   </li>
                 </ul>
               </div>
