@@ -115,41 +115,62 @@ export default function LandingPage() {
             </h1>
 
             <div className="bg-gradient-to-r from-green-500/10 to-emerald-500/10 p-6 rounded-xl border border-green-400/30 mb-8">
-              <h2 className="text-xl font-bold text-green-300 mb-4">🎯 O QUE VOCÊ VAI RECEBER:</h2>
-              <div className="space-y-3 text-left">
-                <div className="flex items-center gap-3">
-                  <span className="text-green-400 text-xl">✅</span>
-                  <span className="text-white">Estratégia TFX Completa (PDFs)</span>
+              <h2 className="text-2xl font-bold text-green-300 mb-6 text-center">🎁 VOCÊ RECEBE HOJE:</h2>
+              <div className="space-y-4 text-left">
+                <div className="flex items-start gap-3">
+                  <span className="text-green-400 text-xl">📚</span>
+                  <div>
+                    <span className="text-white font-bold">Ebook Trading Avançado TFX</span>
+                    <p className="text-gray-300 text-sm">(do zero ao avançado)</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-green-400 text-xl">💬</span>
+                  <div>
+                    <span className="text-white font-bold">1 mês no Telegram</span>
+                    <p className="text-gray-300 text-sm">com calls diárias e análises</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-green-400 text-xl">📊</span>
+                  <div>
+                    <span className="text-white font-bold">Planilha de gerenciamento</span>
+                    <p className="text-gray-300 text-sm">pronta e configurada</p>
+                  </div>
               </div>
-                <div className="flex items-center gap-3">
-                  <span className="text-green-400 text-xl">✅</span>
-                  <span className="text-white">Imersão VIP no Telegram (30 dias)</span>
+                <div className="flex items-start gap-3">
+                  <span className="text-green-400 text-xl">⚡</span>
+                  <div>
+                    <span className="text-white font-bold">Acesso imediato</span>
+                    <p className="text-gray-300 text-sm">+ atualizações constantes</p>
               </div>
-                <div className="flex items-center gap-3">
-                  <span className="text-green-400 text-xl">✅</span>
-                  <span className="text-white">Sinais em Tempo Real</span>
               </div>
-                <div className="flex items-center gap-3">
-                  <span className="text-green-400 text-xl">✅</span>
-                  <span className="text-white">Suporte Direto e Exclusivo</span>
+                <div className="flex items-start gap-3">
+                  <span className="text-green-400 text-xl">🛡️</span>
+                  <div>
+                    <span className="text-white font-bold">Garantia incondicional</span>
+                    <p className="text-gray-300 text-sm">de 7 dias - risco zero</p>
               </div>
-                <div className="flex items-center gap-3">
-                  <span className="text-green-400 text-xl">✅</span>
-                  <span className="text-white">Acompanhamento Diário</span>
               </div>
               </div>
             </div>
 
-            <div className="bg-gradient-to-r from-yellow-500/10 to-orange-500/10 p-4 rounded-xl border border-yellow-400/30 mb-8">
-              <p className="text-yellow-300 font-bold text-lg">
-                💰 VALOR TOTAL: <span className="line-through text-gray-400">$ 497,00</span>
-              </p>
-              <p className="text-green-400 font-bold text-2xl">
-                HOJE: <span className="text-3xl">$ 49,90</span>
-              </p>
-              <p className="text-gray-300 text-sm mt-2">
-                Economia de $ 447,10 (90% de desconto)
-              </p>
+            <div className="bg-gradient-to-r from-yellow-500/10 to-orange-500/10 p-6 rounded-xl border border-yellow-400/30 mb-8">
+              <div className="text-center mb-4">
+                <p className="text-gray-300 text-sm mb-2">Cursos similares: $ 497,00 - $ 1.997,00</p>
+                <p className="text-yellow-300 font-bold text-lg">
+                  💰 VALOR TOTAL: <span className="line-through text-gray-400">$ 1.997,00</span>
+                </p>
+                <p className="text-green-400 font-bold text-3xl mt-2">
+                  HOJE: <span className="text-4xl">$ 49,90</span>
+                </p>
+                <p className="text-gray-300 text-sm mt-2">
+                  Economia de $ 1.947,10 (97% de desconto)
+                </p>
+                <p className="text-green-300 text-sm mt-1 font-semibold">
+                  Menos que um almoço • Risco zero pela garantia
+                </p>
+              </div>
             </div>
 
             <button
@@ -159,10 +180,40 @@ export default function LandingPage() {
               🚀 SIM! QUERO MEU BÔNUS AGORA 🚀
             </button>
 
-            <p className="text-sm text-gray-400">
-              ⚡ Apenas <span className="text-green-400 font-bold">100 pessoas</span> por dia<br/>
-              <span className="text-yellow-300">NÃO PERCA ESTA OPORTUNIDADE!</span>
-            </p>
+            {/* PROVA SOCIAL */}
+            <div className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 p-4 rounded-xl border border-blue-400/30 mb-4">
+              <p className="text-center text-blue-300 font-bold text-lg mb-3">
+                🔥 +1.200 traders aplicando TFX
+              </p>
+              <div className="space-y-2 text-sm">
+                <p className="text-gray-300 italic">"Finalmente entendi como operar sem perder dinheiro"</p>
+                <p className="text-gray-300 italic">"A estratégia é simples e funciona de verdade"</p>
+                <p className="text-gray-300 italic">"O grupo do Telegram faz toda diferença"</p>
+              </div>
+            </div>
+
+            {/* URGÊNCIA HONESTA */}
+            <div className="bg-gradient-to-r from-red-500/10 to-orange-500/10 p-4 rounded-xl border border-red-400/30 mb-4">
+              <p className="text-center text-red-300 font-bold">
+                ⚡ BÔNUS DE 1 MÊS NO TELEGRAM
+              </p>
+              <p className="text-center text-gray-300 text-sm mt-1">
+                Apenas para compras até <span className="text-yellow-300 font-bold">31/12/2024</span>
+              </p>
+              <p className="text-center text-gray-400 text-xs mt-2">
+                Estoque limitado: 100 vagas por mês no grupo
+              </p>
+            </div>
+
+            {/* REDUÇÃO DE ATRITO */}
+            <div className="text-center">
+              <p className="text-xs text-gray-400 mb-2">
+                🔒 Pagamento 100% seguro • Receba em 2 minutos no e-mail
+              </p>
+              <p className="text-xs text-green-400 font-semibold">
+                7 dias para testar. Se não curtir, devolvemos 100%.
+              </p>
+            </div>
           </div>
         </div>
       );
