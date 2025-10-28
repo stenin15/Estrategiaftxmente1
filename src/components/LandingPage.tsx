@@ -195,17 +195,19 @@ export default function LandingPage() {
           <div className="space-y-4 mb-8">
             <div className="bg-gradient-to-r from-gray-700/50 to-gray-800/50 p-4 rounded-xl border border-gray-600/30">
               <p className="text-cyan-300 font-semibold">Selecione as situações que você se identifica:</p>
-              <p className="text-gray-400 text-sm mt-2">(Clique nas que se aplicam a você)</p>
+              <p className="text-gray-400 text-sm mt-2">
+                (Seja você <span className="text-yellow-300">iniciante</span> ou <span className="text-green-300">já investe</span> - clique nas que se aplicam a você)
+              </p>
             </div>
             
             <div className="grid grid-cols-2 gap-3 text-sm">
               {[
-                { id: 'dificuldades', text: 'DIFICULDADES FINANCEIRAS', color: 'red' },
-                { id: 'investimentos', text: 'INVESTIMENTOS PERDIDOS', color: 'orange' },
-                { id: 'liberdade', text: 'BUSCA POR LIBERDADE', color: 'blue' },
-                { id: 'frustracao', text: 'FRUSTRAÇÃO COM TRADING', color: 'purple' },
-                { id: 'oportunidade', text: 'OPORTUNIDADE ÚNICA', color: 'yellow' },
-                { id: 'determinacao', text: 'DETERMINAÇÃO TOTAL', color: 'green' }
+                { id: 'renda_insuficiente', text: 'NÃO GANHA O SUFICIENTE NO MÊS', color: 'red' },
+                { id: 'dependencia_salario', text: 'DEPENDE APENAS DO SALÁRIO', color: 'orange' },
+                { id: 'sem_liberdade', text: 'SEM LIBERDADE FINANCEIRA', color: 'blue' },
+                { id: 'perdas_investimentos', text: 'PERDEU DINHEIRO INVESTINDO', color: 'purple' },
+                { id: 'sem_conhecimento', text: 'NÃO SABE COMO INVESTIR', color: 'yellow' },
+                { id: 'quer_mudanca', text: 'QUER MUDAR DE VIDA', color: 'green' }
               ].map((pain) => (
                 <button
                   key={pain.id}
