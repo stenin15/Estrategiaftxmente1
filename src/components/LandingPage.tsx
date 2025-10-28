@@ -46,7 +46,7 @@ function startCountdown() {
       buttons.forEach(btn => btn.classList.remove("active"));
     }
 
-    timeRemaining--;
+      timeRemaining--;
 
     if (timeRemaining < 0) {
       clearInterval(countdownInterval!);
@@ -213,28 +213,33 @@ export default function LandingPage() {
             
             <div className="grid grid-cols-2 gap-3 text-sm">
               {[
-                { id: 'renda_insuficiente', text: 'NÃO GANHA O SUFICIENTE NO MÊS', color: 'red' },
-                { id: 'dependencia_salario', text: 'DEPENDE APENAS DO SALÁRIO', color: 'orange' },
-                { id: 'sem_liberdade', text: 'SEM LIBERDADE FINANCEIRA', color: 'blue' },
-                { id: 'perdas_investimentos', text: 'PERDEU DINHEIRO INVESTINDO', color: 'purple' },
-                { id: 'sem_conhecimento', text: 'NÃO SABE COMO INVESTIR', color: 'yellow' },
-                { id: 'quer_mudanca', text: 'QUER MUDAR DE VIDA', color: 'green' }
+                { id: 'renda_insuficiente', text: 'NÃO GANHA O <strong class="text-white">SUFICIENTE</strong> NO MÊS', icon: '💸', color: 'red' },
+                { id: 'dependencia_salario', text: '<strong>DEPENDE APENAS</strong> DO SALÁRIO', icon: '🗓️', color: 'orange' },
+                { id: 'sem_liberdade', text: 'SEM <strong class="text-white">LIBERDADE FINANCEIRA</strong>', icon: '⛓️', color: 'blue' },
+                { id: 'perdas_investimentos', text: '<strong>PERDEU DINHEIRO</strong> INVESTINDO', icon: '📉', color: 'purple' },
+                { id: 'sem_conhecimento', text: 'NÃO <strong class="text-white">SABE COMO INVESTIR</strong>', icon: '❓', color: 'yellow' },
+                { id: 'quer_mudanca', text: '<strong>QUER MUDAR DE VIDA</strong>', icon: '🚀', color: 'green' }
               ].map((pain) => (
                 <button
                   key={pain.id}
                   onClick={() => handlePainSelection(pain.id)}
-                  className={`p-3 rounded-lg border transition-all duration-300 transform hover:scale-105 active:scale-95 ${
+                  className={`p-3 rounded-lg border transition-all duration-300 transform hover:scale-105 active:scale-95 flex items-center justify-center gap-2 ${
                     selectedPains.includes(pain.id)
-                      ? `bg-gradient-to-br from-${pain.color}-500/40 to-${pain.color}-600/40 border-${pain.color}-400/60 shadow-lg scale-105 animate-pulse`
-                      : `bg-gradient-to-br from-${pain.color}-500/20 to-${pain.color}-600/20 border-${pain.color}-400/30 hover:shadow-lg hover:shadow-${pain.color}-400/20`
+                      ? `bg-gradient-to-br from-${pain.color}-500/60 to-${pain.color}-700/60 border-${pain.color}-400/80 shadow-lg scale-105 animate-pulse`
+                      : `bg-gradient-to-br from-${pain.color}-500/30 to-${pain.color}-700/30 border-${pain.color}-400/50 hover:shadow-lg hover:shadow-${pain.color}-500/30`
                   }`}
                 >
-                  <p className={`font-bold transition-all duration-300 ${
-                    selectedPains.includes(pain.id)
-                      ? `text-${pain.color}-100`
-                      : `text-${pain.color}-200`
-                  }`}>
-                    {selectedPains.includes(pain.id) ? '✓ ' : ''}{pain.text}
+                  <span className="text-xl">{pain.icon}</span>
+                  <p 
+                    className={`font-bold text-sm sm:text-base transition-all duration-300 ${
+                      selectedPains.includes(pain.id)
+                        ? `text-${pain.color}-100`
+                        : `text-${pain.color}-200`
+                    }`}
+                    dangerouslySetInnerHTML={{ 
+                      __html: selectedPains.includes(pain.id) ? `✓ ${pain.text}` : pain.text 
+                    }}
+                  >
                   </p>
                 </button>
               ))}
