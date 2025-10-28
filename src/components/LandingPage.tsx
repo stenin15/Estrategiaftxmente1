@@ -553,52 +553,6 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* SEÇÃO DE CASOS DE TRANSFORMAÇÃO */}
-        <section id="resultados" className="bg-gradient-to-b from-[#0a0f14] to-[#071e26] text-white py-16">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-500 mb-8">
-              💰 Casos Reais: <span className="text-orange-400">TRANSFORMAÇÕES</span> em <span className="text-green-400">30 Dias</span>
-            </h2>
-            
-            <p className="text-lg text-gray-400 mb-12 max-w-3xl mx-auto">
-              Não é teoria — são <span className="text-green-300 font-semibold">transformações reais</span> de pessoas que 
-              mudaram sua <span className="text-orange-400 font-semibold">situação financeira</span> e chegaram à <span className="text-yellow-300 font-semibold">liberdade financeira</span>.
-            </p>
-
-            {/* CASOS DE TRANSFORMAÇÃO */}
-            <div className="grid md:grid-cols-3 gap-8 mb-12">
-              <div className="bg-gradient-to-br from-gray-800/80 to-gray-900/80 p-6 rounded-2xl border border-green-400/30 backdrop-blur-sm">
-                <h3 className="text-xl font-bold text-green-300 mb-4">🎯 João - Sem Renda → $ 300,00/dia</h3>
-                <p className="text-gray-300 text-sm mb-4">
-                  "Estava sem renda há 6 meses, sem perspectiva. Em 30 dias com a TFX, já estava ganhando $ 300,00 por dia. Hoje sou livre financeiramente."
-                </p>
-                <div className="text-xs text-gray-400 italic">
-                  Antes: $ 0,00 | Depois: $ 300,00/dia
-                </div>
-        </div>
-
-              <div className="bg-gradient-to-br from-gray-800/80 to-gray-900/80 p-6 rounded-2xl border border-blue-400/30 backdrop-blur-sm">
-                <h3 className="text-xl font-bold text-blue-300 mb-4">🎯 Maria - Renda Baixa → $ 450,00/dia</h3>
-                <p className="text-gray-300 text-sm mb-4">
-                  "Ganhava pouco e vivia apertada. A TFX me ensinou a fazer dinheiro trabalhar para mim. Em 3 meses já estava ganhando $ 450,00 por dia."
-                </p>
-                <div className="text-xs text-gray-400 italic">
-                  Antes: $ 1.200,00 | Depois: $ 450,00/dia
-                </div>
-        </div>
-
-              <div className="bg-gradient-to-br from-gray-800/80 to-gray-900/80 p-6 rounded-2xl border border-yellow-400/30 backdrop-blur-sm">
-                <h3 className="text-xl font-bold text-yellow-300 mb-4">🎯 Carlos - Endividado → $ 500,00/dia</h3>
-                <p className="text-gray-300 text-sm mb-4">
-                  "Estava endividado, sem saída. A TFX não só me tirou das dívidas como me fez ganhar $ 500,00 por dia. Minha vida mudou completamente."
-                </p>
-                <div className="text-xs text-gray-400 italic">
-                  Antes: $ -20.000,00 | Depois: $ 500,00/dia
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
 
         {/* SEÇÃO ANTES E DEPOIS - PRINTS REAIS */}
         <section className="bg-gradient-to-b from-[#071e26] to-[#0a0f14] text-white py-16">
