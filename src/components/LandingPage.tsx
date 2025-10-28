@@ -501,10 +501,10 @@ const Section = ({
             <div className="bg-gradient-to-r from-purple-500/10 to-pink-500/10 p-8 rounded-2xl border border-purple-400/30 mb-12 backdrop-blur-sm">
               <div className="flex items-center justify-center mb-6">
                 <div className="bg-gradient-to-r from-purple-500 to-pink-500 p-3 rounded-full mr-4">
-                  <span className="text-2xl">👥</span>
+                  <span className="text-2xl">📱</span>
                 </div>
                 <h3 className="text-2xl md:text-3xl font-bold">
-                  <span className="text-purple-300">Grupo VIP</span>
+                  <span className="text-purple-300">Grupo VIP no Telegram</span>
                   <span className="text-gray-300"> (30 Dias)</span>
                 </h3>
               </div>
