@@ -251,7 +251,7 @@ const Section = ({
               <div className="bg-gradient-to-r from-green-500/10 to-emerald-500/10 p-4 rounded-xl border border-green-400/30 mb-6 backdrop-blur-sm">
                 <p className="text-center text-white font-semibold text-sm sm:text-base mb-3">
                   <span className="text-green-400">💰 OPORTUNIDADE:</span> Se você se identifica com pelo menos 3 situações abaixo, 
-                  <span className="text-yellow-300 font-bold"> você pode transformar sua vida em 90 dias</span>
+                  <span className="text-yellow-300 font-bold"> você pode transformar sua vida em 30 dias</span>
                 </p>
                 <p className="text-center text-gray-300 text-xs sm:text-sm">
                   Mas apenas se você estiver <span className="text-green-400">verdadeiramente comprometido</span> com sua transformação
@@ -433,7 +433,7 @@ const Section = ({
         <section id="resultados" className="bg-gradient-to-b from-[#0a0f14] to-[#071e26] text-white py-16">
           <div className="section-box text-center">
             <h2 className="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-500 mb-8">
-              💰 Casos Reais: <span className="text-orange-400">TRANSFORMAÇÕES</span> em <span className="text-green-400">90 Dias</span>
+              💰 Casos Reais: <span className="text-orange-400">TRANSFORMAÇÕES</span> em <span className="text-green-400">30 Dias</span>
             </h2>
             
             <p className="text-lg text-gray-400 mb-12 max-w-3xl mx-auto">
@@ -446,7 +446,7 @@ const Section = ({
               <div className="bg-gradient-to-br from-gray-800/80 to-gray-900/80 p-6 rounded-2xl border border-green-400/30 backdrop-blur-sm">
                 <h3 className="text-xl font-bold text-green-300 mb-4">🎯 João - Sem Renda → $ 300/dia</h3>
                 <p className="text-gray-300 text-sm mb-4">
-                  "Estava sem renda há 6 meses, sem perspectiva. Em 90 dias com a TFX, já estava ganhando $ 300 por dia. Hoje sou livre financeiramente."
+                  "Estava sem renda há 6 meses, sem perspectiva. Em 30 dias com a TFX, já estava ganhando $ 300 por dia. Hoje sou livre financeiramente."
                 </p>
                 <div className="text-xs text-gray-400 italic">
                   Antes: $ 0 | Depois: $ 300/dia
@@ -481,13 +481,13 @@ const Section = ({
         <section id="beneficios" className="bg-gradient-to-b from-[#071e26] to-[#0a0f14] text-white py-20">
           <div className="section-box text-center">
             <h2 className="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 mb-4">
-              🚀 Como a TFX Vai <span className="text-green-400">TRANSFORMAR</span> Sua Vida em 90 Dias
+              🚀 Como a TFX Vai <span className="text-green-400">TRANSFORMAR</span> Sua Vida em 30 Dias
           </h2>
           
             {/* PROMESSA ELEGANTE */}
             <div className="bg-gradient-to-r from-green-500/10 to-emerald-500/10 p-6 rounded-xl border border-green-400/30 mb-8 backdrop-blur-sm">
               <p className="text-lg text-white font-semibold mb-4">
-                <span className="text-green-400">💰 PROMESSA:</span> Se você aplicar a TFX por 90 dias, você vai transformar sua situação financeira
+                <span className="text-green-400">💰 PROMESSA:</span> Se você aplicar a TFX por 30 dias, você vai transformar sua situação financeira
               </p>
               <p className="text-gray-300 text-sm">
                 Não importa se você está <span className="text-orange-400 font-bold">sem renda</span>, 
