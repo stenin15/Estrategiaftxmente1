@@ -12,7 +12,6 @@ const WHATSAPP_LINK = "https://wa.me/5599999999999?text=Tenho%20d%C3%BAvidas%20s
 const OFFER_DURATION = 30 * 60; // 30 minutos em segundos
 let timeRemaining = OFFER_DURATION;
 let countdownInterval: number | null = null;
-let hasUserReadBonus = false;
 
 /** =========================
  * UTILS
@@ -24,12 +23,10 @@ function startCountdown() {
     clearInterval(countdownInterval);
   }
 
-  countdownInterval = setInterval(() => {
-    // Só conta se o usuário já leu o bônus
-    if (!hasUserReadBonus) {
-      return;
-    }
+  // Resetar timer para 30 minutos quando iniciar
+  timeRemaining = OFFER_DURATION;
 
+  countdownInterval = setInterval(() => {
     const minutes = Math.floor((timeRemaining % 3600) / 60);
     const seconds = timeRemaining % 60;
     const timeString = `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
@@ -49,7 +46,7 @@ function startCountdown() {
       buttons.forEach(btn => btn.classList.remove("active"));
     }
 
-      timeRemaining--;
+    timeRemaining--;
 
     if (timeRemaining < 0) {
       clearInterval(countdownInterval!);
@@ -60,13 +57,8 @@ function startCountdown() {
 
 // 🎯 FUNÇÃO PARA DETECTAR LEITURA DO BÔNUS
 function detectBonusReading() {
-  // Simular tempo de leitura baseado no tamanho do texto
-  const readingTime = 8000; // 8 segundos
-  
-  setTimeout(() => {
-    hasUserReadBonus = true;
-    startCountdown();
-  }, readingTime);
+  // Iniciar timer imediatamente quando usuário clica
+  startCountdown();
 }
 
 export default function LandingPage() {
@@ -90,6 +82,8 @@ export default function LandingPage() {
   const handleContinue = () => {
     if (selectedPains.length > 0) {
       setShowBonus(true);
+      // Iniciar timer quando usuário clica para continuar
+      detectBonusReading();
     }
   };
 
@@ -126,23 +120,23 @@ export default function LandingPage() {
                 <div className="flex items-center gap-3">
                   <span className="text-green-400 text-xl">✅</span>
                   <span className="text-white">Estratégia TFX Completa (PDFs)</span>
-                </div>
+              </div>
                 <div className="flex items-center gap-3">
                   <span className="text-green-400 text-xl">✅</span>
                   <span className="text-white">Imersão VIP no Telegram (30 dias)</span>
-                </div>
+              </div>
                 <div className="flex items-center gap-3">
                   <span className="text-green-400 text-xl">✅</span>
                   <span className="text-white">Sinais em Tempo Real</span>
-                </div>
+              </div>
                 <div className="flex items-center gap-3">
                   <span className="text-green-400 text-xl">✅</span>
                   <span className="text-white">Suporte Direto e Exclusivo</span>
-                </div>
+              </div>
                 <div className="flex items-center gap-3">
                   <span className="text-green-400 text-xl">✅</span>
                   <span className="text-white">Acompanhamento Diário</span>
-                </div>
+              </div>
               </div>
             </div>
 
@@ -178,6 +172,16 @@ export default function LandingPage() {
     return (
       <div className="min-h-screen bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 flex items-center justify-center p-4">
         <div className="bg-gradient-to-br from-gray-800/60 to-gray-900/60 backdrop-blur-sm p-8 rounded-2xl border border-cyan-400/30 max-w-2xl w-full text-center shadow-2xl">
+          {/* TIMER ESTÁTICO - SÓ COMEÇA APÓS CLIQUE */}
+          <div className="mb-8">
+            <div className="text-4xl sm:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600 mb-4 countdown-timer border-2 border-cyan-400/30 rounded-xl p-4 drop-shadow-[0_0_15px_rgba(6,182,212,0.3)]">
+              30:00
+            </div>
+            <p className="text-lg text-cyan-300 font-bold">
+              ⚡ OFERTA EXPIRA EM ⚡
+            </p>
+          </div>
+
           <h1 className="text-2xl sm:text-3xl font-extrabold text-white mb-6 leading-tight">
             🎯 <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">ESTRATÉGIA TFX</span><br/>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-emerald-500">LIBERADA</span><br/>
