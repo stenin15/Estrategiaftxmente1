@@ -473,6 +473,48 @@ const Section = ({
                 </div>
               </div>
             </div>
+
+            {/* PRINTS REAIS DAS CORRETORAS */}
+            <div className="grid md:grid-cols-3 gap-8 mb-12">
+              <div className="bg-gradient-to-br from-gray-800/80 to-gray-900/80 p-6 rounded-2xl border border-green-400/30 backdrop-blur-sm">
+                <h3 className="text-xl font-bold text-green-300 mb-4">📊 Print Real - Corretora 1</h3>
+                <div className="bg-gray-900/50 p-4 rounded-lg mb-4 min-h-[200px] flex items-center justify-center border border-gray-600">
+                  <p className="text-gray-400 text-center">
+                    📸 Espaço para print real<br/>
+                    da corretora
+                  </p>
+                </div>
+                <div className="text-xs text-gray-400 italic">
+                  Resultado real da estratégia TFX
+                </div>
+              </div>
+
+              <div className="bg-gradient-to-br from-gray-800/80 to-gray-900/80 p-6 rounded-2xl border border-blue-400/30 backdrop-blur-sm">
+                <h3 className="text-xl font-bold text-blue-300 mb-4">📊 Print Real - Corretora 2</h3>
+                <div className="bg-gray-900/50 p-4 rounded-lg mb-4 min-h-[200px] flex items-center justify-center border border-gray-600">
+                  <p className="text-gray-400 text-center">
+                    📸 Espaço para print real<br/>
+                    da corretora
+                  </p>
+                </div>
+                <div className="text-xs text-gray-400 italic">
+                  Resultado real da estratégia TFX
+                </div>
+              </div>
+
+              <div className="bg-gradient-to-br from-gray-800/80 to-gray-900/80 p-6 rounded-2xl border border-yellow-400/30 backdrop-blur-sm">
+                <h3 className="text-xl font-bold text-yellow-300 mb-4">📊 Print Real - Corretora 3</h3>
+                <div className="bg-gray-900/50 p-4 rounded-lg mb-4 min-h-[200px] flex items-center justify-center border border-gray-600">
+                  <p className="text-gray-400 text-center">
+                    📸 Espaço para print real<br/>
+                    da corretora
+                  </p>
+                </div>
+                <div className="text-xs text-gray-400 italic">
+                  Resultado real da estratégia TFX
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
