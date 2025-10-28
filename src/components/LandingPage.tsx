@@ -228,7 +228,7 @@ const Section = ({
 
             {/* HEADLINE COM PROMESSA TRANSFORMADORA - TOPO DE FUNIL */}
             <h1 className="text-2xl xs:text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight text-center text-transparent bg-clip-text bg-gradient-to-r from-white via-green-100 to-green-200 mb-4 sm:mb-6 md:mb-8 drop-shadow-[0_0_15px_rgba(34,197,94,0.5)] px-2 sm:px-0">
-              <span className="text-yellow-400">💰 COMO TRANSFORMAR SUA VIDA</span> e Gerar <span className="text-green-400">R$ 10.000+ POR MÊS</span> com Trading
+              <span className="text-yellow-400">💰 COMO TRANSFORMAR SUA VIDA</span> e Gerar <span className="text-green-400">$ 10.000+ POR MÊS</span> com Trading
             </h1>
             
             {/* SUBHEADLINE COM ESCASSEZ ELEGANTE */}
@@ -281,7 +281,7 @@ const Section = ({
 
               <p className="text-gray-200 mb-4 sm:mb-6 md:mb-8 text-sm sm:text-base md:text-lg lg:text-xl max-w-xs sm:max-w-md md:max-w-2xl lg:max-w-3xl mx-auto leading-relaxed px-2 sm:px-0">
                 A <span className="text-green-300 font-semibold">TFX</span> é o método que vai te levar da <span className="text-orange-400 font-bold">situação atual</span> para a <span className="text-yellow-300 font-bold">LIBERDADE FINANCEIRA</span>.
-                <span className="text-green-400 font-bold"> Ganhos diários de até R$ 500</span> — você pode alcançar muito mais.
+                <span className="text-green-400 font-bold"> Ganhos diários de até $ 500</span> — você pode alcançar muito mais.
               </p>
 
               {/* URGÊNCIA ELEGANTE */}
@@ -402,7 +402,7 @@ const Section = ({
                   </div>
                   <div className="text-center">
                     <div className="bg-gradient-to-br from-green-400 to-emerald-600 p-6 rounded-2xl">
-                      <div className="text-4xl font-black text-black mb-2">R$ 500</div>
+                      <div className="text-4xl font-black text-black mb-2">$ 500</div>
                       <div className="text-lg font-semibold text-black">Por Dia</div>
                       <div className="text-sm text-black/80 mt-2">Ganhos Possíveis</div>
                     </div>
@@ -444,32 +444,32 @@ const Section = ({
             {/* CASOS DE TRANSFORMAÇÃO */}
             <div className="grid md:grid-cols-3 gap-8 mb-12">
               <div className="bg-gradient-to-br from-gray-800/80 to-gray-900/80 p-6 rounded-2xl border border-green-400/30 backdrop-blur-sm">
-                <h3 className="text-xl font-bold text-green-300 mb-4">🎯 João - Sem Renda → R$ 300/dia</h3>
+                <h3 className="text-xl font-bold text-green-300 mb-4">🎯 João - Sem Renda → $ 300/dia</h3>
                 <p className="text-gray-300 text-sm mb-4">
-                  "Estava sem renda há 6 meses, sem perspectiva. Em 90 dias com a TFX, já estava ganhando R$ 300 por dia. Hoje sou livre financeiramente."
+                  "Estava sem renda há 6 meses, sem perspectiva. Em 90 dias com a TFX, já estava ganhando $ 300 por dia. Hoje sou livre financeiramente."
                 </p>
                 <div className="text-xs text-gray-400 italic">
-                  Antes: R$ 0 | Depois: R$ 300/dia
+                  Antes: $ 0 | Depois: $ 300/dia
                 </div>
               </div>
 
               <div className="bg-gradient-to-br from-gray-800/80 to-gray-900/80 p-6 rounded-2xl border border-blue-400/30 backdrop-blur-sm">
-                <h3 className="text-xl font-bold text-blue-300 mb-4">🎯 Maria - Renda Baixa → R$ 450/dia</h3>
+                <h3 className="text-xl font-bold text-blue-300 mb-4">🎯 Maria - Renda Baixa → $ 450/dia</h3>
                 <p className="text-gray-300 text-sm mb-4">
-                  "Ganhava pouco e vivia apertada. A TFX me ensinou a fazer dinheiro trabalhar para mim. Em 3 meses já estava ganhando R$ 450 por dia."
+                  "Ganhava pouco e vivia apertada. A TFX me ensinou a fazer dinheiro trabalhar para mim. Em 3 meses já estava ganhando $ 450 por dia."
                 </p>
                 <div className="text-xs text-gray-400 italic">
-                  Antes: R$ 1.200 | Depois: R$ 450/dia
+                  Antes: $ 1.200 | Depois: $ 450/dia
                 </div>
               </div>
 
               <div className="bg-gradient-to-br from-gray-800/80 to-gray-900/80 p-6 rounded-2xl border border-yellow-400/30 backdrop-blur-sm">
-                <h3 className="text-xl font-bold text-yellow-300 mb-4">🎯 Carlos - Endividado → R$ 500/dia</h3>
+                <h3 className="text-xl font-bold text-yellow-300 mb-4">🎯 Carlos - Endividado → $ 500/dia</h3>
                 <p className="text-gray-300 text-sm mb-4">
-                  "Estava endividado, sem saída. A TFX não só me tirou das dívidas como me fez ganhar R$ 500 por dia. Minha vida mudou completamente."
+                  "Estava endividado, sem saída. A TFX não só me tirou das dívidas como me fez ganhar $ 500 por dia. Minha vida mudou completamente."
                 </p>
                 <div className="text-xs text-gray-400 italic">
-                  Antes: R$ -20.000 | Depois: R$ 500/dia
+                  Antes: $ -20.000 | Depois: $ 500/dia
                 </div>
               </div>
             </div>
@@ -542,7 +542,7 @@ const Section = ({
               A <span className="text-cyan-300 font-medium">Estratégia TFX</span> não é só teoria — é o 
               <span className="text-green-300 font-semibold"> método comprovado</span> que já transformou 
               <span className="text-yellow-300 font-semibold"> milhares de pessoas</span> para sempre.
-              <span className="text-green-400 font-bold"> Ganhos diários de até R$ 500</span>.
+              <span className="text-green-400 font-bold"> Ganhos diários de até $ 500</span>.
             </p>
 
             {/* O QUE VOCÊ VAI RECEBER */}
@@ -552,7 +552,7 @@ const Section = ({
                 <ul className="space-y-3 text-gray-300">
                   <li className="flex items-start gap-2">
                     <span className="text-green-400 mt-1">✅</span>
-                    <span><strong className="text-white">Estratégia Completa:</strong> Como gerar ganhos diários de até R$ 500</span>
+                    <span><strong className="text-white">Estratégia Completa:</strong> Como gerar ganhos diários de até $ 500</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-green-400 mt-1">✅</span>
@@ -658,17 +658,17 @@ const Section = ({
               {/* PROMESSA ELEGANTE */}
               <div className="bg-gradient-to-r from-black/50 to-gray-900/50 p-4 rounded-xl mb-4 border border-yellow-400/50">
                 <p className="text-center text-yellow-300 font-bold text-lg mb-2">
-                  ⚠️ ATENÇÃO: Método de transformação por apenas R$ 49,90
+                  ⚠️ ATENÇÃO: Método de transformação por apenas $ 49,90
                 </p>
                 <p className="text-center text-white text-sm">
-                  <span className="text-green-400 font-black">Ganhos diários de até R$ 500</span> — você pode alcançar muito mais
+                  <span className="text-green-400 font-black">Ganhos diários de até $ 500</span> — você pode alcançar muito mais
                 </p>
               </div>
               
               <div className="grid md:grid-cols-2 gap-4 text-white">
                 <div>
-                  <div className="text-4xl font-black text-yellow-300 mb-2">R$ 49,90</div>
-                  <div className="text-lg line-through opacity-70">De R$ 497,00</div>
+                  <div className="text-4xl font-black text-yellow-300 mb-2">$ 49,90</div>
+                  <div className="text-lg line-through opacity-70">De $ 497,00</div>
                   <div className="text-sm">90% de desconto</div>
                 </div>
                 <div>

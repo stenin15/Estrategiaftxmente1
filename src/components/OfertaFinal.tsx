@@ -68,15 +68,15 @@ export const OfertaFinal = () => {
         </h3>
 
         <ul className="text-left text-gray-300 space-y-3 mb-8 text-lg">
-          <li>✅ Estratégia completa (R$299,90)</li>
-          <li>✅ Guia de Mindset & Gestão (R$99,90)</li>
-          <li>✅ Checklist + Atualizações (R$49,90)</li>
-          <li>✅ Suporte direto 7 dias (R$49,90)</li>
+          <li>✅ Estratégia completa ($299,90)</li>
+          <li>✅ Guia de Mindset & Gestão ($99,90)</li>
+          <li>✅ Checklist + Atualizações ($49,90)</li>
+          <li>✅ Suporte direto 7 dias ($49,90)</li>
         </ul>
 
-        <p className="text-gray-400 line-through text-lg mb-2">De R$497,00</p>
+            <p className="text-gray-400 line-through text-lg mb-2">De $497,00</p>
             <p className="text-4xl font-extrabold text-white mb-8">
-              Hoje: <span className="text-green-400 pulse-price">R$49,90</span> 🔥
+              Hoje: <span className="text-green-400 pulse-price">$49,90</span> 🔥
             </p>
 
         <button className="button-cta bg-gradient-to-r from-green-400 via-emerald-500 to-green-600 hover:from-green-300 hover:via-emerald-400 hover:to-green-500 text-black font-bold px-12 py-6 rounded-full transition-all w-full shadow-lg pulse-btn text-lg">
