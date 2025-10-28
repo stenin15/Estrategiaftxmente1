@@ -1,10 +1,17 @@
 import { HelmetProvider } from "react-helmet-async";
-import LandingPage from './components/LandingPage'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import LandingPage from './components/LandingPage';
+import Entrega from './pages/Entrega';
 
 function App() {
   return (
     <HelmetProvider>
-      <LandingPage />
+      <Router>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/entrega" element={<Entrega />} />
+        </Routes>
+      </Router>
     </HelmetProvider>
   )
 }
