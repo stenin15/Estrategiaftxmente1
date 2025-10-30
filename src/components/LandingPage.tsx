@@ -577,8 +577,8 @@ export default function LandingPage() {
                     <p className="text-gray-400 text-sm">
                       📸 Espaço para print real<br/>
                       Bitcoin antes/depois
-                    </p>
-                  </div>
+            </p>
+          </div>
                 </div>
                 <div className="text-xs text-gray-400 italic text-center">
                   Resultado real da estratégia TFX - Bitcoin
