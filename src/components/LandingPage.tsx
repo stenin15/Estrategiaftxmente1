@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { OfertaFinal } from "./OfertaFinal";
+import { QuizTFX } from "./QuizTFX";
 import { Footer } from "./Footer";
 
 /** =========================
@@ -63,6 +64,7 @@ function detectBonusReading() {
 
 export default function LandingPage() {
   const [showContent, setShowContent] = useState(false);
+  const [showQuiz, setShowQuiz] = useState(true);
   const [selectedPains, setSelectedPains] = useState<string[]>([]);
   const [showBonus, setShowBonus] = useState(false);
 
@@ -92,6 +94,19 @@ export default function LandingPage() {
     // Não salvar no localStorage - sempre passar pelas etapas
     detectBonusReading();
   };
+
+  if (showQuiz) {
+    return (
+      <QuizTFX
+        onStart={() => startCountdown()}
+        onComplete={() => {
+          setShowQuiz(false);
+          setShowContent(true);
+        }}
+        primaryCtaHref={WHATSAPP_LINK}
+      />
+    );
+  }
 
   if (!showContent) {
     // TELA DE BÔNUS
