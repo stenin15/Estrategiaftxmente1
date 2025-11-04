@@ -296,22 +296,10 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
   const totalSteps = 12;
   const progress = useMemo(() => Math.round(((step + 1) / totalSteps) * 100), [step]);
 
-  // Restaurar sessão (mas não se já estiver completo)
+  // Limpa localStorage ao carregar - sempre começa do zero
   useEffect(() => {
     try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if (raw) {
-        const { step: s, level: l, answers: a } = JSON.parse(raw);
-        // Não restaura se já estiver na última pergunta (quiz completo)
-        if (typeof s === "number" && s >= 11) {
-          // Limpa o localStorage para permitir reinício
-          localStorage.removeItem(STORAGE_KEY);
-          return;
-        }
-        if (Array.isArray(a)) setAnswers(a);
-        if (l && LEVELS.includes(l as Level)) setLevel(l as Level);
-        if (typeof s === "number" && s >= 0 && s < 11) setStep(s);
-      }
+      localStorage.removeItem(STORAGE_KEY);
     } catch {}
   }, []);
 
