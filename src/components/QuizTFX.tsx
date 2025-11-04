@@ -149,7 +149,7 @@ function OptionButton({ label, onClick }: { label: string; onClick: () => void }
   );
 }
 
-// Componente Canvas para candles realistas animados
+// Componente Canvas para candles com tendências (alta e baixa alternadas)
 function CandlesCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -172,23 +172,43 @@ function CandlesCanvas() {
     window.addEventListener("resize", resize);
     resize();
 
-    const candles = Array.from({ length: 50 }, (_, i) => ({
-      x: Math.random() * w,
-      y: Math.random() * h,
+    // Candles com grupo de tendência
+    const total = 60;
+    const candles = Array.from({ length: total }, (_, i) => ({
+      x: (i / total) * w,
+      y: h / 2 + (Math.random() - 0.5) * 100,
       width: 4,
-      height: 20 + Math.random() * 80,
+      height: 20 + Math.random() * 60,
       color: Math.random() > 0.5 ? "rgba(16, 185, 129, 0.8)" : "rgba(239, 68, 68, 0.8)",
-      velocity: (Math.random() * 0.5 + 0.2) * (Math.random() > 0.5 ? 1 : -1),
+      dir: Math.random() > 0.5 ? 1 : -1,
     }));
 
-    function drawCandles() {
+    let t = 0;
+    function draw() {
       ctx.clearRect(0, 0, w, h);
-      candles.forEach((c) => {
-        // leve brilho (neon de terminal financeiro)
+      t += 0.02; // velocidade da oscilação
+
+      // Define tendência global oscilando entre alta e baixa
+      const trend = Math.sin(t / 3); // muda suavemente de direção
+
+      candles.forEach((c, i) => {
+        // movimento vertical com leve ruído
+        const noise = Math.sin(t * 2 + i * 0.4) * 4;
+        c.y += (trend * 0.8 + c.dir * 0.2) + noise * 0.1;
+
+        // Mantém candles dentro da tela
+        if (c.y > h - 50) c.dir = -1;
+        if (c.y < 50) c.dir = 1;
+
+        // troca cor conforme direção
+        const isUp = trend > 0;
+        c.color = isUp ? "rgba(16, 185, 129, 0.85)" : "rgba(239, 68, 68, 0.85)";
+
+        // brilho (neon de terminal financeiro)
         ctx.shadowColor = c.color;
-        ctx.shadowBlur = 25;
-        
-        // corpo
+        ctx.shadowBlur = 20;
+
+        // corpo do candle
         ctx.fillStyle = c.color;
         ctx.fillRect(c.x, c.y, c.width, c.height);
 
@@ -196,28 +216,26 @@ function CandlesCanvas() {
         ctx.beginPath();
         ctx.moveTo(c.x + c.width / 2, c.y - 10);
         ctx.lineTo(c.x + c.width / 2, c.y + c.height + 10);
+        ctx.strokeStyle = c.color.replace("0.85", "0.4");
         ctx.lineWidth = 1.5;
-        ctx.strokeStyle = c.color.replace("0.8", "0.5");
         ctx.stroke();
-        
+
         // reset shadow para não afetar outros elementos
         ctx.shadowBlur = 0;
       });
 
-      candles.forEach((c) => {
-        c.y += c.velocity;
-        if (c.y > h || c.y + c.height < 0) {
-          c.y = Math.random() > 0.5 ? -c.height : h;
-          c.x = Math.random() * w;
-          c.color = Math.random() > 0.5 ? "rgba(16, 185, 129, 0.8)" : "rgba(239, 68, 68, 0.8)";
-          c.velocity *= -1;
-        }
-      });
+      // cria sensação de tendência inclinada (como LTA/LTB sutil no fundo)
+      ctx.beginPath();
+      ctx.moveTo(0, h / 2 - trend * 80);
+      ctx.lineTo(w, h / 2 + trend * 80);
+      ctx.lineWidth = 0.5;
+      ctx.strokeStyle = trend > 0 ? "rgba(16,185,129,0.15)" : "rgba(239,68,68,0.15)";
+      ctx.stroke();
 
-      animationFrameId = requestAnimationFrame(drawCandles);
+      animationFrameId = requestAnimationFrame(draw);
     }
 
-    drawCandles();
+    draw();
 
     return () => {
       window.removeEventListener("resize", resize);
