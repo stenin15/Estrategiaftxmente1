@@ -327,7 +327,7 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
       case 2:
         return "/g9.webp";
       case 3:
-        return "/AULAS COM EXPLICAÇÕES CLARAS.png";
+        return "/AULAS COM EXPICAÇÕES CLARAS.png";
       case 4:
         return "/resultado cripto 1  (1).jpeg";
       case 5:
