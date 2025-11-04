@@ -318,7 +318,7 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
       case 8:
         return "/resultado forex 2  (2).jpeg";
       case 9:
-        return "/g12.webp";
+        return "/DISCORD AO VIVO.png";
       case 10:
         return "/resultado forex 1  (6).jpeg";
       case 11:
