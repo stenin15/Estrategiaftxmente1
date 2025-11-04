@@ -317,7 +317,39 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
   const totalSteps = 12;
   const progress = useMemo(() => Math.round(((step + 1) / totalSteps) * 100), [step]);
 
-  // Função para obter background conforme a etapa
+  // Função para obter imagem conforme a etapa (dentro do card)
+  const getImageForStep = (step: number): string => {
+    switch (step) {
+      case 0:
+        return "/g3.webp";
+      case 1:
+        return "/g4.webp";
+      case 2:
+        return "/g9.webp";
+      case 3:
+        return "/AULAS COM EXPLICAÇÕES CLARAS.png";
+      case 4:
+        return "/resultado cripto 1  (1).jpeg";
+      case 5:
+        return "/binance resultado futuro.jpeg";
+      case 6:
+        return "/DISCORD AO VIVO.png";
+      case 7:
+        return "/TFX DISCORD.png";
+      case 8:
+        return "/resultado forex 2  (2).jpeg";
+      case 9:
+        return "/g12.webp";
+      case 10:
+        return "/resultado forex 1  (6).jpeg";
+      case 11:
+        return "/resultado forex 3  (5).jpeg";
+      default:
+        return "/g1.webp";
+    }
+  };
+
+  // Função para obter background conforme a etapa (fundo)
   const getBackgroundForStep = (step: number): string => {
     switch (step) {
       case 1:
@@ -584,34 +616,58 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
 
           {/* Card da pergunta */}
           <AnimatePresence mode="wait">
-            <motion.div key={step} {...fade} className="relative rounded-2xl border border-white/10 bg-black/30 p-6 md:p-8 shadow-2xl backdrop-blur-xl z-10">
-            <div className="mb-6 space-y-2">
-              {resolveMicro() && (
-                <p className="text-xs text-emerald-400/70 uppercase tracking-wide">{resolveMicro()}</p>
-              )}
-              <h1 className="text-3xl md:text-4xl font-semibold leading-snug">{resolveTitle()}</h1>
-              {resolveSubtitle() ? <p className="text-white/70 md:text-lg">{resolveSubtitle()}</p> : null}
-            </div>
+            <motion.div
+              key={step}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.6 }}
+              className="relative rounded-2xl border border-white/10 bg-black/40 p-6 md:p-8 shadow-2xl backdrop-blur-xl z-10 text-center"
+            >
+              <div className="mb-6 space-y-2">
+                {resolveMicro() && (
+                  <p className="text-xs text-emerald-400/70 uppercase tracking-wide mb-3">
+                    {resolveMicro()}
+                  </p>
+                )}
+                <h1 className="text-2xl md:text-3xl font-bold leading-snug text-white mb-6">
+                  {resolveTitle()}
+                </h1>
+              </div>
 
-            <div className="grid gap-3 md:gap-4">
-              {step === 0
-                ? Q1.options.map((op, idx) => (
-                    <OptionButton key={idx} label={op.label} onClick={() => handleSelect(op.label)} />
-                  ))
-                : current.options.map((op, idx) => (
-                    <OptionButton key={idx} label={op} onClick={() => handleSelect(op)} />
-                  ))}
-            </div>
+              {/* Imagem dinâmica dentro do card */}
+              <motion.img
+                key={step}
+                src={getImageForStep(step)}
+                alt="Visual TFX"
+                className="rounded-2xl border border-white/10 shadow-xl mb-6 w-full md:w-[85%] mx-auto object-cover"
+                initial={{ opacity: 0, scale: 0.98 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.7 }}
+              />
 
-            {/* Rodapé auxiliar */}
-            <div className="mt-6 flex items-center justify-between text-xs text-white/60">
-              <span>
-                Etapa {step + 1} de {totalSteps}
-              </span>
-              {/* Nível removido */}
-            </div>
-          </motion.div>
-        </AnimatePresence>
+              <div className="flex flex-col gap-4">
+                {step === 0
+                  ? Q1.options.map((op, idx) => (
+                      <OptionButton
+                        key={idx}
+                        label={op.label}
+                        onClick={() => handleSelect(op.label)}
+                      />
+                    ))
+                  : current.options.map((op, idx) => (
+                      <OptionButton key={idx} label={op} onClick={() => handleSelect(op)} />
+                    ))}
+              </div>
+
+              {/* Rodapé auxiliar */}
+              <div className="mt-6 flex items-center justify-center text-xs text-white/40">
+                <span>
+                  Etapa {step + 1} de {totalSteps}
+                </span>
+              </div>
+            </motion.div>
+          </AnimatePresence>
         </div>
 
         {/* Disclaimers/autoridade sutil */}
