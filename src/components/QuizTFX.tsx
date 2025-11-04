@@ -53,14 +53,14 @@ const ADAPTIVE_QUESTIONS = [
   },
   {
     id: 3,
-    title: "Quando o preço vai contra você, o que sente?",
-    microcopy: "O mercado testa sua mente antes de testar sua estratégia.",
+    title: "Quando as coisas não saem como o esperado — seja no mercado ou na vida — como você costuma reagir?",
+    microcopy: "O controle emocional é o divisor de águas entre quem reage e quem age com consciência.",
     subtitleByLevel: {
       iniciante: "Você vai entender por que o preço se move assim e nunca mais será pego de surpresa.",
       intermediario: "Você vai identificar onde o dinheiro inteligente entra e sai do mercado.",
       avancado: "Você vai refinar liquidez e reversão (IFC / ChoCh / IDM) com controle mental.",
     },
-    options: ["Raiva – parece que o mercado me caça", "Frustração – sinto que chego atrasado", "Paciência – sigo o plano"],
+    options: ["😤 Fico irritado e perco o foco facilmente", "😕 Me frustro, mas tento entender o que errei", "😌 Respiro fundo e espero o momento certo"],
   },
   {
     id: 4,
