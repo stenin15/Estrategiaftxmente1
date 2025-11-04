@@ -149,7 +149,7 @@ function OptionButton({ label, onClick }: { label: string; onClick: () => void }
   );
 }
 
-// Componente Canvas para candles com tendência realista (ondas de mercado)
+// Componente Canvas para candles com tendências não lineares e consolidações
 function CandlesCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -172,70 +172,79 @@ function CandlesCanvas() {
     window.addEventListener("resize", resize);
     resize();
 
-    // --- CONFIG ---
-    const total = 200; // mais candles
-    const amplitude = 120; // altura das ondas
-    const candleWidth = 4; // espessura
-    const speed = 0.015; // velocidade
+    const total = 180;
+    const amplitude = 110;
+    const candleWidth = 3;
+    const speed = 0.02;
     let t = 0;
 
-    // Cria candles com posição inicial em uma onda
+    // gera ruído suave
+    function smoothNoise(x: number) {
+      return Math.sin(x * 0.3) * 0.5 + Math.sin(x * 0.05) * 0.5;
+    }
+
     const candles = Array.from({ length: total }, (_, i) => ({
       x: (i / total) * w,
-      y: h / 2 + Math.sin(i * 0.1) * amplitude,
-      height: 30 + Math.random() * 50,
-      color: "rgba(16, 185, 129, 0.85)",
-      direction: 1,
+      y: h / 2,
+      height: 20 + Math.random() * 50,
+      color: "rgba(239,68,68,0.8)",
     }));
 
     function draw() {
       ctx.clearRect(0, 0, w, h);
       t += speed;
 
-      // Define tendência global oscilando de alta para baixa
-      const trendAngle = Math.sin(t / 4) * 1.5; // inclinação da tendência
-      const trendOffset = Math.sin(t / 2) * 0.5;
+      const trendPhase = Math.sin(t / 3); // alterna tendência global
 
-      // Desenha e move candles
       for (let i = 0; i < candles.length; i++) {
         const c = candles[i];
-        const wave = Math.sin(i * 0.15 + t) * amplitude * 0.4;
-        const trend = Math.sin(t + i * 0.02) * amplitude * 0.1;
-        c.y = h / 2 + wave + trend + Math.sin(i * 0.08 + t) * 40 * trendOffset;
 
-        // Cor muda conforme direção global
-        const globalTrend = Math.sin(t / 3);
-        const isUp = globalTrend > 0;
-        c.color = isUp
-          ? "rgba(16, 185, 129, 0.85)" // verde alta
-          : "rgba(239, 68, 68, 0.85)"; // vermelha baixa
+        // cria uma estrutura de tendência com ruído
+        const wave =
+          Math.sin(i * 0.12 + t) * amplitude * 0.4 +
+          smoothNoise(i * 0.3 + t) * amplitude * 0.3;
+
+        const pullback = Math.sin(i * 0.5 + t * 2) * 15; // pequenas retrações
+        const baseY = h / 2 + wave + pullback;
+
+        c.y = baseY;
+
+        // cor adaptada à tendência global
+        const isUp = trendPhase > 0;
+        c.color = isUp ? "rgba(16,185,129,0.85)" : "rgba(239,68,68,0.85)";
 
         // Glow leve
         ctx.shadowColor = c.color;
-        ctx.shadowBlur = 15;
+        ctx.shadowBlur = 12;
 
-        // Corpo
+        // corpo
         ctx.fillStyle = c.color;
         ctx.fillRect(c.x, c.y, candleWidth, c.height);
 
-        // Pavio
+        // pavio
         ctx.beginPath();
         ctx.moveTo(c.x + candleWidth / 2, c.y - 10);
         ctx.lineTo(c.x + candleWidth / 2, c.y + c.height + 10);
-        ctx.lineWidth = 1.2;
         ctx.strokeStyle = c.color.replace("0.85", "0.4");
+        ctx.lineWidth = 1.2;
         ctx.stroke();
 
         // reset shadow para não afetar outros elementos
         ctx.shadowBlur = 0;
       }
 
-      // Linha de tendência geral (subindo/descendo)
+      // linha de tendência global com leve ruído
       ctx.beginPath();
-      ctx.moveTo(0, h / 2 - Math.sin(t / 3) * amplitude * 0.8);
-      ctx.lineTo(w, h / 2 + Math.sin(t / 3) * amplitude * 0.8);
-      ctx.lineWidth = 0.7;
-      ctx.strokeStyle = Math.sin(t / 3) > 0 ? "rgba(16,185,129,0.25)" : "rgba(239,68,68,0.25)";
+      for (let x = 0; x < w; x += 5) {
+        const y =
+          h / 2 +
+          Math.sin(x * 0.005 + t * 0.8) * 40 +
+          Math.sin(x * 0.02 + t) * 10;
+        ctx.lineTo(x, y);
+      }
+      ctx.lineWidth = 0.8;
+      ctx.strokeStyle =
+        trendPhase > 0 ? "rgba(16,185,129,0.25)" : "rgba(239,68,68,0.25)";
       ctx.stroke();
 
       animationFrameId = requestAnimationFrame(draw);
@@ -249,7 +258,15 @@ function CandlesCanvas() {
     };
   }, []);
 
-  return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full opacity-60" />;
+  return (
+    <canvas
+      ref={canvasRef}
+      className="absolute inset-0 w-full h-full opacity-60"
+      style={{
+        filter: "blur(0.5px) contrast(120%) saturate(130%)",
+      }}
+    />
+  );
 }
 
 export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
