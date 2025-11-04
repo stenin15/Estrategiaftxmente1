@@ -279,11 +279,28 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
       level: level || "na",
     });
 
-    if (checkoutUrl.startsWith("http") || checkoutUrl.startsWith("/")) {
-      window.location.href = `${checkoutUrl}?${params.toString()}`;
-    } else {
-      onComplete();
-    }
+    // Transição final com brilho dourado
+    const overlay = document.createElement("div");
+    overlay.style.position = "fixed";
+    overlay.style.inset = "0";
+    overlay.style.background =
+      "radial-gradient(circle at center, rgba(255,215,0,0.6) 0%, rgba(0,0,0,0.9) 70%)";
+    overlay.style.zIndex = "9999";
+    overlay.style.opacity = "0";
+    overlay.style.transition = "opacity 1s ease";
+    document.body.appendChild(overlay);
+
+    requestAnimationFrame(() => {
+      overlay.style.opacity = "1";
+    });
+
+    setTimeout(() => {
+      if (checkoutUrl.startsWith("http") || checkoutUrl.startsWith("/")) {
+        window.location.href = `${checkoutUrl}?${params.toString()}`;
+      } else {
+        onComplete();
+      }
+    }, 800);
   };
 
   return (
@@ -332,9 +349,16 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
           </div>
         </div>
 
-        {/* Card da pergunta */}
-        <AnimatePresence mode="wait">
-          <motion.div key={step} {...fade} className="relative rounded-2xl border border-white/10 bg-black/30 p-6 md:p-8 shadow-2xl backdrop-blur-xl">
+        {/* Container relativo para o glow e card */}
+        <div className="relative">
+          {/* Glow dinâmico atrás do cartão */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none -z-10">
+            <div className="h-[400px] w-[400px] rounded-full bg-emerald-400/10 blur-[120px] animate-pulseGlow" />
+          </div>
+
+          {/* Card da pergunta */}
+          <AnimatePresence mode="wait">
+            <motion.div key={step} {...fade} className="relative rounded-2xl border border-white/10 bg-black/30 p-6 md:p-8 shadow-2xl backdrop-blur-xl z-10">
             <div className="mb-6 space-y-2">
               {resolveMicro() && (
                 <p className="text-xs text-emerald-400/70 uppercase tracking-wide">{resolveMicro()}</p>
@@ -362,6 +386,7 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
             </div>
           </motion.div>
         </AnimatePresence>
+        </div>
 
         {/* Disclaimers/autoridade sutil */}
         <div className="mt-8 text-center text-xs text-white/60 italic">

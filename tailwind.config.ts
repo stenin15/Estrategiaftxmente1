@@ -79,12 +79,17 @@ const config = {
           from: { transform: "translateY(8%)" },
           to: { transform: "translateY(-8%)" },
         },
+        "pulseGlow": {
+          "0%, 100%": { opacity: "0.25", transform: "scale(1)" },
+          "50%": { opacity: "0.6", transform: "scale(1.05)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "candlesDown": "candlesDown 3.8s ease-in-out infinite alternate",
         "candlesUp": "candlesUp 3.8s ease-in-out infinite alternate",
+        "pulseGlow": "pulseGlow 6s ease-in-out infinite",
       },
     },
   },
