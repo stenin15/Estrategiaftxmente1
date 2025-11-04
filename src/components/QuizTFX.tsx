@@ -7,20 +7,20 @@ type QuizTFXProps = {
   primaryCtaHref?: string; // ex.: WhatsApp/Checkout
 };
 
-const CHECKOUT_URL = "/checkout/tfx-mind"; // mesmo checkout para todos
-const STORAGE_KEY = "tfx_quiz_session_v1"; // guarda nível e respostas
+const CHECKOUT_URL = "/checkout/tfx-mind";
+const STORAGE_KEY = "tfx_quiz_session_v2"; // versão atualizada
 
-// Helpers — estética cinematográfica
+// Helpers — estética cinematográfica aprimorada
 const fade = {
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0, transition: { duration: 0.45, ease: "easeOut" } },
-  exit: { opacity: 0, y: -20, transition: { duration: 0.35, ease: "easeIn" } },
+  initial: { opacity: 0, y: 25 },
+  animate: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+  exit: { opacity: 0, y: -25, transition: { duration: 0.45, ease: "easeIn" } },
 };
 
 const bgPhaseByStep = (step: number): string => {
-  if (step < 3) return "from-[#0b0b0b] via-[#220b0b] to-[#3b0f10]"; // baixa (vermelho)
-  if (step < 8) return "from-[#0a0f1a] via-[#0f1d33] to-[#1c2a42]"; // consciência (azul)
-  return "from-[#10221a] via-[#0d3b2a] to-[#0b4d37]"; // alta (verde)
+  if (step < 3) return "from-[#160404] via-[#2b0a0a] to-[#3f1010]"; // baixa (vermelho mais intenso)
+  if (step < 8) return "from-[#0b1224] via-[#142440] to-[#1f3055]"; // consciência (azul mais profundo)
+  return "from-[#0d1c14] via-[#123926] to-[#1e5739]"; // alta (verde mais vibrante)
 };
 
 // Modelo das perguntas
@@ -31,6 +31,7 @@ type Level = typeof LEVELS[number];
 const Q1 = {
   id: 1,
   title: "Em qual momento você está na sua jornada no mercado?",
+  microcopy: "Antes de entender o gráfico, entenda onde você está na jornada.",
   options: [
     { label: "Estou começando agora (Iniciante)", value: "iniciante" },
     { label: "Já opero, mas quero consistência (Intermediário)", value: "intermediario" },
@@ -38,7 +39,7 @@ const Q1 = {
   ],
 };
 
-// Perguntas 2–8 — copy adaptativa por nível
+// Perguntas 2–8 — copy adaptativa por nível com microcopy emocional
 const ADAPTIVE_QUESTIONS = [
   {
     id: 2,
@@ -47,11 +48,13 @@ const ADAPTIVE_QUESTIONS = [
       intermediario: "Você sente que entende o básico, mas falta consistência?",
       avancado: "Mesmo sabendo operar, o emocional ainda interfere?",
     },
+    microcopy: "O primeiro passo para a clareza é reconhecer o caos.",
     options: ["Sim", "Às vezes", "Não"],
   },
   {
     id: 3,
     title: "Quando o preço vai contra você, o que sente?",
+    microcopy: "O mercado testa sua mente antes de testar sua estratégia.",
     subtitleByLevel: {
       iniciante: "Você vai entender por que o preço se move assim e nunca mais será pego de surpresa.",
       intermediario: "Você vai identificar onde o dinheiro inteligente entra e sai do mercado.",
@@ -62,6 +65,7 @@ const ADAPTIVE_QUESTIONS = [
   {
     id: 4,
     title: "O que te motiva a buscar resultados no mercado?",
+    microcopy: "Toda tendência de alta começa com uma decisão de mudar.",
     subtitleByLevel: {
       iniciante: "Base para liberdade financeira com consciência.",
       intermediario: "Transformar conhecimento em consistência e resultado.",
@@ -72,43 +76,45 @@ const ADAPTIVE_QUESTIONS = [
   {
     id: 5,
     title: "Você acredita mais em promessas ou em resultados reais?",
-    subtitle: "Aqui você vê tudo — ganhos, perdas e análises reais dentro da Comunidade TFX.",
+    microcopy: "Resultados reais incluem ganhos e perdas analisados em tempo real.",
     options: ["Quero ver resultados reais", "Prefiro conteúdo de valor antes", "Quero entender o processo"],
   },
   {
     id: 6,
-    title: "Acesso a conhecimentos raros e estratégias usadas por grandes players te interessa?",
-    subtitle: "Método baseado em liquidez institucional, pontos de reversão reais e mentalidade de elite.",
+    title: "Acesso a estratégias usadas por grandes players te interessa?",
+    microcopy: "O verdadeiro conhecimento está nas entrelinhas do gráfico.",
     options: ["Sim — quero entender o que move o mercado", "Talvez — se for realmente prático", "Já estudo — quero ver o quão avançado é"],
   },
   {
     id: 7,
     titleByLevel: {
-      iniciante: "Você quer materiais que expliquem o mercado de dentro pra fora — de forma simples — e 1 mês na Comunidade TFX?",
-      intermediario: "Você quer dominar leitura institucional e ter 1 mês de Comunidade com análises em tempo real?",
+      iniciante: "Quer materiais que expliquem o mercado de dentro pra fora e 1 mês na Comunidade TFX?",
+      intermediario: "Quer dominar leitura institucional + 1 mês de Comunidade com análises em tempo real?",
       avancado: "Quer refinar entradas IFC/ChoCh/IDM + 1 mês de Comunidade com traders experientes?",
     },
+    microcopy: "Você não compra um curso. Você entra em uma nova mentalidade.",
     options: ["Quero sim", "Quero entender melhor", "Prefiro ver exemplos"],
   },
   {
     id: 8,
     title: "O que mais representa sucesso pra você?",
-    subtitle: "O método TFX te leva a isso — com técnica, mente e comunidade.",
+    microcopy: "Sucesso é consistência mental antes de ser financeira.",
     options: ["Liberdade financeira", "Paz mental e consistência", "Operar com clareza e controle"],
   },
 ];
 
-// Perguntas 9–12 — comuns
+// Perguntas 9–12 — comuns com microcopy
 const COMMON_QUESTIONS = [
   {
     id: 9,
     title: "Você quer ter contato diário com traders, análises e alertas em tempo real?",
-    subtitle: "Ao adquirir, você recebe 1 mês gratuito na Comunidade TFX (Discord).",
+    microcopy: "A Comunidade TFX é onde a teoria encontra a execução.",
     options: ["Quero sim", "Talvez", "Quero conhecer antes"],
   },
   {
     id: 10,
     title: "Você já investiu em algo de trading?",
+    microcopy: "Cada tentativa passada foi apenas preparação para o que realmente funciona.",
     subtitleByLevel: {
       iniciante: "Esse é o ponto de partida com base sólida e acompanhamento real.",
       intermediario: "Aqui você evolui de setup para consistência.",
@@ -119,33 +125,37 @@ const COMMON_QUESTIONS = [
   {
     id: 11,
     title: "Pronto para entender como os grandes players realmente operam e aplicar isso?",
-    subtitle: "Você está a um clique de acessar algo que poucos têm coragem de mostrar.",
+    microcopy: "Você está a um clique de acessar algo que poucos têm coragem de mostrar.",
     options: ["Sim — quero dominar o método TFX", "Quero começar pelo primeiro passo", "Quero ver resultados primeiro"],
   },
   {
     id: 12,
     title: "O mercado recompensa quem entende e age com consciência.",
-    subtitle: "Agora é sua vez de sair da tendência de baixa.",
+    microcopy: "Agora é sua vez de sair da tendência de baixa.",
     options: ["Quero acesso agora →"],
   },
 ];
 
 function OptionButton({ label, onClick }: { label: string; onClick: () => void }) {
   return (
-    <button
+    <motion.button
+      whileHover={{ scale: 1.03 }}
+      whileTap={{ scale: 0.98 }}
       onClick={onClick}
-      className="w-full text-left rounded-xl border border-white/10 bg-white/5 px-5 py-4 hover:bg-white/10 hover:scale-[1.02] transition-all shadow-sm backdrop-blur-md"
+      className="w-full text-left rounded-xl border border-white/10 bg-gradient-to-r from-white/5 to-white/10 px-5 py-4 hover:from-emerald-400/10 hover:to-emerald-600/10 transition backdrop-blur-md shadow-md"
     >
       <span className="text-base md:text-lg leading-snug text-white">{label}</span>
-    </button>
+    </motion.button>
   );
 }
 
-// Componente de vela decorativa
+// Componente de vela decorativa com glow
 function Candle({ delay = 0, left = "10%", height = "40%", red = true }: { delay?: number; left?: string; height?: string; red?: boolean }) {
   return (
     <span
-      className={`absolute bottom-0 w-[2px] ${red ? "bg-red-500/60" : "bg-emerald-400/60"} animate-pulse`}
+      className={`absolute bottom-0 w-[2px] ${
+        red ? "bg-red-500/70 drop-shadow-[0_0_8px_rgba(255,0,0,0.6)]" : "bg-emerald-400/70 drop-shadow-[0_0_8px_rgba(52,211,153,0.6)]"
+      }`}
       style={{ left, height, animationDelay: `${delay}ms` }}
     />
   );
@@ -188,7 +198,7 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
     return COMMON_QUESTIONS[step - 8];
   }, [step]);
 
-  // Título/subtítulo adaptativos
+  // Título/subtítulo/microcopy adaptativos
   const resolveTitle = (): string => {
     if (!current) return "";
     if ("titleByLevel" in current && current.titleByLevel && level) {
@@ -203,6 +213,11 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
       return current.subtitleByLevel[level] || "";
     }
     return current.subtitle || "";
+  };
+
+  const resolveMicro = (): string => {
+    if (!current) return "";
+    return current.microcopy || "";
   };
 
   // Avançar
@@ -272,7 +287,12 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
   };
 
   return (
-    <div className={`relative min-h-[100dvh] overflow-hidden bg-gradient-to-br ${bgPhaseByStep(step)} text-white`}>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.8 }}
+      className={`relative min-h-[100dvh] overflow-hidden bg-gradient-to-br ${bgPhaseByStep(step)} text-white transition-all duration-700`}
+    >
       {/* Backdrop film grain + vignette */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(transparent,rgba(0,0,0,0.5))]" />
       <div
@@ -283,18 +303,14 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
         }}
       />
 
-      {/* Candles decorativos (descendo nas primeiras etapas, subindo nas finais) */}
+      {/* Candles decorativos (descendo nas primeiras etapas, subindo nas finais) com glow */}
       <div className={`absolute inset-0 ${step < 8 ? "animate-candlesDown" : "animate-candlesUp"}`}>
-        <Candle delay={0} left="10%" height="35%" red={step < 8} />
-        <Candle delay={200} left="18%" height="55%" red={step < 8} />
-        <Candle delay={350} left="27%" height="28%" red={step < 8} />
-        <Candle delay={120} left="36%" height="48%" red={step < 8} />
-        <Candle delay={260} left="45%" height="38%" red={step < 8} />
-        <Candle delay={500} left="54%" height="60%" red={step < 8} />
-        <Candle delay={160} left="63%" height="40%" red={step < 8} />
-        <Candle delay={260} left="72%" height="52%" red={step < 8} />
-        <Candle delay={380} left="81%" height="30%" red={step < 8} />
-        <Candle delay={450} left="90%" height="44%" red={step < 8} />
+        {useMemo(() => {
+          const heights = [35, 55, 28, 48, 38, 60, 40, 52, 30, 44]; // alturas fixas para consistência
+          return [10, 18, 27, 36, 45, 54, 63, 72, 81, 90].map((left, i) => (
+            <Candle key={i} delay={i * 50} left={`${left}%`} height={`${heights[i]}%`} red={step < 8} />
+          ));
+        }, [step])}
       </div>
 
       {/* Conteúdo */}
@@ -318,15 +334,13 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
 
         {/* Card da pergunta */}
         <AnimatePresence mode="wait">
-          <motion.div key={step} {...fade} className="relative rounded-2xl border border-white/10 bg-black/20 p-6 md:p-8 shadow-2xl backdrop-blur-xl">
+          <motion.div key={step} {...fade} className="relative rounded-2xl border border-white/10 bg-black/30 p-6 md:p-8 shadow-2xl backdrop-blur-xl">
             <div className="mb-6 space-y-2">
-              <h1 className="text-2xl md:text-3xl font-semibold leading-snug">{resolveTitle()}</h1>
-              {resolveSubtitle() ? <p className="text-white/70 md:text-lg">{resolveSubtitle()}</p> : null}
-              {step === 2 && (
-                <p className="text-xs text-white/50">
-                  *Dica visual: a animação mostra um candle varrendo o stop — conexão direta com a pergunta.
-                </p>
+              {resolveMicro() && (
+                <p className="text-xs text-emerald-400/70 uppercase tracking-wide">{resolveMicro()}</p>
               )}
+              <h1 className="text-3xl md:text-4xl font-semibold leading-snug">{resolveTitle()}</h1>
+              {resolveSubtitle() ? <p className="text-white/70 md:text-lg">{resolveSubtitle()}</p> : null}
             </div>
 
             <div className="grid gap-3 md:gap-4">
@@ -350,15 +364,13 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
         </AnimatePresence>
 
         {/* Disclaimers/autoridade sutil */}
-        <div className="mt-8 text-center text-xs text-white/60">
-          <p>
-            Resultados reais incluem ganhos e perdas analisados em tempo real. Conteúdo com conhecimentos raros aplicados por players institucionais.
-          </p>
+        <div className="mt-8 text-center text-xs text-white/60 italic">
+          <p>"TFX não é sobre sorte. É sobre leitura, mente e execução."</p>
         </div>
       </div>
-
-    </div>
+    </motion.div>
   );
 }
+
 
 
