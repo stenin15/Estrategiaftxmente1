@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 type QuizTFXProps = {
@@ -149,16 +149,83 @@ function OptionButton({ label, onClick }: { label: string; onClick: () => void }
   );
 }
 
-// Componente de vela decorativa com glow
-function Candle({ delay = 0, left = "10%", height = "40%", red = true }: { delay?: number; left?: string; height?: string; red?: boolean }) {
-  return (
-    <span
-      className={`absolute bottom-0 w-[2px] ${
-        red ? "bg-red-500/70 drop-shadow-[0_0_8px_rgba(255,0,0,0.6)]" : "bg-emerald-400/70 drop-shadow-[0_0_8px_rgba(52,211,153,0.6)]"
-      }`}
-      style={{ left, height, animationDelay: `${delay}ms` }}
-    />
-  );
+// Componente Canvas para candles realistas animados
+function CandlesCanvas() {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    let w = 0;
+    let h = 0;
+    let animationFrameId: number;
+
+    function resize() {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+    }
+
+    window.addEventListener("resize", resize);
+    resize();
+
+    const candles = Array.from({ length: 50 }, (_, i) => ({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      width: 4,
+      height: 20 + Math.random() * 80,
+      color: Math.random() > 0.5 ? "rgba(16, 185, 129, 0.8)" : "rgba(239, 68, 68, 0.8)",
+      velocity: (Math.random() * 0.5 + 0.2) * (Math.random() > 0.5 ? 1 : -1),
+    }));
+
+    function drawCandles() {
+      ctx.clearRect(0, 0, w, h);
+      candles.forEach((c) => {
+        // leve brilho (neon de terminal financeiro)
+        ctx.shadowColor = c.color;
+        ctx.shadowBlur = 25;
+        
+        // corpo
+        ctx.fillStyle = c.color;
+        ctx.fillRect(c.x, c.y, c.width, c.height);
+
+        // pavio
+        ctx.beginPath();
+        ctx.moveTo(c.x + c.width / 2, c.y - 10);
+        ctx.lineTo(c.x + c.width / 2, c.y + c.height + 10);
+        ctx.lineWidth = 1.5;
+        ctx.strokeStyle = c.color.replace("0.8", "0.5");
+        ctx.stroke();
+        
+        // reset shadow para não afetar outros elementos
+        ctx.shadowBlur = 0;
+      });
+
+      candles.forEach((c) => {
+        c.y += c.velocity;
+        if (c.y > h || c.y + c.height < 0) {
+          c.y = Math.random() > 0.5 ? -c.height : h;
+          c.x = Math.random() * w;
+          c.color = Math.random() > 0.5 ? "rgba(16, 185, 129, 0.8)" : "rgba(239, 68, 68, 0.8)";
+          c.velocity *= -1;
+        }
+      });
+
+      animationFrameId = requestAnimationFrame(drawCandles);
+    }
+
+    drawCandles();
+
+    return () => {
+      window.removeEventListener("resize", resize);
+      cancelAnimationFrame(animationFrameId);
+    };
+  }, []);
+
+  return <canvas ref={canvasRef} className="absolute inset-0 w-full h-full opacity-60" />;
 }
 
 export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
@@ -320,15 +387,8 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
         }}
       />
 
-      {/* Candles decorativos (descendo nas primeiras etapas, subindo nas finais) com glow */}
-      <div className={`absolute inset-0 ${step < 8 ? "animate-candlesDown" : "animate-candlesUp"}`}>
-        {useMemo(() => {
-          const heights = [35, 55, 28, 48, 38, 60, 40, 52, 30, 44]; // alturas fixas para consistência
-          return [10, 18, 27, 36, 45, 54, 63, 72, 81, 90].map((left, i) => (
-            <Candle key={i} delay={i * 50} left={`${left}%`} height={`${heights[i]}%`} red={step < 8} />
-          ));
-        }, [step])}
-      </div>
+      {/* Fundo com candles realistas animados */}
+      <CandlesCanvas />
 
       {/* Conteúdo */}
       <div className="relative mx-auto max-w-3xl px-6 pb-24 pt-16 md:pt-24">
