@@ -149,7 +149,7 @@ function OptionButton({ label, onClick }: { label: string; onClick: () => void }
   );
 }
 
-// Componente Canvas para candles com tendências (alta e baixa alternadas)
+// Componente Canvas para candles com tendência realista (ondas de mercado)
 function CandlesCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -172,70 +172,70 @@ function CandlesCanvas() {
     window.addEventListener("resize", resize);
     resize();
 
-    // Candles com grupo de tendência — versão densa
-    const total = 160; // antes era 60 → agora 160 (mais velas na tela)
+    // --- CONFIG ---
+    const total = 200; // mais candles
+    const amplitude = 120; // altura das ondas
+    const candleWidth = 4; // espessura
+    const speed = 0.015; // velocidade
+    let t = 0;
+
+    // Cria candles com posição inicial em uma onda
     const candles = Array.from({ length: total }, (_, i) => ({
       x: (i / total) * w,
-      y: h / 2 + (Math.random() - 0.5) * 120,
-      width: 3, // um pouco mais fino para estética realista
-      height: 25 + Math.random() * 80,
-      color: Math.random() > 0.5
-        ? "rgba(16, 185, 129, 0.8)" // verde alta
-        : "rgba(239, 68, 68, 0.8)", // vermelha baixa
-      dir: Math.random() > 0.5 ? 1 : -1,
+      y: h / 2 + Math.sin(i * 0.1) * amplitude,
+      height: 30 + Math.random() * 50,
+      color: "rgba(16, 185, 129, 0.85)",
+      direction: 1,
     }));
 
-    let t = 0;
     function draw() {
       ctx.clearRect(0, 0, w, h);
-      t += 0.03; // velocidade da oscilação (mais rápido)
+      t += speed;
 
-      // Define tendência global oscilando entre alta e baixa
-      const trend = Math.sin(t / 3); // muda suavemente de direção
+      // Define tendência global oscilando de alta para baixa
+      const trendAngle = Math.sin(t / 4) * 1.5; // inclinação da tendência
+      const trendOffset = Math.sin(t / 2) * 0.5;
 
-      candles.forEach((c, i) => {
-        // movimento vertical com leve ruído
-        const noise = Math.sin(t * 2 + i * 0.4) * 4;
-        c.y += (trend * 0.8 + c.dir * 0.2) + noise * 0.1;
+      // Desenha e move candles
+      for (let i = 0; i < candles.length; i++) {
+        const c = candles[i];
+        const wave = Math.sin(i * 0.15 + t) * amplitude * 0.4;
+        const trend = Math.sin(t + i * 0.02) * amplitude * 0.1;
+        c.y = h / 2 + wave + trend + Math.sin(i * 0.08 + t) * 40 * trendOffset;
 
-        // Mantém candles dentro da tela
-        if (c.y > h - 50) c.dir = -1;
-        if (c.y < 50) c.dir = 1;
+        // Cor muda conforme direção global
+        const globalTrend = Math.sin(t / 3);
+        const isUp = globalTrend > 0;
+        c.color = isUp
+          ? "rgba(16, 185, 129, 0.85)" // verde alta
+          : "rgba(239, 68, 68, 0.85)"; // vermelha baixa
 
-        // troca cor conforme direção
-        const isUp = trend > 0;
-        c.color = isUp ? "rgba(16, 185, 129, 0.85)" : "rgba(239, 68, 68, 0.85)";
-
-        // brilho (neon de terminal financeiro)
+        // Glow leve
         ctx.shadowColor = c.color;
-        ctx.shadowBlur = 20;
+        ctx.shadowBlur = 15;
 
-        // Candles piscando suavemente ao mudar de cor (micro variação de brilho)
-        ctx.globalAlpha = 0.85 + Math.sin(t * 3 + i) * 0.05;
-
-        // corpo do candle
+        // Corpo
         ctx.fillStyle = c.color;
-        ctx.fillRect(c.x, c.y, c.width, c.height);
+        ctx.fillRect(c.x, c.y, candleWidth, c.height);
 
-        // pavio
+        // Pavio
         ctx.beginPath();
-        ctx.moveTo(c.x + c.width / 2, c.y - 10);
-        ctx.lineTo(c.x + c.width / 2, c.y + c.height + 10);
+        ctx.moveTo(c.x + candleWidth / 2, c.y - 10);
+        ctx.lineTo(c.x + candleWidth / 2, c.y + c.height + 10);
+        ctx.lineWidth = 1.2;
         ctx.strokeStyle = c.color.replace("0.85", "0.4");
-        ctx.lineWidth = 1.5;
         ctx.stroke();
 
-        // reset shadow e alpha para não afetar outros elementos
+        // reset shadow para não afetar outros elementos
         ctx.shadowBlur = 0;
-        ctx.globalAlpha = 1.0;
-      });
+      }
 
-      // cria sensação de tendência inclinada (como LTA/LTB sutil no fundo)
+      // Linha de tendência geral (subindo/descendo)
       ctx.beginPath();
-      ctx.moveTo(0, h / 2 - trend * 80);
-      ctx.lineTo(w, h / 2 + trend * 80);
-      ctx.lineWidth = 0.5;
-      ctx.strokeStyle = trend > 0 ? "rgba(16,185,129,0.15)" : "rgba(239,68,68,0.15)";
+      ctx.moveTo(0, h / 2 - Math.sin(t / 3) * amplitude * 0.8);
+      ctx.lineTo(w, h / 2 + Math.sin(t / 3) * amplitude * 0.8);
+      ctx.lineWidth = 0.7;
+      ctx.strokeStyle = Math.sin(t / 3) > 0 ? "rgba(16,185,129,0.25)" : "rgba(239,68,68,0.25)";
       ctx.stroke();
 
       animationFrameId = requestAnimationFrame(draw);
