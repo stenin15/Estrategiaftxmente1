@@ -149,7 +149,7 @@ function OptionButton({ label, onClick }: { label: string; onClick: () => void }
   );
 }
 
-// Componente Canvas para candles com tendências não lineares e consolidações
+// Componente Canvas para gráfico realista estilo TradingView com zonas institucionais
 function CandlesCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -172,80 +172,95 @@ function CandlesCanvas() {
     window.addEventListener("resize", resize);
     resize();
 
-    const total = 180;
-    const amplitude = 110;
-    const candleWidth = 3;
-    const speed = 0.02;
+    // --- CONFIG ---
+    const total = 120; // quantidade de candles
+    const baseHeight = 30;
+    const amplitude = 140;
+    const speed = 0.015;
     let t = 0;
 
-    // gera ruído suave
-    function smoothNoise(x: number) {
-      return Math.sin(x * 0.3) * 0.5 + Math.sin(x * 0.05) * 0.5;
-    }
+    const zones = [
+      { y: 0.25, color: "rgba(239,68,68,0.12)" }, // zona de oferta (vermelha)
+      { y: 0.65, color: "rgba(16,185,129,0.12)" }, // zona de demanda (verde)
+    ];
 
     const candles = Array.from({ length: total }, (_, i) => ({
       x: (i / total) * w,
       y: h / 2,
-      height: 20 + Math.random() * 50,
-      color: "rgba(239,68,68,0.8)",
+      height: baseHeight + Math.random() * 40,
+      color: "rgba(239,68,68,0.85)",
+      wickHeight: 10 + Math.random() * 20,
     }));
 
     function draw() {
       ctx.clearRect(0, 0, w, h);
       t += speed;
 
-      const trendPhase = Math.sin(t / 3); // alterna tendência global
+      // --- desenha zonas institucionais ---
+      zones.forEach((z) => {
+        ctx.fillStyle = z.color;
+        const yPos = h * z.y + Math.sin(t + z.y * 5) * 20;
+        ctx.fillRect(0, yPos, w, h * 0.08);
+      });
+
+      // --- desenha candles ---
+      const trend = Math.sin(t / 3);
+      const direction = trend > 0 ? 1 : -1;
 
       for (let i = 0; i < candles.length; i++) {
         const c = candles[i];
-
-        // cria uma estrutura de tendência com ruído
         const wave =
-          Math.sin(i * 0.12 + t) * amplitude * 0.4 +
-          smoothNoise(i * 0.3 + t) * amplitude * 0.3;
+          Math.sin(i * 0.25 + t) * amplitude * 0.25 +
+          Math.sin(i * 0.07 + t * 0.5) * amplitude * 0.15;
 
-        const pullback = Math.sin(i * 0.5 + t * 2) * 15; // pequenas retrações
-        const baseY = h / 2 + wave + pullback;
+        const trendLine = direction * Math.sin(i * 0.05 + t) * 60;
+        c.y = h / 2 + wave + trendLine;
 
-        c.y = baseY;
+        const isUp = trend > 0;
+        c.color = isUp
+          ? "rgba(16,185,129,0.85)" // verde
+          : "rgba(239,68,68,0.85)"; // vermelho
 
-        // cor adaptada à tendência global
-        const isUp = trendPhase > 0;
-        c.color = isUp ? "rgba(16,185,129,0.85)" : "rgba(239,68,68,0.85)";
-
-        // Glow leve
-        ctx.shadowColor = c.color;
-        ctx.shadowBlur = 12;
+        // wick (pavio)
+        ctx.beginPath();
+        ctx.moveTo(c.x + 2, c.y - c.wickHeight);
+        ctx.lineTo(c.x + 2, c.y + c.height + c.wickHeight);
+        ctx.strokeStyle = c.color.replace("0.85", "0.5");
+        ctx.lineWidth = 1.2;
+        ctx.stroke();
 
         // corpo
         ctx.fillStyle = c.color;
-        ctx.fillRect(c.x, c.y, candleWidth, c.height);
-
-        // pavio
-        ctx.beginPath();
-        ctx.moveTo(c.x + candleWidth / 2, c.y - 10);
-        ctx.lineTo(c.x + candleWidth / 2, c.y + c.height + 10);
-        ctx.strokeStyle = c.color.replace("0.85", "0.4");
-        ctx.lineWidth = 1.2;
-        ctx.stroke();
+        ctx.fillRect(c.x, c.y, 4, c.height);
+        ctx.shadowColor = c.color;
+        ctx.shadowBlur = 8;
 
         // reset shadow para não afetar outros elementos
         ctx.shadowBlur = 0;
       }
 
-      // linha de tendência global com leve ruído
+      // --- estrutura de tendência (linha de BOS / ChoCh) ---
       ctx.beginPath();
+      ctx.moveTo(0, h / 2 + Math.sin(t / 2) * 80);
       for (let x = 0; x < w; x += 5) {
         const y =
           h / 2 +
-          Math.sin(x * 0.005 + t * 0.8) * 40 +
-          Math.sin(x * 0.02 + t) * 10;
+          Math.sin(x * 0.005 + t) * 40 +
+          Math.sin(x * 0.02 + t * 0.5) * 20;
         ctx.lineTo(x, y);
       }
-      ctx.lineWidth = 0.8;
+      ctx.lineWidth = 1;
       ctx.strokeStyle =
-        trendPhase > 0 ? "rgba(16,185,129,0.25)" : "rgba(239,68,68,0.25)";
+        trend > 0
+          ? "rgba(16,185,129,0.3)" // linha verde em alta
+          : "rgba(239,68,68,0.3)"; // linha vermelha em baixa
       ctx.stroke();
+
+      // Fade dourado ao trocar de tendência (transição cinematográfica)
+      if (Math.abs(Math.cos(t / 3)) < 0.02) {
+        ctx.fillStyle = "rgba(255,215,0,0.05)";
+        ctx.fillRect(0, 0, w, h);
+      }
 
       animationFrameId = requestAnimationFrame(draw);
     }
