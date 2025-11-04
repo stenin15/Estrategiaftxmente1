@@ -292,6 +292,27 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
   const [level, setLevel] = useState<Level | null>(null);
   const [answers, setAnswers] = useState<string[]>([]);
   const [hasStarted, setHasStarted] = useState<boolean>(false);
+  const [proofIndex, setProofIndex] = useState<number>(0);
+
+  // Imagens de prova social (rotacionando automaticamente)
+  const proofs = [
+    "/resultado forex 1  (6).jpeg",
+    "/resultado forex 2  (2).jpeg",
+    "/resultado forex 3  (5).jpeg",
+    "/resultado forex 4  (7).jpeg",
+    "/resultado cripto 1  (1).jpeg",
+    "/resultado cripto 1  (3).jpeg",
+  ];
+
+  // Troca automática de imagens a cada 4 segundos
+  useEffect(() => {
+    if (step === 5 || step === 8) {
+      const interval = setInterval(() => {
+        setProofIndex((i) => (i + 1) % proofs.length);
+      }, 4000);
+      return () => clearInterval(interval);
+    }
+  }, [step]);
 
   const totalSteps = 12;
   const progress = useMemo(() => Math.round(((step + 1) / totalSteps) * 100), [step]);
@@ -473,6 +494,54 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none -z-10">
             <div className="h-[400px] w-[400px] rounded-full bg-emerald-400/10 blur-[120px] animate-pulseGlow" />
           </div>
+
+          {/* Bloco de prova social entre etapas */}
+          {(step === 5 || step === 8) && (
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="relative mb-8 overflow-hidden rounded-2xl border border-white/10 bg-black/30 backdrop-blur-md shadow-2xl shadow-emerald-500/20"
+            >
+              <div className="p-4 md:p-6 text-center">
+                <h2 className="mb-3 text-lg md:text-2xl font-semibold text-emerald-400 animate-pulse">
+                  Resultado Real • Operação TFX
+                </h2>
+                <p className="mb-4 text-sm text-white/70">
+                  Entrada baseada em liquidez — Mitigação completa 🎯
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <AnimatePresence mode="wait">
+                    <motion.img
+                      key={proofIndex}
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.95 }}
+                      transition={{ duration: 0.5 }}
+                      src={proofs[proofIndex]}
+                      alt="Resultado real TFX"
+                      className="w-full h-auto rounded-xl border border-white/10 shadow-lg object-cover max-h-[300px]"
+                    />
+                  </AnimatePresence>
+                  <AnimatePresence mode="wait">
+                    <motion.img
+                      key={(proofIndex + 1) % proofs.length}
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.95 }}
+                      transition={{ duration: 0.5, delay: 0.1 }}
+                      src={proofs[(proofIndex + 1) % proofs.length]}
+                      alt="Resultado real TFX"
+                      className="w-full h-auto rounded-xl border border-white/10 shadow-lg object-cover max-h-[300px]"
+                    />
+                  </AnimatePresence>
+                </div>
+                <p className="mt-4 text-xs text-emerald-400/70 italic">
+                  A precisão que só quem entende fluxo institucional consegue.
+                </p>
+              </div>
+            </motion.div>
+          )}
 
           {/* Card da pergunta */}
           <AnimatePresence mode="wait">
