@@ -172,21 +172,23 @@ function CandlesCanvas() {
     window.addEventListener("resize", resize);
     resize();
 
-    // Candles com grupo de tendência
-    const total = 60;
+    // Candles com grupo de tendência — versão densa
+    const total = 160; // antes era 60 → agora 160 (mais velas na tela)
     const candles = Array.from({ length: total }, (_, i) => ({
       x: (i / total) * w,
-      y: h / 2 + (Math.random() - 0.5) * 100,
-      width: 4,
-      height: 20 + Math.random() * 60,
-      color: Math.random() > 0.5 ? "rgba(16, 185, 129, 0.8)" : "rgba(239, 68, 68, 0.8)",
+      y: h / 2 + (Math.random() - 0.5) * 120,
+      width: 3, // um pouco mais fino para estética realista
+      height: 25 + Math.random() * 80,
+      color: Math.random() > 0.5
+        ? "rgba(16, 185, 129, 0.8)" // verde alta
+        : "rgba(239, 68, 68, 0.8)", // vermelha baixa
       dir: Math.random() > 0.5 ? 1 : -1,
     }));
 
     let t = 0;
     function draw() {
       ctx.clearRect(0, 0, w, h);
-      t += 0.02; // velocidade da oscilação
+      t += 0.03; // velocidade da oscilação (mais rápido)
 
       // Define tendência global oscilando entre alta e baixa
       const trend = Math.sin(t / 3); // muda suavemente de direção
@@ -208,6 +210,9 @@ function CandlesCanvas() {
         ctx.shadowColor = c.color;
         ctx.shadowBlur = 20;
 
+        // Candles piscando suavemente ao mudar de cor (micro variação de brilho)
+        ctx.globalAlpha = 0.85 + Math.sin(t * 3 + i) * 0.05;
+
         // corpo do candle
         ctx.fillStyle = c.color;
         ctx.fillRect(c.x, c.y, c.width, c.height);
@@ -220,8 +225,9 @@ function CandlesCanvas() {
         ctx.lineWidth = 1.5;
         ctx.stroke();
 
-        // reset shadow para não afetar outros elementos
+        // reset shadow e alpha para não afetar outros elementos
         ctx.shadowBlur = 0;
+        ctx.globalAlpha = 1.0;
       });
 
       // cria sensação de tendência inclinada (como LTA/LTB sutil no fundo)
