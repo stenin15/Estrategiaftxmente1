@@ -255,15 +255,21 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
   const totalSteps = 12;
   const progress = useMemo(() => Math.round(((step + 1) / totalSteps) * 100), [step]);
 
-  // Restaurar sessão
+  // Restaurar sessão (mas não se já estiver completo)
   useEffect(() => {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
       if (raw) {
         const { step: s, level: l, answers: a } = JSON.parse(raw);
+        // Não restaura se já estiver na última pergunta (quiz completo)
+        if (typeof s === "number" && s >= 11) {
+          // Limpa o localStorage para permitir reinício
+          localStorage.removeItem(STORAGE_KEY);
+          return;
+        }
         if (Array.isArray(a)) setAnswers(a);
         if (l && LEVELS.includes(l as Level)) setLevel(l as Level);
-        if (typeof s === "number" && s >= 0 && s < 12) setStep(s);
+        if (typeof s === "number" && s >= 0 && s < 11) setStep(s);
       }
     } catch {}
   }, []);
@@ -356,6 +362,11 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
       if ((window as any).ttq && typeof (window as any).ttq.track === "function") {
         (window as any).ttq.track("CompleteRegistration", { level });
       }
+    } catch {}
+
+    // Limpa o localStorage ao completar para permitir reinício
+    try {
+      localStorage.removeItem(STORAGE_KEY);
     } catch {}
 
     const checkoutUrl = primaryCtaHref || CHECKOUT_URL;
