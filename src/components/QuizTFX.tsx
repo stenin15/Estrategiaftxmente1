@@ -477,7 +477,7 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
               <span>
                 Etapa {step + 1} de {totalSteps}
               </span>
-              {level && <span className="rounded-full bg-white/10 px-3 py-1">Nível: {level}</span>}
+              {/* Nível removido */}
             </div>
           </motion.div>
         </AnimatePresence>
