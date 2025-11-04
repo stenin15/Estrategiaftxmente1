@@ -149,7 +149,7 @@ function OptionButton({ label, onClick }: { label: string; onClick: () => void }
   );
 }
 
-// Componente Canvas para gráfico realista estilo TradingView com zonas institucionais
+// Componente Canvas para estrutura SMC realista (HH/HL/LH/LL, BOS/ChoCH, EQH/EQL)
 function CandlesCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -173,65 +173,80 @@ function CandlesCanvas() {
     resize();
 
     // --- CONFIG ---
-    const total = 120; // quantidade de candles
-    const baseHeight = 30;
-    const amplitude = 140;
-    const speed = 0.015;
+    const total = 160;
+    const speed = 0.025;
+    const amplitude = 80;
+    const baseHeight = 25;
     let t = 0;
 
-    const zones = [
-      { y: 0.25, color: "rgba(239,68,68,0.12)" }, // zona de oferta (vermelha)
-      { y: 0.65, color: "rgba(16,185,129,0.12)" }, // zona de demanda (verde)
-    ];
+    // Estrutura com HH / HL / LL / LH
+    const structure: Array<{ x: number; y: number }> = [];
+    let dir = 1;
+    let y = h / 2;
+    for (let i = 0; i < total; i++) {
+      const range = amplitude * (0.5 + Math.random() * 0.5);
+      y += dir * range * (Math.random() * 0.8 + 0.4);
+      if (Math.random() > 0.6) dir *= -1; // inverte a tendência (ChoCH)
+      structure.push({ x: (i / total) * w, y });
+    }
 
-    const candles = Array.from({ length: total }, (_, i) => ({
-      x: (i / total) * w,
-      y: h / 2,
+    const candles = structure.map((p, i) => ({
+      x: p.x,
+      y: p.y,
       height: baseHeight + Math.random() * 40,
-      color: "rgba(239,68,68,0.85)",
-      wickHeight: 10 + Math.random() * 20,
+      color: "rgba(16,185,129,0.85)",
+      wick: 8 + Math.random() * 12,
+      dir: Math.random() > 0.5 ? 1 : -1,
     }));
 
     function draw() {
       ctx.clearRect(0, 0, w, h);
       t += speed;
 
-      // --- desenha zonas institucionais ---
-      zones.forEach((z) => {
-        ctx.fillStyle = z.color;
-        const yPos = h * z.y + Math.sin(t + z.y * 5) * 20;
-        ctx.fillRect(0, yPos, w, h * 0.08);
-      });
+      // fundo institucional
+      ctx.fillStyle = "rgba(255,255,255,0.01)";
+      ctx.fillRect(0, 0, w, h);
 
-      // --- desenha candles ---
-      const trend = Math.sin(t / 3);
-      const direction = trend > 0 ? 1 : -1;
+      // zonas de liquidez (blocos)
+      ctx.fillStyle = "rgba(16,185,129,0.08)";
+      ctx.fillRect(0, h * 0.65, w, h * 0.08);
+      ctx.fillStyle = "rgba(239,68,68,0.08)";
+      ctx.fillRect(0, h * 0.25, w, h * 0.08);
 
+      // linha de estrutura
+      ctx.beginPath();
+      ctx.moveTo(structure[0].x, structure[0].y);
+      for (let i = 1; i < structure.length; i++) {
+        const offset =
+          Math.sin(i * 0.3 + t * 2) * 5 + (Math.random() - 0.5) * 3;
+        ctx.lineTo(structure[i].x, structure[i].y + offset);
+      }
+      ctx.lineWidth = 1.2;
+      ctx.strokeStyle = "rgba(255,255,255,0.1)";
+      ctx.stroke();
+
+      // candles com estrutura SMC
       for (let i = 0; i < candles.length; i++) {
         const c = candles[i];
-        const wave =
-          Math.sin(i * 0.25 + t) * amplitude * 0.25 +
-          Math.sin(i * 0.07 + t * 0.5) * amplitude * 0.15;
+        const next = candles[i + 1] || c;
+        const diff = next.y - c.y;
+        const isUp = diff < 0; // candle de alta
+        c.color = isUp ? "rgba(16,185,129,0.8)" : "rgba(239,68,68,0.8)";
 
-        const trendLine = direction * Math.sin(i * 0.05 + t) * 60;
-        c.y = h / 2 + wave + trendLine;
+        const candleHeight = c.height * (1 + Math.abs(Math.sin(t + i * 0.2)) * 0.1);
+        const posY = c.y + Math.sin(t + i * 0.2) * 10;
 
-        const isUp = trend > 0;
-        c.color = isUp
-          ? "rgba(16,185,129,0.85)" // verde
-          : "rgba(239,68,68,0.85)"; // vermelho
-
-        // wick (pavio)
+        // wick
         ctx.beginPath();
-        ctx.moveTo(c.x + 2, c.y - c.wickHeight);
-        ctx.lineTo(c.x + 2, c.y + c.height + c.wickHeight);
-        ctx.strokeStyle = c.color.replace("0.85", "0.5");
+        ctx.moveTo(c.x + 2, posY - c.wick);
+        ctx.lineTo(c.x + 2, posY + candleHeight + c.wick);
+        ctx.strokeStyle = c.color.replace("0.8", "0.4");
         ctx.lineWidth = 1.2;
         ctx.stroke();
 
         // corpo
         ctx.fillStyle = c.color;
-        ctx.fillRect(c.x, c.y, 4, c.height);
+        ctx.fillRect(c.x, posY, 4, candleHeight);
         ctx.shadowColor = c.color;
         ctx.shadowBlur = 8;
 
@@ -239,28 +254,16 @@ function CandlesCanvas() {
         ctx.shadowBlur = 0;
       }
 
-      // --- estrutura de tendência (linha de BOS / ChoCh) ---
+      // EQH / EQL zones
+      ctx.strokeStyle = "rgba(255,255,255,0.05)";
+      ctx.lineWidth = 0.8;
       ctx.beginPath();
-      ctx.moveTo(0, h / 2 + Math.sin(t / 2) * 80);
-      for (let x = 0; x < w; x += 5) {
-        const y =
-          h / 2 +
-          Math.sin(x * 0.005 + t) * 40 +
-          Math.sin(x * 0.02 + t * 0.5) * 20;
-        ctx.lineTo(x, y);
+      for (let i = 0; i < w; i += 120) {
+        const eq = h / 2 + Math.sin(t * 0.5 + i) * 60;
+        ctx.moveTo(i, eq);
+        ctx.lineTo(i + 80, eq);
       }
-      ctx.lineWidth = 1;
-      ctx.strokeStyle =
-        trend > 0
-          ? "rgba(16,185,129,0.3)" // linha verde em alta
-          : "rgba(239,68,68,0.3)"; // linha vermelha em baixa
       ctx.stroke();
-
-      // Fade dourado ao trocar de tendência (transição cinematográfica)
-      if (Math.abs(Math.cos(t / 3)) < 0.02) {
-        ctx.fillStyle = "rgba(255,215,0,0.05)";
-        ctx.fillRect(0, 0, w, h);
-      }
 
       animationFrameId = requestAnimationFrame(draw);
     }
