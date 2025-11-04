@@ -349,32 +349,6 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
     }
   };
 
-  // Função para obter background conforme a etapa (fundo)
-  const getBackgroundForStep = (step: number): string => {
-    switch (step) {
-      case 1:
-      case 2:
-        return "/g4.webp";
-      case 3:
-      case 4:
-        return "/g9.webp";
-      case 5:
-      case 6:
-        return "/resultado cripto 2.jpeg";
-      case 7:
-      case 8:
-        return "/DISCORD AO VIVO.png";
-      case 9:
-      case 10:
-        return "/g12.webp";
-      case 11:
-      case 12:
-        return "/TFX DISCORD.png";
-      default:
-        return "/g1.webp";
-    }
-  };
-
   // Limpa localStorage ao carregar - sempre começa do zero
   useEffect(() => {
     try {
@@ -527,18 +501,6 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
       {/* Fundo com candles realistas animados */}
       <CandlesCanvas />
 
-      {/* Overlay com imagem de fundo dinâmica conforme etapa */}
-      <motion.div
-        key={step}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-        className="pointer-events-none absolute inset-0 bg-cover bg-center transition-all duration-1000"
-        style={{
-          backgroundImage: `url(${getBackgroundForStep(step)})`,
-          opacity: 0.3, // Mantém o gráfico visível
-        }}
-      />
 
       {/* Conteúdo */}
       <div className="relative mx-auto max-w-3xl px-6 pb-24 pt-16 md:pt-24">
