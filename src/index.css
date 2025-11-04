@@ -544,3 +544,13 @@ body {
   animation: pulse-glow 2s ease-in-out infinite;
 }
 
+/* Responsividade para imagens do quiz em telas pequenas */
+@media (max-width: 768px) {
+  .quiz-card img {
+    max-height: 250px !important;
+  }
+  .quiz-card [style*="height: 320px"] {
+    height: 250px !important;
+  }
+}
+

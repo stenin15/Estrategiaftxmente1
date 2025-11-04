@@ -622,7 +622,7 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.6 }}
-              className="relative rounded-2xl border border-white/10 bg-black/40 p-6 md:p-8 shadow-2xl backdrop-blur-xl z-10 text-center"
+              className="relative rounded-2xl border border-white/10 bg-black/40 p-6 md:p-8 shadow-2xl backdrop-blur-xl z-10 text-center quiz-card"
             >
               <div className="mb-6 space-y-2">
                 {resolveMicro() && (
@@ -635,16 +635,26 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                 </h1>
               </div>
 
-              {/* Imagem dinâmica dentro do card */}
-              <motion.img
-                key={step}
-                src={getImageForStep(step)}
-                alt="Visual TFX"
-                className="rounded-2xl border border-white/10 shadow-xl mb-6 w-full md:w-[85%] mx-auto object-cover"
-                initial={{ opacity: 0, scale: 0.98 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.7 }}
-              />
+              {/* IMAGEM DINÂMICA */}
+              <div className="w-full flex justify-center mb-6">
+                <motion.div
+                  key={step}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, ease: "easeOut" }}
+                  className="relative w-full md:w-[85%] overflow-hidden rounded-2xl border border-white/10 shadow-2xl bg-black/30 backdrop-blur-md flex justify-center items-center"
+                  style={{
+                    height: "320px", // mantém altura uniforme
+                  }}
+                >
+                  <img
+                    src={getImageForStep(step)}
+                    alt="Visual TFX"
+                    className="object-contain w-full h-full transition-transform duration-500 hover:scale-105"
+                    loading="lazy"
+                  />
+                </motion.div>
+              </div>
 
               <div className="flex flex-col gap-4">
                 {step === 0
