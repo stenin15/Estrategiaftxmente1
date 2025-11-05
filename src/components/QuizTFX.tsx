@@ -361,12 +361,12 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
 
   // Função para verificar se deve usar imagem ou vídeo
   const shouldUseImage = (step: number): boolean => {
-    return step === 0 || step === 5 || step === 6 || step === 8 || step === 10; // Etapas 1, 6, 7, 9 e 11 (steps 0, 5, 6, 8, 10)
+    return step === 5 || step === 6 || step === 8 || step === 10; // Etapas 6, 7, 9 e 11 (steps 5, 6, 8, 10) - etapa 1 não tem mídia
   };
 
   // Função para verificar se deve mostrar mídia (imagem ou vídeo)
   const shouldShowMedia = (step: number): boolean => {
-    return true; // Mostrar mídia em todas as etapas, incluindo página 1
+    return step !== 0; // Não mostrar mídia na primeira pergunta (step 0), apenas textos
   };
 
   // Função para obter a imagem conforme a etapa e nível
