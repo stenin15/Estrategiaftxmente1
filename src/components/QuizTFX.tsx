@@ -394,10 +394,10 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
       video.src = '';
       video.load();
       
-      // Aguardar um momento e então definir o novo src (codificar espaço)
+      // Aguardar um momento e então definir o novo src
       setTimeout(() => {
         if (videoRef.current) {
-          videoRef.current.src = encodeURI(videoSrc);
+          videoRef.current.src = videoSrc;
           videoRef.current.load();
           
           // Forçar reprodução após carregar
@@ -718,7 +718,7 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                 {/* SEÇÃO DE VÍDEO EM LOOP INFINITO - APENAS SE NÃO DEVERIA USAR IMAGEM */}
                 {!shouldUseImage(step) && (
                   <motion.div
-                    key={`video-container-${step}`}
+                    key={`video-container-${step}-${getVideoForStep(step, level)}`}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
@@ -736,7 +736,7 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                     <video
                       key={`video-element-${step}-${level}-${getVideoForStep(step, level)}`}
                       ref={videoRef}
-                      src={encodeURI(getVideoForStep(step, level))}
+                      src={getVideoForStep(step, level)}
                       autoPlay
                       loop
                       playsInline
