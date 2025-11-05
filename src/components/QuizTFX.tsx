@@ -852,41 +852,14 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="relative z-30 text-center px-6 max-w-4xl mx-auto flex flex-col items-center justify-center min-h-[60vh]"
         >
-          {/* Headline - Texto principal */}
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="text-3xl md:text-4xl font-bold text-white text-center mb-6"
-            style={{
-              textShadow: '0 0 20px rgba(255, 255, 255, 0.3)',
-              maxWidth: '800px',
-            }}
-          >
-            Talvez o que te falta não seja sorte — mas entender o jogo como os grandes jogam.
-          </motion.h2>
-
-          {/* Microcopy */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-            className="text-gray-300 text-center mb-8 max-w-lg mx-auto leading-relaxed"
-            style={{
-              color: 'rgba(255, 255, 255, 0.9)',
-            }}
-          >
-            Centenas de traders comuns já provaram que consistência não vem de sorte, e sim de clareza. Agora é sua vez de descobrir o que muda quando você entende o mercado de verdade.
-          </motion.p>
-
           {/* Container dos CTAs */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
-            className="flex flex-col items-center gap-4"
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            className="flex flex-col items-center gap-6"
           >
-            {/* Botão principal com brilho pulsante verde neon */}
+            {/* Botão principal CTA - Quero dar o primeiro passo pra mudar minha vida */}
             <motion.button
               onClick={() => finalizeAndGo()}
               className="relative bg-emerald-500 hover:bg-emerald-400 text-white font-semibold py-4 px-8 rounded-xl transition-transform hover:scale-105 shadow-lg shadow-emerald-500/30"
@@ -931,23 +904,22 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                   ease: "easeInOut",
                 }}
               />
-              Quero entender o jogo de verdade →
+              Quero dar o primeiro passo pra mudar minha vida →
             </motion.button>
 
-            {/* CTA alternativo (link) */}
-            <motion.button
-              onClick={() => {
-                // Ação para "ver como os grandes pensam" - pode ser scroll para informações ou modal
-                finalizeAndGo();
-              }}
-              className="text-gray-400 hover:text-white text-center cursor-pointer transition-colors duration-200 underline decoration-gray-400 hover:decoration-white underline-offset-4"
-              whileHover={{ y: -2 }}
+            {/* Microcopy abaixo do CTA */}
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+              className="text-gray-300 text-center max-w-lg mx-auto leading-relaxed"
               style={{
+                color: 'rgba(255, 255, 255, 0.8)',
                 fontSize: '0.95rem',
               }}
             >
-              Quero ver como os grandes pensam
-            </motion.button>
+              Nenhum trader nasce pronto. Mas todos os que mudaram de vida começaram com uma decisão simples — agir.
+            </motion.p>
           </motion.div>
         </motion.div>
       </motion.div>
