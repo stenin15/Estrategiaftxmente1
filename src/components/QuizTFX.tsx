@@ -307,6 +307,10 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
     if (step === 3) {
       return "/pergunta 4.mp4";
     }
+    // Etapa 5 (step 4) - todos os níveis
+    if (step === 4) {
+      return "/pergunta 5.mp4";
+    }
     // Etapa 2 (step 1) - nível avançado
     if (step === 1 && level === "avancado") {
       return "/pergunta 2 ( avançado).mp4";
