@@ -297,6 +297,16 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
   const totalSteps = 12;
   const progress = useMemo(() => Math.round(((step + 1) / totalSteps) * 100), [step]);
 
+  // Função para obter o vídeo conforme a etapa e nível
+  const getVideoForStep = (step: number, level: Level | null): string => {
+    // Etapa 2 (step 1) - nível avançado
+    if (step === 1 && level === "avancado") {
+      return "/pergunta 2 ( avançado).mp4";
+    }
+    // Para outras etapas, usar o vídeo padrão
+    return "/pergunta 1.mp4";
+  };
+
   // Limpa localStorage ao carregar - sempre começa do zero
   useEffect(() => {
     try {
@@ -539,9 +549,9 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                   }}
                 >
                   <video
-                    key={`video-element-${step}`}
+                    key={`video-element-${step}-${level}`}
                     ref={videoRef}
-                    src="/pergunta 1.mp4"
+                    src={getVideoForStep(step, level)}
                     autoPlay
                     loop
                     playsInline
@@ -621,7 +631,7 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                       console.warn('⏸️ Vídeo pausado');
                     }}
                   >
-                    <source src="/pergunta 1.mp4" type="video/mp4" />
+                    <source src={getVideoForStep(step, level)} type="video/mp4" />
                     Seu navegador não suporta o elemento de vídeo.
                   </video>
                 </motion.div>
