@@ -317,6 +317,10 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
 
   // Função para obter o vídeo conforme a etapa e nível
   const getVideoForStep = (step: number, level: Level | null): string => {
+    // Etapa 1 (step 0) - usar pergunta 1
+    if (step === 0) {
+      return "/pergunta 1.mp4";
+    }
     // Etapa 3 (step 2) - todos os níveis
     if (step === 2) {
       return "/pergunta 3.mp4";
