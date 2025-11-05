@@ -303,7 +303,7 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
 
   // Função para verificar se deve usar imagem ou vídeo
   const shouldUseImage = (step: number): boolean => {
-    return step === 5 || step === 6 || step === 8; // Etapas 6, 7 e 9 (steps 5, 6, 8)
+    return step === 5 || step === 6 || step === 8 || step === 10; // Etapas 6, 7, 9 e 11 (steps 5, 6, 8, 10)
   };
 
   // Função para obter a imagem conforme a etapa e nível
@@ -319,6 +319,10 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
     // Etapa 9 (step 8) - usar DISCORD 1
     if (step === 8) {
       return ["/DISCORD 1.png"];
+    }
+    // Etapa 11 (step 10) - usar DISCORD 2
+    if (step === 10) {
+      return ["/DISCORD 2.png"];
     }
     return [];
   };
@@ -360,10 +364,11 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
     } catch {}
   }, []);
 
-  // Carrossel automático para etapa 9 (step 8) e reset para outras etapas
+  // Reset do índice de imagem sempre que mudar de etapa
   useEffect(() => {
     setImageIndex(0); // Reset sempre que mudar de etapa
     
+    // Carrossel automático apenas se houver mais de uma imagem (não usado mais na etapa 9)
     if (step === 8) {
       const images = getImageForStep(step, level);
       if (images.length > 1) {
