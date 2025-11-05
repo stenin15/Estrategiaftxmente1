@@ -306,6 +306,11 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
     return step === 5 || step === 6 || step === 8 || step === 10; // Etapas 6, 7, 9 e 11 (steps 5, 6, 8, 10)
   };
 
+  // Função para verificar se deve mostrar mídia (imagem ou vídeo)
+  const shouldShowMedia = (step: number): boolean => {
+    return step !== 0; // Não mostrar mídia na Etapa 1 (step 0)
+  };
+
   // Função para obter a imagem conforme a etapa e nível
   const getImageForStep = (step: number, level: Level | null): string[] => {
     if (step === 5) return ["/DISCORDAOVIVO.png"];
