@@ -658,8 +658,11 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                       );
                     }
                     
-                    const fullUrl = window.location.origin + imageSrc;
-                    console.log('🌐 URL completa da imagem:', fullUrl);
+                    const encodedSrc = encodeURI(imageSrc);
+                    const fullUrl = window.location.origin + encodedSrc;
+                    console.log('🌐 URL completa da imagem (codificada):', fullUrl);
+                    console.log('📁 Src original:', imageSrc);
+                    console.log('📁 Src codificado:', encodedSrc);
                     
                     return (
                       <div
@@ -673,7 +676,7 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                       >
                         <img
                           key={`img-${step}-${imageSrc}-${Date.now()}`}
-                          src={imageSrc}
+                          src={encodeURI(imageSrc)}
                           alt={`Media etapa ${step + 1}`}
                           style={{
                             position: "absolute",
@@ -689,20 +692,24 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                           }}
                           onError={(e) => {
                             const target = e.currentTarget as HTMLImageElement;
+                            const encodedSrc = encodeURI(imageSrc);
                             const errorMsg = `❌ ERRO ao carregar imagem:
 Etapa: ${step + 1}
 Step: ${step}
-Src: ${imageSrc}
-URL completa: ${fullUrl}
+Src original: ${imageSrc}
+Src codificado: ${encodedSrc}
+URL completa: ${window.location.origin}${encodedSrc}
 CurrentSrc: ${target.currentSrc}
-Error: ${target.error ? target.error.message : 'Desconhecido'}`;
+Error: ${target.error ? `Code: ${target.error.code}, Message: ${target.error.message}` : 'Desconhecido'}`;
                             console.error(errorMsg);
-                            console.error('Tentando carregar novamente com timestamp...');
+                            
+                            // Mostrar mensagem visual de erro
                             target.style.border = "3px solid red";
                             target.style.backgroundColor = "rgba(255,0,0,0.2)";
-                            // Remover o src e adicionar novamente para forçar recarregamento
+                            
+                            // Tentar recarregar com URL codificada
                             setTimeout(() => {
-                              const newSrc = imageSrc + '?t=' + Date.now();
+                              const newSrc = encodedSrc + '?t=' + Date.now();
                               target.src = '';
                               setTimeout(() => {
                                 target.src = newSrc;
