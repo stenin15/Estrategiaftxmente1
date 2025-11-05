@@ -761,7 +761,8 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                     />
                   </motion.div>
                 )}
-              </div>
+                </div>
+              )}
 
               {/* Microcopy adicional abaixo da mídia */}
               {resolveMediaMicro() && (
