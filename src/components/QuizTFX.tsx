@@ -856,44 +856,87 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
         {/* Partículas douradas */}
         <GoldenParticles />
 
-        {/* Conteúdo central */}
+        {/* Conteúdo central - CTA Genérico de Transformação */}
         <motion.div
-          initial={{ opacity: 0, y: 100, scale: 0.9, filter: 'blur(20px)' }}
-          animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
-          className="relative z-30 text-center px-6 max-w-4xl mx-auto"
+          initial={{ opacity: 0, y: 50, scale: 0.95 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="relative z-30 text-center px-6 max-w-4xl mx-auto flex flex-col items-center justify-center min-h-[60vh]"
         >
+          {/* Headline */}
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.5 }}
-            className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight"
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            className="text-3xl md:text-4xl font-bold text-white text-center mb-4"
             style={{
-              textShadow: '0 0 30px rgba(255, 255, 255, 0.5)',
+              textShadow: '0 0 20px rgba(255, 255, 255, 0.3)',
             }}
           >
-            Você acaba de provar que não é o mercado que muda — é a mente que evolui.
+            Você sente que está pronto pra mudar sua vida de verdade?
           </motion.h1>
+
+          {/* Microcopy */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.8 }}
-            className="text-xl md:text-2xl text-[#00FFB3] font-semibold mb-10 text-blur-glow"
+            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+            className="text-gray-300 text-center mb-6 max-w-lg mx-auto leading-relaxed"
           >
-            Bem-vindo ao próximo nível da Consciência TFX.
+            Às vezes, tudo o que falta é clareza.
+            <br />
+            Dê o primeiro passo e veja o que o método certo pode fazer por você.
           </motion.p>
 
+          {/* Container dos botões */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 1.2 }}
-            className="flex justify-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+            className="flex flex-col items-center mt-4"
           >
-            <OptionButton
-              label="Quero acesso agora →"
+            {/* Botão principal com brilho pulsante */}
+            <motion.button
               onClick={() => finalizeAndGo()}
-              isFinal={true}
-            />
+              className="relative bg-emerald-500 hover:bg-emerald-400 text-white font-semibold py-3 px-6 rounded-xl transition-transform hover:scale-105 mx-auto block"
+              style={{
+                boxShadow: '0 0 20px rgba(16, 185, 129, 0.5), 0 0 40px rgba(16, 185, 129, 0.3)',
+              }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              {/* Brilho pulsante ao redor do botão */}
+              <motion.div
+                className="absolute inset-0 rounded-xl"
+                style={{
+                  background: 'linear-gradient(45deg, rgba(16, 185, 129, 0.3), rgba(5, 150, 105, 0.3))',
+                  filter: 'blur(12px)',
+                  zIndex: -1,
+                }}
+                animate={{
+                  opacity: [0.5, 1, 0.5],
+                  scale: [1, 1.1, 1],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
+              Quero mudar minha vida agora →
+            </motion.button>
+
+            {/* Botão secundário */}
+            <motion.button
+              onClick={() => {
+                // Ação para "entender melhor" - pode ser scroll para informações ou modal
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className="text-gray-400 hover:text-white text-center mt-3 cursor-pointer transition-colors duration-200"
+              whileHover={{ y: -2 }}
+            >
+              Quero entender melhor antes
+            </motion.button>
           </motion.div>
         </motion.div>
       </motion.div>
