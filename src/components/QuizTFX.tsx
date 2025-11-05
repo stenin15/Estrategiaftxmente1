@@ -366,7 +366,9 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
 
   // Função para verificar se deve mostrar mídia (imagem ou vídeo)
   const shouldShowMedia = (step: number): boolean => {
-    return step !== 0; // Não mostrar mídia na primeira pergunta (step 0), apenas textos
+    const result = step !== 0; // Não mostrar mídia na primeira pergunta (step 0), apenas textos
+    console.log('🔍 shouldShowMedia:', { step, result, mensagem: step === 0 ? 'Etapa 1 - SEM mídia' : 'Etapa ' + (step + 1) + ' - COM mídia' });
+    return result;
   };
 
   // Função para obter a imagem conforme a etapa e nível
