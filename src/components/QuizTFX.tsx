@@ -648,10 +648,10 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                   >
                     {(() => {
                       const images = getImageForStep(step, level);
-                      console.log('🖼️ Etapa:', step, 'Level:', level, 'Imagens:', images, 'shouldUseImage:', shouldUseImage(step));
+                      console.log('🖼️ Etapa:', step + 1, 'Level:', level, 'Imagens:', images, 'shouldUseImage:', shouldUseImage(step));
                       
                       if (images.length === 0) {
-                        console.warn('⚠️ Nenhuma imagem encontrada para etapa', step);
+                        console.warn('⚠️ Nenhuma imagem encontrada para etapa', step + 1);
                         return (
                           <div className="absolute inset-0 flex items-center justify-center text-white/50">
                             <p>Carregando imagem...</p>
@@ -667,50 +667,46 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                       const imageSrc = currentImage.startsWith('/') ? currentImage : `/${currentImage}`;
                       
                       return (
-                        <AnimatePresence mode="wait">
-                          <motion.img
-                            key={`img-${step}-${currentImageIndex}-${imageSrc}`}
-                            src={imageSrc}
-                            alt={`Media etapa ${step + 1}`}
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            transition={{ duration: 0.5 }}
-                            className="w-full h-full object-contain transition-transform duration-500 hover:scale-105"
-                            style={{
-                              filter: "drop-shadow(0 0 20px rgba(16, 185, 129, 0.3))",
-                              position: "absolute",
-                              top: "0",
-                              left: "0",
-                              right: "0",
-                              bottom: "0",
-                              width: "100%",
-                              height: "100%",
-                              display: "block",
-                              zIndex: 1,
-                              opacity: 1,
-                              objectFit: "contain",
-                              objectPosition: "center",
-                            }}
-                            onError={(e) => {
-                              console.error('❌ Erro ao carregar imagem:', imageSrc, 'Step:', step);
-                              const target = e.currentTarget as HTMLImageElement;
-                              console.error('Tentando carregar novamente...');
-                              // Forçar recarregamento
-                              setTimeout(() => {
-                                target.src = imageSrc + '?t=' + Date.now();
-                                target.load();
-                              }, 500);
-                            }}
-                            onLoad={(e) => {
-                              console.log('✅ Imagem carregada com sucesso:', imageSrc, 'Step:', step);
-                              const target = e.currentTarget as HTMLImageElement;
-                              target.style.opacity = "1";
-                            }}
-                            loading="eager"
-                            decoding="async"
-                          />
-                        </AnimatePresence>
+                        <img
+                          key={`img-${step}-${currentImageIndex}-${imageSrc}`}
+                          src={imageSrc}
+                          alt={`Media etapa ${step + 1}`}
+                          className="w-full h-full object-contain transition-transform duration-500 hover:scale-105"
+                          style={{
+                            filter: "drop-shadow(0 0 20px rgba(16, 185, 129, 0.3))",
+                            position: "absolute",
+                            top: 0,
+                            left: 0,
+                            right: 0,
+                            bottom: 0,
+                            width: "100%",
+                            height: "100%",
+                            display: "block",
+                            zIndex: 1,
+                            opacity: 1,
+                            objectFit: "contain",
+                            objectPosition: "center",
+                            maxWidth: "100%",
+                            maxHeight: "100%",
+                          }}
+                          onError={(e) => {
+                            console.error('❌ Erro ao carregar imagem:', imageSrc, 'Step:', step + 1);
+                            const target = e.currentTarget as HTMLImageElement;
+                            console.error('Tentando carregar novamente...');
+                            setTimeout(() => {
+                              target.src = imageSrc + '?t=' + Date.now();
+                              target.load();
+                            }, 500);
+                          }}
+                          onLoad={(e) => {
+                            console.log('✅ Imagem carregada com sucesso:', imageSrc, 'Step:', step + 1);
+                            const target = e.currentTarget as HTMLImageElement;
+                            target.style.opacity = "1";
+                            target.style.display = "block";
+                          }}
+                          loading="eager"
+                          decoding="async"
+                        />
                       );
                     })()}
                   </motion.div>
