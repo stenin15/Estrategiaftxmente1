@@ -312,8 +312,9 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
     if (step === 5) {
       return ["/DISCORD AO VIVO.png"];
     }
-    // Etapa 7 (step 6) - usar CONTEUDO E COMUNIDADE ETAPA 7
+    // Etapa 7 (step 6) - usar CONTEUDO E COMUNIDADE ETAPA 7.png
     if (step === 6) {
+      console.log('✅ ETAPA 7: Configurada para usar CONTEUDO E COMUNIDADE ETAPA 7.png');
       return ["/CONTEUDO E COMUNIDADE ETAPA 7.png"];
     }
     // Etapa 9 (step 8) - usar DISCORD 1
