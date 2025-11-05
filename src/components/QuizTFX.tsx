@@ -700,9 +700,13 @@ Error: ${target.error ? target.error.message : 'Desconhecido'}`;
                             console.error('Tentando carregar novamente com timestamp...');
                             target.style.border = "3px solid red";
                             target.style.backgroundColor = "rgba(255,0,0,0.2)";
+                            // Remover o src e adicionar novamente para forçar recarregamento
                             setTimeout(() => {
-                              target.src = imageSrc + '?t=' + Date.now();
-                              target.load();
+                              const newSrc = imageSrc + '?t=' + Date.now();
+                              target.src = '';
+                              setTimeout(() => {
+                                target.src = newSrc;
+                              }, 100);
                             }, 1000);
                           }}
                           onLoad={(e) => {
