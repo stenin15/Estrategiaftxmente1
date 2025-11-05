@@ -321,6 +321,7 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
       } else if (level === "avancado") {
         return ["/AULA 1.png", "/AULA 2.png"];
       }
+      // Fallback: se level ainda não foi definido, usar AULA 1
       return ["/AULA 1.png"];
     }
     // Etapa 9 (step 8) - carrossel entre DISCORD e AULA
@@ -367,8 +368,10 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
     } catch {}
   }, []);
 
-  // Carrossel automático para etapa 9 (step 8)
+  // Carrossel automático para etapa 9 (step 8) e reset para outras etapas
   useEffect(() => {
+    setImageIndex(0); // Reset sempre que mudar de etapa
+    
     if (step === 8) {
       const images = getImageForStep(step, level);
       if (images.length > 1) {
@@ -377,8 +380,6 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
         }, 3000); // Trocar a cada 3 segundos
         return () => clearInterval(interval);
       }
-    } else {
-      setImageIndex(0); // Reset quando mudar de etapa
     }
   }, [step, level]);
 
@@ -638,23 +639,47 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                       position: "relative",
                     }}
                   >
-                    {getImageForStep(step, level).length > 0 && (
-                      <AnimatePresence mode="wait">
-                        <motion.img
-                          key={`${getImageForStep(step, level)[imageIndex]}-${imageIndex}`}
-                          src={getImageForStep(step, level)[imageIndex]}
-                          alt={`Media etapa ${step + 1}`}
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: 1 }}
-                          exit={{ opacity: 0 }}
-                          transition={{ duration: 0.8, ease: "easeInOut" }}
-                          className="absolute inset-0 w-full h-full object-contain transition-transform duration-500 hover:scale-105"
-                          style={{
-                            filter: "drop-shadow(0 0 20px rgba(16, 185, 129, 0.3))",
-                          }}
-                        />
-                      </AnimatePresence>
-                    )}
+                    {(() => {
+                      const images = getImageForStep(step, level);
+                      console.log('🖼️ Etapa:', step, 'Level:', level, 'Imagens:', images);
+                      
+                      if (images.length === 0) {
+                        console.warn('⚠️ Nenhuma imagem encontrada para etapa', step);
+                        return null;
+                      }
+                      
+                      const currentImageIndex = Math.min(imageIndex, images.length - 1);
+                      const currentImage = images[currentImageIndex];
+                      
+                      console.log('📸 Exibindo imagem:', currentImage, 'índice:', currentImageIndex);
+                      
+                      return (
+                        <AnimatePresence mode="wait">
+                          <motion.img
+                            key={`${currentImage}-${currentImageIndex}-${step}`}
+                            src={currentImage}
+                            alt={`Media etapa ${step + 1}`}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.8, ease: "easeInOut" }}
+                            className="w-full h-full object-contain transition-transform duration-500 hover:scale-105"
+                            style={{
+                              filter: "drop-shadow(0 0 20px rgba(16, 185, 129, 0.3))",
+                              position: "absolute",
+                              inset: 0,
+                              display: "block",
+                            }}
+                            onError={(e) => {
+                              console.error('❌ Erro ao carregar imagem:', currentImage, e);
+                            }}
+                            onLoad={() => {
+                              console.log('✅ Imagem carregada com sucesso:', currentImage);
+                            }}
+                          />
+                        </AnimatePresence>
+                      );
+                    })()}
                   </motion.div>
                 ) : (
                   // SEÇÃO DE VÍDEO EM LOOP INFINITO
