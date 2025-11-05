@@ -450,6 +450,12 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
 
   // Garantir que o vídeo seja carregado e reproduzido quando step ou level mudar
   useEffect(() => {
+    // Não mostrar vídeo na etapa 1 (step 0) ou etapa 12 (step 11)
+    if (step === 0 || step === 11) {
+      console.log('🔍 useEffect vídeo: Etapa sem vídeo', { step });
+      return;
+    }
+    
     // Verificar se deve mostrar vídeo
     if (!shouldShowMedia(step) || shouldUseImage(step)) {
       console.log('🔍 useEffect vídeo: Não deve mostrar vídeo', { step, shouldShowMedia: shouldShowMedia(step), shouldUseImage: shouldUseImage(step) });
