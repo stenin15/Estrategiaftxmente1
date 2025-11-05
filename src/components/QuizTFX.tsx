@@ -714,8 +714,10 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                       );
                     })()}
                   </motion.div>
-                ) : (
-                  // SEÇÃO DE VÍDEO EM LOOP INFINITO
+                ) : null}
+                
+                {/* SEÇÃO DE VÍDEO EM LOOP INFINITO - APENAS SE NÃO DEVERIA USAR IMAGEM */}
+                {!shouldUseImage(step) && (
                   <motion.div
                     key={`video-container-${step}`}
                     initial={{ opacity: 0, y: 20 }}
