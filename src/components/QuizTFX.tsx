@@ -316,9 +316,9 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
     if (step === 6) {
       return ["/CONTEUDO E COMUNIDADE ETAPA 7.png"];
     }
-    // Etapa 9 (step 8) - carrossel entre DISCORD e AULA
+    // Etapa 9 (step 8) - usar DISCORD 1
     if (step === 8) {
-      return ["/DISCORD 1.png", "/AULA 1.png"];
+      return ["/DISCORD 1.png"];
     }
     return [];
   };
