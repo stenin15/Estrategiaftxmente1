@@ -633,41 +633,57 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                   >
                     {(() => {
                       const images = getImageForStep(step, level);
-                      console.log('🖼️ Etapa:', step, 'Level:', level, 'Imagens:', images);
+                      console.log('🖼️ Etapa:', step, 'Level:', level, 'Imagens:', images, 'shouldUseImage:', shouldUseImage(step));
                       
                       if (images.length === 0) {
                         console.warn('⚠️ Nenhuma imagem encontrada para etapa', step);
-                        return null;
+                        return (
+                          <div className="absolute inset-0 flex items-center justify-center text-white/50">
+                            <p>Carregando imagem...</p>
+                          </div>
+                        );
                       }
                       
-                      const currentImageIndex = Math.min(imageIndex, images.length - 1);
+                      const currentImageIndex = Math.min(Math.max(0, imageIndex), images.length - 1);
                       const currentImage = images[currentImageIndex];
                       
-                      console.log('📸 Exibindo imagem:', currentImage, 'índice:', currentImageIndex);
+                      console.log('📸 Exibindo imagem:', currentImage, 'índice:', currentImageIndex, 'total:', images.length);
                       
                       return (
                         <AnimatePresence mode="wait">
                           <motion.img
-                            key={`${currentImage}-${currentImageIndex}-${step}`}
+                            key={`img-${step}-${currentImageIndex}-${currentImage}`}
                             src={currentImage}
                             alt={`Media etapa ${step + 1}`}
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 0.95 }}
                             transition={{ duration: 0.8, ease: "easeInOut" }}
                             className="w-full h-full object-contain transition-transform duration-500 hover:scale-105"
                             style={{
                               filter: "drop-shadow(0 0 20px rgba(16, 185, 129, 0.3))",
                               position: "absolute",
-                              inset: 0,
+                              top: 0,
+                              left: 0,
+                              right: 0,
+                              bottom: 0,
+                              width: "100%",
+                              height: "100%",
                               display: "block",
+                              zIndex: 1,
                             }}
                             onError={(e) => {
-                              console.error('❌ Erro ao carregar imagem:', currentImage, e);
+                              console.error('❌ Erro ao carregar imagem:', currentImage, 'Step:', step, e);
+                              const target = e.currentTarget as HTMLImageElement;
+                              target.style.border = "2px solid red";
+                              target.style.backgroundColor = "rgba(255,0,0,0.1)";
                             }}
-                            onLoad={() => {
-                              console.log('✅ Imagem carregada com sucesso:', currentImage);
+                            onLoad={(e) => {
+                              console.log('✅ Imagem carregada com sucesso:', currentImage, 'Step:', step);
+                              const target = e.currentTarget as HTMLImageElement;
+                              target.style.border = "none";
                             }}
+                            loading="eager"
                           />
                         </AnimatePresence>
                       );
