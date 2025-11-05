@@ -319,7 +319,7 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
   const getVideoForStep = (step: number, level: Level | null): string => {
     // Etapa 1 (step 0) - FORÇAR pergunta 1
     if (step === 0) {
-      return "/pergunta%201.mp4"; // Codificar espaço como %20
+      return "/pergunta 1.mp4";
     }
     // Etapa 3 (step 2) - todos os níveis
     if (step === 2) {
