@@ -649,40 +649,48 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                       
                       console.log('📸 Exibindo imagem:', currentImage, 'índice:', currentImageIndex, 'total:', images.length);
                       
+                      const imageSrc = currentImage.startsWith('/') ? currentImage : `/${currentImage}`;
+                      
                       return (
                         <AnimatePresence mode="wait">
-                          <img
-                            key={`img-${step}-${currentImageIndex}-${currentImage}`}
-                            src={encodeURI(currentImage)}
+                          <motion.img
+                            key={`img-${step}-${currentImageIndex}-${imageSrc}`}
+                            src={imageSrc}
                             alt={`Media etapa ${step + 1}`}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.5 }}
                             className="w-full h-full object-contain transition-transform duration-500 hover:scale-105"
                             style={{
                               filter: "drop-shadow(0 0 20px rgba(16, 185, 129, 0.3))",
                               position: "absolute",
-                              top: 0,
-                              left: 0,
-                              right: 0,
-                              bottom: 0,
+                              top: "0",
+                              left: "0",
+                              right: "0",
+                              bottom: "0",
                               width: "100%",
                               height: "100%",
                               display: "block",
                               zIndex: 1,
                               opacity: 1,
+                              objectFit: "contain",
+                              objectPosition: "center",
                             }}
                             onError={(e) => {
-                              console.error('❌ Erro ao carregar imagem:', currentImage, 'Step:', step, 'URL codificada:', encodeURI(currentImage));
+                              console.error('❌ Erro ao carregar imagem:', imageSrc, 'Step:', step);
                               const target = e.currentTarget as HTMLImageElement;
-                              target.style.border = "2px solid red";
-                              target.style.backgroundColor = "rgba(255,0,0,0.1)";
-                              // Tentar novamente sem codificação
+                              console.error('Tentando carregar novamente...');
+                              // Forçar recarregamento
                               setTimeout(() => {
-                                target.src = currentImage;
-                              }, 100);
+                                target.src = imageSrc + '?t=' + Date.now();
+                                target.load();
+                              }, 500);
                             }}
                             onLoad={(e) => {
-                              console.log('✅ Imagem carregada com sucesso:', currentImage, 'Step:', step);
+                              console.log('✅ Imagem carregada com sucesso:', imageSrc, 'Step:', step);
                               const target = e.currentTarget as HTMLImageElement;
-                              target.style.border = "none";
+                              target.style.opacity = "1";
                             }}
                             loading="eager"
                             decoding="async"
