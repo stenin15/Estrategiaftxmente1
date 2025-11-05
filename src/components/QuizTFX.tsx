@@ -1,5 +1,6 @@
 import { useMemo, useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import VideoPlayer from "./VideoPlayer";
 
 type QuizTFXProps = {
   onStart?: () => void;
@@ -154,8 +155,8 @@ function OptionButton({ label, onClick, isFinal = false }: { label: string; onCl
 
   if (isFinal) {
     // Botão especial para a etapa final
-    return (
-      <motion.button
+  return (
+    <motion.button
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={handleClick}
@@ -623,7 +624,7 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
 
   // Componente de partículas ascendentes
   const ParticlesBackground = () => {
-    return (
+  return (
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         {Array.from({ length: 20 }).map((_, i) => (
           <div
@@ -963,7 +964,7 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
 
               {/* SEÇÃO DE MÍDIA (VÍDEO OU IMAGEM) */}
               {shouldShowMedia(step) && (
-                <div className="w-full flex justify-center mb-6">
+              <div className="w-full flex justify-center mb-6">
                   {shouldUseImage(step) ? (
                   (() => {
                     const images = getImageForStep(step, level);
@@ -990,14 +991,14 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                           });
                           
                           return (
-                            <motion.div
+                <motion.div
                               key={`image-wrapper-${step}-${idx}`}
                               initial={{ opacity: 0, y: 20, scale: 0.95 }}
                               animate={{ opacity: 1, y: 0, scale: 1 }}
                               exit={{ opacity: 0, y: -20, scale: 0.95 }}
                               transition={{ duration: 0.3, ease: "easeOut" }}
                               className="relative w-full overflow-hidden rounded-2xl border border-white/10 shadow-2xl bg-black/30 backdrop-blur-md"
-                              style={{
+                  style={{
                                 height: "320px",
                                 minHeight: "320px",
                                 boxShadow: '0 10px 40px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(0, 255, 179, 0.1)',
@@ -1015,9 +1016,9 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                               }}
                               onMouseLeave={(e) => {
                                 e.currentTarget.style.transform = 'translate(0, 0)';
-                              }}
-                            >
-                              <img
+                  }}
+                >
+                  <img
                                 key={`img-${step}-${idx}-${encodedSrc}`}
                                 src={encodedSrc}
                                 alt={`Media etapa ${step + 1}`}
@@ -1070,7 +1071,7 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                 ) : null}
                 
                 {/* SEÇÃO DE VÍDEO EM LOOP INFINITO - APENAS SE NÃO DEVERIA USAR IMAGEM */}
-                {!shouldUseImage(step) && (
+                {!shouldUseImage(step) && shouldShowMedia(step) && (
                   <motion.div
                     key={`video-container-${step}-${getVideoForStep(step, level)}`}
                     initial={{ opacity: 0, y: 20, scale: 0.95 }}
@@ -1101,63 +1102,16 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                       e.currentTarget.style.transform = 'translate(0, 0)';
                     }}
                   >
-                    <video
-                      key={`video-${step}-${getVideoForStep(step, level)}`}
-                      ref={videoRef}
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                      preload="auto"
-                      controls={false}
-                      style={{
-                        width: "100%",
-                        height: "100%",
-                        borderRadius: "12px",
-                        objectFit: "cover",
-                        filter: "brightness(0.9)",
-                        backgroundColor: "#000000",
-                        display: "block",
-                      }}
-                      className="transition-transform duration-500 hover:scale-105"
-                      onLoadStart={(e) => {
-                        const video = e.currentTarget;
-                        console.log('📹 Iniciando carregamento:', video.src, 'Step:', step);
-                      }}
-                      onLoadedMetadata={(e) => {
-                        const video = e.currentTarget;
-                        console.log('✅ Metadata carregado:', video.src);
-                        video.play().catch((err) => {
-                          console.log('⚠️ Erro ao reproduzir:', err);
-                        });
-                      }}
-                      onCanPlay={(e) => {
-                        const video = e.currentTarget;
-                        console.log('✅ Vídeo pronto:', video.src);
-                        video.play().catch(() => {});
-                      }}
-                      onError={(e) => {
-                        const video = e.currentTarget;
-                        const errorCode = video.error ? video.error.code : 'unknown';
-                        const errorMsg = video.error ? video.error.message : 'unknown';
-                        console.error('❌ ERRO:', {
-                          src: video.src,
-                          currentSrc: video.currentSrc,
-                          errorCode,
-                          errorMsg,
-                          step,
-                          level,
-                          networkState: video.networkState,
-                          readyState: video.readyState
-                        });
-                      }}
-                    >
-                      <source src={getVideoForStep(step, level)} type="video/mp4" />
-                      Seu navegador não suporta vídeos HTML5.
-                    </video>
+                    <VideoPlayer
+                      src={getVideoForStep(step, level)}
+                      step={step}
+                      autoPlay={true}
+                      loop={true}
+                      muted={true}
+                    />
                   </motion.div>
                 )}
-                </div>
+              </div>
               )}
 
               {/* Microcopy adicional abaixo da mídia */}
