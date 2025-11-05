@@ -636,27 +636,35 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
 
               {/* SEÇÃO DE MÍDIA (VÍDEO OU IMAGEM) */}
               <div className="w-full flex justify-center mb-6">
-                {shouldUseImage(step) ? (
-                  // SEÇÃO DE IMAGEM - RENDERIZAÇÃO SIMPLIFICADA E DIRETA
-                  (() => {
+                {(() => {
+                  const useImage = shouldUseImage(step);
+                  console.log('🔍 DEBUG MÍDIA - Etapa:', step + 1, 'Step:', step, 'shouldUseImage:', useImage);
+                  
+                  if (useImage) {
+                    // SEÇÃO DE IMAGEM - RENDERIZAÇÃO SIMPLIFICADA E DIRETA
                     const images = getImageForStep(step, level);
                     const currentImage = images.length > 0 ? images[0] : null;
                     const imageSrc = currentImage ? (currentImage.startsWith('/') ? currentImage : `/${currentImage}`) : '';
                     
-                    console.log('🖼️ RENDERIZANDO IMAGEM - Etapa:', step + 1, 'Src:', imageSrc);
+                    console.log('🖼️ RENDERIZANDO IMAGEM - Etapa:', step + 1, 'Step:', step, 'Src:', imageSrc, 'Images array:', images);
                     
                     if (!imageSrc) {
+                      console.error('❌ ERRO: Nenhuma imagem encontrada para etapa', step + 1);
                       return (
-                        <div className="relative w-full md:w-[85%] h-[320px] flex items-center justify-center text-white/50 rounded-2xl border border-white/10 bg-black/30">
-                          <p>Nenhuma imagem configurada</p>
+                        <div className="relative w-full md:w-[85%] h-[320px] flex flex-col items-center justify-center text-white/50 rounded-2xl border-2 border-red-500 bg-black/30">
+                          <p className="text-red-400 font-bold">❌ ERRO: Nenhuma imagem configurada</p>
+                          <p className="text-xs mt-2">Etapa: {step + 1}, Step: {step}</p>
                         </div>
                       );
                     }
                     
+                    const fullUrl = window.location.origin + imageSrc;
+                    console.log('🌐 URL completa da imagem:', fullUrl);
+                    
                     return (
                       <div
                         key={`image-wrapper-${step}`}
-                        className="relative w-full md:w-[85%] overflow-hidden rounded-2xl border border-white/10 shadow-2xl bg-black/30 backdrop-blur-md"
+                        className="relative w-full md:w-[85%] overflow-hidden rounded-2xl border-2 border-green-500 shadow-2xl bg-black/30 backdrop-blur-md"
                         style={{
                           height: "320px",
                           minHeight: "320px",
@@ -664,7 +672,7 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                         }}
                       >
                         <img
-                          key={`img-${step}-${imageSrc}`}
+                          key={`img-${step}-${imageSrc}-${Date.now()}`}
                           src={imageSrc}
                           alt={`Media etapa ${step + 1}`}
                           style={{
@@ -680,22 +688,52 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                             filter: "drop-shadow(0 0 20px rgba(16, 185, 129, 0.3))",
                           }}
                           onError={(e) => {
-                            console.error('❌ ERRO ao carregar:', imageSrc, 'Etapa:', step + 1);
                             const target = e.currentTarget as HTMLImageElement;
-                            target.style.border = "2px solid red";
-                            target.style.backgroundColor = "rgba(255,0,0,0.1)";
+                            const errorMsg = `❌ ERRO ao carregar imagem:
+Etapa: ${step + 1}
+Step: ${step}
+Src: ${imageSrc}
+URL completa: ${fullUrl}
+CurrentSrc: ${target.currentSrc}
+Error: ${target.error ? target.error.message : 'Desconhecido'}`;
+                            console.error(errorMsg);
+                            console.error('Tentando carregar novamente com timestamp...');
+                            target.style.border = "3px solid red";
+                            target.style.backgroundColor = "rgba(255,0,0,0.2)";
+                            setTimeout(() => {
+                              target.src = imageSrc + '?t=' + Date.now();
+                              target.load();
+                            }, 1000);
                           }}
                           onLoad={(e) => {
-                            console.log('✅ IMAGEM CARREGADA:', imageSrc, 'Etapa:', step + 1);
                             const target = e.currentTarget as HTMLImageElement;
+                            console.log('✅ IMAGEM CARREGADA COM SUCESSO:', {
+                              etapa: step + 1,
+                              step: step,
+                              src: imageSrc,
+                              currentSrc: target.currentSrc,
+                              naturalWidth: target.naturalWidth,
+                              naturalHeight: target.naturalHeight,
+                            });
                             target.style.opacity = "1";
+                            target.style.border = "none";
+                          }}
+                          onLoadStart={() => {
+                            console.log('🔄 Iniciando carregamento da imagem:', imageSrc);
                           }}
                           loading="eager"
                         />
+                        {/* Debug info overlay */}
+                        <div className="absolute top-2 left-2 text-xs text-white/70 bg-black/50 px-2 py-1 rounded z-10">
+                          Etapa {step + 1} - {imageSrc.split('/').pop()}
+                        </div>
                       </div>
                     );
-                  })()
-                ) : null}
+                  } else {
+                    console.log('📹 Deve usar VÍDEO para etapa', step + 1);
+                    return null;
+                  }
+                })()}
                 
                 {/* SEÇÃO DE VÍDEO EM LOOP INFINITO - APENAS SE NÃO DEVERIA USAR IMAGEM */}
                 {!shouldUseImage(step) && (
