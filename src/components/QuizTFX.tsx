@@ -449,12 +449,22 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
 
   // Garantir que o vídeo seja carregado e reproduzido quando step ou level mudar
   useEffect(() => {
-    if (!videoRef.current || shouldUseImage(step) || !shouldShowMedia(step)) {
+    // Verificar se deve mostrar vídeo
+    if (!shouldShowMedia(step) || shouldUseImage(step)) {
+      console.log('🔍 useEffect vídeo: Não deve mostrar vídeo', { step, shouldShowMedia: shouldShowMedia(step), shouldUseImage: shouldUseImage(step) });
+      return;
+    }
+
+    // Verificar se o elemento video existe
+    if (!videoRef.current) {
+      console.warn('⚠️ useEffect vídeo: videoRef.current não existe');
       return;
     }
 
     const video = videoRef.current;
     const videoSrc = getVideoForStep(step, level);
+    
+    console.log('📹 useEffect vídeo: Configurando', { step, level, videoSrc });
     
     if (!videoSrc) {
       console.warn('⚠️ Nenhum vídeo definido para step:', step, 'level:', level);
@@ -472,21 +482,38 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
       currentSrc: currentSrc.replace(window.location.origin, '')
     });
 
-    // Se o src mudou, forçar reload completo
-    if (currentSrc !== fullUrl) {
-      // Limpar src anterior
-      video.src = '';
-      video.load();
-      
-      // Aguardar um momento antes de definir novo src
-      setTimeout(() => {
-        if (videoRef.current) {
-          videoRef.current.src = videoSrc;
-          videoRef.current.load();
-          console.log('📹 Novo src definido:', videoRef.current.src);
-        }
-      }, 100);
-    }
+    // Sempre forçar reload completo para garantir que o vídeo correto seja carregado
+    // Limpar src anterior primeiro
+    video.src = '';
+    video.load();
+    
+    // Aguardar um momento antes de definir novo src
+    const timer = setTimeout(() => {
+      if (videoRef.current) {
+        videoRef.current.src = videoSrc;
+        videoRef.current.load();
+        console.log('📹 Novo src definido:', videoRef.current.src);
+        
+        // Tentar reproduzir imediatamente após carregar
+        videoRef.current.addEventListener('loadedmetadata', () => {
+          console.log('✅ Metadata carregado, tentando reproduzir...');
+          videoRef.current?.play().catch((err) => {
+            console.warn('⚠️ Erro ao reproduzir após metadata:', err);
+          });
+        }, { once: true });
+        
+        videoRef.current.addEventListener('canplay', () => {
+          console.log('✅ Vídeo pronto, tentando reproduzir...');
+          videoRef.current?.play().catch((err) => {
+            console.warn('⚠️ Erro ao reproduzir após canplay:', err);
+          });
+        }, { once: true });
+      }
+    }, 100);
+    
+    return () => {
+      clearTimeout(timer);
+    };
 
     // Tentar reproduzir após carregar
     const tryPlay = () => {
