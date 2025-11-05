@@ -459,39 +459,28 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
       const video = videoRef.current;
       const videoSrc = getVideoForStep(step, level);
       
-      // Sempre forçar reload para step 0 (primeira pergunta) ou quando o src mudou
-      const currentSrc = video.src || '';
-      const currentSrcPath = currentSrc.replace(window.location.origin, '');
-      
-      // Para step 0, sempre recarregar o vídeo
-      if (step === 0 || currentSrcPath !== videoSrc || !videoSrc) {
-        console.log('📹 Configurando vídeo:', {
-          step,
-          videoSrc,
-          currentSrcPath,
-          currentSrc,
-          level
-        });
-        
-        // Definir src diretamente
+      // Se o src mudou, forçar reload (mesma lógica que funciona para outros vídeos)
+      if (video.src !== window.location.origin + videoSrc) {
         video.src = videoSrc;
         video.load();
-        
-        // Aguardar antes de tentar reproduzir
-        setTimeout(() => {
-          if (videoRef.current && videoRef.current.src) {
-            const playPromise = videoRef.current.play();
-            if (playPromise !== undefined) {
-              playPromise
-                .then(() => {
-                  console.log('✅ Vídeo reproduzindo:', videoRef.current?.src);
-                })
-                .catch((error) => {
-                  console.error('❌ Erro ao reproduzir:', error, videoRef.current?.src);
-                });
-            }
-          }
-        }, 300);
+      }
+      
+      // Forçar reprodução (mesma lógica que funciona para outros vídeos)
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            console.log('✅ Vídeo iniciado com sucesso!');
+          })
+          .catch((error) => {
+            console.log('⚠️ Erro ao reproduzir vídeo automaticamente:', error);
+            // Tentar novamente após um delay
+            setTimeout(() => {
+              if (videoRef.current) {
+                videoRef.current.play().catch(() => {});
+              }
+            }, 500);
+          });
       }
     }
   }, [step, level]);
