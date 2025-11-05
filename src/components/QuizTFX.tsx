@@ -459,29 +459,50 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
       const video = videoRef.current;
       const videoSrc = getVideoForStep(step, level);
       
-      // Se o src mudou, forçar reload (mesma lógica que funciona para outros vídeos)
-      if (video.src !== window.location.origin + videoSrc) {
-        video.src = videoSrc;
+      // Para step 0, sempre forçar reload completo para garantir que inicioquiz.mp4 seja carregado
+      if (step === 0) {
+        console.log('📹 Configurando vídeo da primeira pergunta:', videoSrc);
+        // Limpar src primeiro
+        video.src = '';
         video.load();
+        // Aguardar um momento antes de definir novo src
+        setTimeout(() => {
+          if (videoRef.current) {
+            videoRef.current.src = videoSrc;
+            videoRef.current.load();
+            console.log('📹 Src definido:', videoRef.current.src);
+          }
+        }, 100);
+      } else {
+        // Para outros steps, usar lógica normal
+        if (video.src !== window.location.origin + videoSrc) {
+          video.src = videoSrc;
+          video.load();
+        }
       }
       
-      // Forçar reprodução (mesma lógica que funciona para outros vídeos)
-      const playPromise = video.play();
-      if (playPromise !== undefined) {
-        playPromise
-          .then(() => {
-            console.log('✅ Vídeo iniciado com sucesso!');
-          })
-          .catch((error) => {
-            console.log('⚠️ Erro ao reproduzir vídeo automaticamente:', error);
-            // Tentar novamente após um delay
-            setTimeout(() => {
-              if (videoRef.current) {
-                videoRef.current.play().catch(() => {});
-              }
-            }, 500);
-          });
-      }
+      // Forçar reprodução após delay maior para step 0
+      const delay = step === 0 ? 500 : 0;
+      setTimeout(() => {
+        if (videoRef.current && videoRef.current.src) {
+          const playPromise = videoRef.current.play();
+          if (playPromise !== undefined) {
+            playPromise
+              .then(() => {
+                console.log('✅ Vídeo iniciado:', videoRef.current?.src);
+              })
+              .catch((error) => {
+                console.log('⚠️ Erro ao reproduzir:', error, videoRef.current?.src);
+                // Tentar novamente
+                setTimeout(() => {
+                  if (videoRef.current) {
+                    videoRef.current.play().catch(() => {});
+                  }
+                }, 500);
+              });
+          }
+        }
+      }, delay);
     }
   }, [step, level]);
 
@@ -1109,8 +1130,8 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                     }}
                   >
                     <video
-                      key={`video-element-${step}-${level || 'null'}-${getVideoForStep(step, level)}`}
-                      ref={videoRef}
+                      key={`video-${step}-${level || 'null'}-${getVideoForStep(step, level)}`}
+                      ref={step === 0 ? videoRef : undefined}
                       src={getVideoForStep(step, level)}
                       autoPlay
                       loop
@@ -1126,37 +1147,43 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                         display: "block",
                       }}
                       className="transition-transform duration-500 hover:scale-105"
+                      onLoadStart={(e) => {
+                        const video = e.currentTarget;
+                        console.log('📹 Iniciando carregamento:', video.src, 'Step:', step);
+                      }}
                       onLoadedMetadata={(e) => {
                         const video = e.currentTarget;
-                        console.log('✅ Metadata carregado para vídeo:', video.src);
+                        console.log('✅ Metadata carregado:', video.src);
                         video.play().catch((err) => {
-                          console.log('⚠️ Erro ao reproduzir no onLoadedMetadata:', err);
+                          console.log('⚠️ Erro ao reproduzir:', err);
                         });
                       }}
                       onCanPlay={(e) => {
                         const video = e.currentTarget;
-                        console.log('✅ Vídeo pronto para reproduzir:', video.src);
+                        console.log('✅ Vídeo pronto:', video.src);
                         video.play().catch(() => {});
                       }}
                       onError={(e) => {
                         const video = e.currentTarget;
-                        console.error('❌ ERRO ao carregar vídeo:', {
+                        const errorCode = video.error ? video.error.code : 'unknown';
+                        const errorMsg = video.error ? video.error.message : 'unknown';
+                        console.error('❌ ERRO:', {
                           src: video.src,
                           currentSrc: video.currentSrc,
-                          error: video.error,
-                          step: step,
-                          level: level,
+                          errorCode,
+                          errorMsg,
+                          step,
+                          level,
                           networkState: video.networkState,
                           readyState: video.readyState
                         });
                         
-                        // Tentar recarregar se o erro for de formato não suportado (código 4)
-                        if (video.error && video.error.code === 4) {
-                          console.log('🔄 Tentando recarregar vídeo com timestamp...');
+                        // Tentar recarregar com timestamp para quebrar cache
+                        if (videoRef.current && step === 0) {
+                          console.log('🔄 Tentando recarregar inicioquiz.mp4...');
                           setTimeout(() => {
                             if (videoRef.current) {
-                              const newSrc = getVideoForStep(step, level);
-                              videoRef.current.src = newSrc + '?t=' + Date.now();
+                              videoRef.current.src = '/inicioquiz.mp4?t=' + Date.now();
                               videoRef.current.load();
                             }
                           }, 1000);
