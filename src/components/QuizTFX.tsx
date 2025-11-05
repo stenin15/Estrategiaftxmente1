@@ -406,6 +406,10 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
     else if (step === 4) {
       videoPath = "/pergunta 5.mp4";
     }
+    // Etapa 10 (step 9) - vídeo etapa10.mp4
+    else if (step === 9) {
+      videoPath = "/etapa10.mp4";
+    }
     // Etapa 2 (step 1) - nível avançado
     else if (step === 1 && level === "avancado") {
       videoPath = "/pergunta 2 ( avançado).mp4";
