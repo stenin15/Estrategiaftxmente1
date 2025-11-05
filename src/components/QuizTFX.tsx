@@ -630,14 +630,9 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
               </div>
 
               {/* SEÇÃO DE MÍDIA (VÍDEO OU IMAGEM) */}
-              <div className="w-full flex justify-center mb-6">
-                {(() => {
-                  const useImage = shouldUseImage(step);
-                  const videoSrc = getVideoForStep(step, level);
-                  console.log('🎬 DEBUG MÍDIA - Etapa:', step + 1, 'Step:', step, 'useImage:', useImage, 'videoSrc:', videoSrc);
-                  return null;
-                })()}
-                {shouldUseImage(step) ? (
+              {shouldShowMedia(step) && (
+                <div className="w-full flex justify-center mb-6">
+                  {shouldUseImage(step) ? (
                   (() => {
                     const images = getImageForStep(step, level);
                     console.log('🔍 DEBUG - Etapa:', step + 1, 'Step:', step, 'Images:', images);
