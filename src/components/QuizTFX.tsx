@@ -1,5 +1,6 @@
 import { useMemo, useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { FloatingCandles } from "./FloatingCandles";
 
 type QuizTFXProps = {
   onStart?: () => void;
