@@ -308,7 +308,7 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
 
   // Função para verificar se deve mostrar mídia (imagem ou vídeo)
   const shouldShowMedia = (step: number): boolean => {
-    return step !== 0; // Não mostrar mídia na Etapa 1 (step 0)
+    return true; // Mostrar mídia em todas as etapas
   };
 
   // Função para obter a imagem conforme a etapa e nível
@@ -322,9 +322,9 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
 
   // Função para obter o vídeo conforme a etapa e nível
   const getVideoForStep = (step: number, level: Level | null): string => {
-    // Etapa 1 (step 0) - FORÇAR pergunta 1
+    // Etapa 1 (step 0) - vídeo inicial etapa1
     if (step === 0) {
-      return "/pergunta 1.mp4";
+      return "/etapa1.mp4";
     }
     // Etapa 3 (step 2) - todos os níveis
     if (step === 2) {
