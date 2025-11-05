@@ -1,3 +1,0 @@
-Teste de deploy automático - configuração original restaurada
-Timestamp: $(Get-Date)
-Status: Deploy automático deve funcionar agora
