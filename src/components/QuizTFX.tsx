@@ -388,20 +388,27 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
       const video = videoRef.current;
       const videoSrc = getVideoForStep(step, level);
       
-      // Forçar recarregamento do vídeo se o src mudar
-      if (video.src !== window.location.origin + videoSrc) {
-        video.src = videoSrc;
-        video.load();
-      }
+      console.log('🎬 FORÇANDO vídeo para etapa:', step, 'vídeo:', videoSrc);
       
-      const playPromise = video.play();
+      // FORÇAR recarregamento completo do vídeo
+      video.src = '';
+      video.load();
       
-      if (playPromise !== undefined) {
-        playPromise
-          .then(() => {
-            console.log('✅ Vídeo iniciado com sucesso!');
-          })
-          .catch((error) => {
+      // Aguardar um momento e então definir o novo src
+      setTimeout(() => {
+        if (videoRef.current) {
+          videoRef.current.src = videoSrc;
+          videoRef.current.load();
+          
+          // Forçar reprodução após carregar
+          const playPromise = videoRef.current.play();
+          
+          if (playPromise !== undefined) {
+            playPromise
+              .then(() => {
+                console.log('✅ Vídeo iniciado com sucesso!');
+              })
+              .catch((error) => {
             console.log('⚠️ Erro ao reproduzir vídeo automaticamente:', error);
             // Tentar novamente após interação do usuário
             const tryPlay = () => {
@@ -721,7 +728,7 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                     }}
                   >
                     <video
-                      key={`video-element-${step}-${level}-${Date.now()}`}
+                      key={`video-element-${step}-${level}-${getVideoForStep(step, level)}`}
                       ref={videoRef}
                       src={getVideoForStep(step, level)}
                       autoPlay
