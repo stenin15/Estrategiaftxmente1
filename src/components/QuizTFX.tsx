@@ -340,8 +340,12 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [imageIndex, setImageIndex] = useState<number>(0); // Para carrossel na etapa 9
 
-  const totalSteps = 11; // Removida etapa 10, agora temos 11 etapas
-  const progress = useMemo(() => Math.round(((step + 1) / totalSteps) * 100), [step]);
+  // Calcular totalSteps dinamicamente baseado nas perguntas
+  // Q1 (1) + ADAPTIVE_QUESTIONS (7) + COMMON_QUESTIONS (2) + Tela Final (1) = 11
+  const totalSteps = useMemo(() => {
+    return 1 + ADAPTIVE_QUESTIONS.length + COMMON_QUESTIONS.length + 1; // +1 para tela final
+  }, []);
+  const progress = useMemo(() => Math.round(((step + 1) / totalSteps) * 100), [step, totalSteps]);
 
   // Função para verificar se deve usar imagem ou vídeo
   const shouldUseImage = (step: number): boolean => {
