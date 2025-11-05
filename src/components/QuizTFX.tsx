@@ -307,10 +307,11 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
   };
 
   // Função para obter a imagem conforme a etapa e nível
+  // TODAS AS IMAGENS SÃO RETORNADAS COM CAMINHO CORRETO E SERÃO CODIFICADAS NA RENDERIZAÇÃO
   const getImageForStep = (step: number, level: Level | null): string[] => {
     console.log('🔍 getImageForStep - Etapa:', step + 1, 'Step:', step);
     
-    // Etapa 6 (step 5) - usar DISCORD AO VIVO
+    // Etapa 6 (step 5) - usar DISCORD AO VIVO.png
     if (step === 5) {
       console.log('✅ ETAPA 6: Retornando /DISCORD AO VIVO.png');
       return ["/DISCORD AO VIVO.png"];
