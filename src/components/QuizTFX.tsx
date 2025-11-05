@@ -1,6 +1,5 @@
 import { useMemo, useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import VideoPlayer from "./VideoPlayer";
 
 type QuizTFXProps = {
   onStart?: () => void;
@@ -354,7 +353,7 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
   const [level, setLevel] = useState<Level | null>(null);
   const [answers, setAnswers] = useState<string[]>([]);
   const [hasStarted, setHasStarted] = useState<boolean>(false);
-  // videoRef removido - agora usamos o componente VideoPlayer que gerencia seu próprio ref
+  const videoRef = useRef<HTMLVideoElement>(null);
   const [imageIndex, setImageIndex] = useState<number>(0); // Para carrossel na etapa 9
 
   const totalSteps = 12;
@@ -437,8 +436,37 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
   }, [step, level]);
 
   // Garantir que o vídeo seja reproduzido quando o componente for montado ou step mudar
-  // O VideoPlayer agora gerencia o vídeo internamente
-  // Não precisamos mais deste useEffect - o componente VideoPlayer cuida de tudo
+  // Garantir que o vídeo seja reproduzido quando o componente for montado ou step mudar
+  useEffect(() => {
+    if (videoRef.current && !shouldUseImage(step) && shouldShowMedia(step)) {
+      const video = videoRef.current;
+      const videoSrc = getVideoForStep(step, level);
+      
+      // Forçar reload se o src mudou
+      if (video.src !== window.location.origin + videoSrc) {
+        video.src = videoSrc;
+        video.load();
+      }
+      
+      // Forçar reprodução
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            console.log('✅ Vídeo iniciado com sucesso!', video.src);
+          })
+          .catch((error) => {
+            console.log('⚠️ Erro ao reproduzir vídeo automaticamente:', error);
+            // Tentar novamente após um delay
+            setTimeout(() => {
+              if (videoRef.current) {
+                videoRef.current.play().catch(() => {});
+              }
+            }, 500);
+          });
+      }
+    }
+  }, [step, level]);
 
   // Salvar sessão
   useEffect(() => {
@@ -1063,13 +1091,28 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                       e.currentTarget.style.transform = 'translate(0, 0)';
                     }}
                   >
-                    <VideoPlayer
-                      src={getVideoForStep(step, level)}
-                      step={step}
-                      autoPlay={true}
-                      loop={true}
-                      muted={true}
-                    />
+                    <video
+                      key={`video-${step}-${getVideoForStep(step, level)}`}
+                      ref={videoRef}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      preload="auto"
+                      controls={false}
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        borderRadius: "12px",
+                        objectFit: "cover",
+                        filter: "brightness(0.9)",
+                        backgroundColor: "#000000",
+                        display: "block",
+                      }}
+                    >
+                      <source src={getVideoForStep(step, level)} type="video/mp4" />
+                      Seu navegador não suporta vídeos HTML5.
+                    </video>
                   </motion.div>
                 )}
               </div>
