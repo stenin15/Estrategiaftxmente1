@@ -917,8 +917,8 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
       {/* Partículas ascendentes no fundo */}
       <ParticlesBackground />
 
-      {/* Fundo com candles realistas animados */}
-      <CandlesCanvas />
+      {/* Fundo com velas flutuantes dinâmicas */}
+      <FloatingCandles />
 
 
       {/* Conteúdo - Centralizado vertical e horizontalmente */}
