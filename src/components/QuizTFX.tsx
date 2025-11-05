@@ -139,15 +139,73 @@ const COMMON_QUESTIONS = [
   },
 ];
 
-function OptionButton({ label, onClick }: { label: string; onClick: () => void }) {
+function OptionButton({ label, onClick, isFinal = false }: { label: string; onClick: () => void; isFinal?: boolean }) {
+  const [isClicked, setIsClicked] = useState(false);
+  const [hoverStyle, setHoverStyle] = useState({});
+
+  const handleClick = () => {
+    setIsClicked(true);
+    // Efeito de flash dourado
+    setTimeout(() => {
+      setIsClicked(false);
+      onClick();
+    }, 300);
+  };
+
+  if (isFinal) {
+    // Botão especial para a etapa final
+    return (
+      <motion.button
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        onClick={handleClick}
+        className={`w-full text-center rounded-xl border-2 border-transparent px-8 py-5 transition-all duration-300 backdrop-blur-md shadow-2xl relative overflow-hidden ${
+          isClicked ? 'animate-golden-flash' : ''
+        }`}
+        style={{
+          background: 'linear-gradient(135deg, #EAC76B 0%, #00FFB3 100%)',
+          boxShadow: '0 0 30px rgba(234, 199, 107, 0.5), 0 0 60px rgba(0, 255, 179, 0.3)',
+          ...hoverStyle,
+        }}
+        onHoverStart={() => {
+          setHoverStyle({
+            boxShadow: '0 0 40px rgba(234, 199, 107, 0.8), 0 0 80px rgba(0, 255, 179, 0.5)',
+            transform: 'scale(1.05)',
+          });
+        }}
+        onHoverEnd={() => {
+          setHoverStyle({});
+        }}
+      >
+        <span className="text-lg md:text-xl font-bold text-black relative z-10">{label}</span>
+      </motion.button>
+    );
+  }
+
   return (
     <motion.button
-      whileHover={{ scale: 1.03 }}
-      whileTap={{ scale: 0.98 }}
-      onClick={onClick}
-      className="w-full text-left rounded-xl border border-white/10 bg-gradient-to-r from-white/5 to-white/10 px-5 py-4 hover:from-emerald-400/10 hover:to-emerald-600/10 transition backdrop-blur-md shadow-md"
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98, y: 2 }}
+      onClick={handleClick}
+      className={`w-full text-left rounded-xl border border-white/10 bg-[#1A1F24] px-5 py-4 transition-all duration-300 backdrop-blur-md shadow-md relative overflow-hidden ${
+        isClicked ? 'animate-golden-flash' : ''
+      }`}
+      style={{
+        transitionDelay: '0.15s',
+        ...hoverStyle,
+      }}
+      onHoverStart={() => {
+        setHoverStyle({
+          background: 'linear-gradient(135deg, rgba(234, 199, 107, 0.2), rgba(0, 255, 179, 0.2))',
+        });
+      }}
+      onHoverEnd={() => {
+        setHoverStyle({
+          background: '#1A1F24',
+        });
+      }}
     >
-      <span className="text-base md:text-lg leading-snug text-white">{label}</span>
+      <span className="text-base md:text-lg leading-snug text-white relative z-10">{label}</span>
     </motion.button>
   );
 }
@@ -308,7 +366,11 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
 
   // Função para verificar se deve mostrar mídia (imagem ou vídeo)
   const shouldShowMedia = (step: number): boolean => {
-    return true; // Mostrar mídia em todas as etapas
+    // Página 1 (step 0) - sem mídia inicialmente (usuário vai inserir depois)
+    if (step === 0) {
+      return false;
+    }
+    return true; // Mostrar mídia nas demais etapas
   };
 
   // Função para obter a imagem conforme a etapa e nível
@@ -322,9 +384,9 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
 
   // Função para obter o vídeo conforme a etapa e nível
   const getVideoForStep = (step: number, level: Level | null): string => {
-    // Etapa 1 (step 0) - vídeo inicial VIDEO1
+    // Etapa 1 (step 0) - sem vídeo pré-definido (usuário vai inserir depois)
     if (step === 0) {
-      return "/VIDEO1.mp4";
+      return "";
     }
     // Etapa 3 (step 2) - todos os níveis
     if (step === 2) {
@@ -472,7 +534,7 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
     return "";
   };
 
-  // Avançar
+  // Avançar com delay e transição suave
   const handleSelect = (label: string) => {
     if (!hasStarted) {
       setHasStarted(true);
@@ -507,12 +569,11 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
       }
     } catch {}
 
-    // Última etapa → checkout
-    if (step === totalSteps - 1) {
-      finalizeAndGo();
-    } else {
+    // Delay de 0.4s antes de transicionar
+    setTimeout(() => {
+      // Avançar para próxima etapa (a tela final será exibida quando step === totalSteps - 1)
       setStep((s) => s + 1);
-    }
+    }, 400);
   };
 
   const finalizeAndGo = () => {
@@ -536,19 +597,30 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
       level: level || "na",
     });
 
-    // Transição final com brilho dourado
+    // Efeito de teleporte - energia fluindo para o centro
     const overlay = document.createElement("div");
     overlay.style.position = "fixed";
     overlay.style.inset = "0";
-    overlay.style.background =
-      "radial-gradient(circle at center, rgba(255,215,0,0.6) 0%, rgba(0,0,0,0.9) 70%)";
+    overlay.style.background = "radial-gradient(circle at center, rgba(0,255,179,0.8) 0%, rgba(234,199,107,0.6) 30%, rgba(0,0,0,0.95) 70%)";
     overlay.style.zIndex = "9999";
     overlay.style.opacity = "0";
-    overlay.style.transition = "opacity 1s ease";
+    overlay.style.transition = "opacity 0.4s ease-out";
+    overlay.className = "animate-teleport";
     document.body.appendChild(overlay);
+
+    // Animação de energia fluindo
+    const energyLine = document.createElement("div");
+    energyLine.style.position = "fixed";
+    energyLine.style.inset = "0";
+    energyLine.style.background = "linear-gradient(90deg, transparent, rgba(0,255,179,0.8), transparent)";
+    energyLine.style.zIndex = "10000";
+    energyLine.style.transform = "translateX(-100%)";
+    energyLine.style.transition = "transform 0.4s ease-out";
+    document.body.appendChild(energyLine);
 
     requestAnimationFrame(() => {
       overlay.style.opacity = "1";
+      energyLine.style.transform = "translateX(100%)";
     });
 
     setTimeout(() => {
@@ -557,15 +629,229 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
       } else {
         onComplete();
       }
-    }, 800);
+    }, 400);
   };
+
+  // Componente de partículas ascendentes
+  const ParticlesBackground = () => {
+    return (
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        {Array.from({ length: 20 }).map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-1 h-1 bg-white/20 rounded-full animate-particle-float"
+            style={{
+              left: `${Math.random() * 100}%`,
+              animationDelay: `${Math.random() * 20}s`,
+              animationDuration: `${15 + Math.random() * 10}s`,
+            }}
+          />
+        ))}
+      </div>
+    );
+  };
+
+  // Componente de barra de progresso interativa
+  const InteractiveProgressBar = () => {
+    const [displayProgress, setDisplayProgress] = useState(0);
+
+    useEffect(() => {
+      const timer = setTimeout(() => {
+        setDisplayProgress(progress);
+      }, 100);
+      return () => clearTimeout(timer);
+    }, [progress]);
+
+    return (
+      <div className="mb-10">
+        <div className="mb-3 flex items-center justify-between text-xs text-white/70">
+          <span className="font-semibold">Progresso</span>
+          <motion.span
+            key={progress}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="font-bold"
+            style={{
+              color: '#00FFB3',
+              animation: 'countUp 0.5s ease-out forwards',
+            }}
+          >
+            {displayProgress}%
+          </motion.span>
+        </div>
+        <div className="relative h-2 w-full overflow-hidden rounded-full bg-white/10">
+          <motion.div
+            className="h-full relative"
+            initial={{ width: 0 }}
+            animate={{ width: `${progress}%` }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            style={{
+              background: 'linear-gradient(90deg, #00FFB3 0%, #00845A 100%)',
+              position: 'relative',
+              overflow: 'hidden',
+            }}
+          >
+            {/* Partículas de luz correndo sobre a barra */}
+            {Array.from({ length: 3 }).map((_, i) => (
+              <div
+                key={i}
+                style={{
+                  position: 'absolute',
+                  width: '4px',
+                  height: '4px',
+                  background: 'rgba(255, 255, 255, 0.8)',
+                  borderRadius: '50%',
+                  boxShadow: '0 0 10px rgba(0, 255, 179, 0.8)',
+                  top: '50%',
+                  left: `${(i * 33) % 100}%`,
+                  transform: 'translateY(-50%)',
+                  animation: 'energyFlow 2s ease-in-out infinite',
+                  animationDelay: `${i * 0.6}s`,
+                }}
+              />
+            ))}
+            {/* Efeito de pulso ao atingir 100% */}
+            {progress === 100 && (
+              <motion.div
+                className="absolute inset-0 rounded-full"
+                style={{
+                  background: 'radial-gradient(circle, rgba(0,255,179,0.5) 0%, transparent 70%)',
+                  animation: 'unlockPulse 1s ease-in-out infinite',
+                }}
+              />
+            )}
+          </motion.div>
+        </div>
+      </div>
+    );
+  };
+
+  // Componente de onda de energia entre etapas
+  const EnergyWave = ({ isActive }: { isActive: boolean }) => {
+    if (!isActive) return null;
+    return (
+      <motion.div
+        className="absolute inset-0 pointer-events-none z-50"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+      >
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#00FFB3]/30 to-transparent animate-energy-wave" />
+      </motion.div>
+    );
+  };
+
+  // Componente de partículas douradas para a tela final
+  const GoldenParticles = () => {
+    return (
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        {Array.from({ length: 30 }).map((_, i) => (
+          <div
+            key={i}
+            className="absolute w-2 h-2 bg-[#EAC76B] rounded-full animate-golden-particle"
+            style={{
+              left: `${Math.random() * 100}%`,
+              bottom: `${Math.random() * 20}%`,
+              animationDelay: `${Math.random() * 5}s`,
+              animationDuration: `${4 + Math.random() * 3}s`,
+              boxShadow: '0 0 10px rgba(234, 199, 107, 0.8)',
+            }}
+          />
+        ))}
+      </div>
+    );
+  };
+
+  // Tela final especial (Etapa 12)
+  const FinalScreen = () => {
+    return (
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.5 }}
+        className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden"
+      >
+        {/* Efeito de escurecimento gradual */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+          className="absolute inset-0 bg-black/80 z-10"
+        />
+
+        {/* Linha de energia atravessando o fundo */}
+        <motion.div
+          initial={{ x: '-100%', opacity: 0 }}
+          animate={{ x: '100%', opacity: 1 }}
+          transition={{ duration: 1.5, ease: "easeInOut" }}
+          className="absolute inset-0 z-20"
+        >
+          <div className="absolute top-1/2 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#00FFB3] to-transparent" />
+        </motion.div>
+
+        {/* Partículas douradas */}
+        <GoldenParticles />
+
+        {/* Conteúdo central */}
+        <motion.div
+          initial={{ opacity: 0, y: 100, scale: 0.9, filter: 'blur(20px)' }}
+          animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
+          className="relative z-30 text-center px-6 max-w-4xl mx-auto"
+        >
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.5 }}
+            className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight"
+            style={{
+              textShadow: '0 0 30px rgba(255, 255, 255, 0.5)',
+            }}
+          >
+            Você acaba de provar que não é o mercado que muda — é a mente que evolui.
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.8 }}
+            className="text-xl md:text-2xl text-[#00FFB3] font-semibold mb-10 text-blur-glow"
+          >
+            Bem-vindo ao próximo nível da Consciência TFX.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 1.2 }}
+            className="flex justify-center"
+          >
+            <OptionButton
+              label="Quero acesso agora →"
+              onClick={() => finalizeAndGo()}
+              isFinal={true}
+            />
+          </motion.div>
+        </motion.div>
+      </motion.div>
+    );
+  };
+
+  // Se for após a última pergunta (step === totalSteps), mostrar tela final
+  // Quando o usuário responde a última pergunta (step === totalSteps - 1), step avança para totalSteps
+  if (step === totalSteps) {
+    return <FinalScreen />;
+  }
 
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8 }}
-      className={`relative min-h-[100dvh] overflow-hidden bg-gradient-to-br ${bgPhaseByStep(step)} text-white transition-all duration-700`}
+      className="relative min-h-[100dvh] overflow-hidden text-white transition-all duration-700"
+      style={{
+        background: 'linear-gradient(to bottom right, #0B0C10, #10161A)',
+        position: 'relative',
+      }}
     >
       {/* Backdrop film grain + vignette */}
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(transparent,rgba(0,0,0,0.5))]" />
@@ -577,57 +863,114 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
         }}
       />
 
+      {/* Partículas ascendentes no fundo */}
+      <ParticlesBackground />
+
       {/* Fundo com candles realistas animados */}
       <CandlesCanvas />
 
 
       {/* Conteúdo */}
       <div className="relative mx-auto max-w-3xl px-6 pb-24 pt-16 md:pt-24">
-        {/* Logo/heading pequeno */}
-        <div className="mb-8 flex items-center gap-3 opacity-80">
-          <div className="h-8 w-8 rounded-lg bg-white/10 backdrop-blur" />
-          <span className="text-sm uppercase tracking-widest text-white/70">TFX Mind Quiz</span>
-        </div>
+        {/* Título centralizado com animações - VERSÃO ATUALIZADA */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-center mb-6"
+          style={{ 
+            marginBottom: '24px',
+            paddingTop: '20px'
+          }}
+        >
+          <motion.h1
+            className="text-4xl md:text-5xl font-bold mb-3"
+            style={{
+              textShadow: '0 0 20px rgba(0, 255, 179, 0.5), 0 0 40px rgba(0, 255, 179, 0.3)',
+              animation: 'titleGlow 3s ease-in-out infinite',
+              color: '#FFFFFF',
+              fontSize: 'clamp(2rem, 5vw, 3rem)',
+            }}
+          >
+            TFX MIND QUIZ
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="text-lg md:text-xl font-semibold"
+            style={{
+              color: '#00FFB3',
+              textShadow: '0 0 10px rgba(0, 255, 179, 0.5), 0 0 20px rgba(0, 255, 179, 0.3)',
+              fontWeight: '600',
+            }}
+          >
+            Ative sua mente. Decodifique o mercado.
+          </motion.p>
+        </motion.div>
 
-        {/* Barra de progresso */}
-        <div className="mb-10">
-          <div className="mb-2 flex items-center justify-between text-xs text-white/70">
-            <span>Progresso</span>
-            <span>{progress}%</span>
-          </div>
-          <div className="h-2 w-full overflow-hidden rounded-full bg-white/10">
-            <div className="h-full bg-emerald-400/80 transition-all" style={{ width: `${progress}%` }} />
-          </div>
-        </div>
+        {/* Barra de progresso interativa */}
+        <InteractiveProgressBar />
 
         {/* Container relativo para o glow e card */}
         <div className="relative">
-          {/* Glow dinâmico atrás do cartão */}
+          {/* Glow dourado externo atrás do cartão */}
           <div className="absolute inset-0 flex items-center justify-center pointer-events-none -z-10">
-            <div className="h-[400px] w-[400px] rounded-full bg-emerald-400/10 blur-[120px] animate-pulseGlow" />
+            <div 
+              className="h-[500px] w-[500px] rounded-full"
+              style={{
+                background: 'radial-gradient(circle, rgba(234, 199, 107, 0.3) 0%, transparent 70%)',
+                filter: 'blur(120px)',
+                animation: 'goldenGlow 2s ease-in-out infinite',
+              }}
+            />
           </div>
 
-
-          {/* Card da pergunta */}
+          {/* Card da pergunta com estilo melhorado */}
           <AnimatePresence mode="wait">
             <motion.div
               key={step}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.6 }}
-              className="relative rounded-2xl border border-white/10 bg-black/40 p-6 md:p-8 shadow-2xl backdrop-blur-xl z-10 text-center quiz-card"
+              initial={{ opacity: 0, y: 30, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -30, scale: 0.95 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className="relative rounded-[18px] border border-white/10 p-6 md:p-8 shadow-2xl z-10 text-center quiz-card"
+              style={{
+                background: 'rgba(0, 0, 0, 0.6)',
+                backdropFilter: 'blur(20px)',
+                boxShadow: '0 0 30px rgba(234, 199, 107, 0.3), inset 0 0 20px rgba(0, 0, 0, 0.5)',
+                animation: 'fadeUpZoom 0.3s ease-out forwards',
+              }}
             >
-              <div className="mb-6 space-y-2">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="mb-6 space-y-2"
+              >
                 {resolveMicro() && (
-                  <p className="text-xs text-emerald-400/70 uppercase tracking-wide mb-3">
+                  <motion.p
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.6, delay: 0.2 }}
+                    className="text-sm font-semibold mb-3"
+                    style={{
+                      color: '#00FFB3',
+                      textShadow: '0 0 10px rgba(0, 255, 179, 0.5), 0 0 20px rgba(0, 255, 179, 0.3)',
+                    }}
+                  >
                     {resolveMicro()}
-                  </p>
+                  </motion.p>
                 )}
-                <h1 className="text-2xl md:text-3xl font-bold leading-snug text-white mb-6">
+                <motion.h1
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                  className="text-2xl md:text-3xl font-bold leading-snug text-white mb-6"
+                >
                   {resolveTitle()}
-                </h1>
-              </div>
+                </motion.h1>
+              </motion.div>
 
               {/* SEÇÃO DE MÍDIA (VÍDEO OU IMAGEM) */}
               {shouldShowMedia(step) && (
@@ -658,22 +1001,45 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                           });
                           
                           return (
-                            <div
+                            <motion.div
                               key={`image-wrapper-${step}-${idx}`}
+                              initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                              animate={{ opacity: 1, y: 0, scale: 1 }}
+                              exit={{ opacity: 0, y: -20, scale: 0.95 }}
+                              transition={{ duration: 0.3, ease: "easeOut" }}
                               className="relative w-full overflow-hidden rounded-2xl border border-white/10 shadow-2xl bg-black/30 backdrop-blur-md"
-                              style={{ height: "320px", minHeight: "320px" }}
+                              style={{
+                                height: "320px",
+                                minHeight: "320px",
+                                boxShadow: '0 10px 40px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(0, 255, 179, 0.1)',
+                              }}
+                              onMouseMove={(e) => {
+                                // Efeito de parallax sutil
+                                const rect = e.currentTarget.getBoundingClientRect();
+                                const x = e.clientX - rect.left;
+                                const y = e.clientY - rect.top;
+                                const centerX = rect.width / 2;
+                                const centerY = rect.height / 2;
+                                const moveX = (x - centerX) / 20;
+                                const moveY = (y - centerY) / 20;
+                                e.currentTarget.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                              }}
+                              onMouseLeave={(e) => {
+                                e.currentTarget.style.transform = 'translate(0, 0)';
+                              }}
                             >
                               <img
                                 key={`img-${step}-${idx}-${encodedSrc}`}
                                 src={encodedSrc}
                                 alt={`Media etapa ${step + 1}`}
-                                className="w-full h-full object-contain"
+                                className="w-full h-full object-contain transition-transform duration-300"
                                 style={{
                                   position: "absolute",
                                   inset: 0,
                                   width: "100%",
                                   height: "100%",
                                   display: "block",
+                                  filter: 'drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5))',
                                 }}
                                 onError={(e) => {
                                   const target = e.currentTarget as HTMLImageElement;
@@ -718,10 +1084,10 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                 {!shouldUseImage(step) && (
                   <motion.div
                     key={`video-container-${step}-${getVideoForStep(step, level)}`}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    transition={{ duration: 0.6, ease: "easeOut" }}
+                    initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -20, scale: 0.95 }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
                     className="relative w-full md:w-[85%] overflow-hidden rounded-2xl border border-white/10 shadow-2xl bg-black/30 backdrop-blur-md"
                     style={{
                       height: "320px",
@@ -730,6 +1096,20 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                       justifyContent: "center",
                       alignItems: "center",
                       position: "relative",
+                    }}
+                    onMouseMove={(e) => {
+                      // Efeito de parallax sutil
+                      const rect = e.currentTarget.getBoundingClientRect();
+                      const x = e.clientX - rect.left;
+                      const y = e.clientY - rect.top;
+                      const centerX = rect.width / 2;
+                      const centerY = rect.height / 2;
+                      const moveX = (x - centerX) / 20;
+                      const moveY = (y - centerY) / 20;
+                      e.currentTarget.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = 'translate(0, 0)';
                     }}
                   >
                     <video
@@ -776,7 +1156,12 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                 </motion.p>
               )}
 
-              <div className="flex flex-col gap-4">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="flex flex-col gap-4"
+              >
                 {step === 0
                   ? Q1.options.map((op, idx) => (
                       <OptionButton
@@ -788,7 +1173,7 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                   : current.options.map((op, idx) => (
                       <OptionButton key={idx} label={op} onClick={() => handleSelect(op)} />
                     ))}
-              </div>
+              </motion.div>
 
               {/* Rodapé auxiliar */}
               <div className="mt-6 flex items-center justify-center text-xs text-white/40">
