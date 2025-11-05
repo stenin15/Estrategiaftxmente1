@@ -742,72 +742,13 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                         display: "block",
                       }}
                       className="transition-transform duration-500 hover:scale-105"
-                      onLoadStart={() => {
-                        console.log('🔄 Iniciando carregamento do vídeo:', getVideoForStep(step, level));
-                      }}
                       onLoadedMetadata={(e) => {
                         const video = e.currentTarget;
-                        console.log('✅ Metadados do vídeo carregados');
-                        video.play().catch((err) => {
-                          console.warn('⚠️ Autoplay bloqueado, tentando novamente...', err);
-                        });
-                      }}
-                      onLoadedData={(e) => {
-                        const video = e.currentTarget;
-                        console.log('✅ Dados do vídeo carregados, tentando reproduzir...');
-                        const playPromise = video.play();
-                        if (playPromise !== undefined) {
-                          playPromise
-                            .then(() => {
-                              console.log('✅ Vídeo reproduzindo com sucesso!');
-                            })
-                            .catch((err) => {
-                              console.warn('⚠️ Erro ao reproduzir automaticamente:', err);
-                              setTimeout(() => {
-                                video.play().catch(() => {
-                                  console.warn('❌ Não foi possível reproduzir após retry');
-                                });
-                              }, 200);
-                            });
-                        }
-                      }}
-                      onCanPlay={(e) => {
-                        const video = e.currentTarget;
-                        if (video.paused) {
-                          video.play().catch(() => {
-                            console.warn('⚠️ Vídeo pausado, tentando reproduzir...');
-                          });
-                        }
-                      }}
-                      onCanPlayThrough={(e) => {
-                        const video = e.currentTarget;
-                        console.log('✅ Vídeo pode ser reproduzido completamente');
-                        if (video.paused) {
-                          video.play().catch(() => {});
-                        }
+                        video.play().catch(() => {});
                       }}
                       onError={(e) => {
                         const video = e.currentTarget;
-                        const error = video.error;
-                        console.error('❌ ERRO ao carregar vídeo:', {
-                          error: error ? {
-                            code: error.code,
-                            message: error.message,
-                          } : null,
-                          networkState: video.networkState,
-                          readyState: video.readyState,
-                          src: video.src,
-                          currentSrc: video.currentSrc,
-                        });
-                      }}
-                      onLoadStart={() => {
-                        console.log('🔄 Iniciando carregamento do vídeo...');
-                      }}
-                      onPlay={() => {
-                        console.log('▶️ Vídeo começou a reproduzir');
-                      }}
-                      onPause={() => {
-                        console.warn('⏸️ Vídeo pausado');
+                        console.error('❌ ERRO ao carregar vídeo:', video.src);
                       }}
                     />
                   </motion.div>
