@@ -455,6 +455,8 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
       return;
     }
 
+    let reloadTimer: number | null = null;
+
     // Aguardar um pouco para garantir que o elemento video foi renderizado
     const timer = setTimeout(() => {
       // Verificar se o elemento video existe
@@ -490,53 +492,51 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
       video.load();
       
       // Aguardar um momento antes de definir novo src
-      const reloadTimer = setTimeout(() => {
-        if (videoRef.current) {
-          videoRef.current.src = videoSrc;
-          videoRef.current.load();
-          console.log('📹 Novo src definido:', videoRef.current.src);
-          
-          // Tentar reproduzir imediatamente após carregar
-          const handleLoadedMetadata = () => {
-            console.log('✅ Metadata carregado, tentando reproduzir...', videoRef.current?.src);
-            videoRef.current?.play().catch((err) => {
-              console.warn('⚠️ Erro ao reproduzir após metadata:', err);
-              // Retry após 1 segundo
-              setTimeout(() => {
-                videoRef.current?.play().catch(() => {});
-              }, 1000);
-            });
-          };
-          
-          const handleCanPlay = () => {
-            console.log('✅ Vídeo pronto, tentando reproduzir...', videoRef.current?.src);
-            videoRef.current?.play().catch((err) => {
-              console.warn('⚠️ Erro ao reproduzir após canplay:', err);
-              // Retry após 1 segundo
-              setTimeout(() => {
-                videoRef.current?.play().catch(() => {});
-              }, 1000);
-            });
-          };
-          
-          videoRef.current.addEventListener('loadedmetadata', handleLoadedMetadata, { once: true });
-          videoRef.current.addEventListener('canplay', handleCanPlay, { once: true });
-          
-          // Se já estiver pronto, tentar reproduzir imediatamente
-          if (videoRef.current.readyState >= 2) {
-            handleCanPlay();
-          }
+      reloadTimer = window.setTimeout(() => {
+        if (!videoRef.current) return;
+        
+        videoRef.current.src = videoSrc;
+        videoRef.current.load();
+        console.log('📹 Novo src definido:', videoRef.current.src);
+        
+        // Tentar reproduzir imediatamente após carregar
+        const handleLoadedMetadata = () => {
+          console.log('✅ Metadata carregado, tentando reproduzir...', videoRef.current?.src);
+          videoRef.current?.play().catch((err) => {
+            console.warn('⚠️ Erro ao reproduzir após metadata:', err);
+            // Retry após 1 segundo
+            setTimeout(() => {
+              videoRef.current?.play().catch(() => {});
+            }, 1000);
+          });
+        };
+        
+        const handleCanPlay = () => {
+          console.log('✅ Vídeo pronto, tentando reproduzir...', videoRef.current?.src);
+          videoRef.current?.play().catch((err) => {
+            console.warn('⚠️ Erro ao reproduzir após canplay:', err);
+            // Retry após 1 segundo
+            setTimeout(() => {
+              videoRef.current?.play().catch(() => {});
+            }, 1000);
+          });
+        };
+        
+        videoRef.current.addEventListener('loadedmetadata', handleLoadedMetadata, { once: true });
+        videoRef.current.addEventListener('canplay', handleCanPlay, { once: true });
+        
+        // Se já estiver pronto, tentar reproduzir imediatamente
+        if (videoRef.current.readyState >= 2) {
+          handleCanPlay();
         }
       }, 150);
-      
-      // Cleanup do reloadTimer
-      return () => {
-        clearTimeout(reloadTimer);
-      };
     }, 200); // Delay inicial para garantir renderização
     
     return () => {
       clearTimeout(timer);
+      if (reloadTimer !== null) {
+        clearTimeout(reloadTimer);
+      }
     };
   }, [step, level]);
 
