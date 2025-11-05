@@ -819,10 +819,7 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                       onPause={() => {
                         console.warn('⏸️ Vídeo pausado');
                       }}
-                    >
-                      <source src={getVideoForStep(step, level)} type="video/mp4" />
-                      Seu navegador não suporta o elemento de vídeo.
-                    </video>
+                    />
                   </motion.div>
                 )}
               </div>
