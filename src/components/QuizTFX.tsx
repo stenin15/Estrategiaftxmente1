@@ -370,9 +370,9 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
   const shouldShowMedia = (step: number): boolean => {
     // Etapa 1 (step 0) - SEM mídia
     if (step === 0) return false;
-    // Etapa 12 (final) - SEM mídia (step === totalSteps - 1 quando responde a última pergunta)
-    if (step >= totalSteps - 1) return false;
-    // Todas as outras etapas têm mídia
+    // Etapa 12 (final) - SEM mídia (step === totalSteps quando mostra tela final)
+    if (step === totalSteps) return false;
+    // Todas as outras etapas (2-11, steps 1-10) têm mídia
     return true;
   };
 
