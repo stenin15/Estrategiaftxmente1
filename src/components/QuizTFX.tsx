@@ -381,36 +381,47 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
     return [];
   };
 
-  // Função para obter o vídeo conforme a etapa e nível
+  // Função para obter o vídeo conforme a etapa e nível (com encoding de espaços)
   const getVideoForStep = (step: number, level: Level | null): string => {
-    // Etapa 1 (step 0) - NÃO tem vídeo, usa imagem
+    let videoPath = "";
+    
+    // Etapa 1 (step 0) - NÃO tem vídeo, apenas textos
     // Vídeo só a partir da segunda pergunta (step 1)
     // Etapa 3 (step 2) - todos os níveis
     if (step === 2) {
-      return "/pergunta 3.mp4";
+      videoPath = "/pergunta 3.mp4";
     }
     // Etapa 4 (step 3) - todos os níveis
-    if (step === 3) {
-      return "/pergunta 4.mp4";
+    else if (step === 3) {
+      videoPath = "/pergunta 4.mp4";
     }
     // Etapa 5 (step 4) - todos os níveis
-    if (step === 4) {
-      return "/pergunta 5.mp4";
+    else if (step === 4) {
+      videoPath = "/pergunta 5.mp4";
     }
     // Etapa 2 (step 1) - nível avançado
-    if (step === 1 && level === "avancado") {
-      return "/pergunta 2 ( avançado).mp4";
+    else if (step === 1 && level === "avancado") {
+      videoPath = "/pergunta 2 ( avançado).mp4";
     }
     // Etapa 2 (step 1) - nível intermediário
-    if (step === 1 && level === "intermediario") {
-      return "/pergunta 2 ( intermediario).mp4";
+    else if (step === 1 && level === "intermediario") {
+      videoPath = "/pergunta 2 ( intermediario).mp4";
     }
     // Etapa 2 (step 1) - nível iniciante
-    if (step === 1 && level === "iniciante") {
-      return "/pergunta 2 ( iniciante).mp4";
+    else if (step === 1 && level === "iniciante") {
+      videoPath = "/pergunta 2 ( iniciante).mp4";
     }
     // Para outras etapas, usar o vídeo padrão
-    return "/pergunta 1.mp4";
+    else {
+      videoPath = "/pergunta 1.mp4";
+    }
+    
+    // Codificar espaços e caracteres especiais na URL
+    // Dividir o caminho e codificar cada parte (exceto a barra inicial)
+    return videoPath.split('/').map((part, i) => {
+      if (i === 0) return part; // Manter a barra inicial
+      return encodeURIComponent(part);
+    }).join('/');
   };
 
   // Limpa localStorage ao carregar - sempre começa do zero
@@ -436,37 +447,82 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
     }
   }, [step, level]);
 
-  // Garantir que o vídeo seja reproduzido quando o componente for montado ou step mudar
-  // Garantir que o vídeo seja reproduzido quando o componente for montado ou step mudar
+  // Garantir que o vídeo seja carregado e reproduzido quando step ou level mudar
   useEffect(() => {
-    if (videoRef.current && !shouldUseImage(step) && shouldShowMedia(step)) {
-      const video = videoRef.current;
-      const videoSrc = getVideoForStep(step, level);
-      
-      // Forçar reload se o src mudou
-      if (video.src !== window.location.origin + videoSrc) {
-        video.src = videoSrc;
-        video.load();
-      }
-      
-      // Forçar reprodução
-      const playPromise = video.play();
-      if (playPromise !== undefined) {
-        playPromise
-          .then(() => {
-            console.log('✅ Vídeo iniciado com sucesso!', video.src);
-          })
-          .catch((error) => {
-            console.log('⚠️ Erro ao reproduzir vídeo automaticamente:', error);
-            // Tentar novamente após um delay
-            setTimeout(() => {
-              if (videoRef.current) {
-                videoRef.current.play().catch(() => {});
-              }
-            }, 500);
-          });
-      }
+    if (!videoRef.current || shouldUseImage(step) || !shouldShowMedia(step)) {
+      return;
     }
+
+    const video = videoRef.current;
+    const videoSrc = getVideoForStep(step, level);
+    
+    if (!videoSrc) {
+      console.warn('⚠️ Nenhum vídeo definido para step:', step, 'level:', level);
+      return;
+    }
+
+    const fullUrl = window.location.origin + videoSrc;
+    const currentSrc = video.src || '';
+    
+    console.log('📹 Configurando vídeo:', {
+      step,
+      level,
+      videoSrc,
+      fullUrl,
+      currentSrc: currentSrc.replace(window.location.origin, '')
+    });
+
+    // Se o src mudou, forçar reload completo
+    if (currentSrc !== fullUrl) {
+      // Limpar src anterior
+      video.src = '';
+      video.load();
+      
+      // Aguardar um momento antes de definir novo src
+      setTimeout(() => {
+        if (videoRef.current) {
+          videoRef.current.src = videoSrc;
+          videoRef.current.load();
+          console.log('📹 Novo src definido:', videoRef.current.src);
+        }
+      }, 100);
+    }
+
+    // Tentar reproduzir após carregar
+    const tryPlay = () => {
+      if (videoRef.current && videoRef.current.readyState >= 2) {
+        const playPromise = videoRef.current.play();
+        if (playPromise !== undefined) {
+          playPromise
+            .then(() => {
+              console.log('✅ Vídeo reproduzindo com sucesso!', videoRef.current?.src);
+            })
+            .catch((error) => {
+              console.warn('⚠️ Erro ao reproduzir:', error);
+              // Retry após delay
+              setTimeout(() => {
+                if (videoRef.current) {
+                  videoRef.current.play().catch(() => {});
+                }
+              }, 1000);
+            });
+        }
+      }
+    };
+
+    // Tentar reproduzir imediatamente se já estiver pronto
+    if (video.readyState >= 2) {
+      tryPlay();
+    } else {
+      // Aguardar metadata ser carregado
+      video.addEventListener('loadedmetadata', tryPlay, { once: true });
+      video.addEventListener('canplay', tryPlay, { once: true });
+    }
+
+    return () => {
+      video.removeEventListener('loadedmetadata', tryPlay);
+      video.removeEventListener('canplay', tryPlay);
+    };
   }, [step, level]);
 
   // Salvar sessão
@@ -1096,8 +1152,9 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                     }}
                   >
                     <video
-                      key={`video-${step}-${getVideoForStep(step, level)}`}
+                      key={`video-${step}-${level || 'null'}-${getVideoForStep(step, level)}`}
                       ref={videoRef}
+                      src={getVideoForStep(step, level)}
                       autoPlay
                       loop
                       muted
@@ -1113,8 +1170,42 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                         backgroundColor: "#000000",
                         display: "block",
                       }}
+                      onLoadStart={() => {
+                        console.log('📹 Vídeo: Iniciando carregamento', getVideoForStep(step, level));
+                      }}
+                      onLoadedMetadata={(e) => {
+                        const video = e.currentTarget;
+                        console.log('✅ Vídeo: Metadata carregado', {
+                          src: video.src,
+                          duration: video.duration,
+                          readyState: video.readyState
+                        });
+                      }}
+                      onCanPlay={(e) => {
+                        const video = e.currentTarget;
+                        console.log('✅ Vídeo: Pronto para reproduzir', video.src);
+                        video.play().catch((err) => {
+                          console.warn('⚠️ Vídeo: Erro ao reproduzir automaticamente', err);
+                        });
+                      }}
+                      onError={(e) => {
+                        const video = e.currentTarget;
+                        const error = video.error;
+                        console.error('❌ Vídeo: ERRO ao carregar', {
+                          src: video.src,
+                          currentSrc: video.currentSrc,
+                          errorCode: error?.code,
+                          errorMessage: error?.message,
+                          networkState: video.networkState,
+                          readyState: video.readyState,
+                          step,
+                          level
+                        });
+                      }}
+                      onPlaying={() => {
+                        console.log('▶️ Vídeo: Reproduzindo!', getVideoForStep(step, level));
+                      }}
                     >
-                      <source src={getVideoForStep(step, level)} type="video/mp4" />
                       Seu navegador não suporta vídeos HTML5.
                     </video>
                   </motion.div>
