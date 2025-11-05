@@ -292,41 +292,10 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
   const [level, setLevel] = useState<Level | null>(null);
   const [answers, setAnswers] = useState<string[]>([]);
   const [hasStarted, setHasStarted] = useState<boolean>(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   const totalSteps = 12;
   const progress = useMemo(() => Math.round(((step + 1) / totalSteps) * 100), [step]);
-
-  // Função para obter imagem conforme a etapa (dentro do card)
-  const getImageForStep = (step: number): string => {
-    switch (step) {
-      case 0:
-        return "/g3.webp";
-      case 1:
-        return "/g4.webp";
-      case 2:
-        return "/g9.webp";
-      case 3:
-        return "/AULAS COM EXPICAÇÕES CLARAS.png";
-      case 4:
-        return "/resultado cripto 1  (1).jpeg";
-      case 5:
-        return "/binance resultado futuro.jpeg";
-      case 6:
-        return "/DISCORD AO VIVO.png";
-      case 7:
-        return "/TFX DISCORD.png";
-      case 8:
-        return "/resultado forex 2  (2).jpeg";
-      case 9:
-        return "/DISCORD AO VIVO.png";
-      case 10:
-        return "/resultado forex 1  (6).jpeg";
-      case 11:
-        return "/resultado forex 3  (5).jpeg";
-      default:
-        return "/g1.webp";
-    }
-  };
 
   // Limpa localStorage ao carregar - sempre começa do zero
   useEffect(() => {
@@ -334,6 +303,28 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
       localStorage.removeItem(STORAGE_KEY);
     } catch {}
   }, []);
+
+  // Garantir que o vídeo seja reproduzido quando o componente for montado ou step mudar
+  useEffect(() => {
+    if (videoRef.current) {
+      const video = videoRef.current;
+      const playPromise = video.play();
+      
+      if (playPromise !== undefined) {
+        playPromise.catch((error) => {
+          console.log('Erro ao reproduzir vídeo automaticamente:', error);
+          // Tentar novamente após interação do usuário
+          const tryPlay = () => {
+            video.play().catch(() => {});
+            document.removeEventListener('click', tryPlay);
+            document.removeEventListener('touchstart', tryPlay);
+          };
+          document.addEventListener('click', tryPlay, { once: true });
+          document.addEventListener('touchstart', tryPlay, { once: true });
+        });
+      }
+    }
+  }, [step]);
 
   // Salvar sessão
   useEffect(() => {
@@ -529,24 +520,110 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                 </h1>
               </div>
 
-              {/* IMAGEM DINÂMICA */}
+              {/* SEÇÃO DE VÍDEO EM LOOP INFINITO */}
               <div className="w-full flex justify-center mb-6">
                 <motion.div
-                  key={step}
+                  key={`video-container-${step}`}
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.6, ease: "easeOut" }}
-                  className="relative w-full md:w-[85%] overflow-hidden rounded-2xl border border-white/10 shadow-2xl bg-black/30 backdrop-blur-md flex justify-center items-center"
+                  className="relative w-full md:w-[85%] overflow-hidden rounded-2xl border border-white/10 shadow-2xl bg-black/30 backdrop-blur-md"
                   style={{
-                    height: "320px", // mantém altura uniforme
+                    height: "320px",
+                    minHeight: "320px",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    position: "relative",
                   }}
                 >
-                  <img
-                    src={getImageForStep(step)}
-                    alt="Visual TFX"
-                    className="object-contain w-full h-full transition-transform duration-500 hover:scale-105"
-                    loading="lazy"
-                  />
+                  <video
+                    key={`video-element-${step}`}
+                    ref={videoRef}
+                    src="/pergunta 1.mp4"
+                    autoPlay
+                    loop
+                    playsInline
+                    muted
+                    preload="auto"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "contain",
+                      backgroundColor: "#000000",
+                      display: "block",
+                    }}
+                    className="transition-transform duration-500 hover:scale-105"
+                    onLoadedMetadata={(e) => {
+                      const video = e.currentTarget;
+                      console.log('✅ Metadados do vídeo carregados');
+                      video.play().catch((err) => {
+                        console.warn('⚠️ Autoplay bloqueado, tentando novamente...', err);
+                      });
+                    }}
+                    onLoadedData={(e) => {
+                      const video = e.currentTarget;
+                      console.log('✅ Dados do vídeo carregados, tentando reproduzir...');
+                      const playPromise = video.play();
+                      if (playPromise !== undefined) {
+                        playPromise
+                          .then(() => {
+                            console.log('✅ Vídeo reproduzindo com sucesso!');
+                          })
+                          .catch((err) => {
+                            console.warn('⚠️ Erro ao reproduzir automaticamente:', err);
+                            // Tentar novamente após um delay
+                            setTimeout(() => {
+                              video.play().catch(() => {
+                                console.warn('❌ Não foi possível reproduzir após retry');
+                              });
+                            }, 200);
+                          });
+                      }
+                    }}
+                    onCanPlay={(e) => {
+                      const video = e.currentTarget;
+                      if (video.paused) {
+                        video.play().catch(() => {
+                          console.warn('⚠️ Vídeo pausado, tentando reproduzir...');
+                        });
+                      }
+                    }}
+                    onCanPlayThrough={(e) => {
+                      const video = e.currentTarget;
+                      console.log('✅ Vídeo pode ser reproduzido completamente');
+                      if (video.paused) {
+                        video.play().catch(() => {});
+                      }
+                    }}
+                    onError={(e) => {
+                      const video = e.currentTarget;
+                      const error = video.error;
+                      console.error('❌ ERRO ao carregar vídeo:', {
+                        error: error ? {
+                          code: error.code,
+                          message: error.message,
+                        } : null,
+                        networkState: video.networkState,
+                        readyState: video.readyState,
+                        src: video.src,
+                        currentSrc: video.currentSrc,
+                      });
+                    }}
+                    onLoadStart={() => {
+                      console.log('🔄 Iniciando carregamento do vídeo...');
+                    }}
+                    onPlay={() => {
+                      console.log('▶️ Vídeo começou a reproduzir');
+                    }}
+                    onPause={() => {
+                      console.warn('⏸️ Vídeo pausado');
+                    }}
+                  >
+                    <source src="/pergunta 1.mp4" type="video/mp4" />
+                    Seu navegador não suporta o elemento de vídeo.
+                  </video>
                 </motion.div>
               </div>
 
