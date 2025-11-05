@@ -361,7 +361,7 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
 
   // Função para verificar se deve usar imagem ou vídeo
   const shouldUseImage = (step: number): boolean => {
-    return step === 5 || step === 6 || step === 8 || step === 10; // Etapas 6, 7, 9 e 11 (steps 5, 6, 8, 10)
+    return step === 0 || step === 5 || step === 6 || step === 8 || step === 10; // Etapas 1, 6, 7, 9 e 11 (steps 0, 5, 6, 8, 10)
   };
 
   // Função para verificar se deve mostrar mídia (imagem ou vídeo)
@@ -371,6 +371,7 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
 
   // Função para obter a imagem conforme a etapa e nível
   const getImageForStep = (step: number, level: Level | null): string[] => {
+    if (step === 0) return ["/etapa 1.jpg"]; // Etapa 1 - foto etapa 1
     if (step === 5) return ["/DISCORDAOVIVO.png"];
     if (step === 6) return ["/CONTEUDOECOMUNIDADEETAPA7.png"];
     if (step === 8) return ["/DISCORD1.png"];
@@ -380,10 +381,8 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
 
   // Função para obter o vídeo conforme a etapa e nível
   const getVideoForStep = (step: number, level: Level | null): string => {
-    // Etapa 1 (step 0) - vídeo inicial inicioquiz.mp4
-    if (step === 0) {
-      return "/inicioquiz.mp4";
-    }
+    // Etapa 1 (step 0) - NÃO tem vídeo, usa imagem
+    // Vídeo só a partir da segunda pergunta (step 1)
     // Etapa 3 (step 2) - todos os níveis
     if (step === 2) {
       return "/pergunta 3.mp4";
