@@ -459,29 +459,38 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
       const video = videoRef.current;
       const videoSrc = getVideoForStep(step, level);
       
-      // Se o src mudou, forçar reload
-      if (video.src !== window.location.origin + videoSrc) {
+      // Se o src mudou ou está vazio, forçar reload
+      const currentSrc = video.src || '';
+      const expectedSrc = window.location.origin + videoSrc;
+      const currentSrcPath = currentSrc.replace(window.location.origin, '');
+      
+      if (currentSrcPath !== videoSrc || !videoSrc) {
         video.src = videoSrc;
         video.load();
+        console.log('📹 Carregando vídeo:', videoSrc, 'Step:', step, 'Level:', level);
       }
       
-      // Forçar reprodução
-      const playPromise = video.play();
-      if (playPromise !== undefined) {
-        playPromise
-          .then(() => {
-            console.log('✅ Vídeo iniciado com sucesso!');
-          })
-          .catch((error) => {
-            console.log('⚠️ Erro ao reproduzir vídeo automaticamente:', error);
-            // Tentar novamente após um delay
-            setTimeout(() => {
-              if (videoRef.current) {
-                videoRef.current.play().catch(() => {});
-              }
-            }, 500);
-          });
-      }
+      // Forçar reprodução após um pequeno delay para garantir que o vídeo foi carregado
+      setTimeout(() => {
+        if (videoRef.current && videoRef.current.src) {
+          const playPromise = videoRef.current.play();
+          if (playPromise !== undefined) {
+            playPromise
+              .then(() => {
+                console.log('✅ Vídeo iniciado com sucesso!', videoRef.current?.src);
+              })
+              .catch((error) => {
+                console.log('⚠️ Erro ao reproduzir vídeo automaticamente:', error, videoRef.current?.src);
+                // Tentar novamente após um delay
+                setTimeout(() => {
+                  if (videoRef.current) {
+                    videoRef.current.play().catch(() => {});
+                  }
+                }, 500);
+              });
+          }
+        }
+      }, 100);
     }
   }, [step, level]);
 
@@ -1109,7 +1118,7 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                     }}
                   >
                     <video
-                      key={`video-element-${step}-${level}-${getVideoForStep(step, level)}`}
+                      key={`video-element-${step}-${level || 'null'}-${getVideoForStep(step, level)}`}
                       ref={videoRef}
                       src={getVideoForStep(step, level)}
                       autoPlay
@@ -1128,11 +1137,25 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                       className="transition-transform duration-500 hover:scale-105"
                       onLoadedMetadata={(e) => {
                         const video = e.currentTarget;
+                        console.log('✅ Metadata carregado para vídeo:', video.src);
+                        video.play().catch((err) => {
+                          console.log('⚠️ Erro ao reproduzir no onLoadedMetadata:', err);
+                        });
+                      }}
+                      onCanPlay={(e) => {
+                        const video = e.currentTarget;
+                        console.log('✅ Vídeo pronto para reproduzir:', video.src);
                         video.play().catch(() => {});
                       }}
                       onError={(e) => {
                         const video = e.currentTarget;
-                        console.error('❌ ERRO ao carregar vídeo:', video.src);
+                        console.error('❌ ERRO ao carregar vídeo:', {
+                          src: video.src,
+                          currentSrc: video.currentSrc,
+                          error: video.error,
+                          step: step,
+                          level: level
+                        });
                       }}
                     />
                   </motion.div>
