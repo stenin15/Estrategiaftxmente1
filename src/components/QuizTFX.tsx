@@ -312,17 +312,9 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
     if (step === 5) {
       return ["/DISCORD AO VIVO.png"];
     }
-    // Etapa 7 (step 6) - usar AULA conforme nível
+    // Etapa 7 (step 6) - usar CONTEUDO E COMUNIDADE ETAPA 7
     if (step === 6) {
-      if (level === "iniciante") {
-        return ["/AULA 1.png"];
-      } else if (level === "intermediario") {
-        return ["/AULA 2.png"];
-      } else if (level === "avancado") {
-        return ["/AULA 1.png", "/AULA 2.png"];
-      }
-      // Fallback: se level ainda não foi definido, usar AULA 1
-      return ["/AULA 1.png"];
+      return ["/CONTEUDO E COMUNIDADE ETAPA 7.png"];
     }
     // Etapa 9 (step 8) - carrossel entre DISCORD e AULA
     if (step === 8) {
