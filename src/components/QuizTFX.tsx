@@ -322,8 +322,9 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
       console.log('✅ ETAPA 9: Configurada para usar DISCORD 1.png');
       return ["/DISCORD 1.png"];
     }
-    // Etapa 11 (step 10) - usar DISCORD 2
+    // Etapa 11 (step 10) - usar DISCORD 2.png
     if (step === 10) {
+      console.log('✅ ETAPA 11: Configurada para usar DISCORD 2.png');
       return ["/DISCORD 2.png"];
     }
     return [];
