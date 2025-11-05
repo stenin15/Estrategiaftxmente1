@@ -664,6 +664,19 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                     console.log('📁 Src original:', imageSrc);
                     console.log('📁 Src codificado:', encodedSrc);
                     
+                    // Verificar se o arquivo existe no servidor
+                    fetch(fullUrl, { method: 'HEAD' })
+                      .then(response => {
+                        if (response.ok) {
+                          console.log('✅ Arquivo existe no servidor:', fullUrl);
+                        } else {
+                          console.error('❌ Arquivo NÃO encontrado no servidor:', fullUrl, 'Status:', response.status);
+                        }
+                      })
+                      .catch(error => {
+                        console.error('❌ Erro ao verificar arquivo:', error);
+                      });
+                    
                     return (
                       <div
                         key={`image-wrapper-${step}`}
@@ -676,7 +689,7 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                       >
                         <img
                           key={`img-${step}-${imageSrc}-${Date.now()}`}
-                          src={encodeURI(imageSrc)}
+                          src={encodedSrc}
                           alt={`Media etapa ${step + 1}`}
                           style={{
                             position: "absolute",
@@ -692,22 +705,22 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                           }}
                           onError={(e) => {
                             const target = e.currentTarget as HTMLImageElement;
-                            const encodedSrc = encodeURI(imageSrc);
                             const errorMsg = `❌ ERRO ao carregar imagem:
 Etapa: ${step + 1}
 Step: ${step}
 Src original: ${imageSrc}
 Src codificado: ${encodedSrc}
-URL completa: ${window.location.origin}${encodedSrc}
+URL completa: ${fullUrl}
 CurrentSrc: ${target.currentSrc}
-Error: ${target.error ? `Code: ${target.error.code}, Message: ${target.error.message}` : 'Desconhecido'}`;
+Error Code: ${target.error?.code || 'N/A'}
+Error Message: ${target.error?.message || 'Desconhecido'}`;
                             console.error(errorMsg);
                             
                             // Mostrar mensagem visual de erro
                             target.style.border = "3px solid red";
                             target.style.backgroundColor = "rgba(255,0,0,0.2)";
                             
-                            // Tentar recarregar com URL codificada
+                            // Tentar recarregar com timestamp
                             setTimeout(() => {
                               const newSrc = encodedSrc + '?t=' + Date.now();
                               target.src = '';
