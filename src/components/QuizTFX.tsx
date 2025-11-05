@@ -545,7 +545,12 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
   const current = useMemo(() => {
     if (step === 0) return Q1;
     if (step >= 1 && step <= 7) return ADAPTIVE_QUESTIONS[step - 1];
-    return COMMON_QUESTIONS[step - 8];
+    // Após remover etapa 10 (antiga step 9), ajustar índices:
+    // step 8 → COMMON_QUESTIONS[0] (id: 9) - Etapa 9
+    // step 9 → COMMON_QUESTIONS[1] (id: 11) - Etapa 10 (antiga etapa 11)
+    if (step === 8) return COMMON_QUESTIONS[0]; // Etapa 9
+    if (step === 9) return COMMON_QUESTIONS[1]; // Etapa 10 (antiga etapa 11)
+    return null;
   }, [step]);
 
   // Título/subtítulo/microcopy adaptativos
