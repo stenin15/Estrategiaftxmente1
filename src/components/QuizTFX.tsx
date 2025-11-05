@@ -388,36 +388,27 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
       const video = videoRef.current;
       const videoSrc = getVideoForStep(step, level);
       
-      console.log('🎬 FORÇANDO vídeo para etapa:', step, 'vídeo:', videoSrc);
+      // Se o src mudou, forçar reload
+      if (video.src !== window.location.origin + videoSrc) {
+        video.src = videoSrc;
+        video.load();
+      }
       
-      // FORÇAR recarregamento completo do vídeo
-      video.src = '';
-      video.load();
-      
-      // Aguardar um momento e então definir o novo src
-      setTimeout(() => {
-        if (videoRef.current) {
-          videoRef.current.src = videoSrc;
-          videoRef.current.load();
-          
-          // Forçar reprodução após carregar
-          const playPromise = videoRef.current.play();
-          
-          if (playPromise !== undefined) {
-            playPromise
-              .then(() => {
-                console.log('✅ Vídeo iniciado com sucesso!');
-              })
-              .catch((error) => {
+      // Forçar reprodução
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            console.log('✅ Vídeo iniciado com sucesso!');
+          })
+          .catch((error) => {
             console.log('⚠️ Erro ao reproduzir vídeo automaticamente:', error);
-            // Tentar novamente após interação do usuário
-            const tryPlay = () => {
-              video.play().catch(() => {});
-              document.removeEventListener('click', tryPlay);
-              document.removeEventListener('touchstart', tryPlay);
-            };
-            document.addEventListener('click', tryPlay, { once: true });
-            document.addEventListener('touchstart', tryPlay, { once: true });
+            // Tentar novamente após um delay
+            setTimeout(() => {
+              if (videoRef.current) {
+                videoRef.current.play().catch(() => {});
+              }
+            }, 500);
           });
       }
     }
