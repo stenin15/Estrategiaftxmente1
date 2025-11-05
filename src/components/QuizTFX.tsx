@@ -308,9 +308,9 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
 
   // Função para obter a imagem conforme a etapa e nível
   const getImageForStep = (step: number, level: Level | null): string[] => {
-    // Etapa 6 (step 5) - usar DISCORD 1 (ou alternar)
+    // Etapa 6 (step 5) - usar DISCORD AO VIVO
     if (step === 5) {
-      return ["/DISCORD 1.png"];
+      return ["/DISCORD AO VIVO.png"];
     }
     // Etapa 7 (step 6) - usar AULA conforme nível
     if (step === 6) {
