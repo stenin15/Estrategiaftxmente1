@@ -373,7 +373,7 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
 
   // Função para obter a imagem conforme a etapa e nível
   const getImageForStep = (step: number, level: Level | null): string[] => {
-    if (step === 0) return ["/etapa%201.jpg"]; // Etapa 1 - foto etapa 1 (com espaço codificado)
+    // Etapa 1 (step 0) - SEM imagem, apenas textos
     if (step === 5) return ["/DISCORDAOVIVO.png"];
     if (step === 6) return ["/CONTEUDOECOMUNIDADEETAPA7.png"];
     if (step === 8) return ["/DISCORD1.png"];
