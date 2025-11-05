@@ -318,23 +318,35 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
   useEffect(() => {
     if (videoRef.current) {
       const video = videoRef.current;
+      const videoSrc = getVideoForStep(step, level);
+      
+      // Forçar recarregamento do vídeo se o src mudar
+      if (video.src !== window.location.origin + videoSrc) {
+        video.src = videoSrc;
+        video.load();
+      }
+      
       const playPromise = video.play();
       
       if (playPromise !== undefined) {
-        playPromise.catch((error) => {
-          console.log('Erro ao reproduzir vídeo automaticamente:', error);
-          // Tentar novamente após interação do usuário
-          const tryPlay = () => {
-            video.play().catch(() => {});
-            document.removeEventListener('click', tryPlay);
-            document.removeEventListener('touchstart', tryPlay);
-          };
-          document.addEventListener('click', tryPlay, { once: true });
-          document.addEventListener('touchstart', tryPlay, { once: true });
-        });
+        playPromise
+          .then(() => {
+            console.log('✅ Vídeo iniciado com sucesso!');
+          })
+          .catch((error) => {
+            console.log('⚠️ Erro ao reproduzir vídeo automaticamente:', error);
+            // Tentar novamente após interação do usuário
+            const tryPlay = () => {
+              video.play().catch(() => {});
+              document.removeEventListener('click', tryPlay);
+              document.removeEventListener('touchstart', tryPlay);
+            };
+            document.addEventListener('click', tryPlay, { once: true });
+            document.addEventListener('touchstart', tryPlay, { once: true });
+          });
       }
     }
-  }, [step]);
+  }, [step, level]);
 
   // Salvar sessão
   useEffect(() => {
@@ -549,7 +561,7 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                   }}
                 >
                   <video
-                    key={`video-element-${step}-${level}`}
+                    key={`video-element-${step}-${level}-${Date.now()}`}
                     ref={videoRef}
                     src={getVideoForStep(step, level)}
                     autoPlay
@@ -557,6 +569,7 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                     playsInline
                     muted
                     preload="auto"
+                    controls={false}
                     style={{
                       width: "100%",
                       height: "100%",
@@ -565,6 +578,9 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                       display: "block",
                     }}
                     className="transition-transform duration-500 hover:scale-105"
+                    onLoadStart={() => {
+                      console.log('🔄 Iniciando carregamento do vídeo:', getVideoForStep(step, level));
+                    }}
                     onLoadedMetadata={(e) => {
                       const video = e.currentTarget;
                       console.log('✅ Metadados do vídeo carregados');
