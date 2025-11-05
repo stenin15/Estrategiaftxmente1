@@ -815,13 +815,12 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                       onPlay={() => {
                         console.log('▶️ Vídeo começou a reproduzir');
                       }}
-                        onPause={() => {
-                          console.warn('⏸️ Vídeo pausado');
-                        }}
-                      />
-                    </motion.div>
-                  );
-                })()}
+                      onPause={() => {
+                        console.warn('⏸️ Vídeo pausado');
+                      }}
+                    />
+                  </motion.div>
+                )}
               </div>
 
               {/* Microcopy adicional abaixo da mídia */}
