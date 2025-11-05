@@ -381,7 +381,17 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
   }, [step, level]);
 
   // Garantir que o vídeo seja reproduzido quando o componente for montado ou step mudar
+  // IMPORTANTE: NÃO reproduzir vídeo se deveria usar imagem
   useEffect(() => {
+    // Se deve usar imagem, pausar e ocultar o vídeo completamente
+    if (shouldUseImage(step) && videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.src = '';
+      videoRef.current.load();
+      return;
+    }
+    
+    // Só reproduzir vídeo se NÃO deveria usar imagem
     if (videoRef.current && !shouldUseImage(step)) {
       const video = videoRef.current;
       const videoSrc = getVideoForStep(step, level);
