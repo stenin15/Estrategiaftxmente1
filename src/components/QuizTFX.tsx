@@ -303,6 +303,10 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
     if (step === 1 && level === "avancado") {
       return "/pergunta 2 ( avançado).mp4";
     }
+    // Etapa 2 (step 1) - nível intermediário
+    if (step === 1 && level === "intermediario") {
+      return "/pergunta 2 ( intermediario).mp4";
+    }
     // Para outras etapas, usar o vídeo padrão
     return "/pergunta 1.mp4";
   };
