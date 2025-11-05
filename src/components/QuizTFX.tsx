@@ -459,47 +459,40 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
       const video = videoRef.current;
       const videoSrc = getVideoForStep(step, level);
       
-      // Se o src mudou ou está vazio, forçar reload
+      // Sempre forçar reload para step 0 (primeira pergunta) ou quando o src mudou
       const currentSrc = video.src || '';
-      const expectedSrc = window.location.origin + videoSrc;
       const currentSrcPath = currentSrc.replace(window.location.origin, '');
       
-      // Sempre forçar reload para garantir que o vídeo seja carregado
-      if (currentSrcPath !== videoSrc || !videoSrc || step === 0) {
-        // Limpar src primeiro para forçar reload completo
-        video.src = '';
+      // Para step 0, sempre recarregar o vídeo
+      if (step === 0 || currentSrcPath !== videoSrc || !videoSrc) {
+        console.log('📹 Configurando vídeo:', {
+          step,
+          videoSrc,
+          currentSrcPath,
+          currentSrc,
+          level
+        });
+        
+        // Definir src diretamente
+        video.src = videoSrc;
         video.load();
-        // Aguardar um pouco antes de definir novo src
+        
+        // Aguardar antes de tentar reproduzir
         setTimeout(() => {
-          if (videoRef.current) {
-            videoRef.current.src = videoSrc;
-            videoRef.current.load();
-            console.log('📹 Carregando vídeo:', videoSrc, 'Step:', step, 'Level:', level, 'URL completa:', window.location.origin + videoSrc);
+          if (videoRef.current && videoRef.current.src) {
+            const playPromise = videoRef.current.play();
+            if (playPromise !== undefined) {
+              playPromise
+                .then(() => {
+                  console.log('✅ Vídeo reproduzindo:', videoRef.current?.src);
+                })
+                .catch((error) => {
+                  console.error('❌ Erro ao reproduzir:', error, videoRef.current?.src);
+                });
+            }
           }
-        }, 50);
+        }, 300);
       }
-      
-      // Forçar reprodução após um pequeno delay para garantir que o vídeo foi carregado
-      setTimeout(() => {
-        if (videoRef.current && videoRef.current.src) {
-          const playPromise = videoRef.current.play();
-          if (playPromise !== undefined) {
-            playPromise
-              .then(() => {
-                console.log('✅ Vídeo iniciado com sucesso!', videoRef.current?.src);
-              })
-              .catch((error) => {
-                console.log('⚠️ Erro ao reproduzir vídeo automaticamente:', error, videoRef.current?.src);
-                // Tentar novamente após um delay
-                setTimeout(() => {
-                  if (videoRef.current) {
-                    videoRef.current.play().catch(() => {});
-                  }
-                }, 500);
-              });
-          }
-        }
-      }, 100);
     }
   }, [step, level]);
 
@@ -1163,8 +1156,22 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                           currentSrc: video.currentSrc,
                           error: video.error,
                           step: step,
-                          level: level
+                          level: level,
+                          networkState: video.networkState,
+                          readyState: video.readyState
                         });
+                        
+                        // Tentar recarregar se o erro for de rede
+                        if (video.error && video.error.code === MediaError.MEDIA_ERR_SRC_NOT_SUPPORTED) {
+                          console.log('🔄 Tentando recarregar vídeo...');
+                          setTimeout(() => {
+                            if (videoRef.current) {
+                              const newSrc = getVideoForStep(step, level);
+                              videoRef.current.src = newSrc + '?t=' + Date.now();
+                              videoRef.current.load();
+                            }
+                          }, 1000);
+                        }
                       }}
                     />
                   </motion.div>
