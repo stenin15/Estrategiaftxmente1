@@ -464,10 +464,19 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
       const expectedSrc = window.location.origin + videoSrc;
       const currentSrcPath = currentSrc.replace(window.location.origin, '');
       
-      if (currentSrcPath !== videoSrc || !videoSrc) {
-        video.src = videoSrc;
+      // Sempre forçar reload para garantir que o vídeo seja carregado
+      if (currentSrcPath !== videoSrc || !videoSrc || step === 0) {
+        // Limpar src primeiro para forçar reload completo
+        video.src = '';
         video.load();
-        console.log('📹 Carregando vídeo:', videoSrc, 'Step:', step, 'Level:', level);
+        // Aguardar um pouco antes de definir novo src
+        setTimeout(() => {
+          if (videoRef.current) {
+            videoRef.current.src = videoSrc;
+            videoRef.current.load();
+            console.log('📹 Carregando vídeo:', videoSrc, 'Step:', step, 'Level:', level, 'URL completa:', window.location.origin + videoSrc);
+          }
+        }, 50);
       }
       
       // Forçar reprodução após um pequeno delay para garantir que o vídeo foi carregado
