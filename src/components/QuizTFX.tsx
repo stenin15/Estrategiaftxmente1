@@ -621,71 +621,36 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                     const images = getImageForStep(step, level);
                     if (images.length === 0) return null;
                     
-                    const imageSrc = images[0].startsWith('/') ? images[0] : `/${images[0]}`;
-                    const encodedSrc = encodeURI(imageSrc);
-                    const fullUrl = window.location.origin + encodedSrc;
-                    
-                    // Forçar carregamento prévio da imagem
-                    const preloadImage = () => {
-                      const link = document.createElement('link');
-                      link.rel = 'preload';
-                      link.as = 'image';
-                      link.href = encodedSrc;
-                      document.head.appendChild(link);
-                      
-                      // Criar imagem offscreen para forçar cache
-                      const img = new Image();
-                      img.src = encodedSrc;
-                      img.onload = () => {
-                        console.log('✅ Imagem pré-carregada:', imageSrc);
-                      };
-                      img.onerror = () => {
-                        console.warn('⚠️ Erro ao pré-carregar, tentando alternativa...');
-                        // Tentar sem codificação
-                        const img2 = new Image();
-                        img2.src = imageSrc;
-                      };
-                    };
-                    
-                    // Executar pré-carregamento
-                    if (typeof window !== 'undefined') {
-                      preloadImage();
-                    }
-                    
                     return (
-                      <div
-                        key={`image-wrapper-${step}`}
-                        className="relative w-full md:w-[85%] overflow-hidden rounded-2xl border border-white/10 shadow-2xl bg-black/30 backdrop-blur-md"
-                        style={{ height: "320px", minHeight: "320px" }}
-                      >
-                        <img
-                          key={`img-${step}-${encodedSrc}`}
-                          src={encodedSrc}
-                          alt={`Media etapa ${step + 1}`}
-                          className="w-full h-full object-contain"
-                          style={{
-                            position: "absolute",
-                            inset: 0,
-                            width: "100%",
-                            height: "100%",
-                            display: "block",
-                          }}
-                          onError={(e) => {
-                            const target = e.currentTarget as HTMLImageElement;
-                            // Tentar sem codificação
-                            if (target.src.includes('%20')) {
-                              target.src = imageSrc;
-                            } else {
-                              // Tentar com timestamp para forçar reload
-                              target.src = encodedSrc + '?v=' + Date.now();
-                            }
-                          }}
-                          onLoad={() => {
-                            console.log('✅ Imagem carregada:', imageSrc);
-                          }}
-                          loading="eager"
-                          decoding="async"
-                        />
+                      <div className="w-full md:w-[85%] flex flex-col gap-4">
+                        {images.map((imgPath, idx) => {
+                          const imageSrc = imgPath.startsWith('/') ? imgPath : `/${imgPath}`;
+                          const encodedSrc = encodeURI(imageSrc);
+                          
+                          return (
+                            <div
+                              key={`image-wrapper-${step}-${idx}`}
+                              className="relative w-full overflow-hidden rounded-2xl border border-white/10 shadow-2xl bg-black/30 backdrop-blur-md"
+                              style={{ height: "320px", minHeight: "320px" }}
+                            >
+                              <img
+                                key={`img-${step}-${idx}-${encodedSrc}`}
+                                src={encodedSrc}
+                                alt={`Media etapa ${step + 1}`}
+                                className="w-full h-full object-contain"
+                                style={{
+                                  position: "absolute",
+                                  inset: 0,
+                                  width: "100%",
+                                  height: "100%",
+                                  display: "block",
+                                }}
+                                loading="eager"
+                                decoding="async"
+                              />
+                            </div>
+                          );
+                        })}
                       </div>
                     );
                   })()
