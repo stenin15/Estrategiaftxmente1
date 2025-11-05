@@ -529,6 +529,7 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
         }
       }, 150);
       
+      // Cleanup do reloadTimer
       return () => {
         clearTimeout(reloadTimer);
       };
