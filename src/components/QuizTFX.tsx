@@ -619,13 +619,26 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                 {shouldUseImage(step) ? (
                   (() => {
                     const images = getImageForStep(step, level);
-                    if (images.length === 0) return null;
+                    console.log('🔍 DEBUG - Etapa:', step + 1, 'Step:', step, 'Images:', images);
+                    
+                    if (images.length === 0) {
+                      console.warn('⚠️ Nenhuma imagem para etapa', step + 1);
+                      return null;
+                    }
                     
                     return (
                       <div className="w-full md:w-[85%] flex flex-col gap-4">
                         {images.map((imgPath, idx) => {
                           const imageSrc = imgPath.startsWith('/') ? imgPath : `/${imgPath}`;
                           const encodedSrc = encodeURI(imageSrc);
+                          const fullUrl = window.location.origin + encodedSrc;
+                          
+                          console.log(`📸 Imagem ${idx + 1}:`, {
+                            original: imgPath,
+                            src: imageSrc,
+                            encoded: encodedSrc,
+                            fullUrl: fullUrl
+                          });
                           
                           return (
                             <div
@@ -644,6 +657,22 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                                   width: "100%",
                                   height: "100%",
                                   display: "block",
+                                }}
+                                onError={(e) => {
+                                  const target = e.currentTarget as HTMLImageElement;
+                                  console.error('❌ ERRO ao carregar:', {
+                                    src: encodedSrc,
+                                    fullUrl: fullUrl,
+                                    currentSrc: target.currentSrc,
+                                    error: target.error
+                                  });
+                                  // Tentar sem codificação
+                                  if (target.src !== imageSrc) {
+                                    target.src = imageSrc;
+                                  }
+                                }}
+                                onLoad={() => {
+                                  console.log('✅ Imagem carregada:', imageSrc);
                                 }}
                                 loading="eager"
                                 decoding="async"
