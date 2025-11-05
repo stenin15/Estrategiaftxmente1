@@ -1041,6 +1041,223 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                   {resolveTitle()}
                 </motion.h1>
 
+              {/* SEÇÃO DE MÍDIA (VÍDEO OU IMAGEM) */}
+              {shouldShowMedia(step) && (
+                <div className="w-full flex justify-center mb-6">
+                  {shouldUseImage(step) ? (
+                    (() => {
+                      const images = getImageForStep(step, level);
+                      console.log('🔍 DEBUG - Etapa:', step + 1, 'Step:', step, 'Images:', images);
+                      
+                      if (images.length === 0) {
+                        console.warn('⚠️ Nenhuma imagem para etapa', step + 1);
+                        return null;
+                      }
+                      
+                      return (
+                        <div className="w-full md:w-[85%] flex flex-col gap-4">
+                          {images.map((imgPath, idx) => {
+                            const imageSrc = imgPath.startsWith('/') ? imgPath : `/${imgPath}`;
+                            // Codificar espaços e caracteres especiais na URL
+                            const encodedSrc = imageSrc.split('/').map((part, i) => {
+                              if (i === 0) return part; // Não codificar a primeira parte (barra)
+                              return encodeURIComponent(part);
+                            }).join('/');
+                            const fullUrl = window.location.origin + encodedSrc;
+                            
+                            console.log(`📸 Imagem ${idx + 1}:`, {
+                              original: imgPath,
+                              src: imageSrc,
+                              encoded: encodedSrc,
+                              fullUrl: fullUrl
+                            });
+                            
+                            return (
+                              <motion.div
+                                key={`image-wrapper-${step}-${idx}`}
+                                initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                                animate={{ opacity: 1, y: 0, scale: 1 }}
+                                exit={{ opacity: 0, y: -20, scale: 0.95 }}
+                                transition={{ duration: 0.3, ease: "easeOut" }}
+                                className="relative w-full overflow-hidden rounded-2xl border border-white/10 shadow-2xl bg-black/30 backdrop-blur-md"
+                                style={{
+                                  height: "320px",
+                                  minHeight: "320px",
+                                  boxShadow: '0 10px 40px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(0, 255, 179, 0.1)',
+                                }}
+                                onMouseMove={(e) => {
+                                  // Efeito de parallax sutil
+                                  const rect = e.currentTarget.getBoundingClientRect();
+                                  const x = e.clientX - rect.left;
+                                  const y = e.clientY - rect.top;
+                                  const centerX = rect.width / 2;
+                                  const centerY = rect.height / 2;
+                                  const moveX = (x - centerX) / 20;
+                                  const moveY = (y - centerY) / 20;
+                                  e.currentTarget.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                                }}
+                                onMouseLeave={(e) => {
+                                  e.currentTarget.style.transform = 'translate(0, 0)';
+                                }}
+                              >
+                                <img
+                                  key={`img-${step}-${idx}-${encodedSrc}`}
+                                  src={encodedSrc}
+                                  alt={`Media etapa ${step + 1}`}
+                                  className="w-full h-full object-contain transition-transform duration-300"
+                                  style={{
+                                    position: "absolute",
+                                    inset: 0,
+                                    width: "100%",
+                                    height: "100%",
+                                    display: "block",
+                                    filter: 'drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5))',
+                                  }}
+                                  onError={(e) => {
+                                    const target = e.currentTarget as HTMLImageElement;
+                                    console.error('❌ ERRO ao carregar:', {
+                                      src: encodedSrc,
+                                      fullUrl: fullUrl,
+                                      currentSrc: target.currentSrc,
+                                      error: target.error
+                                    });
+                                    
+                                    // Parar loop infinito de tentativas
+                                    if (target.dataset.retryAttempted === 'true') {
+                                      console.error('🛑 Parando tentativas - arquivo não encontrado');
+                                      return;
+                                    }
+                                    
+                                    // Marcar como tentado
+                                    target.dataset.retryAttempted = 'true';
+                                    
+                                    // Tentar sem codificação apenas uma vez
+                                    setTimeout(() => {
+                                      if (target.src !== imageSrc) {
+                                        target.src = imageSrc;
+                                      }
+                                    }, 500);
+                                  }}
+                                  onLoad={() => {
+                                    console.log('✅ Imagem carregada:', imageSrc);
+                                  }}
+                                  loading="eager"
+                                  decoding="async"
+                                />
+                              </motion.div>
+                            );
+                          })}
+                        </div>
+                      );
+                    })()
+                  ) : null}
+                  
+                  {/* SEÇÃO DE VÍDEO EM LOOP INFINITO - APENAS SE NÃO DEVERIA USAR IMAGEM */}
+                  {!shouldUseImage(step) && shouldShowMedia(step) && (
+                    <motion.div
+                      key={`video-container-${step}-${getVideoForStep(step, level)}`}
+                      initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: -20, scale: 0.95 }}
+                      transition={{ duration: 0.3, ease: "easeOut" }}
+                      className="relative w-full md:w-[85%] overflow-hidden rounded-2xl border border-white/10 shadow-2xl bg-black/30 backdrop-blur-md"
+                      style={{
+                        height: "320px",
+                        minHeight: "320px",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        position: "relative",
+                      }}
+                      onMouseMove={(e) => {
+                        // Efeito de parallax sutil
+                        const rect = e.currentTarget.getBoundingClientRect();
+                        const x = e.clientX - rect.left;
+                        const y = e.clientY - rect.top;
+                        const centerX = rect.width / 2;
+                        const centerY = rect.height / 2;
+                        const moveX = (x - centerX) / 20;
+                        const moveY = (y - centerY) / 20;
+                        e.currentTarget.style.transform = `translate(${moveX}px, ${moveY}px)`;
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.transform = 'translate(0, 0)';
+                      }}
+                    >
+                      <video
+                        key={`video-${step}-${level || 'null'}-${getVideoForStep(step, level)}`}
+                        ref={videoRef}
+                        src={getVideoForStep(step, level)}
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        preload="auto"
+                        controls={false}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          borderRadius: "12px",
+                          objectFit: "cover",
+                          filter: "brightness(0.9)",
+                          backgroundColor: "#000000",
+                          display: "block",
+                        }}
+                        onLoadStart={() => {
+                          console.log('📹 Vídeo: Iniciando carregamento', getVideoForStep(step, level));
+                        }}
+                        onLoadedMetadata={(e) => {
+                          const video = e.currentTarget;
+                          console.log('✅ Vídeo: Metadata carregado', {
+                            src: video.src,
+                            duration: video.duration,
+                            readyState: video.readyState
+                          });
+                        }}
+                        onCanPlay={(e) => {
+                          const video = e.currentTarget;
+                          console.log('✅ Vídeo: Pronto para reproduzir', video.src);
+                          video.play().catch((err) => {
+                            console.warn('⚠️ Vídeo: Erro ao reproduzir automaticamente', err);
+                          });
+                        }}
+                        onError={(e) => {
+                          const video = e.currentTarget;
+                          const error = video.error;
+                          console.error('❌ Vídeo: ERRO ao carregar', {
+                            src: video.src,
+                            currentSrc: video.currentSrc,
+                            errorCode: error?.code,
+                            errorMessage: error?.message,
+                            networkState: video.networkState,
+                            readyState: video.readyState,
+                            step,
+                            level
+                          });
+                        }}
+                        onPlaying={() => {
+                          console.log('▶️ Vídeo: Reproduzindo!', getVideoForStep(step, level));
+                        }}
+                      >
+                        Seu navegador não suporta vídeos HTML5.
+                      </video>
+                    </motion.div>
+                  )}
+                </div>
+              )}
+
+              {/* Microcopy adicional abaixo da mídia */}
+              {resolveMediaMicro() && shouldShowMedia(step) && (
+                <motion.p
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.3 }}
+                  className="text-sm text-white/80 text-center mb-6 px-4 leading-relaxed"
+                >
+                  {resolveMediaMicro()}
+                </motion.p>
+              )}
+
                 {/* Botões de resposta - Centralizados com espaçamento harmonioso */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
