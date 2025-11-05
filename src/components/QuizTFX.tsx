@@ -651,14 +651,10 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                       
                       return (
                         <AnimatePresence mode="wait">
-                          <motion.img
+                          <img
                             key={`img-${step}-${currentImageIndex}-${currentImage}`}
-                            src={currentImage}
+                            src={encodeURI(currentImage)}
                             alt={`Media etapa ${step + 1}`}
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            exit={{ opacity: 0, scale: 0.95 }}
-                            transition={{ duration: 0.8, ease: "easeInOut" }}
                             className="w-full h-full object-contain transition-transform duration-500 hover:scale-105"
                             style={{
                               filter: "drop-shadow(0 0 20px rgba(16, 185, 129, 0.3))",
@@ -671,12 +667,17 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                               height: "100%",
                               display: "block",
                               zIndex: 1,
+                              opacity: 1,
                             }}
                             onError={(e) => {
-                              console.error('❌ Erro ao carregar imagem:', currentImage, 'Step:', step, e);
+                              console.error('❌ Erro ao carregar imagem:', currentImage, 'Step:', step, 'URL codificada:', encodeURI(currentImage));
                               const target = e.currentTarget as HTMLImageElement;
                               target.style.border = "2px solid red";
                               target.style.backgroundColor = "rgba(255,0,0,0.1)";
+                              // Tentar novamente sem codificação
+                              setTimeout(() => {
+                                target.src = currentImage;
+                              }, 100);
                             }}
                             onLoad={(e) => {
                               console.log('✅ Imagem carregada com sucesso:', currentImage, 'Step:', step);
@@ -684,6 +685,7 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                               target.style.border = "none";
                             }}
                             loading="eager"
+                            decoding="async"
                           />
                         </AnimatePresence>
                       );
