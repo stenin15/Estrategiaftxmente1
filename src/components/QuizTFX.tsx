@@ -666,10 +666,22 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                                     currentSrc: target.currentSrc,
                                     error: target.error
                                   });
-                                  // Tentar sem codificação
-                                  if (target.src !== imageSrc) {
-                                    target.src = imageSrc;
+                                  
+                                  // Parar loop infinito de tentativas
+                                  if (target.dataset.retryAttempted === 'true') {
+                                    console.error('🛑 Parando tentativas - arquivo não encontrado');
+                                    return;
                                   }
+                                  
+                                  // Marcar como tentado
+                                  target.dataset.retryAttempted = 'true';
+                                  
+                                  // Tentar sem codificação apenas uma vez
+                                  setTimeout(() => {
+                                    if (target.src !== imageSrc) {
+                                      target.src = imageSrc;
+                                    }
+                                  }, 500);
                                 }}
                                 onLoad={() => {
                                   console.log('✅ Imagem carregada:', imageSrc);
