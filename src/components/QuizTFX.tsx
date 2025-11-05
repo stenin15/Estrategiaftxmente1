@@ -1161,9 +1161,9 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                           readyState: video.readyState
                         });
                         
-                        // Tentar recarregar se o erro for de rede
-                        if (video.error && video.error.code === MediaError.MEDIA_ERR_SRC_NOT_SUPPORTED) {
-                          console.log('🔄 Tentando recarregar vídeo...');
+                        // Tentar recarregar se o erro for de formato não suportado (código 4)
+                        if (video.error && video.error.code === 4) {
+                          console.log('🔄 Tentando recarregar vídeo com timestamp...');
                           setTimeout(() => {
                             if (videoRef.current) {
                               const newSrc = getVideoForStep(step, level);
