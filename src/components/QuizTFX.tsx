@@ -921,8 +921,8 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
       <CandlesCanvas />
 
 
-      {/* Conteúdo */}
-      <div className="relative mx-auto max-w-3xl px-6 pb-24 pt-16 md:pt-24">
+      {/* Conteúdo - Centralizado vertical e horizontalmente */}
+      <div className="relative mx-auto max-w-3xl px-6 pb-24 pt-16 md:pt-24 flex flex-col justify-center min-h-[calc(100dvh-120px)]">
         {/* Título centralizado com animações - VERSÃO ATUALIZADA */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
@@ -977,34 +977,35 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
             />
           </div>
 
-          {/* Card da pergunta com estilo melhorado */}
+          {/* Card da pergunta com estilo melhorado - Centralizado e sem área de mídia */}
           <AnimatePresence mode="wait">
             <motion.div
               key={step}
-              initial={{ opacity: 0, y: 30, scale: 0.95 }}
+              initial={{ opacity: 0, y: 20, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -30, scale: 0.95 }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
-              className="relative rounded-[18px] border border-white/10 p-6 md:p-8 shadow-2xl z-10 text-center quiz-card"
+              exit={{ opacity: 0, y: -20, scale: 0.98 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+              className="relative rounded-[18px] border border-white/10 p-8 md:p-10 lg:p-12 shadow-2xl z-10 text-center quiz-card"
               style={{
                 background: 'rgba(0, 0, 0, 0.6)',
                 backdropFilter: 'blur(20px)',
                 boxShadow: '0 0 30px rgba(234, 199, 107, 0.3), inset 0 0 20px rgba(0, 0, 0, 0.5)',
-                animation: 'fadeUpZoom 0.3s ease-out forwards',
               }}
             >
+              {/* Conteúdo centralizado - Microcopy, Título e Opções */}
               <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.1 }}
-                className="mb-6 space-y-2"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+                className="flex flex-col items-center space-y-6 md:space-y-8"
               >
+                {/* Microcopy - Texto verde superior */}
                 {resolveMicro() && (
                   <motion.p
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 0.6, delay: 0.2 }}
-                    className="text-sm font-semibold mb-3"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+                    className="text-sm md:text-base font-semibold text-center px-4 max-w-2xl"
                     style={{
                       color: '#00FFB3',
                       textShadow: '0 0 10px rgba(0, 255, 179, 0.5), 0 0 20px rgba(0, 255, 179, 0.3)',
@@ -1013,232 +1014,21 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                     {resolveMicro()}
                   </motion.p>
                 )}
+                
+                {/* Título da pergunta - Centralizado */}
                 <motion.h1
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: 0.3 }}
-                  className="text-2xl md:text-3xl font-bold leading-snug text-white mb-6"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
+                  className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight text-white text-center px-4 max-w-3xl"
+                  style={{
+                    textShadow: '0 0 20px rgba(255, 255, 255, 0.3)',
+                  }}
                 >
                   {resolveTitle()}
                 </motion.h1>
-              </motion.div>
 
-              {/* SEÇÃO DE MÍDIA (VÍDEO OU IMAGEM) */}
-              {shouldShowMedia(step) && (
-              <div className="w-full flex justify-center mb-6">
-                  {shouldUseImage(step) ? (
-                  (() => {
-                    const images = getImageForStep(step, level);
-                    console.log('🔍 DEBUG - Etapa:', step + 1, 'Step:', step, 'Images:', images);
-                    
-                    if (images.length === 0) {
-                      console.warn('⚠️ Nenhuma imagem para etapa', step + 1);
-                      return null;
-                    }
-                    
-                    return (
-                      <div className="w-full md:w-[85%] flex flex-col gap-4">
-                        {images.map((imgPath, idx) => {
-                          const imageSrc = imgPath.startsWith('/') ? imgPath : `/${imgPath}`;
-                          // Codificar espaços e caracteres especiais na URL
-                          const encodedSrc = imageSrc.split('/').map((part, i) => {
-                            if (i === 0) return part; // Não codificar a primeira parte (barra)
-                            return encodeURIComponent(part);
-                          }).join('/');
-                          const fullUrl = window.location.origin + encodedSrc;
-                          
-                          console.log(`📸 Imagem ${idx + 1}:`, {
-                            original: imgPath,
-                            src: imageSrc,
-                            encoded: encodedSrc,
-                            fullUrl: fullUrl
-                          });
-                          
-                          return (
-                <motion.div
-                              key={`image-wrapper-${step}-${idx}`}
-                              initial={{ opacity: 0, y: 20, scale: 0.95 }}
-                              animate={{ opacity: 1, y: 0, scale: 1 }}
-                              exit={{ opacity: 0, y: -20, scale: 0.95 }}
-                              transition={{ duration: 0.3, ease: "easeOut" }}
-                              className="relative w-full overflow-hidden rounded-2xl border border-white/10 shadow-2xl bg-black/30 backdrop-blur-md"
-                  style={{
-                                height: "320px",
-                                minHeight: "320px",
-                                boxShadow: '0 10px 40px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(0, 255, 179, 0.1)',
-                              }}
-                              onMouseMove={(e) => {
-                                // Efeito de parallax sutil
-                                const rect = e.currentTarget.getBoundingClientRect();
-                                const x = e.clientX - rect.left;
-                                const y = e.clientY - rect.top;
-                                const centerX = rect.width / 2;
-                                const centerY = rect.height / 2;
-                                const moveX = (x - centerX) / 20;
-                                const moveY = (y - centerY) / 20;
-                                e.currentTarget.style.transform = `translate(${moveX}px, ${moveY}px)`;
-                              }}
-                              onMouseLeave={(e) => {
-                                e.currentTarget.style.transform = 'translate(0, 0)';
-                  }}
-                >
-                  <img
-                                key={`img-${step}-${idx}-${encodedSrc}`}
-                                src={encodedSrc}
-                                alt={`Media etapa ${step + 1}`}
-                                className="w-full h-full object-contain transition-transform duration-300"
-                                style={{
-                                  position: "absolute",
-                                  inset: 0,
-                                  width: "100%",
-                                  height: "100%",
-                                  display: "block",
-                                  filter: 'drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5))',
-                                }}
-                                onError={(e) => {
-                                  const target = e.currentTarget as HTMLImageElement;
-                                  console.error('❌ ERRO ao carregar:', {
-                                    src: encodedSrc,
-                                    fullUrl: fullUrl,
-                                    currentSrc: target.currentSrc,
-                                    error: target.error
-                                  });
-                                  
-                                  // Parar loop infinito de tentativas
-                                  if (target.dataset.retryAttempted === 'true') {
-                                    console.error('🛑 Parando tentativas - arquivo não encontrado');
-                                    return;
-                                  }
-                                  
-                                  // Marcar como tentado
-                                  target.dataset.retryAttempted = 'true';
-                                  
-                                  // Tentar sem codificação apenas uma vez
-                                  setTimeout(() => {
-                                    if (target.src !== imageSrc) {
-                                      target.src = imageSrc;
-                                    }
-                                  }, 500);
-                                }}
-                                onLoad={() => {
-                                  console.log('✅ Imagem carregada:', imageSrc);
-                                }}
-                                loading="eager"
-                                decoding="async"
-                              />
-                            </div>
-                          );
-                        })}
-                      </div>
-                    );
-                  })()
-                ) : null}
-                
-                {/* SEÇÃO DE VÍDEO EM LOOP INFINITO - APENAS SE NÃO DEVERIA USAR IMAGEM */}
-                {!shouldUseImage(step) && shouldShowMedia(step) && (
-                  <motion.div
-                    key={`video-container-${step}-${getVideoForStep(step, level)}`}
-                    initial={{ opacity: 0, y: 20, scale: 0.95 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: -20, scale: 0.95 }}
-                    transition={{ duration: 0.3, ease: "easeOut" }}
-                    className="relative w-full md:w-[85%] overflow-hidden rounded-2xl border border-white/10 shadow-2xl bg-black/30 backdrop-blur-md"
-                    style={{
-                      height: "320px",
-                      minHeight: "320px",
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      position: "relative",
-                    }}
-                    onMouseMove={(e) => {
-                      // Efeito de parallax sutil
-                      const rect = e.currentTarget.getBoundingClientRect();
-                      const x = e.clientX - rect.left;
-                      const y = e.clientY - rect.top;
-                      const centerX = rect.width / 2;
-                      const centerY = rect.height / 2;
-                      const moveX = (x - centerX) / 20;
-                      const moveY = (y - centerY) / 20;
-                      e.currentTarget.style.transform = `translate(${moveX}px, ${moveY}px)`;
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.transform = 'translate(0, 0)';
-                    }}
-                  >
-                    <video
-                      key={`video-${step}-${level || 'null'}-${getVideoForStep(step, level)}`}
-                      ref={videoRef}
-                      src={getVideoForStep(step, level)}
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
-                      preload="auto"
-                      controls={false}
-                      style={{
-                        width: "100%",
-                        height: "100%",
-                        borderRadius: "12px",
-                        objectFit: "cover",
-                        filter: "brightness(0.9)",
-                        backgroundColor: "#000000",
-                        display: "block",
-                      }}
-                      onLoadStart={() => {
-                        console.log('📹 Vídeo: Iniciando carregamento', getVideoForStep(step, level));
-                      }}
-                      onLoadedMetadata={(e) => {
-                        const video = e.currentTarget;
-                        console.log('✅ Vídeo: Metadata carregado', {
-                          src: video.src,
-                          duration: video.duration,
-                          readyState: video.readyState
-                        });
-                      }}
-                      onCanPlay={(e) => {
-                        const video = e.currentTarget;
-                        console.log('✅ Vídeo: Pronto para reproduzir', video.src);
-                        video.play().catch((err) => {
-                          console.warn('⚠️ Vídeo: Erro ao reproduzir automaticamente', err);
-                        });
-                      }}
-                      onError={(e) => {
-                        const video = e.currentTarget;
-                        const error = video.error;
-                        console.error('❌ Vídeo: ERRO ao carregar', {
-                          src: video.src,
-                          currentSrc: video.currentSrc,
-                          errorCode: error?.code,
-                          errorMessage: error?.message,
-                          networkState: video.networkState,
-                          readyState: video.readyState,
-                          step,
-                          level
-                        });
-                      }}
-                      onPlaying={() => {
-                        console.log('▶️ Vídeo: Reproduzindo!', getVideoForStep(step, level));
-                      }}
-                    >
-                      Seu navegador não suporta vídeos HTML5.
-                    </video>
-                  </motion.div>
-                )}
-              </div>
-              )}
-
-              {/* Microcopy adicional abaixo da mídia */}
-              {resolveMediaMicro() && (
-                <motion.p
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.3 }}
-                  className="text-sm text-white/80 text-center mb-6 px-4 leading-relaxed"
-                >
-                  {resolveMediaMicro()}
-                </motion.p>
-              )}
+              {/* SEÇÃO DE MÍDIA REMOVIDA - Layout limpo apenas com textos */}
 
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -1259,12 +1049,19 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                     ))}
               </motion.div>
 
-              {/* Rodapé auxiliar */}
-              <div className="mt-6 flex items-center justify-center text-xs text-white/40">
+              </motion.div>
+              
+              {/* Rodapé auxiliar - Etapa */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                className="mt-8 md:mt-10 flex items-center justify-center text-xs text-white/40"
+              >
                 <span>
                   Etapa {step + 1} de {totalSteps}
                 </span>
-              </div>
+              </motion.div>
             </motion.div>
           </AnimatePresence>
         </div>
