@@ -864,7 +864,7 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
         {/* Partículas douradas */}
         <GoldenParticles />
 
-        {/* Conteúdo central - CTA Genérico de Transformação */}
+        {/* Conteúdo central - CTA Focado em Identificação e Aprendizado */}
         <motion.div
           initial={{ opacity: 0, y: 50, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -879,9 +879,10 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
             className="text-3xl md:text-4xl font-bold text-white text-center mb-6"
             style={{
               textShadow: '0 0 20px rgba(255, 255, 255, 0.3)',
+              maxWidth: '800px',
             }}
           >
-            Você sente que está pronto pra mudar sua vida de verdade?
+            Talvez o que te falta não seja sorte — mas entender o jogo como os grandes jogam.
           </motion.h2>
 
           {/* Microcopy */}
@@ -889,61 +890,84 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-            className="text-gray-400 text-center mb-8 max-w-md mx-auto leading-relaxed"
+            className="text-gray-300 text-center mb-8 max-w-lg mx-auto leading-relaxed"
+            style={{
+              color: 'rgba(255, 255, 255, 0.9)',
+            }}
           >
-            Nenhum trader nasce pronto. Mas todos os que mudaram de vida começaram com uma decisão simples — agir.
+            Centenas de traders comuns já provaram que consistência não vem de sorte, e sim de clareza. Agora é sua vez de descobrir o que muda quando você entende o mercado de verdade.
           </motion.p>
 
-          {/* Botão principal com brilho pulsante verde TFX */}
-          <motion.button
-            onClick={() => finalizeAndGo()}
+          {/* Container dos CTAs */}
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
-            className="relative bg-emerald-500 hover:bg-emerald-400 text-white font-semibold py-4 px-8 rounded-xl transition-transform hover:scale-105 shadow-lg shadow-emerald-500/30"
-            style={{
-              fontSize: '1.1rem',
-            }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.98 }}
+            className="flex flex-col items-center gap-4"
           >
-            {/* Brilho pulsante verde TFX ao redor do botão */}
-            <motion.div
-              className="absolute inset-0 rounded-xl"
+            {/* Botão principal com brilho pulsante verde neon */}
+            <motion.button
+              onClick={() => finalizeAndGo()}
+              className="relative bg-emerald-500 hover:bg-emerald-400 text-white font-semibold py-4 px-8 rounded-xl transition-transform hover:scale-105 shadow-lg shadow-emerald-500/30"
               style={{
-                background: 'linear-gradient(45deg, rgba(16, 185, 129, 0.4), rgba(5, 150, 105, 0.4))',
-                filter: 'blur(15px)',
-                zIndex: -1,
+                fontSize: '1.1rem',
               }}
-              animate={{
-                opacity: [0.4, 0.8, 0.4],
-                scale: [1, 1.15, 1],
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
+            >
+              {/* Brilho pulsante verde neon ao redor do botão */}
+              <motion.div
+                className="absolute inset-0 rounded-xl"
+                style={{
+                  background: 'linear-gradient(45deg, rgba(16, 185, 129, 0.5), rgba(5, 150, 105, 0.5))',
+                  filter: 'blur(15px)',
+                  zIndex: -1,
+                }}
+                animate={{
+                  opacity: [0.4, 0.9, 0.4],
+                  scale: [1, 1.15, 1],
+                }}
+                transition={{
+                  duration: 2.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
+              {/* Brilho adicional mais suave */}
+              <motion.div
+                className="absolute inset-0 rounded-xl"
+                style={{
+                  background: 'radial-gradient(circle, rgba(16, 185, 129, 0.4) 0%, transparent 70%)',
+                  filter: 'blur(20px)',
+                  zIndex: -1,
+                }}
+                animate={{
+                  opacity: [0.2, 0.6, 0.2],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
+              Quero entender o jogo de verdade →
+            </motion.button>
+
+            {/* CTA alternativo (link) */}
+            <motion.button
+              onClick={() => {
+                // Ação para "ver como os grandes pensam" - pode ser scroll para informações ou modal
+                finalizeAndGo();
               }}
-              transition={{
-                duration: 2.5,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            />
-            {/* Brilho adicional mais suave */}
-            <motion.div
-              className="absolute inset-0 rounded-xl"
+              className="text-gray-400 hover:text-white text-center cursor-pointer transition-colors duration-200 underline decoration-gray-400 hover:decoration-white underline-offset-4"
+              whileHover={{ y: -2 }}
               style={{
-                background: 'radial-gradient(circle, rgba(16, 185, 129, 0.3) 0%, transparent 70%)',
-                filter: 'blur(20px)',
-                zIndex: -1,
+                fontSize: '0.95rem',
               }}
-              animate={{
-                opacity: [0.2, 0.5, 0.2],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-            />
-            Quero dar o primeiro passo pra mudar minha vida →
-          </motion.button>
+            >
+              Quero ver como os grandes pensam
+            </motion.button>
+          </motion.div>
         </motion.div>
       </motion.div>
     );
