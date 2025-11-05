@@ -308,25 +308,30 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
 
   // Função para obter a imagem conforme a etapa e nível
   const getImageForStep = (step: number, level: Level | null): string[] => {
+    console.log('🔍 getImageForStep - Etapa:', step + 1, 'Step:', step);
+    
     // Etapa 6 (step 5) - usar DISCORD AO VIVO
     if (step === 5) {
+      console.log('✅ ETAPA 6: Retornando /DISCORD AO VIVO.png');
       return ["/DISCORD AO VIVO.png"];
     }
     // Etapa 7 (step 6) - usar CONTEUDO E COMUNIDADE ETAPA 7.png
     if (step === 6) {
-      console.log('✅ ETAPA 7: Configurada para usar CONTEUDO E COMUNIDADE ETAPA 7.png');
+      console.log('✅ ETAPA 7: Retornando /CONTEUDO E COMUNIDADE ETAPA 7.png');
       return ["/CONTEUDO E COMUNIDADE ETAPA 7.png"];
     }
     // Etapa 9 (step 8) - usar DISCORD 1.png
     if (step === 8) {
-      console.log('✅ ETAPA 9: Configurada para usar DISCORD 1.png');
+      console.log('✅ ETAPA 9: Retornando /DISCORD 1.png');
       return ["/DISCORD 1.png"];
     }
     // Etapa 11 (step 10) - usar DISCORD 2.png
     if (step === 10) {
-      console.log('✅ ETAPA 11: Configurada para usar DISCORD 2.png');
+      console.log('✅ ETAPA 11: Retornando /DISCORD 2.png');
       return ["/DISCORD 2.png"];
     }
+    
+    console.warn('⚠️ Nenhuma imagem configurada para etapa', step + 1);
     return [];
   };
 
