@@ -117,17 +117,6 @@ const COMMON_QUESTIONS = [
   },
   {
     id: 10,
-    title: "Você já investiu em algo de trading?",
-    microcopy: "Cada tentativa passada foi apenas preparação para o que realmente funciona.",
-    subtitleByLevel: {
-      iniciante: "Esse é o ponto de partida com base sólida e acompanhamento real.",
-      intermediario: "Aqui você evolui de setup para consistência.",
-      avancado: "Refine o que já domina e melhore sua execução mental.",
-    },
-    options: ["Sim, mas não vi resultado", "Nunca investi", "Já estudo há um tempo"],
-  },
-  {
-    id: 11,
     title: "Pronto para entender como os grandes players realmente operam e aplicar isso?",
     microcopy: "Você está a um clique de acessar algo que poucos têm coragem de mostrar.",
     options: ["Sim — quero dominar o método TFX", "Quero começar pelo primeiro passo", "Quero ver resultados primeiro"],
@@ -357,7 +346,7 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [imageIndex, setImageIndex] = useState<number>(0); // Para carrossel na etapa 9
 
-  const totalSteps = 12;
+  const totalSteps = 11; // Removida etapa 10, agora temos 11 etapas
   const progress = useMemo(() => Math.round(((step + 1) / totalSteps) * 100), [step]);
 
   // Função para verificar se deve usar imagem ou vídeo
@@ -369,27 +358,25 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
   };
 
   // Função para verificar se deve mostrar mídia (imagem ou vídeo)
-  // Etapas 1, 11 e 12 não têm mídia
+  // Etapas 1, 10 e 11 não têm mídia
   const shouldShowMedia = (step: number): boolean => {
     // Etapa 1 (step 0) - SEM mídia
     if (step === 0) return false;
-    // Etapa 11 (step 10) - última pergunta - SEM mídia
+    // Etapa 10 (step 9) - última pergunta - SEM mídia
     if (step === totalSteps - 1) return false;
-    // Etapa 12 (final) - SEM mídia (step === totalSteps quando mostra tela final)
+    // Etapa 11 (final) - SEM mídia (step === totalSteps quando mostra tela final)
     if (step === totalSteps) return false;
-    // Todas as outras etapas (2-10, steps 1-9) têm mídia
+    // Todas as outras etapas (2-9, steps 1-8) têm mídia
     return true;
   };
 
   // Função para obter a imagem conforme a etapa e nível
   const getImageForStep = (step: number, level: Level | null): string[] => {
     // Etapa 1 (step 0) - SEM imagem, apenas textos
-    if (step === 5) return ["/DISCORDAOVIVO.png"];
-    if (step === 6) return ["/CONTEUDOECOMUNIDADEETAPA7.png"];
-    if (step === 8) return ["/DISCORD1.png"];
-    // Etapa 10 (step 9) usa vídeo etapa10.mp4, não imagem
-    // Etapa 11 (step 10) usa imagem DISCORD2.png
-    if (step === 10) return ["/DISCORD2.png"];
+    if (step === 5) return ["/DISCORDAOVIVO.png"]; // Etapa 6
+    if (step === 6) return ["/CONTEUDOECOMUNIDADEETAPA7.png"]; // Etapa 7
+    if (step === 8) return ["/DISCORD1.png"]; // Etapa 9
+    if (step === 9) return ["/DISCORD2.png"]; // Etapa 10 (antiga etapa 11)
     return [];
   };
 
@@ -412,10 +399,6 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
     // Etapa 5 (step 4) - todos os níveis
     else if (step === 4) {
       videoPath = "/pergunta 5.mp4";
-    }
-    // Etapa 10 (step 9) - vídeo etapa10.mp4
-    else if (step === 9) {
-      videoPath = "/etapa10.mp4";
     }
     // Etapa 2 (step 1) - nível avançado
     else if (step === 1 && level === "avancado") {
