@@ -317,8 +317,9 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
       console.log('✅ ETAPA 7: Configurada para usar CONTEUDO E COMUNIDADE ETAPA 7.png');
       return ["/CONTEUDO E COMUNIDADE ETAPA 7.png"];
     }
-    // Etapa 9 (step 8) - usar DISCORD 1
+    // Etapa 9 (step 8) - usar DISCORD 1.png
     if (step === 8) {
+      console.log('✅ ETAPA 9: Configurada para usar DISCORD 1.png');
       return ["/DISCORD 1.png"];
     }
     // Etapa 11 (step 10) - usar DISCORD 2
