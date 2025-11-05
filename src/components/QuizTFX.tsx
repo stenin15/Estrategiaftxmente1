@@ -362,7 +362,10 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
 
   // Função para verificar se deve usar imagem ou vídeo
   const shouldUseImage = (step: number): boolean => {
-    return step === 5 || step === 6 || step === 8; // Etapas 6, 7, 9 (steps 5, 6, 8) - etapa 10 (step 9) usa vídeo etapa10.mp4
+    // Etapas com imagens: 6 (step 5), 7 (step 6), 9 (step 8)
+    // Etapa 10 (step 9) usa vídeo etapa10.mp4
+    // Etapa 11 (step 10) usa imagem DISCORD2.png
+    return step === 5 || step === 6 || step === 8 || step === 10;
   };
 
   // Função para verificar se deve mostrar mídia (imagem ou vídeo)
