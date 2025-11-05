@@ -83,6 +83,7 @@ const ADAPTIVE_QUESTIONS = [
     id: 6,
     title: "Acesso a estratégias usadas por grandes players te interessa?",
     microcopy: "O verdadeiro conhecimento está nas entrelinhas do gráfico.",
+    mediaMicrocopy: "A Comunidade TFX é onde traders aprendem, evoluem e compartilham análises em tempo real. O conhecimento cresce quando é vivido em grupo.",
     options: ["Sim — quero entender o que move o mercado", "Talvez — se for realmente prático", "Já estudo — quero ver o quão avançado é"],
   },
   {
@@ -93,6 +94,7 @@ const ADAPTIVE_QUESTIONS = [
       avancado: "Quer refinar entradas IFC/ChoCh/IDM + 1 mês de Comunidade com traders experientes?",
     },
     microcopy: "Você não compra um curso. Você entra em uma nova mentalidade.",
+    mediaMicrocopy: "Aqui você entende o mercado de dentro pra fora. Aulas claras, diretas e baseadas em estrutura real — sem enrolação, sem achismo.",
     options: ["Quero sim", "Quero entender melhor", "Prefiro ver exemplos"],
   },
   {
@@ -109,6 +111,7 @@ const COMMON_QUESTIONS = [
     id: 9,
     title: "Você quer ter contato diário com traders, análises e alertas em tempo real?",
     microcopy: "A Comunidade TFX é onde a teoria encontra a execução.",
+    mediaMicrocopy: "Na Comunidade TFX, teoria e execução andam juntas. Você acompanha operações, análises e resultados de traders reais — todos os dias.",
     options: ["Quero sim", "Talvez", "Quero conhecer antes"],
   },
   {
@@ -293,9 +296,39 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
   const [answers, setAnswers] = useState<string[]>([]);
   const [hasStarted, setHasStarted] = useState<boolean>(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [imageIndex, setImageIndex] = useState<number>(0); // Para carrossel na etapa 9
 
   const totalSteps = 12;
   const progress = useMemo(() => Math.round(((step + 1) / totalSteps) * 100), [step]);
+
+  // Função para verificar se deve usar imagem ou vídeo
+  const shouldUseImage = (step: number): boolean => {
+    return step === 5 || step === 6 || step === 8; // Etapas 6, 7 e 9 (steps 5, 6, 8)
+  };
+
+  // Função para obter a imagem conforme a etapa e nível
+  const getImageForStep = (step: number, level: Level | null): string[] => {
+    // Etapa 6 (step 5) - usar DISCORD 1 (ou alternar)
+    if (step === 5) {
+      return ["/DISCORD 1.png"];
+    }
+    // Etapa 7 (step 6) - usar AULA conforme nível
+    if (step === 6) {
+      if (level === "iniciante") {
+        return ["/AULA 1.png"];
+      } else if (level === "intermediario") {
+        return ["/AULA 2.png"];
+      } else if (level === "avancado") {
+        return ["/AULA 1.png", "/AULA 2.png"];
+      }
+      return ["/AULA 1.png"];
+    }
+    // Etapa 9 (step 8) - carrossel entre DISCORD e AULA
+    if (step === 8) {
+      return ["/DISCORD 1.png", "/AULA 1.png"];
+    }
+    return [];
+  };
 
   // Função para obter o vídeo conforme a etapa e nível
   const getVideoForStep = (step: number, level: Level | null): string => {
@@ -334,9 +367,24 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
     } catch {}
   }, []);
 
+  // Carrossel automático para etapa 9 (step 8)
+  useEffect(() => {
+    if (step === 8) {
+      const images = getImageForStep(step, level);
+      if (images.length > 1) {
+        const interval = setInterval(() => {
+          setImageIndex((prev) => (prev + 1) % images.length);
+        }, 3000); // Trocar a cada 3 segundos
+        return () => clearInterval(interval);
+      }
+    } else {
+      setImageIndex(0); // Reset quando mudar de etapa
+    }
+  }, [step, level]);
+
   // Garantir que o vídeo seja reproduzido quando o componente for montado ou step mudar
   useEffect(() => {
-    if (videoRef.current) {
+    if (videoRef.current && !shouldUseImage(step)) {
       const video = videoRef.current;
       const videoSrc = getVideoForStep(step, level);
       
@@ -403,6 +451,14 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
   const resolveMicro = (): string => {
     if (!current) return "";
     return current.microcopy || "";
+  };
+
+  const resolveMediaMicro = (): string => {
+    if (!current) return "";
+    if ("mediaMicrocopy" in current && current.mediaMicrocopy) {
+      return current.mediaMicrocopy;
+    }
+    return "";
   };
 
   // Avançar
@@ -562,116 +618,166 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                 </h1>
               </div>
 
-              {/* SEÇÃO DE VÍDEO EM LOOP INFINITO */}
+              {/* SEÇÃO DE MÍDIA (VÍDEO OU IMAGEM) */}
               <div className="w-full flex justify-center mb-6">
-                <motion.div
-                  key={`video-container-${step}`}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.6, ease: "easeOut" }}
-                  className="relative w-full md:w-[85%] overflow-hidden rounded-2xl border border-white/10 shadow-2xl bg-black/30 backdrop-blur-md"
-                  style={{
-                    height: "320px",
-                    minHeight: "320px",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    position: "relative",
-                  }}
-                >
-                  <video
-                    key={`video-element-${step}-${level}-${Date.now()}`}
-                    ref={videoRef}
-                    src={getVideoForStep(step, level)}
-                    autoPlay
-                    loop
-                    playsInline
-                    muted
-                    preload="auto"
-                    controls={false}
+                {shouldUseImage(step) ? (
+                  // SEÇÃO DE IMAGEM
+                  <motion.div
+                    key={`image-container-${step}`}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    className="relative w-full md:w-[85%] overflow-hidden rounded-2xl border border-white/10 shadow-2xl bg-black/30 backdrop-blur-md"
                     style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "contain",
-                      backgroundColor: "#000000",
-                      display: "block",
-                    }}
-                    className="transition-transform duration-500 hover:scale-105"
-                    onLoadStart={() => {
-                      console.log('🔄 Iniciando carregamento do vídeo:', getVideoForStep(step, level));
-                    }}
-                    onLoadedMetadata={(e) => {
-                      const video = e.currentTarget;
-                      console.log('✅ Metadados do vídeo carregados');
-                      video.play().catch((err) => {
-                        console.warn('⚠️ Autoplay bloqueado, tentando novamente...', err);
-                      });
-                    }}
-                    onLoadedData={(e) => {
-                      const video = e.currentTarget;
-                      console.log('✅ Dados do vídeo carregados, tentando reproduzir...');
-                      const playPromise = video.play();
-                      if (playPromise !== undefined) {
-                        playPromise
-                          .then(() => {
-                            console.log('✅ Vídeo reproduzindo com sucesso!');
-                          })
-                          .catch((err) => {
-                            console.warn('⚠️ Erro ao reproduzir automaticamente:', err);
-                            // Tentar novamente após um delay
-                            setTimeout(() => {
-                              video.play().catch(() => {
-                                console.warn('❌ Não foi possível reproduzir após retry');
-                              });
-                            }, 200);
-                          });
-                      }
-                    }}
-                    onCanPlay={(e) => {
-                      const video = e.currentTarget;
-                      if (video.paused) {
-                        video.play().catch(() => {
-                          console.warn('⚠️ Vídeo pausado, tentando reproduzir...');
-                        });
-                      }
-                    }}
-                    onCanPlayThrough={(e) => {
-                      const video = e.currentTarget;
-                      console.log('✅ Vídeo pode ser reproduzido completamente');
-                      if (video.paused) {
-                        video.play().catch(() => {});
-                      }
-                    }}
-                    onError={(e) => {
-                      const video = e.currentTarget;
-                      const error = video.error;
-                      console.error('❌ ERRO ao carregar vídeo:', {
-                        error: error ? {
-                          code: error.code,
-                          message: error.message,
-                        } : null,
-                        networkState: video.networkState,
-                        readyState: video.readyState,
-                        src: video.src,
-                        currentSrc: video.currentSrc,
-                      });
-                    }}
-                    onLoadStart={() => {
-                      console.log('🔄 Iniciando carregamento do vídeo...');
-                    }}
-                    onPlay={() => {
-                      console.log('▶️ Vídeo começou a reproduzir');
-                    }}
-                    onPause={() => {
-                      console.warn('⏸️ Vídeo pausado');
+                      height: "320px",
+                      minHeight: "320px",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      position: "relative",
                     }}
                   >
-                    <source src={getVideoForStep(step, level)} type="video/mp4" />
-                    Seu navegador não suporta o elemento de vídeo.
-                  </video>
-                </motion.div>
+                    {getImageForStep(step, level).length > 0 && (
+                      <AnimatePresence mode="wait">
+                        <motion.img
+                          key={`${getImageForStep(step, level)[imageIndex]}-${imageIndex}`}
+                          src={getImageForStep(step, level)[imageIndex]}
+                          alt={`Media etapa ${step + 1}`}
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          transition={{ duration: 0.8, ease: "easeInOut" }}
+                          className="absolute inset-0 w-full h-full object-contain transition-transform duration-500 hover:scale-105"
+                          style={{
+                            filter: "drop-shadow(0 0 20px rgba(16, 185, 129, 0.3))",
+                          }}
+                        />
+                      </AnimatePresence>
+                    )}
+                  </motion.div>
+                ) : (
+                  // SEÇÃO DE VÍDEO EM LOOP INFINITO
+                  <motion.div
+                    key={`video-container-${step}`}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.6, ease: "easeOut" }}
+                    className="relative w-full md:w-[85%] overflow-hidden rounded-2xl border border-white/10 shadow-2xl bg-black/30 backdrop-blur-md"
+                    style={{
+                      height: "320px",
+                      minHeight: "320px",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      position: "relative",
+                    }}
+                  >
+                    <video
+                      key={`video-element-${step}-${level}-${Date.now()}`}
+                      ref={videoRef}
+                      src={getVideoForStep(step, level)}
+                      autoPlay
+                      loop
+                      playsInline
+                      muted
+                      preload="auto"
+                      controls={false}
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "contain",
+                        backgroundColor: "#000000",
+                        display: "block",
+                      }}
+                      className="transition-transform duration-500 hover:scale-105"
+                      onLoadStart={() => {
+                        console.log('🔄 Iniciando carregamento do vídeo:', getVideoForStep(step, level));
+                      }}
+                      onLoadedMetadata={(e) => {
+                        const video = e.currentTarget;
+                        console.log('✅ Metadados do vídeo carregados');
+                        video.play().catch((err) => {
+                          console.warn('⚠️ Autoplay bloqueado, tentando novamente...', err);
+                        });
+                      }}
+                      onLoadedData={(e) => {
+                        const video = e.currentTarget;
+                        console.log('✅ Dados do vídeo carregados, tentando reproduzir...');
+                        const playPromise = video.play();
+                        if (playPromise !== undefined) {
+                          playPromise
+                            .then(() => {
+                              console.log('✅ Vídeo reproduzindo com sucesso!');
+                            })
+                            .catch((err) => {
+                              console.warn('⚠️ Erro ao reproduzir automaticamente:', err);
+                              setTimeout(() => {
+                                video.play().catch(() => {
+                                  console.warn('❌ Não foi possível reproduzir após retry');
+                                });
+                              }, 200);
+                            });
+                        }
+                      }}
+                      onCanPlay={(e) => {
+                        const video = e.currentTarget;
+                        if (video.paused) {
+                          video.play().catch(() => {
+                            console.warn('⚠️ Vídeo pausado, tentando reproduzir...');
+                          });
+                        }
+                      }}
+                      onCanPlayThrough={(e) => {
+                        const video = e.currentTarget;
+                        console.log('✅ Vídeo pode ser reproduzido completamente');
+                        if (video.paused) {
+                          video.play().catch(() => {});
+                        }
+                      }}
+                      onError={(e) => {
+                        const video = e.currentTarget;
+                        const error = video.error;
+                        console.error('❌ ERRO ao carregar vídeo:', {
+                          error: error ? {
+                            code: error.code,
+                            message: error.message,
+                          } : null,
+                          networkState: video.networkState,
+                          readyState: video.readyState,
+                          src: video.src,
+                          currentSrc: video.currentSrc,
+                        });
+                      }}
+                      onLoadStart={() => {
+                        console.log('🔄 Iniciando carregamento do vídeo...');
+                      }}
+                      onPlay={() => {
+                        console.log('▶️ Vídeo começou a reproduzir');
+                      }}
+                      onPause={() => {
+                        console.warn('⏸️ Vídeo pausado');
+                      }}
+                    >
+                      <source src={getVideoForStep(step, level)} type="video/mp4" />
+                      Seu navegador não suporta o elemento de vídeo.
+                    </video>
+                  </motion.div>
+                )}
               </div>
+
+              {/* Microcopy adicional abaixo da mídia */}
+              {resolveMediaMicro() && (
+                <motion.p
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.3 }}
+                  className="text-sm text-white/80 text-center mb-6 px-4 leading-relaxed"
+                >
+                  {resolveMediaMicro()}
+                </motion.p>
+              )}
 
               <div className="flex flex-col gap-4">
                 {step === 0
