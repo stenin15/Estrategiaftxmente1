@@ -632,87 +632,64 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
               {/* SEÇÃO DE MÍDIA (VÍDEO OU IMAGEM) */}
               <div className="w-full flex justify-center mb-6">
                 {shouldUseImage(step) ? (
-                  // SEÇÃO DE IMAGEM
-                  <motion.div
-                    key={`image-container-${step}`}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="relative w-full md:w-[85%] overflow-hidden rounded-2xl border border-white/10 shadow-2xl bg-black/30 backdrop-blur-md"
-                    style={{
-                      height: "320px",
-                      minHeight: "320px",
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      position: "relative",
-                    }}
-                  >
-                    {(() => {
-                      const images = getImageForStep(step, level);
-                      console.log('🖼️ Etapa:', step + 1, 'Level:', level, 'Imagens:', images, 'shouldUseImage:', shouldUseImage(step));
-                      
-                      if (images.length === 0) {
-                        console.warn('⚠️ Nenhuma imagem encontrada para etapa', step + 1);
-                        return (
-                          <div className="absolute inset-0 flex items-center justify-center text-white/50">
-                            <p>Carregando imagem...</p>
-                          </div>
-                        );
-                      }
-                      
-                      const currentImageIndex = Math.min(Math.max(0, imageIndex), images.length - 1);
-                      const currentImage = images[currentImageIndex];
-                      
-                      console.log('📸 Exibindo imagem:', currentImage, 'índice:', currentImageIndex, 'total:', images.length);
-                      
-                      const imageSrc = currentImage.startsWith('/') ? currentImage : `/${currentImage}`;
-                      
+                  // SEÇÃO DE IMAGEM - RENDERIZAÇÃO SIMPLIFICADA E DIRETA
+                  (() => {
+                    const images = getImageForStep(step, level);
+                    const currentImage = images.length > 0 ? images[0] : null;
+                    const imageSrc = currentImage ? (currentImage.startsWith('/') ? currentImage : `/${currentImage}`) : '';
+                    
+                    console.log('🖼️ RENDERIZANDO IMAGEM - Etapa:', step + 1, 'Src:', imageSrc);
+                    
+                    if (!imageSrc) {
                       return (
+                        <div className="relative w-full md:w-[85%] h-[320px] flex items-center justify-center text-white/50 rounded-2xl border border-white/10 bg-black/30">
+                          <p>Nenhuma imagem configurada</p>
+                        </div>
+                      );
+                    }
+                    
+                    return (
+                      <div
+                        key={`image-wrapper-${step}`}
+                        className="relative w-full md:w-[85%] overflow-hidden rounded-2xl border border-white/10 shadow-2xl bg-black/30 backdrop-blur-md"
+                        style={{
+                          height: "320px",
+                          minHeight: "320px",
+                          position: "relative",
+                        }}
+                      >
                         <img
-                          key={`img-${step}-${currentImageIndex}-${imageSrc}`}
+                          key={`img-${step}-${imageSrc}`}
                           src={imageSrc}
                           alt={`Media etapa ${step + 1}`}
-                          className="w-full h-full object-contain transition-transform duration-500 hover:scale-105"
                           style={{
-                            filter: "drop-shadow(0 0 20px rgba(16, 185, 129, 0.3))",
                             position: "absolute",
                             top: 0,
                             left: 0,
-                            right: 0,
-                            bottom: 0,
                             width: "100%",
                             height: "100%",
-                            display: "block",
-                            zIndex: 1,
-                            opacity: 1,
                             objectFit: "contain",
                             objectPosition: "center",
-                            maxWidth: "100%",
-                            maxHeight: "100%",
+                            display: "block",
+                            opacity: 1,
+                            filter: "drop-shadow(0 0 20px rgba(16, 185, 129, 0.3))",
                           }}
                           onError={(e) => {
-                            console.error('❌ Erro ao carregar imagem:', imageSrc, 'Step:', step + 1);
+                            console.error('❌ ERRO ao carregar:', imageSrc, 'Etapa:', step + 1);
                             const target = e.currentTarget as HTMLImageElement;
-                            console.error('Tentando carregar novamente...');
-                            setTimeout(() => {
-                              target.src = imageSrc + '?t=' + Date.now();
-                              target.load();
-                            }, 500);
+                            target.style.border = "2px solid red";
+                            target.style.backgroundColor = "rgba(255,0,0,0.1)";
                           }}
                           onLoad={(e) => {
-                            console.log('✅ Imagem carregada com sucesso:', imageSrc, 'Step:', step + 1);
+                            console.log('✅ IMAGEM CARREGADA:', imageSrc, 'Etapa:', step + 1);
                             const target = e.currentTarget as HTMLImageElement;
                             target.style.opacity = "1";
-                            target.style.display = "block";
                           }}
                           loading="eager"
-                          decoding="async"
                         />
-                      );
-                    })()}
-                  </motion.div>
+                      </div>
+                    );
+                  })()
                 ) : null}
                 
                 {/* SEÇÃO DE VÍDEO EM LOOP INFINITO - APENAS SE NÃO DEVERIA USAR IMAGEM */}
