@@ -308,10 +308,10 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
 
   // Função para obter a imagem conforme a etapa e nível
   const getImageForStep = (step: number, level: Level | null): string[] => {
-    if (step === 5) return ["/DISCORD AO VIVO.png"];
-    if (step === 6) return ["/CONTEUDO E COMUNIDADE ETAPA 7.png"];
-    if (step === 8) return ["/DISCORD 1.png"];
-    if (step === 10) return ["/DISCORD 2.png"];
+    if (step === 5) return ["/DISCORDAOVIVO.png"];
+    if (step === 6) return ["/CONTEUDOECOMUNIDADEETAPA7.png"];
+    if (step === 8) return ["/DISCORD1.png"];
+    if (step === 10) return ["/DISCORD2.png"];
     return [];
   };
 
@@ -630,8 +630,9 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                       <div className="w-full md:w-[85%] flex flex-col gap-4">
                         {images.map((imgPath, idx) => {
                           const imageSrc = imgPath.startsWith('/') ? imgPath : `/${imgPath}`;
-                          const encodedSrc = encodeURI(imageSrc);
-                          const fullUrl = window.location.origin + encodedSrc;
+                          // Não precisa mais codificar pois os arquivos não têm espaços
+                          const encodedSrc = imageSrc;
+                          const fullUrl = window.location.origin + imageSrc;
                           
                           console.log(`📸 Imagem ${idx + 1}:`, {
                             original: imgPath,
