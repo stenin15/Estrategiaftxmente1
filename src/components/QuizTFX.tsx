@@ -666,12 +666,23 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                     console.log('📁 Src codificado:', encodedSrc);
                     
                     // Verificar se o arquivo existe no servidor
-                    fetch(fullUrl, { method: 'HEAD' })
+                    fetch(fullUrl, { method: 'HEAD', cache: 'no-cache' })
                       .then(response => {
                         if (response.ok) {
                           console.log('✅ Arquivo existe no servidor:', fullUrl);
                         } else {
                           console.error('❌ Arquivo NÃO encontrado no servidor:', fullUrl, 'Status:', response.status);
+                          console.error('Tentando URL alternativa sem codificação...');
+                          // Tentar URL alternativa
+                          const altUrl = window.location.origin + imageSrc;
+                          fetch(altUrl, { method: 'HEAD', cache: 'no-cache' })
+                            .then(altResponse => {
+                              if (altResponse.ok) {
+                                console.log('✅ Arquivo encontrado na URL alternativa:', altUrl);
+                              } else {
+                                console.error('❌ Arquivo também não encontrado na URL alternativa:', altUrl);
+                              }
+                            });
                         }
                       })
                       .catch(error => {
