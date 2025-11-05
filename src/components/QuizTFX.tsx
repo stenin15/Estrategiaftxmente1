@@ -75,9 +75,9 @@ const ADAPTIVE_QUESTIONS = [
   },
   {
     id: 5,
-    title: "Você acredita mais em promessas ou em resultados reais?",
-    microcopy: "Resultados reais incluem ganhos e perdas analisados em tempo real.",
-    options: ["Quero ver resultados reais", "Prefiro conteúdo de valor antes", "Quero entender o processo"],
+    title: "Quando você vê alguém tendo resultado, o que passa na sua mente?",
+    microcopy: "A comparação pode ser gatilho de dúvida ou inspiração — depende de como você reage ao progresso dos outros.",
+    options: ["Motivação — se eles conseguiram, eu também consigo.", "Dúvida — será que é possível pra mim?", "Pressa — quero chegar lá logo."],
   },
   {
     id: 6,
