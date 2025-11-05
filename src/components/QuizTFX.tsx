@@ -455,61 +455,84 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
       return;
     }
 
-    // Verificar se o elemento video existe
-    if (!videoRef.current) {
-      console.warn('⚠️ useEffect vídeo: videoRef.current não existe');
-      return;
-    }
-
-    const video = videoRef.current;
-    const videoSrc = getVideoForStep(step, level);
-    
-    console.log('📹 useEffect vídeo: Configurando', { step, level, videoSrc });
-    
-    if (!videoSrc) {
-      console.warn('⚠️ Nenhum vídeo definido para step:', step, 'level:', level);
-      return;
-    }
-
-    const fullUrl = window.location.origin + videoSrc;
-    const currentSrc = video.src || '';
-    
-    console.log('📹 Configurando vídeo:', {
-      step,
-      level,
-      videoSrc,
-      fullUrl,
-      currentSrc: currentSrc.replace(window.location.origin, '')
-    });
-
-    // Sempre forçar reload completo para garantir que o vídeo correto seja carregado
-    // Limpar src anterior primeiro
-    video.src = '';
-    video.load();
-    
-    // Aguardar um momento antes de definir novo src
+    // Aguardar um pouco para garantir que o elemento video foi renderizado
     const timer = setTimeout(() => {
-      if (videoRef.current) {
-        videoRef.current.src = videoSrc;
-        videoRef.current.load();
-        console.log('📹 Novo src definido:', videoRef.current.src);
-        
-        // Tentar reproduzir imediatamente após carregar
-        videoRef.current.addEventListener('loadedmetadata', () => {
-          console.log('✅ Metadata carregado, tentando reproduzir...');
-          videoRef.current?.play().catch((err) => {
-            console.warn('⚠️ Erro ao reproduzir após metadata:', err);
-          });
-        }, { once: true });
-        
-        videoRef.current.addEventListener('canplay', () => {
-          console.log('✅ Vídeo pronto, tentando reproduzir...');
-          videoRef.current?.play().catch((err) => {
-            console.warn('⚠️ Erro ao reproduzir após canplay:', err);
-          });
-        }, { once: true });
+      // Verificar se o elemento video existe
+      if (!videoRef.current) {
+        console.warn('⚠️ useEffect vídeo: videoRef.current não existe após delay');
+        return;
       }
-    }, 100);
+
+      const video = videoRef.current;
+      const videoSrc = getVideoForStep(step, level);
+      
+      console.log('📹 useEffect vídeo: Configurando', { step, level, videoSrc });
+      
+      if (!videoSrc) {
+        console.warn('⚠️ Nenhum vídeo definido para step:', step, 'level:', level);
+        return;
+      }
+
+      const fullUrl = window.location.origin + videoSrc;
+      const currentSrc = video.src || '';
+      
+      console.log('📹 Configurando vídeo:', {
+        step,
+        level,
+        videoSrc,
+        fullUrl,
+        currentSrc: currentSrc.replace(window.location.origin, '')
+      });
+
+      // Sempre forçar reload completo para garantir que o vídeo correto seja carregado
+      // Limpar src anterior primeiro
+      video.src = '';
+      video.load();
+      
+      // Aguardar um momento antes de definir novo src
+      const reloadTimer = setTimeout(() => {
+        if (videoRef.current) {
+          videoRef.current.src = videoSrc;
+          videoRef.current.load();
+          console.log('📹 Novo src definido:', videoRef.current.src);
+          
+          // Tentar reproduzir imediatamente após carregar
+          const handleLoadedMetadata = () => {
+            console.log('✅ Metadata carregado, tentando reproduzir...', videoRef.current?.src);
+            videoRef.current?.play().catch((err) => {
+              console.warn('⚠️ Erro ao reproduzir após metadata:', err);
+              // Retry após 1 segundo
+              setTimeout(() => {
+                videoRef.current?.play().catch(() => {});
+              }, 1000);
+            });
+          };
+          
+          const handleCanPlay = () => {
+            console.log('✅ Vídeo pronto, tentando reproduzir...', videoRef.current?.src);
+            videoRef.current?.play().catch((err) => {
+              console.warn('⚠️ Erro ao reproduzir após canplay:', err);
+              // Retry após 1 segundo
+              setTimeout(() => {
+                videoRef.current?.play().catch(() => {});
+              }, 1000);
+            });
+          };
+          
+          videoRef.current.addEventListener('loadedmetadata', handleLoadedMetadata, { once: true });
+          videoRef.current.addEventListener('canplay', handleCanPlay, { once: true });
+          
+          // Se já estiver pronto, tentar reproduzir imediatamente
+          if (videoRef.current.readyState >= 2) {
+            handleCanPlay();
+          }
+        }
+      }, 150);
+      
+      return () => {
+        clearTimeout(reloadTimer);
+      };
+    }, 200); // Delay inicial para garantir renderização
     
     return () => {
       clearTimeout(timer);
