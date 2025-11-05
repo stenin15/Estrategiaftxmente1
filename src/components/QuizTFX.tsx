@@ -354,7 +354,7 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
   const [level, setLevel] = useState<Level | null>(null);
   const [answers, setAnswers] = useState<string[]>([]);
   const [hasStarted, setHasStarted] = useState<boolean>(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
+  // videoRef removido - agora usamos o componente VideoPlayer que gerencia seu próprio ref
   const [imageIndex, setImageIndex] = useState<number>(0); // Para carrossel na etapa 9
 
   const totalSteps = 12;
@@ -437,47 +437,8 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
   }, [step, level]);
 
   // Garantir que o vídeo seja reproduzido quando o componente for montado ou step mudar
-  // IMPORTANTE: NÃO reproduzir vídeo se deveria usar imagem ou se não deve mostrar mídia
-  useEffect(() => {
-    // Se não deve mostrar mídia (Etapa 1), pausar e ocultar o vídeo
-    if (!shouldShowMedia(step) && videoRef.current) {
-      videoRef.current.pause();
-      videoRef.current.src = '';
-      videoRef.current.load();
-      return;
-    }
-    
-    // Se deve usar imagem, pausar e ocultar o vídeo completamente
-    if (shouldUseImage(step) && videoRef.current) {
-      videoRef.current.pause();
-      videoRef.current.src = '';
-      videoRef.current.load();
-      return;
-    }
-    
-    // Só reproduzir vídeo se NÃO deveria usar imagem e deve mostrar mídia
-    if (videoRef.current && !shouldUseImage(step) && shouldShowMedia(step)) {
-      const video = videoRef.current;
-      
-      // Forçar reprodução - o src já está definido na tag <source>
-      const playPromise = video.play();
-      if (playPromise !== undefined) {
-        playPromise
-          .then(() => {
-            console.log('✅ Vídeo iniciado com sucesso!', video.src);
-          })
-          .catch((error) => {
-            console.log('⚠️ Erro ao reproduzir vídeo automaticamente:', error);
-            // Tentar novamente após um delay
-            setTimeout(() => {
-              if (videoRef.current) {
-                videoRef.current.play().catch(() => {});
-              }
-            }, 500);
-          });
-      }
-    }
-  }, [step, level]);
+  // O VideoPlayer agora gerencia o vídeo internamente
+  // Não precisamos mais deste useEffect - o componente VideoPlayer cuida de tudo
 
   // Salvar sessão
   useEffect(() => {
