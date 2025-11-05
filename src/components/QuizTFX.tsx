@@ -627,6 +627,12 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
 
               {/* SEÇÃO DE MÍDIA (VÍDEO OU IMAGEM) */}
               <div className="w-full flex justify-center mb-6">
+                {(() => {
+                  const useImage = shouldUseImage(step);
+                  const videoSrc = getVideoForStep(step, level);
+                  console.log('🎬 DEBUG MÍDIA - Etapa:', step + 1, 'Step:', step, 'useImage:', useImage, 'videoSrc:', videoSrc);
+                  return null;
+                })()}
                 {shouldUseImage(step) ? (
                   (() => {
                     const images = getImageForStep(step, level);
@@ -809,12 +815,13 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                       onPlay={() => {
                         console.log('▶️ Vídeo começou a reproduzir');
                       }}
-                      onPause={() => {
-                        console.warn('⏸️ Vídeo pausado');
-                      }}
-                    />
-                  </motion.div>
-                )}
+                        onPause={() => {
+                          console.warn('⏸️ Vídeo pausado');
+                        }}
+                      />
+                    </motion.div>
+                  );
+                })()}
               </div>
 
               {/* Microcopy adicional abaixo da mídia */}
