@@ -60,7 +60,7 @@ const ADAPTIVE_QUESTIONS = [
       intermediario: "Você vai identificar onde o dinheiro inteligente entra e sai do mercado.",
       avancado: "Você vai refinar liquidez e reversão (IFC / ChoCh / IDM) com controle mental.",
     },
-    options: ["😤 Fico irritado e perco o foco facilmente", "😕 Me frustro, mas tento entender o que errei", "😌 Respiro fundo e espero o momento certo"],
+    options: ["Fico irritado e perco o foco facilmente", "Me frustro, mas tento entender o que errei", "Respiro fundo e espero o momento certo"],
   },
   {
     id: 4,
