@@ -967,9 +967,12 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                       <div className="w-full md:w-[85%] flex flex-col gap-4">
                         {images.map((imgPath, idx) => {
                           const imageSrc = imgPath.startsWith('/') ? imgPath : `/${imgPath}`;
-                          // Não precisa mais codificar pois os arquivos não têm espaços
-                          const encodedSrc = imageSrc;
-                          const fullUrl = window.location.origin + imageSrc;
+                          // Codificar espaços e caracteres especiais na URL
+                          const encodedSrc = imageSrc.split('/').map((part, i) => {
+                            if (i === 0) return part; // Não codificar a primeira parte (barra)
+                            return encodeURIComponent(part);
+                          }).join('/');
+                          const fullUrl = window.location.origin + encodedSrc;
                           
                           console.log(`📸 Imagem ${idx + 1}:`, {
                             original: imgPath,
