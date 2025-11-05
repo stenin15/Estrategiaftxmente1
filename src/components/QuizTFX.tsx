@@ -514,42 +514,6 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
     return () => {
       clearTimeout(timer);
     };
-
-    // Tentar reproduzir após carregar
-    const tryPlay = () => {
-      if (videoRef.current && videoRef.current.readyState >= 2) {
-        const playPromise = videoRef.current.play();
-        if (playPromise !== undefined) {
-          playPromise
-            .then(() => {
-              console.log('✅ Vídeo reproduzindo com sucesso!', videoRef.current?.src);
-            })
-            .catch((error) => {
-              console.warn('⚠️ Erro ao reproduzir:', error);
-              // Retry após delay
-              setTimeout(() => {
-                if (videoRef.current) {
-                  videoRef.current.play().catch(() => {});
-                }
-              }, 1000);
-            });
-        }
-      }
-    };
-
-    // Tentar reproduzir imediatamente se já estiver pronto
-    if (video.readyState >= 2) {
-      tryPlay();
-    } else {
-      // Aguardar metadata ser carregado
-      video.addEventListener('loadedmetadata', tryPlay, { once: true });
-      video.addEventListener('canplay', tryPlay, { once: true });
-    }
-
-    return () => {
-      video.removeEventListener('loadedmetadata', tryPlay);
-      video.removeEventListener('canplay', tryPlay);
-    };
   }, [step, level]);
 
   // Salvar sessão
