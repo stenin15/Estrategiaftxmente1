@@ -106,7 +106,7 @@ const ADAPTIVE_QUESTIONS = [
   },
 ];
 
-// Perguntas 9–12 — comuns com microcopy
+  // Perguntas 9–11 — comuns com microcopy (etapa 10 removida)
 const COMMON_QUESTIONS = [
   {
     id: 9,
@@ -116,16 +116,10 @@ const COMMON_QUESTIONS = [
     options: ["Quero sim", "Talvez", "Quero conhecer antes"],
   },
   {
-    id: 10,
+    id: 11,
     title: "Pronto para entender como os grandes players realmente operam e aplicar isso?",
     microcopy: "Você está a um clique de acessar algo que poucos têm coragem de mostrar.",
     options: ["Sim — quero dominar o método TFX", "Quero começar pelo primeiro passo", "Quero ver resultados primeiro"],
-  },
-  {
-    id: 12,
-    title: "O mercado recompensa quem entende e age com consciência.",
-    microcopy: "Agora é sua vez de sair da tendência de baixa.",
-    options: ["Quero acesso agora →"],
   },
 ];
 
@@ -351,10 +345,8 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
 
   // Função para verificar se deve usar imagem ou vídeo
   const shouldUseImage = (step: number): boolean => {
-    // Etapas com imagens: 6 (step 5), 7 (step 6), 9 (step 8)
-    // Etapa 10 (step 9) usa vídeo etapa10.mp4
-    // Etapa 11 (step 10) usa imagem DISCORD2.png
-    return step === 5 || step === 6 || step === 8 || step === 10;
+    // Etapas com imagens: 6 (step 5), 7 (step 6), 9 (step 8), 10 (step 9)
+    return step === 5 || step === 6 || step === 8 || step === 9;
   };
 
   // Função para verificar se deve mostrar mídia (imagem ou vídeo)
