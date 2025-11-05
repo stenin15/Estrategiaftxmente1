@@ -703,6 +703,8 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                           key={`img-${step}-${imageSrc}-${Date.now()}`}
                           src={encodedSrc}
                           alt={`Media etapa ${step + 1}`}
+                          crossOrigin="anonymous"
+                          referrerPolicy="no-referrer"
                           style={{
                             position: "absolute",
                             top: 0,
@@ -732,14 +734,30 @@ Error Message: ${target.error?.message || 'Desconhecido'}`;
                             target.style.border = "3px solid red";
                             target.style.backgroundColor = "rgba(255,0,0,0.2)";
                             
-                            // Tentar recarregar com timestamp
-                            setTimeout(() => {
-                              const newSrc = encodedSrc + '?t=' + Date.now();
-                              target.src = '';
-                              setTimeout(() => {
-                                target.src = newSrc;
-                              }, 100);
-                            }, 1000);
+                            // Tentar diferentes variações da URL
+                            const variations = [
+                              encodedSrc + '?t=' + Date.now(),
+                              imageSrc + '?t=' + Date.now(),
+                              encodedSrc.replace(/%20/g, '+'),
+                              imageSrc.replace(/ /g, '+'),
+                            ];
+                            
+                            let attempt = 0;
+                            const tryNext = () => {
+                              if (attempt < variations.length) {
+                                console.log(`🔄 Tentativa ${attempt + 1}/${variations.length}:`, variations[attempt]);
+                                target.src = '';
+                                setTimeout(() => {
+                                  target.src = variations[attempt];
+                                  attempt++;
+                                  if (attempt < variations.length) {
+                                    setTimeout(tryNext, 2000);
+                                  }
+                                }, 100);
+                              }
+                            };
+                            
+                            setTimeout(tryNext, 1000);
                           }}
                           onLoad={(e) => {
                             const target = e.currentTarget as HTMLImageElement;
