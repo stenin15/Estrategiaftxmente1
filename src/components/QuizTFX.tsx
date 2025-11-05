@@ -1028,14 +1028,13 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                   {resolveTitle()}
                 </motion.h1>
 
-              {/* SEÇÃO DE MÍDIA REMOVIDA - Layout limpo apenas com textos */}
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                className="flex flex-col gap-4"
-              >
+                {/* Botões de resposta - Centralizados com espaçamento harmonioso */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
+                  className="flex flex-col gap-4 w-full max-w-2xl px-4 mt-6 md:mt-8"
+                >
                 {step === 0
                   ? Q1.options.map((op, idx) => (
                       <OptionButton
