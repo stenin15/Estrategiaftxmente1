@@ -1130,9 +1130,9 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                     }}
                   >
                     <video
-                      key={`video-${step}-${level || 'null'}-${getVideoForStep(step, level)}`}
-                      ref={step === 0 ? videoRef : undefined}
-                      src={getVideoForStep(step, level)}
+                      key={`video-${step}-${getVideoForStep(step, level)}`}
+                      ref={videoRef}
+                      src={step === 0 ? '/inicioquiz.mp4' : getVideoForStep(step, level)}
                       autoPlay
                       loop
                       playsInline
