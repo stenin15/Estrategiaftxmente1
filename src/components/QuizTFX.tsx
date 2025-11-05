@@ -307,32 +307,11 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
   };
 
   // Função para obter a imagem conforme a etapa e nível
-  // TODAS AS IMAGENS SÃO RETORNADAS COM CAMINHO CORRETO E SERÃO CODIFICADAS NA RENDERIZAÇÃO
   const getImageForStep = (step: number, level: Level | null): string[] => {
-    console.log('🔍 getImageForStep - Etapa:', step + 1, 'Step:', step);
-    
-    // Etapa 6 (step 5) - usar DISCORD AO VIVO.png
-    if (step === 5) {
-      console.log('✅ ETAPA 6: Retornando /DISCORD AO VIVO.png');
-      return ["/DISCORD AO VIVO.png"];
-    }
-    // Etapa 7 (step 6) - usar CONTEUDO E COMUNIDADE ETAPA 7.png
-    if (step === 6) {
-      console.log('✅ ETAPA 7: Retornando /CONTEUDO E COMUNIDADE ETAPA 7.png');
-      return ["/CONTEUDO E COMUNIDADE ETAPA 7.png"];
-    }
-    // Etapa 9 (step 8) - usar DISCORD 1.png
-    if (step === 8) {
-      console.log('✅ ETAPA 9: Retornando /DISCORD 1.png');
-      return ["/DISCORD 1.png"];
-    }
-    // Etapa 11 (step 10) - usar DISCORD 2.png
-    if (step === 10) {
-      console.log('✅ ETAPA 11: Retornando /DISCORD 2.png');
-      return ["/DISCORD 2.png"];
-    }
-    
-    console.warn('⚠️ Nenhuma imagem configurada para etapa', step + 1);
+    if (step === 5) return ["/DISCORD AO VIVO.png"];
+    if (step === 6) return []; // Etapa 7 - sem imagem por enquanto
+    if (step === 8) return ["/DISCORD 1.png"];
+    if (step === 10) return ["/DISCORD 2.png"];
     return [];
   };
 
@@ -637,157 +616,35 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
 
               {/* SEÇÃO DE MÍDIA (VÍDEO OU IMAGEM) */}
               <div className="w-full flex justify-center mb-6">
-                {(() => {
-                  const useImage = shouldUseImage(step);
-                  console.log('🔍 DEBUG MÍDIA - Etapa:', step + 1, 'Step:', step, 'shouldUseImage:', useImage);
-                  
-                  if (useImage) {
-                    // SEÇÃO DE IMAGEM - RENDERIZAÇÃO SIMPLIFICADA E DIRETA
+                {shouldUseImage(step) ? (
+                  (() => {
                     const images = getImageForStep(step, level);
-                    const currentImage = images.length > 0 ? images[0] : null;
-                    const imageSrc = currentImage ? (currentImage.startsWith('/') ? currentImage : `/${currentImage}`) : '';
+                    if (images.length === 0) return null;
                     
-                    console.log('🖼️ RENDERIZANDO IMAGEM - Etapa:', step + 1, 'Step:', step, 'Src:', imageSrc, 'Images array:', images);
-                    
-                    if (!imageSrc) {
-                      console.error('❌ ERRO: Nenhuma imagem encontrada para etapa', step + 1);
-                      return (
-                        <div className="relative w-full md:w-[85%] h-[320px] flex flex-col items-center justify-center text-white/50 rounded-2xl border-2 border-red-500 bg-black/30">
-                          <p className="text-red-400 font-bold">❌ ERRO: Nenhuma imagem configurada</p>
-                          <p className="text-xs mt-2">Etapa: {step + 1}, Step: {step}</p>
-                        </div>
-                      );
-                    }
-                    
-                    const encodedSrc = encodeURI(imageSrc);
-                    const fullUrl = window.location.origin + encodedSrc;
-                    console.log('🌐 URL completa da imagem (codificada):', fullUrl);
-                    console.log('📁 Src original:', imageSrc);
-                    console.log('📁 Src codificado:', encodedSrc);
-                    
-                    // Verificar se o arquivo existe no servidor
-                    fetch(fullUrl, { method: 'HEAD', cache: 'no-cache' })
-                      .then(response => {
-                        if (response.ok) {
-                          console.log('✅ Arquivo existe no servidor:', fullUrl);
-                        } else {
-                          console.error('❌ Arquivo NÃO encontrado no servidor:', fullUrl, 'Status:', response.status);
-                          console.error('Tentando URL alternativa sem codificação...');
-                          // Tentar URL alternativa
-                          const altUrl = window.location.origin + imageSrc;
-                          fetch(altUrl, { method: 'HEAD', cache: 'no-cache' })
-                            .then(altResponse => {
-                              if (altResponse.ok) {
-                                console.log('✅ Arquivo encontrado na URL alternativa:', altUrl);
-                              } else {
-                                console.error('❌ Arquivo também não encontrado na URL alternativa:', altUrl);
-                              }
-                            });
-                        }
-                      })
-                      .catch(error => {
-                        console.error('❌ Erro ao verificar arquivo:', error);
-                      });
+                    const imageSrc = images[0].startsWith('/') ? images[0] : `/${images[0]}`;
                     
                     return (
                       <div
                         key={`image-wrapper-${step}`}
-                        className="relative w-full md:w-[85%] overflow-hidden rounded-2xl border-2 border-green-500 shadow-2xl bg-black/30 backdrop-blur-md"
-                        style={{
-                          height: "320px",
-                          minHeight: "320px",
-                          position: "relative",
-                        }}
+                        className="relative w-full md:w-[85%] overflow-hidden rounded-2xl border border-white/10 shadow-2xl bg-black/30 backdrop-blur-md"
+                        style={{ height: "320px", minHeight: "320px" }}
                       >
                         <img
-                          key={`img-${step}-${imageSrc}-${Date.now()}`}
-                          src={encodedSrc}
+                          key={`img-${step}`}
+                          src={encodeURI(imageSrc)}
                           alt={`Media etapa ${step + 1}`}
-                          crossOrigin="anonymous"
-                          referrerPolicy="no-referrer"
+                          className="w-full h-full object-contain"
                           style={{
                             position: "absolute",
-                            top: 0,
-                            left: 0,
+                            inset: 0,
                             width: "100%",
                             height: "100%",
-                            objectFit: "contain",
-                            objectPosition: "center",
-                            display: "block",
-                            opacity: 1,
-                            filter: "drop-shadow(0 0 20px rgba(16, 185, 129, 0.3))",
                           }}
-                          onError={(e) => {
-                            const target = e.currentTarget as HTMLImageElement;
-                            const errorMsg = `❌ ERRO ao carregar imagem:
-Etapa: ${step + 1}
-Step: ${step}
-Src original: ${imageSrc}
-Src codificado: ${encodedSrc}
-URL completa: ${fullUrl}
-CurrentSrc: ${target.currentSrc}
-Error Code: ${target.error?.code || 'N/A'}
-Error Message: ${target.error?.message || 'Desconhecido'}`;
-                            console.error(errorMsg);
-                            
-                            // Mostrar mensagem visual de erro
-                            target.style.border = "3px solid red";
-                            target.style.backgroundColor = "rgba(255,0,0,0.2)";
-                            
-                            // Tentar diferentes variações da URL
-                            const variations = [
-                              encodedSrc + '?t=' + Date.now(),
-                              imageSrc + '?t=' + Date.now(),
-                              encodedSrc.replace(/%20/g, '+'),
-                              imageSrc.replace(/ /g, '+'),
-                            ];
-                            
-                            let attempt = 0;
-                            const tryNext = () => {
-                              if (attempt < variations.length) {
-                                console.log(`🔄 Tentativa ${attempt + 1}/${variations.length}:`, variations[attempt]);
-                                target.src = '';
-                                setTimeout(() => {
-                                  target.src = variations[attempt];
-                                  attempt++;
-                                  if (attempt < variations.length) {
-                                    setTimeout(tryNext, 2000);
-                                  }
-                                }, 100);
-                              }
-                            };
-                            
-                            setTimeout(tryNext, 1000);
-                          }}
-                          onLoad={(e) => {
-                            const target = e.currentTarget as HTMLImageElement;
-                            console.log('✅ IMAGEM CARREGADA COM SUCESSO:', {
-                              etapa: step + 1,
-                              step: step,
-                              src: imageSrc,
-                              currentSrc: target.currentSrc,
-                              naturalWidth: target.naturalWidth,
-                              naturalHeight: target.naturalHeight,
-                            });
-                            target.style.opacity = "1";
-                            target.style.border = "none";
-                          }}
-                          onLoadStart={() => {
-                            console.log('🔄 Iniciando carregamento da imagem:', imageSrc);
-                          }}
-                          loading="eager"
                         />
-                        {/* Debug info overlay */}
-                        <div className="absolute top-2 left-2 text-xs text-white/70 bg-black/50 px-2 py-1 rounded z-10">
-                          Etapa {step + 1} - {imageSrc.split('/').pop()}
-                        </div>
                       </div>
                     );
-                  } else {
-                    console.log('📹 Deve usar VÍDEO para etapa', step + 1);
-                    return null;
-                  }
-                })()}
+                  })()
+                ) : null}
                 
                 {/* SEÇÃO DE VÍDEO EM LOOP INFINITO - APENAS SE NÃO DEVERIA USAR IMAGEM */}
                 {!shouldUseImage(step) && (
