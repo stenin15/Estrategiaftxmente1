@@ -845,81 +845,60 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
         {/* Partículas douradas */}
         <GoldenParticles />
 
-        {/* Conteúdo central - CTA Focado em Identificação e Aprendizado */}
+        {/* Conteúdo central - Seção Final do Quiz */}
         <motion.div
           initial={{ opacity: 0, y: 50, scale: 0.95 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="relative z-30 text-center px-6 max-w-4xl mx-auto flex flex-col items-center justify-center min-h-[60vh]"
         >
-          {/* Container dos CTAs */}
-          <motion.div
+          {/* Microcopy superior - verde */}
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="flex flex-col items-center gap-6"
+            className="text-[#00FFB3] text-center mb-4 font-semibold"
+            style={{
+              fontSize: '1rem',
+              textShadow: '0 0 10px rgba(0, 255, 179, 0.5)',
+            }}
           >
-            {/* Botão principal CTA - Quero dar o primeiro passo pra mudar minha vida */}
+            Agora é sua vez de sair da tendência de baixa.
+          </motion.p>
+
+          {/* Headline principal */}
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+            className="text-3xl md:text-4xl font-bold text-white text-center mb-8"
+            style={{
+              textShadow: '0 0 20px rgba(255, 255, 255, 0.3)',
+              maxWidth: '800px',
+            }}
+          >
+            O mercado recompensa quem entende e age com consciência.
+          </motion.h2>
+
+          {/* Container do CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+            className="flex flex-col items-center gap-4"
+          >
+            {/* Botão principal CTA */}
             <motion.button
               onClick={() => finalizeAndGo()}
-              className="relative bg-emerald-500 hover:bg-emerald-400 text-white font-semibold py-4 px-8 rounded-xl transition-transform hover:scale-105 shadow-lg shadow-emerald-500/30"
+              className="relative bg-[#1A1F24] hover:bg-[#2A2F34] text-white font-semibold py-4 px-8 rounded-xl transition-all hover:scale-105 border border-white/10 shadow-lg"
               style={{
                 fontSize: '1.1rem',
               }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.98 }}
             >
-              {/* Brilho pulsante verde neon ao redor do botão */}
-              <motion.div
-                className="absolute inset-0 rounded-xl"
-                style={{
-                  background: 'linear-gradient(45deg, rgba(16, 185, 129, 0.5), rgba(5, 150, 105, 0.5))',
-                  filter: 'blur(15px)',
-                  zIndex: -1,
-                }}
-                animate={{
-                  opacity: [0.4, 0.9, 0.4],
-                  scale: [1, 1.15, 1],
-                }}
-                transition={{
-                  duration: 2.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              />
-              {/* Brilho adicional mais suave */}
-              <motion.div
-                className="absolute inset-0 rounded-xl"
-                style={{
-                  background: 'radial-gradient(circle, rgba(16, 185, 129, 0.4) 0%, transparent 70%)',
-                  filter: 'blur(20px)',
-                  zIndex: -1,
-                }}
-                animate={{
-                  opacity: [0.2, 0.6, 0.2],
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              />
-              Quero dar o primeiro passo pra mudar minha vida →
+              Quero acesso agora →
             </motion.button>
-
-            {/* Microcopy abaixo do CTA */}
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-              className="text-gray-300 text-center max-w-lg mx-auto leading-relaxed"
-              style={{
-                color: 'rgba(255, 255, 255, 0.8)',
-                fontSize: '0.95rem',
-              }}
-            >
-              Nenhum trader nasce pronto. Mas todos os que mudaram de vida começaram com uma decisão simples — agir.
-            </motion.p>
           </motion.div>
         </motion.div>
       </motion.div>
