@@ -848,30 +848,35 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
         <FloatingCandles />
 
         {/* Conteúdo - Centralizado vertical e horizontalmente */}
-        <motion.div
-          className="flex flex-col items-center justify-center text-center h-[70vh]"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <p className="text-emerald-400 font-semibold text-sm mb-3">
-            Agora é sua vez de sair da tendência de baixa.
-          </p>
-          <h1 className="text-3xl md:text-4xl font-bold text-white drop-shadow-lg leading-snug">
-            O mercado recompensa quem entende e age com consciência.
-          </h1>
-
-          <button
-            onClick={() => window.location.href = "/entrega"}
-            className="bg-neutral-900 text-white px-8 py-4 rounded-xl mt-6 text-lg font-semibold border border-emerald-400 hover:bg-emerald-400 hover:text-black transition-all duration-300"
+        <div className="relative mx-auto max-w-xl px-6 pb-24 pt-16 md:pt-24 flex flex-col justify-center min-h-[calc(100dvh-120px)]">
+          <motion.div
+            className="flex flex-col items-center justify-center text-center"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
           >
-            Quero acesso agora →
-          </button>
+            <p className="text-emerald-400 font-semibold text-sm mb-3">
+              Agora é sua vez de sair da tendência de baixa.
+            </p>
+            <h1 className="text-3xl md:text-4xl font-bold text-white drop-shadow-lg leading-snug mb-6">
+              O mercado recompensa quem entende e age com consciência.
+            </h1>
 
-          <p className="text-neutral-400 text-xs mt-6 italic">
-            "TFX não é sobre sorte. É sobre leitura, mente e execução."
-          </p>
-        </motion.div>
+            <button
+              onClick={() => {
+                console.log('🚀 Redirecionando para /entrega');
+                window.location.href = "/entrega";
+              }}
+              className="bg-neutral-900 text-white px-8 py-4 rounded-xl mt-6 text-lg font-semibold border border-emerald-400 hover:bg-emerald-400 hover:text-black transition-all duration-300 cursor-pointer"
+            >
+              Quero acesso agora →
+            </button>
+
+            <p className="text-neutral-400 text-xs mt-6 italic">
+              "TFX não é sobre sorte. É sobre leitura, mente e execução."
+            </p>
+          </motion.div>
+        </div>
       </motion.div>
     );
   };
@@ -879,6 +884,7 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
   // Se for após a última pergunta (step === totalSteps), mostrar tela final
   // Quando o usuário responde a última pergunta (step === totalSteps - 1), step avança para totalSteps
   if (step === totalSteps) {
+    console.log('✅ Mostrando tela final - step:', step, 'totalSteps:', totalSteps);
     return <FinalScreen />;
   }
 
