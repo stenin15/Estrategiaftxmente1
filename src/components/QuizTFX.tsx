@@ -341,9 +341,9 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
   const [imageIndex, setImageIndex] = useState<number>(0); // Para carrossel na etapa 9
 
   // Calcular totalSteps dinamicamente baseado nas perguntas
-  // Q1 (1) + ADAPTIVE_QUESTIONS (7) + COMMON_QUESTIONS (2) + Tela Final (1) = 11
+  // Q1 (1) + ADAPTIVE_QUESTIONS (7) + COMMON_QUESTIONS (2) + Tela Final (1) = 12
   const totalSteps = useMemo(() => {
-    return 1 + ADAPTIVE_QUESTIONS.length + COMMON_QUESTIONS.length + 1; // +1 para tela final
+    return 1 + ADAPTIVE_QUESTIONS.length + COMMON_QUESTIONS.length + 1; // Total: 12 etapas (incluindo tela final)
   }, []);
   const progress = useMemo(() => Math.round(((step + 1) / totalSteps) * 100), [step, totalSteps]);
 
@@ -815,68 +815,68 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
     );
   };
 
-  // Tela final especial (Etapa Final)
+  // Tela final especial (Etapa 12)
   const FinalScreen = () => {
-    // Calcular total de perguntas para exibição
-    const totalQuestions = 1 + ADAPTIVE_QUESTIONS.length + COMMON_QUESTIONS.length;
-    
     return (
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
-        className="relative min-h-[100dvh] overflow-hidden text-white transition-all duration-700"
+        className="relative min-h-[100dvh] overflow-hidden text-white transition-all duration-700 flex items-center justify-center"
         style={{
-          background: 'linear-gradient(to bottom right, #0B0C10, #10161A)',
+          background: '#000000',
           position: 'relative',
         }}
       >
-        {/* Backdrop film grain + vignette */}
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(transparent,rgba(0,0,0,0.5))]" />
-        <div
-          className="pointer-events-none absolute inset-0 mix-blend-overlay opacity-[0.08]"
+        {/* Gradiente verde vertical à esquerda */}
+        <div 
+          className="absolute left-0 top-0 w-1 h-full opacity-30"
           style={{
-            backgroundImage:
-              "url('data:image/svg+xml;utf8, %3Csvg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'100%\\' height=\\'100%\\'%3E%3Cfilter id=\\'n\\'%3E%3CfeTurbulence type=\\'fractalNoise\\' baseFrequency=\\'0.7\\' numOctaves=\\'2\\' stitchTiles=\\'stitch\\'/%3E%3CfeColorMatrix type=\\'saturate\\' values=\\'0\\'/%3E%3C/filter%3E%3Crect width=\\'100%\\' height=\\'100%\\' filter=\\'url(%23n)\\'/%3E%3C/svg%3E')",
+            background: 'linear-gradient(to bottom, rgba(0, 255, 100, 0.8), rgba(0, 255, 100, 0))',
           }}
         />
 
-        {/* Partículas ascendentes no fundo */}
-        <ParticlesBackground />
+        {/* Conteúdo centralizado - Estilo da imagem */}
+        <motion.div
+          className="flex flex-col items-center justify-center text-center px-6 max-w-2xl"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          {/* Texto verde superior */}
+          <p className="text-[rgb(0,255,100)] font-medium text-base mb-6">
+            Agora é sua vez de sair da tendência de baixa.
+          </p>
 
-        {/* Fundo com velas flutuantes dinâmicas */}
-        <FloatingCandles />
+          {/* Título principal branco */}
+          <h1 className="text-3xl md:text-4xl font-bold text-white leading-snug mb-8 drop-shadow-lg">
+            O mercado recompensa quem<br />entende e age com consciência.
+          </h1>
 
-        {/* Conteúdo - Centralizado vertical e horizontalmente */}
-        <div className="relative mx-auto max-w-xl px-6 pb-24 pt-16 md:pt-24 flex flex-col justify-center min-h-[calc(100dvh-120px)]">
-          <motion.div
-            className="flex flex-col items-center justify-center text-center"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+          {/* Botão CTA */}
+          <button
+            onClick={() => {
+              console.log('🚀 Redirecionando para checkout');
+              window.location.href = CHECKOUT_URL || "/checkout/tfx-mind";
+            }}
+            className="bg-[#282C34] text-white px-8 py-4 rounded-xl text-base font-normal border-0 hover:bg-[#353A42] transition-all duration-300 cursor-pointer"
+            style={{
+              boxShadow: '0 2px 8px rgba(0, 0, 0, 0.3)',
+            }}
           >
-            <p className="text-emerald-400 font-semibold text-sm mb-3">
-              Agora é sua vez de sair da tendência de baixa.
-            </p>
-            <h1 className="text-3xl md:text-4xl font-bold text-white drop-shadow-lg leading-snug mb-6">
-              O mercado recompensa quem entende e age com consciência.
-            </h1>
+            Quero acesso agora →
+          </button>
 
-            <button
-              onClick={() => {
-                console.log('🚀 Redirecionando para /entrega');
-                window.location.href = "/entrega";
-              }}
-              className="bg-neutral-900 text-white px-8 py-4 rounded-xl mt-6 text-lg font-semibold border border-emerald-400 hover:bg-emerald-400 hover:text-black transition-all duration-300 cursor-pointer"
-            >
-              Quero acesso agora →
-            </button>
-
-            <p className="text-neutral-400 text-xs mt-6 italic">
-              "TFX não é sobre sorte. É sobre leitura, mente e execução."
-            </p>
+          {/* Indicador de etapa no rodapé */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="mt-12 text-[#A0A0A0] text-sm"
+          >
+            Etapa 12 de 12
           </motion.div>
-        </div>
+        </motion.div>
       </motion.div>
     );
   };
