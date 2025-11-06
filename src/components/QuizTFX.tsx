@@ -815,8 +815,11 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
     );
   };
 
-  // Tela final especial (Etapa 12)
+  // Tela final especial (Etapa Final)
   const FinalScreen = () => {
+    // Calcular total de perguntas para exibição
+    const totalQuestions = 1 + ADAPTIVE_QUESTIONS.length + COMMON_QUESTIONS.length;
+    
     return (
       <motion.div
         initial={{ opacity: 0 }}
@@ -845,63 +848,30 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
         <FloatingCandles />
 
         {/* Conteúdo - Centralizado vertical e horizontalmente */}
-        <div className="relative mx-auto max-w-xl px-6 pb-24 pt-16 md:pt-24 flex flex-col justify-center min-h-[calc(100dvh-120px)]">
-          {/* Seção Final - Centralizada */}
-          <motion.div
-            initial={{ opacity: 0, y: 20, scale: 0.98 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -20, scale: 0.98 }}
-            transition={{ duration: 0.4, ease: "easeOut" }}
-            className="text-center"
+        <motion.div
+          className="flex flex-col items-center justify-center text-center h-[70vh]"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <p className="text-emerald-400 font-semibold text-sm mb-3">
+            Agora é sua vez de sair da tendência de baixa.
+          </p>
+          <h1 className="text-3xl md:text-4xl font-bold text-white drop-shadow-lg leading-snug">
+            O mercado recompensa quem entende e age com consciência.
+          </h1>
+
+          <button
+            onClick={() => window.location.href = "/entrega"}
+            className="bg-neutral-900 text-white px-8 py-4 rounded-xl mt-6 text-lg font-semibold border border-emerald-400 hover:bg-emerald-400 hover:text-black transition-all duration-300"
           >
-            {/* Subtítulo verde neon */}
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-              className="text-sm text-emerald-400 mb-4 font-semibold"
-            >
-              Agora é sua vez de sair da tendência de baixa.
-            </motion.p>
+            Quero acesso agora →
+          </button>
 
-            {/* Título principal */}
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3, ease: "easeOut" }}
-              className="text-3xl md:text-4xl font-bold text-white drop-shadow-lg mb-8"
-            >
-              O mercado recompensa quem entende e age com consciência.
-            </motion.h2>
-
-            {/* Botão CTA com hover animado */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
-              className="mb-6"
-            >
-              <motion.button
-                onClick={() => finalizeAndGo()}
-                className="relative bg-[#1A1F24] hover:bg-[#2A2F34] text-white font-semibold py-3 px-6 rounded-xl transition-all duration-200 border border-white/10 shadow-lg"
-                whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(0, 255, 179, 0.3)" }}
-                whileTap={{ scale: 0.98 }}
-              >
-                Quero acesso agora →
-              </motion.button>
-            </motion.div>
-
-            {/* Texto opcional no rodapé */}
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.5, ease: "easeOut" }}
-              className="text-xs text-white/40 text-center mt-8"
-            >
-              TFX não é sobre sorte. É sobre leitura, mente e execução.
-            </motion.p>
-          </motion.div>
-        </div>
+          <p className="text-neutral-400 text-xs mt-6 italic">
+            "TFX não é sobre sorte. É sobre leitura, mente e execução."
+          </p>
+        </motion.div>
       </motion.div>
     );
   };
