@@ -937,6 +937,11 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
                   ✔️ Comunidade com análises em tempo real e feedback prático.
                 </p>
               </div>
+              <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-3">
+                <p className="text-white/90 text-sm">
+                  ✔️ Material didático do básico ao avançado.
+                </p>
+              </div>
             </div>
 
             {/* Barra de urgência / social-proof */}
