@@ -8,7 +8,7 @@ type QuizTFXProps = {
   primaryCtaHref?: string; // ex.: WhatsApp/Checkout
 };
 
-const CHECKOUT_URL = "/checkout/tfx-mind";
+const CHECKOUT_URL = "/entrega"; // Redireciona para página de entrega
 const STORAGE_KEY = "tfx_quiz_session_v2"; // versão atualizada
 
 // Helpers — estética cinematográfica aprimorada
@@ -856,8 +856,8 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
           {/* Botão CTA */}
           <button
             onClick={() => {
-              console.log('🚀 Redirecionando para checkout');
-              window.location.href = CHECKOUT_URL || "/checkout/tfx-mind";
+              console.log('🚀 Redirecionando para entrega/checkout');
+              window.location.href = CHECKOUT_URL || "/entrega";
             }}
             className="bg-[#282C34] text-white px-8 py-4 rounded-xl text-base font-normal border-0 hover:bg-[#353A42] transition-all duration-300 cursor-pointer"
             style={{
