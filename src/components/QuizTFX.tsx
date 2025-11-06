@@ -364,7 +364,7 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
     // Etapa 10 (step 9) - última pergunta - SEM mídia
     if (step === 9) return false;
     // Etapa 11 (step 10) - tela final - SEM mídia
-    if (step >= totalSteps - 1) return false;
+    if (step === totalSteps - 1) return false;
     // Todas as outras etapas (2-9, steps 1-8) têm mídia
     return true;
   };
@@ -886,9 +886,9 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
 
   // Se for após a última pergunta, mostrar tela final (Etapa 11)
   // Quando o usuário responde a última pergunta (step 9 = Etapa 10), step avança para 10 = Etapa 11 (tela final)
-  // totalSteps = 11, então step 10 é a última etapa (tela final)
-  if (step >= totalSteps - 1) {
-    console.log('✅ Mostrando tela final Etapa 11 - step:', step, 'totalSteps:', totalSteps);
+  // totalSteps = 11, então step 10 (totalSteps - 1) é a tela final
+  if (step === totalSteps - 1) {
+    console.log('✅ Mostrando tela final Etapa 11 - step:', step, 'totalSteps:', totalSteps, 'Etapa:', step + 1);
     return <FinalScreen />;
   }
 
