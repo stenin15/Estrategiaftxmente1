@@ -90,29 +90,56 @@ export default function Entrega() {
 
           {/* CTA Principal - Botão pulsante para máxima conversão */}
           <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.97 }}
-            animate={{
-              scale: [1, 1.05, 1],
-              boxShadow: [
-                '0 10px 40px rgba(234, 199, 107, 0.5)',
-                '0 15px 50px rgba(234, 199, 107, 0.8)',
-                '0 10px 40px rgba(234, 199, 107, 0.5)',
-              ],
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
+            whileHover={{ scale: 1.08 }}
+            whileTap={{ scale: 0.95 }}
             onClick={() => window.open(checkoutUrl, "_blank")}
-            className="bg-gradient-to-r from-yellow-400 to-blue-500 text-black font-semibold py-4 px-10 rounded-2xl shadow-lg hover:shadow-yellow-400/50 transition-all text-lg w-full sm:w-auto"
+            className="bg-gradient-to-r from-yellow-400 to-blue-500 text-black font-semibold py-4 px-10 rounded-2xl text-lg w-full sm:w-auto relative overflow-visible cta-pulsante"
             style={{
-              filter: 'brightness(1.05)',
+              filter: 'brightness(1.1)',
             }}
           >
             {isEnglish ? "Secure my access now →" : "Garantir meu acesso agora →"}
           </motion.button>
+          
+          {/* CSS keyframe inline para garantir pulsação VISÍVEL */}
+          <style>{`
+            @keyframes ctaPulse {
+              0% {
+                transform: scale(1);
+                box-shadow: 
+                  0 0 20px rgba(234, 199, 107, 0.8),
+                  0 0 40px rgba(234, 199, 107, 0.6),
+                  0 0 60px rgba(234, 199, 107, 0.4);
+              }
+              50% {
+                transform: scale(1.12);
+                box-shadow: 
+                  0 0 30px rgba(234, 199, 107, 1),
+                  0 0 60px rgba(234, 199, 107, 0.9),
+                  0 0 90px rgba(234, 199, 107, 0.7),
+                  0 0 120px rgba(234, 199, 107, 0.4);
+              }
+              100% {
+                transform: scale(1);
+                box-shadow: 
+                  0 0 20px rgba(234, 199, 107, 0.8),
+                  0 0 40px rgba(234, 199, 107, 0.6),
+                  0 0 60px rgba(234, 199, 107, 0.4);
+              }
+            }
+            
+            .cta-pulsante {
+              animation: ctaPulse 1.5s ease-in-out infinite !important;
+            }
+            
+            .cta-pulsante:hover {
+              animation: none !important;
+              transform: scale(1.08) !important;
+              box-shadow: 
+                0 0 40px rgba(234, 199, 107, 1),
+                0 0 80px rgba(234, 199, 107, 0.8) !important;
+            }
+          `}</style>
 
           {/* Microcopy abaixo do botão */}
           <p className="text-gray-400 mt-4 text-sm">
