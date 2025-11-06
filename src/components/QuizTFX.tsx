@@ -1016,12 +1016,36 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
     );
   };
 
-  // Se for após a última pergunta, mostrar tela final (Etapa 11)
-  // Quando o usuário responde a última pergunta (step 9 = Etapa 10), step avança para 10 = Etapa 11 (tela final)
-  // totalSteps = 11, então step 10 (totalSteps - 1) é a tela final
+  // Redirecionar para página de oferta Black Friday quando quiz for concluído
+  useEffect(() => {
+    if (step === totalSteps - 1) {
+      console.log('✅ Quiz concluído - redirecionando para /bf-2025 - step:', step, 'totalSteps:', totalSteps);
+      // Pequeno delay para garantir que o estado foi atualizado
+      const timer = setTimeout(() => {
+        window.location.href = '/bf-2025';
+      }, 300);
+      return () => clearTimeout(timer);
+    }
+  }, [step, totalSteps]);
+
+  // Se for após a última pergunta, mostrar loading/transição antes de redirecionar
   if (step === totalSteps - 1) {
-    console.log('✅ Mostrando tela final Etapa 11 - step:', step, 'totalSteps:', totalSteps, 'Etapa:', step + 1);
-    return <FinalScreen />;
+    return (
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.3 }}
+        className="relative min-h-[100dvh] overflow-hidden text-white flex items-center justify-center"
+        style={{
+          background: 'linear-gradient(to bottom right, #0B0C10, #10161A)',
+        }}
+      >
+        <div className="text-center">
+          <div className="text-teal-300 text-lg font-semibold mb-2">Redirecionando...</div>
+          <div className="text-white/60 text-sm">Preparando sua oferta exclusiva</div>
+        </div>
+      </motion.div>
+    );
   }
 
   return (

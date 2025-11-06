@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import LandingPage from './components/LandingPage';
 import Entrega from './pages/Entrega';
 import UpsellPage from './pages/Upsell';
+import BF2025 from './pages/BF2025';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/entrega" element={<Entrega />} />
           <Route path="/upsell" element={<UpsellPage />} />
+          <Route path="/bf-2025" element={<BF2025 />} />
         </Routes>
       </Router>
     </HelmetProvider>
