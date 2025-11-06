@@ -1,5 +1,56 @@
 import { useMemo, useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+
+// Hooks customizados para tela final
+function useSessionCountdown(key = "tfx-final-expiry", minutes = 9, seconds = 59) {
+  const [timeLeft, setTimeLeft] = useState<number>(() => {
+    const saved = sessionStorage.getItem(key);
+    const expiry = saved ? parseInt(saved, 10) : Date.now() + (minutes*60 + seconds) * 1000;
+    if (!saved) sessionStorage.setItem(key, String(expiry));
+    return Math.max(0, Math.floor((expiry - Date.now()) / 1000));
+  });
+
+  useEffect(() => {
+    if (timeLeft <= 0) return;
+    const id = setInterval(() => {
+      setTimeLeft(prev => {
+        const saved = sessionStorage.getItem(key);
+        const expiry = saved ? parseInt(saved, 10) : Date.now();
+        const remaining = Math.max(0, Math.floor((expiry - Date.now()) / 1000));
+        return remaining;
+      });
+    }, 1000);
+    return () => clearInterval(id);
+  }, [timeLeft, key]);
+
+  const mm = String(Math.floor(timeLeft / 60)).padStart(2, "0");
+  const ss = String(timeLeft % 60).padStart(2, "0");
+  return { mm, ss, finished: timeLeft <= 0 };
+}
+
+function useSessionSeats(key = "tfx-final-seats") {
+  const [seats, setSeats] = useState<number>(() => {
+    const saved = sessionStorage.getItem(key);
+    if (saved) return parseInt(saved, 10);
+    const initial = Math.floor(Math.random() * 8) + 12; // 12–19
+    sessionStorage.setItem(key, String(initial));
+    return initial;
+  });
+
+  // pequena redução simbólica a cada 90s (mínimo 5)
+  useEffect(() => {
+    const id = setInterval(() => {
+      setSeats(prev => {
+        const next = Math.max(5, prev - 1);
+        sessionStorage.setItem(key, String(next));
+        return next;
+      });
+    }, 90000);
+    return () => clearInterval(id);
+  }, [key]);
+
+  return seats;
+}
 import { FloatingCandles } from "./FloatingCandles";
 
 type QuizTFXProps = {
@@ -818,8 +869,11 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
     );
   };
 
-  // Tela final especial (Etapa 11) - Fundo transparente como etapas anteriores
+  // Tela final especial (Etapa 11) - Versão persuasiva com urgência e benefícios
   const FinalScreen = () => {
+    const { mm, ss } = useSessionCountdown();
+    const seats = useSessionSeats();
+
     return (
       <motion.div
         initial={{ opacity: 0 }}
@@ -850,34 +904,75 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
         {/* Conteúdo - Centralizado vertical e horizontalmente */}
         <div className="relative mx-auto max-w-xl px-6 pb-24 pt-16 md:pt-24 flex flex-col justify-center min-h-[calc(100dvh-120px)]">
           <motion.div
-            className="text-center"
-            initial={{ opacity: 0, y: 30 }}
+            key="tfx-final"
+            initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="relative mx-auto flex w-full max-w-3xl flex-col items-center text-center px-6 py-8"
           >
-            {/* Subtítulo verde neon */}
-            <p className="text-sm text-emerald-400 mb-4 font-semibold">
+            {/* Microcopy topo */}
+            <p className="mb-3 text-emerald-400 font-semibold text-xs tracking-wide">
               Agora é sua vez de sair da tendência de baixa.
             </p>
 
-            {/* Título principal branco */}
-            <h1 className="text-3xl md:text-4xl font-bold text-white drop-shadow-lg mb-8 leading-snug">
+            {/* Headline de impacto */}
+            <h1 className="text-white text-3xl md:text-4xl font-extrabold leading-snug drop-shadow-[0_0_18px_rgba(16,185,129,0.15)]">
               O mercado recompensa quem entende e age com consciência.
             </h1>
 
-            {/* Botão CTA com hover animado */}
-            <button
-              onClick={() => {
-                console.log('🚀 Abrindo portal de checkout');
-                window.location.href = CHECKOUT_URL || "/entrega";
-              }}
-              className="bg-[#1A1F24] hover:bg-[#2A2F34] text-white font-semibold py-3 px-6 rounded-xl transition-all duration-200 border border-white/10 shadow-lg hover:scale-105 cursor-pointer"
-              style={{
-                boxShadow: '0 2px 8px rgba(0, 0, 0, 0.3)',
-              }}
-            >
-              Quero acesso agora →
-            </button>
+            {/* Bloco de prova/benefícios */}
+            <div className="mt-6 grid gap-3 text-left w-full">
+              <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-3">
+                <p className="text-white/90 text-sm">
+                  ✔️ Aprenda a ler o fluxo institucional (sem promessas mágicas).
+                </p>
+              </div>
+              <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-3">
+                <p className="text-white/90 text-sm">
+                  ✔️ Método claro para decidir <span className="text-emerald-400">quando entrar, segurar e sair</span>.
+                </p>
+              </div>
+              <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-3">
+                <p className="text-white/90 text-sm">
+                  ✔️ Comunidade com análises em tempo real e feedback prático.
+                </p>
+              </div>
+            </div>
+
+            {/* Barra de urgência / social-proof */}
+            <div className="mt-5 flex w-full flex-col items-center justify-center gap-2 sm:flex-row">
+              <div className="rounded-lg border border-emerald-400/30 bg-emerald-400/10 px-3 py-2 text-emerald-300 text-xs font-semibold tracking-wide">
+                Vagas na comunidade: <span className="text-white">{seats}</span>
+              </div>
+              <div className="rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-white/80 text-xs">
+                Garantia <span className="text-white font-semibold">7 dias</span> • Sem pegadinhas
+              </div>
+              <div className="rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-white/80 text-xs">
+                Oferta expira em <span className="text-white font-semibold">{mm}:{ss}</span>
+              </div>
+            </div>
+
+            {/* CTAs */}
+            <div className="mt-6 flex w-full flex-col items-center gap-3 sm:flex-row sm:justify-center">
+              <button
+                onClick={() => (window.location.href = "/entrega")}
+                className="w-full sm:w-auto rounded-xl bg-emerald-400 px-6 py-4 font-semibold text-black transition-all hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-emerald-400 focus:ring-offset-0"
+              >
+                Ativar meu acesso agora →
+              </button>
+
+              <button
+                onClick={() => (window.location.href = "/upsell")}
+                className="w-full sm:w-auto rounded-xl border border-white/15 bg-white/5 px-6 py-4 font-semibold text-white/90 transition-all hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/20"
+              >
+                Ver como funciona primeiro
+              </button>
+            </div>
+
+            {/* Selos/observações */}
+            <p className="mt-5 text-[11px] text-white/50 italic">
+              "TFX não é sobre sorte. É sobre leitura, mente e execução."
+            </p>
 
             {/* Indicador de etapa no rodapé */}
             <motion.div
