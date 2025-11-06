@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 
-// TODO: Trocar pela URL real do checkout
-const checkout = "https://pay.cakto.com.br/SEU_LINK_DE_CHECKOUT";
+const checkout = "https://pay.cakto.com.br/3d5yxy3_619402";
 
 export default function BF2025() {
   return (

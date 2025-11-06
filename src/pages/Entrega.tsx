@@ -6,8 +6,8 @@ export default function Entrega() {
   const isEnglish =
     userLang.startsWith("en") || userLang.startsWith("us") || userLang.startsWith("uk");
 
-  // URL do checkout - substitua pela URL real do seu checkout
-  const checkoutUrl = "https://pay.cakto.com.br/YOUR_CHECKOUT_LINK";
+  // URL do checkout
+  const checkoutUrl = "https://pay.cakto.com.br/3d5yxy3_619402";
 
   const lang = isEnglish ? "en" : "pt-BR";
 
