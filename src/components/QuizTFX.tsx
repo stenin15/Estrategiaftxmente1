@@ -51,6 +51,7 @@ function useSessionSeats(key = "tfx-final-seats") {
 
   return seats;
 }
+
 import { FloatingCandles } from "./FloatingCandles";
 
 type QuizTFXProps = {
