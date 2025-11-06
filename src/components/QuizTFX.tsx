@@ -409,15 +409,14 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
   };
 
   // Função para verificar se deve mostrar mídia (imagem ou vídeo)
-  // Etapas 1, 10 e 11 não têm mídia
+  // Etapas 1 e 11 não têm mídia
+  // Etapa 10 (step 9) TEM mídia - imagem DISCORD2.png
   const shouldShowMedia = (step: number): boolean => {
     // Etapa 1 (step 0) - SEM mídia
     if (step === 0) return false;
-    // Etapa 10 (step 9) - última pergunta - SEM mídia
-    if (step === 9) return false;
     // Etapa 11 (step 10) - tela final - SEM mídia
     if (step === totalSteps - 1) return false;
-    // Todas as outras etapas (2-9, steps 1-8) têm mídia
+    // Todas as outras etapas (2-10, steps 1-9) têm mídia
     return true;
   };
 
