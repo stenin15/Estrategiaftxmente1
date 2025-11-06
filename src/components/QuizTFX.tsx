@@ -922,26 +922,46 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
 
             {/* Bloco de prova/benefícios */}
             <div className="mt-6 grid gap-3 text-left w-full">
-              <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-3">
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.1 }}
+                className="rounded-xl border border-white/10 bg-white/5 px-4 py-3"
+              >
                 <p className="text-white/90 text-sm">
                   ✔️ Aprenda a ler o fluxo institucional (sem promessas mágicas).
                 </p>
-              </div>
-              <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-3">
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.2 }}
+                className="rounded-xl border border-white/10 bg-white/5 px-4 py-3"
+              >
                 <p className="text-white/90 text-sm">
                   ✔️ Método claro para decidir <span className="text-emerald-400">quando entrar, segurar e sair</span>.
                 </p>
-              </div>
-              <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-3">
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.3 }}
+                className="rounded-xl border border-white/10 bg-white/5 px-4 py-3"
+              >
                 <p className="text-white/90 text-sm">
                   ✔️ Comunidade com análises em tempo real e feedback prático.
                 </p>
-              </div>
-              <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-3">
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.4 }}
+                className="rounded-xl border border-white/10 bg-white/5 px-4 py-3"
+              >
                 <p className="text-white/90 text-sm">
                   ✔️ Material didático do básico ao avançado.
                 </p>
-              </div>
+              </motion.div>
             </div>
 
             {/* Barra de urgência / social-proof */}
