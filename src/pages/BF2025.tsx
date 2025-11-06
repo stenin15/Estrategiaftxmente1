@@ -26,7 +26,7 @@ export default function BF2025() {
         >
           <h1 className="text-3xl md:text-5xl font-extrabold leading-tight text-white">
             Você terminou o TFX Mind Quiz — <br className="hidden md:block" />
-            <span className="text-teal-300">destrave hoje o método completo</span> por um investimento baixo.
+            <span className="text-teal-300">destrave hoje o método completo</span> com um investimento baixo.
           </h1>
           <p className="text-white/80 mt-4 max-w-2xl mx-auto text-lg">
             De <span className="line-through text-white/60">R$ 489,00</span> por{" "}
