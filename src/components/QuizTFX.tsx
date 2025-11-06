@@ -341,9 +341,12 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
   const [imageIndex, setImageIndex] = useState<number>(0); // Para carrossel na etapa 9
 
   // Calcular totalSteps dinamicamente baseado nas perguntas
-  // Q1 (1) + ADAPTIVE_QUESTIONS (7) + COMMON_QUESTIONS (2) + Tela Final (1) = 12
+  // Q1 (1) + ADAPTIVE_QUESTIONS (7) + COMMON_QUESTIONS (2) = 10 perguntas
+  // + Tela Final (1) = 11 etapas totais
+  // Steps: 0-9 = perguntas (Etapas 1-10), step 10 = tela final (Etapa 11)
   const totalSteps = useMemo(() => {
-    return 1 + ADAPTIVE_QUESTIONS.length + COMMON_QUESTIONS.length + 1; // Total: 12 etapas (incluindo tela final)
+    const totalQuestions = 1 + ADAPTIVE_QUESTIONS.length + COMMON_QUESTIONS.length; // 10 perguntas
+    return totalQuestions + 1; // +1 para tela final = 11 etapas
   }, []);
   const progress = useMemo(() => Math.round(((step + 1) / totalSteps) * 100), [step, totalSteps]);
 
@@ -359,9 +362,9 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
     // Etapa 1 (step 0) - SEM mídia
     if (step === 0) return false;
     // Etapa 10 (step 9) - última pergunta - SEM mídia
-    if (step === totalSteps - 1) return false;
-    // Etapa 11 (final) - SEM mídia (step === totalSteps quando mostra tela final)
-    if (step === totalSteps) return false;
+    if (step === 9) return false;
+    // Etapa 11 (step 10) - tela final - SEM mídia
+    if (step >= totalSteps - 1) return false;
     // Todas as outras etapas (2-9, steps 1-8) têm mídia
     return true;
   };
@@ -874,17 +877,18 @@ export function QuizTFX({ onStart, onComplete, primaryCtaHref }: QuizTFXProps) {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="mt-12 text-[#A0A0A0] text-sm"
           >
-            Etapa 12 de 12
+            Etapa 11 de 11
           </motion.div>
         </motion.div>
       </motion.div>
     );
   };
 
-  // Se for após a última pergunta (step === totalSteps), mostrar tela final
-  // Quando o usuário responde a última pergunta (step === totalSteps - 1), step avança para totalSteps
-  if (step === totalSteps) {
-    console.log('✅ Mostrando tela final - step:', step, 'totalSteps:', totalSteps);
+  // Se for após a última pergunta, mostrar tela final (Etapa 11)
+  // Quando o usuário responde a última pergunta (step 9 = Etapa 10), step avança para 10 = Etapa 11 (tela final)
+  // totalSteps = 11, então step 10 é a última etapa (tela final)
+  if (step >= totalSteps - 1) {
+    console.log('✅ Mostrando tela final Etapa 11 - step:', step, 'totalSteps:', totalSteps);
     return <FinalScreen />;
   }
 
