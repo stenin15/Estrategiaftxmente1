@@ -1,19 +1,19 @@
 import { Helmet } from "react-helmet-async";
+import { motion } from "framer-motion";
 
 export default function Entrega() {
   const userLang = navigator.language || navigator.languages[0];
   const isEnglish =
     userLang.startsWith("en") || userLang.startsWith("us") || userLang.startsWith("uk");
 
-  const pdfLink = "https://seulinkdopdf.com";
-  const telegramLink = "https://t.me/+SEULINKDOGRUPO";
-  const checkoutLink = "https://estrategiaftxmente1.vercel.app/";
+  // URL do checkout - substitua pela URL real do seu checkout
+  const checkoutUrl = "https://pay.cakto.com.br/YOUR_CHECKOUT_LINK";
 
   const lang = isEnglish ? "en" : "pt-BR";
 
   return (
     <main
-      className="min-h-screen flex flex-col items-center justify-center bg-[#0a0a0a] text-white px-6 text-center relative overflow-hidden"
+      className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-b from-[#0b0b0b] to-[#111] text-white text-center px-6 relative overflow-hidden"
       lang={lang}
     >
       {/* 🌎 SEO + Social Preview */}
@@ -46,79 +46,64 @@ export default function Entrega() {
         <meta property="og:locale" content={lang} />
       </Helmet>
 
-      {/* 🌟 Fundo Animado (leve e premium) */}
+      {/* 🌟 Fundo Animado (leve e premium) - mesmo estilo do quiz */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0a0a0a] to-[#020202]" />
       <div className="absolute w-[500px] h-[500px] bg-yellow-400/10 blur-3xl rounded-full -top-40 animate-pulse" />
       <div className="absolute w-[400px] h-[400px] bg-blue-500/10 blur-3xl rounded-full bottom-0 right-0 animate-pulse" />
 
-      {/* Conteúdo */}
-      <section className="relative z-10 max-w-xl">
-        <h1 className="text-3xl md:text-4xl font-bold mb-6 text-yellow-400">
+      {/* Conteúdo - Tela de ação única */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, ease: "easeOut" }}
+        className="relative z-10 max-w-2xl"
+      >
+        <h1 className="text-4xl md:text-5xl font-extrabold text-yellow-400 mb-4">
           {isEnglish
-            ? "🎯 Access Granted — TFX Advanced Trading"
-            : "🎯 Acesso Liberado — Trading Avançado TFX"}
+            ? "🎯 Access Granted — TFX Method"
+            : "🎯 Acesso Liberado — Método TFX"}
         </h1>
 
-        <p className="text-gray-300 mb-8 leading-relaxed">
+        <p className="text-white/80 mb-8 text-lg leading-relaxed">
           {isEnglish ? (
             <>
-              Welcome to the <strong>TFX Method</strong> — a proven approach to mastering Smart Money
-              Concepts.  
-              You now have full access to the study material and{" "}
-              <span className="text-blue-400 font-semibold">VIP Group (1 month)</span>.
+              You are one click away from securing full access to the{" "}
+              <span className="text-yellow-400 font-semibold">Advanced TFX Training</span>, 
+              the community, and the strategies that reveal how major players really operate.
             </>
           ) : (
             <>
-              Bem-vindo à <strong>Estratégia TFX</strong> — um método comprovado de domínio dos Smart
-              Money Concepts.  
-              Agora você tem acesso ao material de estudo e{" "}
-              <span className="text-blue-400 font-semibold">ao Grupo VIP (1 mês)</span>.
+              Você está a um clique de garantir acesso completo ao{" "}
+              <span className="text-yellow-400 font-semibold">Treinamento Avançado TFX</span>, 
+              a comunidade e às estratégias que revelam como os grandes players realmente operam.
             </>
           )}
         </p>
 
-        {/* Botões */}
-        <div className="flex flex-col gap-4 w-full">
-          <a
-            href={pdfLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-yellow-400 text-black py-3 rounded-lg font-semibold hover:bg-yellow-300 transition"
-          >
-            {isEnglish ? "📘 Download Study Material (PDF)" : "📘 Baixar Material de Estudo (PDF)"}
-          </a>
+        {/* CTA Principal - Botão único grande e chamativo */}
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.97 }}
+          onClick={() => window.open(checkoutUrl, "_blank")}
+          className="bg-gradient-to-r from-yellow-400 to-blue-500 text-black font-semibold py-4 px-10 rounded-2xl shadow-lg hover:shadow-yellow-400/50 transition-all text-lg"
+        >
+          {isEnglish ? "Secure my access now →" : "Garantir meu acesso agora →"}
+        </motion.button>
 
-          <a
-            href={telegramLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-blue-600 py-3 rounded-lg font-semibold hover:bg-blue-500 transition"
-          >
-            {isEnglish ? "💬 Join VIP Group (1-Month Access)" : "💬 Entrar no Grupo VIP (1 mês de acesso)"}
-          </a>
-
-          <a
-            href={checkoutLink}
-            className="border border-gray-600 py-3 rounded-lg font-medium text-gray-400 hover:text-white hover:border-gray-400 transition"
-          >
-            {isEnglish ? "↩ Return to Main Page" : "↩ Voltar para a Página Inicial"}
-          </a>
-        </div>
-
-        <p className="mt-10 text-gray-500 text-sm">
-          {isEnglish ? (
-            <>
-              Your VIP access is valid for 30 days from purchase.  
-              Remember: <span className="text-yellow-400">Control your mind — the market follows.</span>
-            </>
-          ) : (
-            <>
-              Seu acesso ao grupo VIP é válido por 30 dias após a compra.  
-              Lembre-se: <span className="text-yellow-400">Domine a mente — o mercado é consequência.</span>
-            </>
-          )}
+        {/* Microcopy abaixo do botão */}
+        <p className="text-gray-400 mt-4 text-sm">
+          {isEnglish
+            ? "Unconditional 7-day guarantee • Lifetime access to material"
+            : "Garantia incondicional de 7 dias • Acesso vitalício ao material"}
         </p>
-      </section>
+
+        {/* Frase final em destaque dourado */}
+        <p className="text-[#facc15] mt-10 font-semibold text-sm tracking-wide">
+          {isEnglish
+            ? "Control your mind — the market follows."
+            : "Domine a mente — o mercado é consequência."}
+        </p>
+      </motion.div>
     </main>
   );
 }
