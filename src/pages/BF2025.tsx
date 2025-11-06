@@ -29,8 +29,8 @@ export default function BF2025() {
             <span className="text-teal-300">destrave hoje o método completo</span> com um investimento baixo.
           </h1>
           <p className="text-white/80 mt-4 max-w-2xl mx-auto text-lg">
-            De <span className="line-through text-white/60">R$ 489,00</span> por{" "}
-            <span className="text-teal-300 font-semibold text-xl">R$ 59,90</span> (acesso imediato + materiais de apoio). Oferta bônus liberada só para quem concluiu o quiz.
+            De <span className="line-through text-white/60">R$ 499,90</span> por{" "}
+            <span className="text-teal-300 font-semibold text-xl">R$ 49,90</span> (acesso imediato + materiais de apoio). Oferta bônus liberada só para quem concluiu o quiz.
           </p>
         </motion.div>
 
@@ -66,8 +66,8 @@ export default function BF2025() {
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-300 text-xs font-medium mb-3">
             <span>🎁</span> Bônus por concluir o quiz
           </div>
-          <div className="text-white/70 line-through text-lg">R$ 489,00</div>
-          <div className="text-4xl md:text-5xl font-extrabold text-teal-300 mt-2">R$ 59,90</div>
+          <div className="text-white/70 line-through text-lg">R$ 499,90</div>
+          <div className="text-4xl md:text-5xl font-extrabold text-teal-300 mt-2">R$ 49,90</div>
           <div className="text-white/70 mt-1 text-sm">Black Friday 2025 • acesso imediato</div>
 
           <motion.button
@@ -77,7 +77,7 @@ export default function BF2025() {
             className="mt-6 inline-flex items-center gap-2 bg-gradient-to-r from-teal-400 to-teal-500 text-black font-semibold px-6 py-4 rounded-2xl hover:brightness-110 transition shadow-lg text-lg cta-pulsante"
           >
             <span>💳</span>
-            Quero destravar o método por R$ 59,90 →
+            Quero destravar o método por R$ 49,90 →
           </motion.button>
 
           <div className="text-gray-400 text-xs mt-3">
