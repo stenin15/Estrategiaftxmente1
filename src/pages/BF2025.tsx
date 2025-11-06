@@ -121,21 +121,6 @@ export default function BF2025() {
           </p>
         </motion.div>
 
-        {/* CTA Secundário */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="text-center mt-6"
-        >
-          <button
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="text-white/70 underline underline-offset-4 hover:text-white transition"
-          >
-            Prefiro entender tudo antes (ver como funciona)
-          </button>
-        </motion.div>
-
         {/* Rodapé */}
         <div className="text-center text-yellow-400 mt-10 text-sm font-semibold">
           "Domine a mente — o mercado é consequência."
